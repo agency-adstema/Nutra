@@ -1,0 +1,1 @@
+var e=`bk_consent`;function t(){try{let t=localStorage.getItem(e);if(!t)return null;let n=JSON.parse(t);return n&&n.v===1?n:null}catch{return null}}function n(t){let n={analytics:t,ts:Date.now(),v:1};try{localStorage.setItem(e,JSON.stringify(n))}catch{}window.dispatchEvent(new CustomEvent(`bk:consent`,{detail:n}))}function r(){return t()?.analytics===!0}export{r as n,n as r,t};
