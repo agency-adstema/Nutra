@@ -1,0 +1,39 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../config/site';
+---
+
+<PageLayout
+  title="Politika kolačića"
+  seoTitle="Kolačići i lokalno skladište"
+  description={`Koje kolačiće i lokalno skladište koristi ${site.name}, zašto, i kako da promenite podešavanja.`}
+  path="/kolacici/"
+  updatedAt={new Date('2026-11-22')}
+  legal
+>
+  <h2>Neophodno (bez saglasnosti)</h2>
+  <ul>
+    <li><strong>bk_consent</strong> (localStorage) — pamti vaš izbor o kolačićima. Trajanje: dok ga ne obrišete.</li>
+    <li><strong>bk_attr</strong> (sessionStorage) — izvor posete (UTM, ID klika partnera) radi povezivanja porudžbine sa kampanjom. Briše se zatvaranjem taba. Ne sadrži ime ni telefon.</li>
+  </ul>
+
+  <h2>Analitika (samo uz saglasnost)</h2>
+  <p>
+    Google Analytics 4 (Google Ireland Ltd.) koristi kolačiće <strong>_ga</strong> i <strong>_ga_*</strong> za merenje
+    posećenosti, u trajanju do 2 godine. Učitava se tek kada kliknete „Prihvati analitiku“. Reklamni kolačići su isključeni.
+  </p>
+
+  <h2>Instagram video snimci</h2>
+  <p>
+    Video sa Instagrama učitava se tek kada kliknete na njega. Tada Instagram (Meta Platforms Ireland Ltd.) može da
+    postavi svoje kolačiće i obradi podatke o vašoj poseti prema svojoj politici privatnosti.
+  </p>
+
+  <h2>Zaštita forme</h2>
+  <p>Ako je uključena zaštita Cloudflare Turnstile, ona služi isključivo za razlikovanje ljudi od botova pri slanju porudžbine.</p>
+
+  <h2>Promena podešavanja</h2>
+  <p>
+    Izbor možete promeniti klikom na „Podešavanja kolačića“ u dnu svake stranice, ili brisanjem podataka sajta u browseru.
+  </p>
+</PageLayout>

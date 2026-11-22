@@ -1,0 +1,12 @@
+node_modules/
+dist/
+preview-dist/
+.astro/
+.vercel/
+.wrangler/
+.env
+.env.*
+!.env.example
+screenshots/
+*.log
+.DS_Store

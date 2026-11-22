@@ -1,0 +1,61 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+import { getCategories, categoryUrl } from '../lib/content';
+
+const categories = await getCategories();
+const op = site.operator;
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-20 border-t border-line/70 bg-[#f3efe4]">
+  <div class="container-site grid gap-10 py-12 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
+    <div>
+      <Logo size="sm" />
+      <p class="mt-4 max-w-sm text-sm leading-relaxed text-muted">
+        {site.name} je informativni sajt o prirodnim preparatima. Nismo apoteka niti zvanični sajt proizvođača. Porudžbine
+        obrađuje {site.orderProcessing.sellerDescription}.
+      </p>
+      <p class="mt-4 flex items-start gap-2 text-sm italic text-ink/80">
+        <Icon name="info" size={18} class="mt-0.5 shrink-0" />
+        {site.medicalDisclaimer} Dodaci ishrani nisu lekovi.
+      </p>
+    </div>
+
+    <nav aria-label="Kategorije">
+      <p class="mb-3 text-sm font-semibold tracking-wider text-ink uppercase">Kategorije</p>
+      <ul class="space-y-2 text-sm">
+        {categories.map((c) => <li><a class="text-muted hover:text-ink" href={categoryUrl(c)}>{c.data.name}</a></li>)}
+        <li><a class="text-muted hover:text-ink" href="/vodici/">Vodiči</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="Informacije">
+      <p class="mb-3 text-sm font-semibold tracking-wider text-ink uppercase">Informacije</p>
+      <ul class="space-y-2 text-sm">
+        {site.footerLinks.map((l) => <li><a class="text-muted hover:text-ink" href={l.href}>{l.label}</a></li>)}
+        <li><button type="button" class="text-muted underline-offset-2 hover:text-ink hover:underline" data-open-consent>Podešavanja kolačića</button></li>
+      </ul>
+    </nav>
+
+    <div>
+      <p class="mb-3 text-sm font-semibold tracking-wider text-ink uppercase">Operater sajta</p>
+      <address class="space-y-1 text-sm not-italic text-muted">
+        <p>{op.companyName}</p>
+        <p>{op.address}</p>
+        <p>MB: {op.registrationNumber} · PIB: {op.taxId}</p>
+        <p><a class="hover:text-ink" href={`mailto:${op.email}`}>{op.email}</a></p>
+        {op.phone && <p><a class="hover:text-ink" href={`tel:${op.phone.replace(/\s/g, '')}`} data-location="footer">{op.phone}</a></p>}
+      </address>
+    </div>
+  </div>
+  <div class="border-t border-line/70">
+    <div class="container-site flex flex-col gap-2 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.name}. Sva prava zadržana.</p>
+      <p>
+        Sajt sadrži affiliate linkove i forme za poručivanje — <a href="/affiliate-izjava/" class="underline hover:text-ink">kako zarađujemo</a>.
+      </p>
+    </div>
+  </div>
+</footer>

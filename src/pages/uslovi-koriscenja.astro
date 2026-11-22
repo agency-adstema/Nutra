@@ -1,0 +1,47 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../config/site';
+const op = site.operator;
+---
+
+<PageLayout
+  title="Uslovi korišćenja"
+  description={`Uslovi korišćenja sajta ${site.name}: informativni karakter sadržaja, porudžbine preko partnera, odgovornost i autorska prava.`}
+  path="/uslovi-koriscenja/"
+  updatedAt={new Date('2026-11-22')}
+  legal
+>
+  <h2>1. O sajtu</h2>
+  <p>
+    Sajt {site.name} vodi {op.companyName}. Korišćenjem sajta prihvatate ove uslove.
+  </p>
+
+  <h2>2. Informativni karakter</h2>
+  <p>
+    Sadržaj je informativan i ne predstavlja medicinski savet, dijagnozu ni terapiju. Dodaci ishrani i kozmetički
+    proizvodi nisu lekovi. Pre upotrebe bilo kog preparata, posebno ako imate hronično oboljenje, koristite lekove, ako ste
+    trudni ili dojite, posavetujte se sa lekarom ili farmaceutom.
+  </p>
+
+  <h2>3. Porudžbine</h2>
+  <p>
+    {site.name} nije prodavac. Forma za poručivanje prosleđuje vaš zahtev prodavcu preko partnerske mreže. Ugovor o kupovini
+    zaključujete sa prodavcem, koji je odgovoran za cenu, isporuku i reklamacije. Detalji:
+    <a href="/obrada-porudzbina/">obrada porudžbina</a>.
+  </p>
+
+  <h2>4. Tačnost podataka</h2>
+  <p>
+    Trudimo se da podaci budu tačni i ažurni, a cene prikazujemo sa datumom provere. Prodavac može promeniti cenu ili
+    pakovanje; važeću cenu potvrđuje operater pre slanja.
+  </p>
+
+  <h2>5. Autorska prava</h2>
+  <p>
+    Tekstovi i dizajn sajta zaštićeni su autorskim pravom. Nazivi proizvoda i robne marke pripadaju njihovim vlasnicima i
+    koriste se samo radi opisa proizvoda.
+  </p>
+
+  <h2>6. Izmene</h2>
+  <p>Uslove možemo izmeniti; važi verzija objavljena na ovoj stranici, sa datumom poslednje izmene.</p>
+</PageLayout>

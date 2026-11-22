@@ -1,0 +1,43 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../config/site';
+---
+
+<PageLayout
+  title="Kako se obrađuju porudžbine"
+  seoTitle="Obrada porudžbina – ko vas zove i ko šalje paket"
+  description="Šta se dešava posle slanja porudžbine: ko dobija vaše podatke, ko vas poziva, kako se plaća i kome se obratiti za reklamaciju."
+  path="/obrada-porudzbina/"
+  updatedAt={new Date('2026-11-22')}
+  legal
+>
+  <h2>Korak po korak</h2>
+  <ol>
+    <li>Popunite formu na stranici proizvoda: ime, prezime, broj telefona i pakovanje.</li>
+    <li>
+      Podaci se preko našeg servera, zaštićenom vezom, prosleđuju partnerskoj mreži {site.orderProcessing.networkName}, a
+      zatim prodavcu proizvoda i njegovom call centru.
+    </li>
+    <li>Operater vas poziva da potvrdi porudžbinu, cenu, pakovanje i adresu dostave.</li>
+    <li>Paket stiže kurirskom službom, a plaćate pouzećem pri preuzimanju.</li>
+  </ol>
+
+  <h2>Ko je prodavac</h2>
+  <p>
+    {site.name} nije prodavac. Ugovor o kupovini zaključujete sa prodavcem koga vam operater imenuje prilikom poziva.
+    Prodavac je odgovoran za isporuku, cenu, zakonsku saobraznost robe, povraćaj i reklamacije.
+  </p>
+
+  <h2>Koje podatke prosleđujemo</h2>
+  <p>
+    Ime i prezime, broj telefona, izabrani proizvod i pakovanje, IP adresu (radi zaštite od zloupotrebe) i tehničke podatke
+    o izvoru posete (npr. UTM parametri). Ne tražimo adresu, e-mail ni podatke o plaćanju. Detalji su u
+    <a href="/politika-privatnosti/">politici privatnosti</a>.
+  </p>
+
+  <h2>Odustanak od kupovine</h2>
+  <p>
+    Pri kupovini na daljinu potrošač u Srbiji po pravilu ima pravo da odustane od ugovora u roku od 14 dana od prijema
+    robe, prema Zakonu o zaštiti potrošača. Zahtev upućujete prodavcu.
+  </p>
+</PageLayout>

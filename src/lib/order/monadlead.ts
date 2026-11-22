@@ -1,0 +1,131 @@
+/**
+ * MonadLead API klijent.
+ * POST https://api.monadlead.com/api/v1/orders/create/  (application/json)
+ *
+ * Odgovori prema dokumentaciji:
+ *  200 → porudžbina kreirana (čuvamo order_id i click_id ako postoje)
+ *  400 → neispravno polje
+ *  405/406 → greška u metodi/formatu zahteva
+ *  500 → serverska greška
+ */
+import type { SubValues } from '../tracking';
+import { scrub } from './log';
+
+export const MONADLEAD_DEFAULT_URL = 'https://api.monadlead.com/api/v1/orders/create/';
+
+export interface MonadleadPayloadInput {
+  apiKey: string;
+  name: string;
+  phone: string;
+  offerId: string;
+  countryCode: string;
+  baseUrl: string;
+  referrer?: string;
+  userIp?: string;
+  subs: SubValues;
+  utm: Partial<Record<'utm_source' | 'utm_medium' | 'utm_campaign' | 'utm_term' | 'utm_content', string>>;
+}
+
+export type MonadleadPayload = Record<string, string>;
+
+export function buildMonadleadPayload(i: MonadleadPayloadInput): MonadleadPayload {
+  const payload: MonadleadPayload = {
+    api_key: i.apiKey,
+    name: i.name,
+    phone: i.phone,
+    offer_id: i.offerId,
+    country_code: i.countryCode,
+    base_url: i.baseUrl,
+  };
+  const optional: Record<string, string | undefined> = {
+    referrer: i.referrer,
+    user_ip: i.userIp,
+    sub_1: i.subs.sub_1,
+    sub_2: i.subs.sub_2,
+    sub_3: i.subs.sub_3,
+    sub_4: i.subs.sub_4,
+    utm_campaign: i.utm.utm_campaign,
+    utm_source: i.utm.utm_source,
+    utm_medium: i.utm.utm_medium,
+    utm_term: i.utm.utm_term,
+    utm_content: i.utm.utm_content,
+  };
+  for (const [k, v] of Object.entries(optional)) {
+    if (v) payload[k] = v;
+  }
+  return payload;
+}
+
+/** Za logove i test režim — nikad ne prikazujemo API ključ */
+export function redactPayload(p: MonadleadPayload): MonadleadPayload {
+  return { ...p, api_key: p.api_key ? '***' : '' };
+}
+
+export type CrmResult =
+  | { ok: true; orderId?: string; clickId?: string }
+  | {
+      ok: false;
+      kind: 'validation' | 'config' | 'server' | 'network' | 'timeout' | 'rejected';
+      status?: number;
+      field?: 'phone' | 'name' | 'other';
+      detail?: string;
+    };
+
+function pick(body: unknown, key: string): string | undefined {
+  if (!body || typeof body !== 'object') return undefined;
+  const b = body as Record<string, any>;
+  const v = b[key] ?? b.data?.[key] ?? b.result?.[key] ?? b.order?.[key === 'order_id' ? 'id' : key];
+  if (v === undefined || v === null || v === '') return undefined;
+  return String(v).slice(0, 100);
+}
+
+function detectField(text: string): 'phone' | 'name' | 'other' {
+  if (/phone|telefon|tel\b/i.test(text)) return 'phone';
+  if (/\bname\b|ime/i.test(text)) return 'name';
+  return 'other';
+}
+
+export function parseMonadleadResponse(status: number, text: string): CrmResult {
+  let body: unknown;
+  try {
+    body = text ? JSON.parse(text) : undefined;
+  } catch {
+    body = undefined;
+  }
+  const detail = scrub(text).slice(0, 300);
+
+  if (status === 200 || status === 201) {
+    const b = (body ?? {}) as Record<string, unknown>;
+    const explicitFailure =
+      b.success === false || b.status === 'error' || b.status === false || b.ok === false ||
+      (b.error !== undefined && b.error !== null && b.error !== false && !pick(body, 'order_id'));
+    if (explicitFailure) return { ok: false, kind: 'rejected', status, field: detectField(text), detail };
+    return { ok: true, orderId: pick(body, 'order_id'), clickId: pick(body, 'click_id') };
+  }
+  if (status === 400 || status === 422) return { ok: false, kind: 'validation', status, field: detectField(text), detail };
+  if ([401, 403, 404, 405, 406, 415].includes(status)) return { ok: false, kind: 'config', status, detail };
+  return { ok: false, kind: 'server', status, detail };
+}
+
+export async function sendToMonadlead(
+  payload: MonadleadPayload,
+  opts: { url?: string; fetchImpl?: typeof fetch; timeoutMs?: number } = {},
+): Promise<CrmResult> {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), opts.timeoutMs ?? 12_000);
+  try {
+    const res = await (opts.fetchImpl ?? fetch)(opts.url || MONADLEAD_DEFAULT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+      signal: ctrl.signal,
+    });
+    const text = await res.text();
+    return parseMonadleadResponse(res.status, text);
+  } catch (e) {
+    const name = (e as Error)?.name;
+    return { ok: false, kind: name === 'AbortError' || name === 'TimeoutError' ? 'timeout' : 'network' };
+  } finally {
+    clearTimeout(timer);
+  }
+}

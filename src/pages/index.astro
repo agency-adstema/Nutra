@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import LeafDecor from '../components/LeafDecor.astro';
+import ProductCard from '../components/ProductCard.astro';
+import GuideCard from '../components/GuideCard.astro';
+import { Picture } from 'astro:assets';
+import { getCategories, getProducts, getGuides, categoryUrl, productUrl } from '../lib/content';
+import { websiteSchema } from '../lib/seo';
+import { site } from '../config/site';
+
+const [categories, products, guides] = await Promise.all([getCategories(), getProducts(), getGuides()]);
+const featured = products.filter((p) => p.data.featured).slice(0, 6);
+const latestGuides = guides.slice(0, 3);
+const catName = (id?: string) => categories.find((c) => c.id === id)?.data.name;
+const countByCat = (id: string) => products.filter((p) => p.data.category.id === id).length;
+const heroProducts = featured.slice(0, 3);
+const siteUrl = (Astro.site?.toString() ?? '').replace(/\/$/, '');
+
+const principles = [
+  { icon: 'book', title: 'Izvori, ne obećanja', text: 'Tvrdnje o sastojcima povezujemo sa nezavisnim izvorima (EMA, CDC, Cochrane). Ono što nije dokazano, tako i pišemo.' },
+  { icon: 'scale', title: 'Proverene cene', text: 'Cenu prikazujemo samo kada je proverena, uz datum provere. Bez lažnih popusta i odbrojavanja.' },
+  { icon: 'shield', title: 'Upozorenja na vidnom mestu', text: 'Kome proizvod nije namenjen i kada se obratiti lekaru — na svakoj stranici proizvoda.' },
+  { icon: 'instagram', title: 'Samo prava iskustva', text: 'Video snimke objavljujemo samo uz dozvolu autora i ne predstavljamo ih kao recenzije bez potvrđene kupovine.' },
+];
+---
+
+<BaseLayout
+  title={`${site.name} – prirodni preparati: sastav, upotreba i cene`}
+  description={site.description}
+  path="/"
+  jsonLd={[websiteSchema(siteUrl)]}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <LeafDecor class="-left-12 top-10 w-56 -rotate-12" />
+    <LeafDecor class="-right-8 bottom-4 hidden w-44 rotate-[160deg] md:block" variant="single" />
+    <div class="container-site relative grid items-center gap-10 py-12 lg:grid-cols-[1.1fr_1fr] lg:py-20">
+      <div>
+        <p class="pill bg-[#e7efdc] text-[#1f4d2b]"><Icon name="leaf" size={16} /> Nezavisan informativni vodič</p>
+        <h1 class="mt-5 text-[2.6rem] leading-[1.05] font-bold text-[#173d22] sm:text-6xl">
+          Prirodni preparati, <span class="text-[#5d8c3c] italic">bez preterivanja</span>.
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink/80">
+          Sastav, način upotrebe, upozorenja i proverene cene prirodnih preparata dostupnih u Srbiji — na jednom mestu,
+          uz izvore. Kada odlučite, poručujete jednostavno, uz plaćanje pouzećem.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#kategorije" class="btn-primary px-6 py-3.5">Pogledajte kategorije <Icon name="arrow-right" size={18} /></a>
+          <a href="/vodici/" class="btn-ghost px-6 py-3.5">Čitajte vodiče</a>
+        </div>
+        <p class="mt-6 flex items-center gap-2 text-sm text-muted"><Icon name="info" size={16} /> {site.medicalDisclaimer}</p>
+      </div>
+
+      <div class="relative mx-auto grid w-full max-w-lg grid-cols-2 gap-4">
+        {
+          heroProducts.map((p, i) => (
+            <a
+              href={productUrl(p)}
+              class={`group relative overflow-hidden rounded-3xl shadow-[var(--shadow-soft)] ring-1 ring-black/5 ${i === 0 ? 'col-span-2 aspect-[16/9]' : 'aspect-square'}`}
+              data-select-item
+              data-list="home_hero"
+              data-item-id={p.data.slug}
+              data-item-name={p.data.name}
+              data-item-category={p.data.category.id}
+            >
+              <Picture
+                src={p.data.heroImage}
+                alt={p.data.heroImageAlt}
+                widths={i === 0 ? [520, 760, 1040] : [260, 400, 520]}
+                sizes={i === 0 ? '(min-width: 1024px) 512px, 100vw' : '(min-width: 1024px) 250px, 50vw'}
+                formats={['avif', 'webp']}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchpriority={i === 0 ? 'high' : undefined}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <span class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-sm font-semibold text-ink shadow">{p.data.name}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Kategorije -->
+  <section id="kategorije" class="container-site scroll-mt-24 py-10" aria-labelledby="kat-title">
+    <div class="flex items-end justify-between gap-4">
+      <h2 id="kat-title" class="text-3xl font-semibold text-[#173d22] sm:text-4xl">Kategorije</h2>
+    </div>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        categories.map((c) => (
+          <a href={categoryUrl(c)} class="card group flex items-start gap-4 p-6 transition-shadow hover:shadow-[var(--shadow-soft)]">
+            <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[#e7efdc] text-[#1f4d2b] transition-colors group-hover:bg-[#1f4d2b] group-hover:text-white">
+              <Icon name={c.data.icon} size={28} />
+            </span>
+            <span class="min-w-0">
+              <span class="flex items-center gap-2 text-xl font-semibold text-ink">
+                {c.data.name}
+                <Icon name="arrow-right" size={18} class="text-muted transition-transform group-hover:translate-x-1" />
+              </span>
+              <span class="mt-1 block text-[15px] text-muted">{c.data.shortDescription}</span>
+              <span class="mt-3 block text-sm font-medium text-[#5d8c3c]">
+                {countByCat(c.id)} {countByCat(c.id) === 1 ? 'proizvod' : 'proizvoda'}
+              </span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Izdvojeni proizvodi -->
+  <section class="container-site py-10" aria-labelledby="izdvojeno-title">
+    <h2 id="izdvojeno-title" class="text-3xl font-semibold text-[#173d22] sm:text-4xl">Izdvojeni proizvodi</h2>
+    <p class="mt-2 max-w-2xl text-muted">Proizvodi o kojima najčešće pitate. Na svakoj stranici su sastav, upotreba, upozorenja i izvori.</p>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((p) => <ProductCard product={p} list="home_featured" />)}
+    </div>
+  </section>
+
+  <!-- Vodiči -->
+  <section class="container-site py-10" aria-labelledby="vodici-title">
+    <div class="flex items-end justify-between gap-4">
+      <h2 id="vodici-title" class="text-3xl font-semibold text-[#173d22] sm:text-4xl">Najnoviji vodiči</h2>
+      <a href="/vodici/" class="hidden items-center gap-1 font-semibold text-[#1f4d2b] hover:underline sm:flex">Svi vodiči <Icon name="arrow-right" size={18} /></a>
+    </div>
+    <div class="mt-6 grid gap-6 md:grid-cols-3">
+      {latestGuides.map((g) => <GuideCard guide={g} categoryName={catName(g.data.category?.id)} />)}
+    </div>
+    <a href="/vodici/" class="mt-6 flex items-center gap-1 font-semibold text-[#1f4d2b] sm:hidden">Svi vodiči <Icon name="arrow-right" size={18} /></a>
+  </section>
+
+  <!-- Kako biramo i pišemo -->
+  <section class="py-10" aria-labelledby="kako-title">
+    <div class="container-site">
+      <div class="relative overflow-hidden rounded-[2rem] bg-[#173d22] px-6 py-12 text-white sm:px-12">
+        <LeafDecor class="-right-10 -top-10 w-64 opacity-30" color="#a8c98a" />
+        <div class="relative max-w-2xl">
+          <h2 id="kako-title" class="text-3xl font-semibold sm:text-4xl">Kako biramo i pišemo</h2>
+          <p class="mt-3 text-white/80">
+            {site.name} nije apoteka ni zvanični sajt proizvođača. Zarađujemo kada poručite preko naše forme, i zato
+            jasno odvajamo informacije od prodaje.
+          </p>
+        </div>
+        <div class="relative mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            principles.map((p) => (
+              <div class="rounded-2xl bg-white/[0.07] p-5 ring-1 ring-white/10">
+                <Icon name={p.icon} size={26} class="text-[#b9d99c]" />
+                <h3 class="mt-3 font-sans text-lg font-semibold tracking-normal">{p.title}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-white/75">{p.text}</p>
+              </div>
+            ))
+          }
+        </div>
+        <a href="/kako-pisemo/" class="relative mt-8 inline-flex items-center gap-1 font-semibold text-[#cfe6b8] hover:underline">
+          Pročitajte naša pravila <Icon name="arrow-right" size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

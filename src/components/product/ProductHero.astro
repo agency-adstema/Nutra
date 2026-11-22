@@ -1,0 +1,103 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from '../Icon.astro';
+import Breadcrumbs from '../Breadcrumbs.astro';
+import LeafDecor from '../LeafDecor.astro';
+import { site } from '../../config/site';
+import { formatPrice, priceView } from '../../lib/format';
+import type { Product } from '../../lib/content';
+import type { MarketConfig } from '../../config/countries';
+
+interface Props {
+  product: Product;
+  categoryName: string;
+  categoryHref: string;
+  market: MarketConfig;
+}
+const { product, categoryName, categoryHref, market } = Astro.props;
+const d = product.data;
+const pv = priceView(d.priceStatus, d.packages);
+const h1 = d.h1 ?? d.name;
+---
+
+<section class="relative overflow-hidden" data-hero>
+  <LeafDecor class="-right-10 -top-6 hidden w-64 rotate-12 lg:block" />
+  <LeafDecor class="-left-16 bottom-0 w-40 -rotate-12 opacity-40" variant="single" />
+
+  <div class="container-site relative pt-4 pb-8 lg:pt-5 lg:pb-12">
+    <Breadcrumbs items={[{ name: categoryName, href: categoryHref }, { name: h1, href: '' }]} class="mb-4 lg:mb-6" />
+
+    <div class="grid items-center gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+      <div class="relative">
+        <div class="overflow-hidden rounded-[1.75rem] bg-brand-2 shadow-[var(--shadow-soft)] ring-1 ring-black/5">
+          <Picture
+            src={d.heroImage}
+            alt={d.heroImageAlt}
+            widths={[480, 720, 1104]}
+            sizes="(min-width: 1024px) 560px, 100vw"
+            formats={['avif', 'webp']}
+            loading="eager"
+            fetchpriority="high"
+            class="aspect-[16/9] h-full w-full object-cover lg:aspect-[16/10]"
+          />
+        </div>
+        {d.brandLogo && (
+          <div class="absolute bottom-4 left-4 rounded-xl bg-white/90 p-2 shadow">
+            <Picture src={d.brandLogo} alt={`${d.name} logo`} widths={[160]} formats={['webp']} class="h-8 w-auto" />
+          </div>
+        )}
+      </div>
+
+      <div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="pill bg-accent px-3.5 text-[13px] font-semibold text-white sm:text-sm">{d.productType}</span>
+          {d.demo && <span class="demo-badge">Demo podaci</span>}
+        </div>
+        <h1 class="mt-3 text-[2.5rem] leading-[1.05] font-bold text-brand-strong sm:text-5xl lg:text-[3.6rem]">{h1}</h1>
+        <p class="mt-3 text-lg text-ink/85 sm:text-xl">{d.shortDescription}</p>
+
+        {
+          d.highlights.length > 0 && (
+            <ul class="mt-6 grid grid-cols-3 divide-x divide-line rounded-2xl sm:max-w-xl" aria-label="Ključne karakteristike">
+              {d.highlights.map((h) => (
+                <li class="flex flex-col items-center gap-1.5 px-2 text-center sm:flex-row sm:gap-3 sm:px-4 sm:text-left first:sm:pl-0">
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-2 text-brand sm:h-12 sm:w-12">
+                    <Icon name={h.icon} size={24} />
+                  </span>
+                  <span class="text-[13px] leading-tight font-medium text-ink sm:text-[15px]">{h.label}</span>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-stretch">
+          <div class="flex flex-1 items-center gap-2 rounded-2xl bg-brand-2 px-5 py-3.5" data-hero-price>
+            {
+              pv.show ? (
+                <p class="flex flex-wrap items-baseline gap-x-2">
+                  <span class="text-ink/80">Cena od:</span>
+                  <span class="text-2xl font-bold text-brand-strong sm:text-[1.7rem]">{formatPrice(pv.min!, market.currencyLabel)}</span>
+                  {pv.isDemo && <span class="text-sm font-medium text-accent">— demo cena</span>}
+                </p>
+              ) : (
+                <p class="text-ink/80">Cena se potvrđuje prilikom poziva operatera.</p>
+              )
+            }
+          </div>
+          {
+            d.orderEnabled && (
+              <a href="#poruci" class="btn-primary px-7 py-4 text-lg shadow-lg shadow-brand/20" data-hero-cta>
+                <Icon name="cart" size={22} /> Poručite odmah
+              </a>
+            )
+          }
+        </div>
+        <p class="mt-4 flex items-center gap-2 text-[15px] text-ink/80">
+          <Icon name="box" size={20} class="shrink-0 text-ink/70" />
+          {site.orderProcessing.deliveryNote}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

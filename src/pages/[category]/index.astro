@@ -1,0 +1,87 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import FaqList from '../../components/FaqList.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import Icon from '../../components/Icon.astro';
+import LeafDecor from '../../components/LeafDecor.astro';
+import { getCategories, getProducts, getGuides, type Category } from '../../lib/content';
+import { reservedSlugs } from '../../config/site';
+import { faqSchema } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const categories = await getCategories();
+  for (const c of categories) {
+    if (reservedSlugs.includes(c.data.slug)) throw new Error(`Slug kategorije "${c.data.slug}" je rezervisan.`);
+  }
+  return categories.map((c) => ({ params: { category: c.data.slug }, props: { category: c } }));
+}
+
+interface Props {
+  category: Category;
+}
+const { category } = Astro.props;
+const d = category.data;
+const { Content } = await render(category);
+const products = (await getProducts()).filter((p) => p.data.category.id === category.id);
+const guides = (await getGuides()).filter((g) => g.data.category?.id === category.id);
+const path = `/${d.slug}/`;
+---
+
+<BaseLayout
+  title={d.seo.title}
+  description={d.seo.description}
+  path={path}
+  breadcrumbs={[{ name: d.name, href: path }]}
+  jsonLd={[{ '@type': 'CollectionPage', name: d.name, description: d.seo.description }, ...(d.faq.length ? [faqSchema(d.faq)] : [])]}
+>
+  {d.demo && <DemoNotice text="Demo sadržaj: tekst kategorije je primer i čeka uredničku proveru." />}
+  <section class="relative overflow-hidden">
+    <LeafDecor class="-right-10 top-0 w-56 rotate-12" />
+    <div class="container-site relative py-8 lg:py-12">
+      <Breadcrumbs items={[{ name: d.name, href: path }]} />
+      <div class="mt-6 flex items-start gap-4">
+        <span class="hidden h-16 w-16 shrink-0 place-items-center rounded-2xl bg-[#e7efdc] text-[#1f4d2b] sm:grid">
+          <Icon name={d.icon} size={32} />
+        </span>
+        <div>
+          <h1 class="text-4xl font-bold text-[#173d22] sm:text-5xl">{d.name}</h1>
+          <div class="prose-bk mt-3 max-w-3xl">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-site py-6" aria-labelledby="proizvodi-title">
+    <h2 id="proizvodi-title" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">Proizvodi u kategoriji</h2>
+    {
+      products.length ? (
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((p, i) => <ProductCard product={p} list={`category_${d.slug}`} eager={i < 3} />)}
+        </div>
+      ) : (
+        <p class="mt-4 text-muted">Uskoro dodajemo proizvode u ovu kategoriju.</p>
+      )
+    }
+  </section>
+
+  {
+    guides.length > 0 && (
+      <section class="container-site py-10" aria-labelledby="kat-vodici-title">
+        <h2 id="kat-vodici-title" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">Vodiči za ovu temu</h2>
+        <div class="mt-6 grid gap-6 md:grid-cols-3">
+          {guides.map((g) => <GuideCard guide={g} categoryName={d.name} />)}
+        </div>
+      </section>
+    )
+  }
+
+  <div class="container-site py-6">
+    <FaqList items={d.faq} title="Često postavljana pitanja" />
+  </div>
+</BaseLayout>

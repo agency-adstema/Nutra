@@ -1,0 +1,87 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import { productUrl, type Product } from '../lib/content';
+import { formatPrice, priceView, themeStyle } from '../lib/format';
+import { getMarket } from '../config/countries';
+
+interface Props {
+  product: Product;
+  list?: string;
+  eager?: boolean;
+}
+const { product, list = 'products', eager = false } = Astro.props;
+const d = product.data;
+const pv = priceView(d.priceStatus, d.packages);
+const market = getMarket(d.countryCode);
+const href = productUrl(product);
+---
+
+<article
+  class="card group flex h-full flex-col overflow-hidden transition-shadow hover:shadow-[var(--shadow-soft)]"
+  style={themeStyle(d)}
+>
+  <a
+    href={href}
+    class="relative block aspect-[4/3] overflow-hidden bg-brand-2"
+    tabindex="-1"
+    aria-hidden="true"
+    data-select-item
+    data-list={list}
+    data-item-id={d.slug}
+    data-item-name={d.name}
+    data-item-category={d.category.id}
+  >
+    <Picture
+      src={d.heroImage}
+      alt=""
+      widths={[360, 560, 720]}
+      sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+      formats={['avif', 'webp']}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+      loading={eager ? 'eager' : 'lazy'}
+    />
+    {d.demo && <span class="demo-badge absolute left-3 top-3">Demo</span>}
+  </a>
+  <div class="flex flex-1 flex-col p-5">
+    <p class="text-xs font-semibold tracking-wider text-accent uppercase">{d.productType}</p>
+    <h3 class="mt-1 text-xl font-semibold text-ink">
+      <a
+        href={href}
+        class="hover:text-brand"
+        data-select-item
+        data-list={list}
+        data-item-id={d.slug}
+        data-item-name={d.name}
+        data-item-category={d.category.id}>{d.name}</a
+      >
+    </h3>
+    <p class="mt-2 line-clamp-3 text-[15px] leading-relaxed text-muted">{d.shortDescription}</p>
+    <div class="mt-auto flex items-end justify-between gap-3 pt-5">
+      <div class="text-sm">
+        {
+          pv.show ? (
+            <>
+              <span class="text-muted">Cena od</span>
+              <span class="block text-lg font-bold text-brand">{formatPrice(pv.min!, market.currencyLabel)}</span>
+              {pv.isDemo && <span class="text-xs text-warn">demo cena</span>}
+            </>
+          ) : (
+            <span class="text-muted">Cena se potvrđuje</span>
+          )
+        }
+      </div>
+      <a
+        href={href}
+        class="btn-primary px-4 py-2.5 text-sm"
+        data-select-item
+        data-list={list}
+        data-item-id={d.slug}
+        data-item-name={d.name}
+        data-item-category={d.category.id}
+      >
+        Detaljnije <Icon name="arrow-right" size={16} />
+      </a>
+    </div>
+  </div>
+</article>

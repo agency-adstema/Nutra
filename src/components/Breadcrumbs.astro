@@ -1,0 +1,28 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  items: { name: string; href: string }[];
+  class?: string;
+}
+const { items, class: cls = '' } = Astro.props;
+---
+
+<nav aria-label="Putanja" class={`text-[13px] sm:text-sm ${cls}`}>
+  <ol class="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-ink/80">
+    <li class="flex items-center">
+      <a href="/" class="flex items-center gap-1.5 hover:text-brand"><Icon name="home" size={17} /><span>Početna</span></a>
+    </li>
+    {
+      items.map((it, i) => (
+        <li class="flex items-center gap-1.5">
+          <Icon name="chevron-right" size={14} class="text-ink/50" />
+          {i === items.length - 1 ? (
+            <span aria-current="page" class="text-ink">{it.name}</span>
+          ) : (
+            <a href={it.href} class="hover:text-brand">{it.name}</a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

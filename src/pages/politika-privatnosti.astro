@@ -1,0 +1,71 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../config/site';
+const op = site.operator;
+const consent = site.consentMode === 'checkbox';
+---
+
+<PageLayout
+  title="Politika privatnosti"
+  description={`Kako ${site.name} obrađuje lične podatke iz forme za poručivanje: koji podaci, u koju svrhu, kome se prosleđuju i koja su vaša prava.`}
+  path="/politika-privatnosti/"
+  updatedAt={new Date('2026-11-22')}
+  legal
+>
+  <p>
+    Ova politika objašnjava kako obrađujemo lične podatke u skladu sa Zakonom o zaštiti podataka o ličnosti („Službeni
+    glasnik RS“, br. 87/2018).
+  </p>
+
+  <h2>1. Rukovalac</h2>
+  <p>
+    {op.companyName}, {op.address}, MB {op.registrationNumber}, PIB {op.taxId}. Kontakt za pitanja o podacima:
+    <a href={`mailto:${op.email}`}>{op.email}</a>.
+  </p>
+
+  <h2>2. Koje podatke obrađujemo</h2>
+  <ul>
+    <li><strong>Iz forme za poručivanje:</strong> ime, prezime, broj telefona, izabrani proizvod i pakovanje.</li>
+    <li><strong>Tehnički podaci uz porudžbinu:</strong> IP adresa, adresa stranice sa koje ste poručili, izvor posete (UTM parametri, ID klika reklame ili partnera).</li>
+    <li><strong>Analitika (samo uz saglasnost):</strong> anonimizovani podaci o posetama preko Google Analytics 4. U analitiku ne šaljemo ime ni broj telefona.</li>
+  </ul>
+
+  <h2>3. Svrha i pravni osnov</h2>
+  <ul>
+    <li>
+      <strong>Obrada porudžbine</strong> — {consent
+        ? 'na osnovu vašeg pristanka datog označavanjem polja u formi, i radnji preduzetih na vaš zahtev pre zaključenja ugovora o kupovini.'
+        : 'radi preduzimanja radnji na vaš zahtev pre zaključenja ugovora o kupovini i izvršenja tog ugovora.'}
+    </li>
+    <li><strong>Zaštita od zloupotrebe i lažnih porudžbina</strong> (IP adresa, ograničenje broja pokušaja) — legitimni interes.</li>
+    <li><strong>Analitika posećenosti</strong> — vaš pristanak, koji možete povući u svakom trenutku.</li>
+  </ul>
+
+  <h2>4. Kome prosleđujemo podatke</h2>
+  <p>
+    Podatke iz porudžbine prosleđujemo partnerskoj mreži {site.orderProcessing.networkName} i, preko nje, prodavcu proizvoda
+    i njegovom call centru, koji vas kontaktiraju radi potvrde i isporuke. Hosting i tehničke usluge pružaju nam
+    obrađivači sa kojima imamo ugovor (npr. hosting platforma). [POPUNITI: tačni nazivi primalaca i, ako se podaci
+    iznose iz Srbije, država i pravni osnov iznošenja.]
+  </p>
+
+  <h2>5. Koliko dugo čuvamo podatke</h2>
+  <p>
+    Na našem serveru ne čuvamo bazu porudžbina — podaci se prosleđuju i ne zadržavaju, osim heširanih (nečitljivih) oznaka
+    potrebnih za sprečavanje duplih porudžbina, koje se brišu automatski u roku od 30 minuta. Tehnički logovi ne sadrže
+    ime ni broj telefona. Rok čuvanja kod partnera i prodavca: [POPUNITI].
+  </p>
+
+  <h2>6. Vaša prava</h2>
+  <p>
+    Imate pravo na pristup, ispravku, brisanje, ograničenje obrade, prenosivost podataka, prigovor i povlačenje pristanka
+    (bez uticaja na zakonitost ranije obrade). Zahtev pošaljite na {op.email}. Imate pravo i da podnesete pritužbu
+    Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti.
+  </p>
+
+  <h2>7. Podaci u browseru</h2>
+  <p>
+    U browseru (sessionStorage) privremeno pamtimo izvor posete — npr. UTM parametre — da bismo porudžbinu povezali sa
+    kampanjom. Ime i broj telefona ne čuvamo u browseru. Više u <a href="/kolacici/">politici kolačića</a>.
+  </p>
+</PageLayout>

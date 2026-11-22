@@ -1,0 +1,112 @@
+---
+import { getEntry, render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import FaqList from '../../components/FaqList.astro';
+import SourcesList from '../../components/SourcesList.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import LeafDecor from '../../components/LeafDecor.astro';
+import Icon from '../../components/Icon.astro';
+import { getGuides, getProductsByIds, guideUrl, type Guide } from '../../lib/content';
+import { articleSchema, faqSchema } from '../../lib/seo';
+import { formatDate } from '../../lib/format';
+import { site } from '../../config/site';
+import defaultOg from '../../assets/site/og-default.png';
+
+export async function getStaticPaths() {
+  const guides = await getGuides();
+  return guides.map((g) => ({ params: { slug: g.data.slug }, props: { guide: g } }));
+}
+
+interface Props {
+  guide: Guide;
+}
+const { guide } = Astro.props;
+const d = guide.data;
+const { Content, headings } = await render(guide);
+const category = d.category ? await getEntry(d.category) : undefined;
+const related = await getProductsByIds(d.relatedProducts);
+const path = guideUrl(guide);
+const siteUrl = (Astro.site?.toString() ?? '').replace(/\/$/, '');
+const img = await getImage({ src: d.heroImage ?? defaultOg, width: 1200, format: 'jpg' });
+
+const jsonLd: Record<string, unknown>[] = [
+  articleSchema({
+    url: `${siteUrl}${path}`,
+    headline: d.title,
+    description: d.description,
+    image: new URL(img.src, `${siteUrl}/`).toString(),
+    datePublished: d.publishedAt,
+    dateModified: d.updatedAt,
+    authorName: d.author.name,
+    siteUrl,
+  }),
+];
+if (d.faqSchema && d.faq.length) jsonLd.push(faqSchema(d.faq));
+const toc = headings.filter((h) => h.depth === 2);
+const crumbs = [{ name: 'Vodiči', href: '/vodici/' }, { name: d.title, href: path }];
+---
+
+<BaseLayout title={d.seo.title} description={d.seo.description} path={path} ogImage={d.heroImage} ogType="article" breadcrumbs={crumbs} jsonLd={jsonLd}>
+  {d.demo && <DemoNotice text="Primer vodiča: tekst čeka stručnu proveru pre objave." />}
+  <article>
+    <header class="relative overflow-hidden">
+      <LeafDecor class="-right-10 top-0 hidden w-56 rotate-12 md:block" />
+      <div class="container-site relative py-8 lg:py-12">
+        <Breadcrumbs items={crumbs} />
+        <div class="mx-auto mt-6 max-w-3xl">
+          {category && <a href={`/${category.data.slug}/`} class="pill bg-[#e7efdc] text-[#1f4d2b] hover:bg-[#dbe8cc]">{category.data.name}</a>}
+          <h1 class="mt-4 text-[2.2rem] leading-tight font-bold text-[#173d22] sm:text-5xl">{d.title}</h1>
+          <p class="mt-4 text-lg text-ink/80">{d.description}</p>
+          <p class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted">
+            <span>Autor: {d.author.name}{d.author.role && `, ${d.author.role}`}</span>
+            {d.reviewedBy && <span>Stručna provera: {d.reviewedBy.name}, {d.reviewedBy.credentials}</span>}
+            <span>Objavljeno: {formatDate(d.publishedAt)}</span>
+            <span>Ažurirano: {formatDate(d.updatedAt)}</span>
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-site">
+      <div class="mx-auto max-w-3xl">
+        {
+          toc.length > 2 && (
+            <nav class="mb-8 rounded-2xl border border-line bg-paper p-5" aria-label="Sadržaj vodiča">
+              <p class="font-semibold text-ink">Sadržaj</p>
+              <ol class="mt-2 space-y-1 text-[15px]">
+                {toc.map((h) => (
+                  <li><a href={`#${h.slug}`} class="text-[#1f4d2b] hover:underline">{h.text}</a></li>
+                ))}
+              </ol>
+            </nav>
+          )
+        }
+        <div class="prose-bk">
+          <Content />
+        </div>
+
+        <p class="mt-10 flex items-start gap-2 rounded-xl bg-paper px-4 py-3 text-sm text-muted ring-1 ring-line">
+          <Icon name="info" size={18} class="mt-0.5 shrink-0" />
+          <span>{site.medicalDisclaimer} Ako imate simptome, obratite se lekaru ili farmaceutu.</span>
+        </p>
+
+        <div class="mt-12"><FaqList items={d.faq} title="Česta pitanja" /></div>
+        <div class="mt-12"><SourcesList sources={d.sources} /></div>
+      </div>
+    </div>
+  </article>
+
+  {
+    related.length > 0 && (
+      <section class="container-site mt-16" aria-labelledby="vodic-proizvodi">
+        <h2 id="vodic-proizvodi" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">Proizvodi pomenuti u vodiču</h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {related.map((p) => <ProductCard product={p} list="guide_related" />)}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

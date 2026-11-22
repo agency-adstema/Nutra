@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import LeafDecor from '../../components/LeafDecor.astro';
+import { getGuides, getCategories } from '../../lib/content';
+
+const [guides, categories] = await Promise.all([getGuides(), getCategories()]);
+const catName = (id?: string) => categories.find((c) => c.id === id)?.data.name;
+---
+
+<BaseLayout
+  title="Vodiči o prirodnim preparatima i dodacima ishrani"
+  description="Informativni vodiči o prirodnim preparatima: kako izabrati, kako čitati deklaraciju, upozorenja i kada se obratiti lekaru — uz izvore."
+  path="/vodici/"
+  breadcrumbs={[{ name: 'Vodiči', href: '/vodici/' }]}
+>
+  <section class="relative overflow-hidden">
+    <LeafDecor class="-right-10 top-0 w-56 rotate-12" />
+    <div class="container-site relative py-8 lg:py-12">
+      <Breadcrumbs items={[{ name: 'Vodiči', href: '/vodici/' }]} />
+      <h1 class="mt-6 text-4xl font-bold text-[#173d22] sm:text-5xl">Vodiči</h1>
+      <p class="mt-3 max-w-2xl text-lg text-ink/80">
+        Kako izabrati preparat, kako čitati deklaraciju i kada je potreban lekar. Svaki vodič navodi izvore.
+      </p>
+    </div>
+  </section>
+  <section class="container-site pb-6">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {guides.map((g) => <GuideCard guide={g} categoryName={catName(g.data.category?.id)} />)}
+    </div>
+  </section>
+</BaseLayout>

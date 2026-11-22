@@ -1,0 +1,129 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/fraunces/opsz.css';
+@import '@fontsource-variable/inter/wght.css';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+
+  --color-ink: #1b2a1f;
+  --color-muted: #55665a;
+  --color-line: #e4dfd1;
+  --color-cream: #f8f4ea;
+  --color-paper: #fffdf8;
+  --color-warn: #8a5a00;
+  --color-warn-bg: #fff6dc;
+  --color-danger: #a12a1d;
+  --color-danger-bg: #fdecea;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(27 42 31 / 0.04), 0 8px 24px -12px rgb(27 42 31 / 0.18);
+  --shadow-soft: 0 10px 30px -18px rgb(27 42 31 / 0.35);
+}
+
+/* Teme proizvoda: vrednosti dolaze iz Markdown polja themePrimary/Secondary/Background/Accent */
+@theme inline {
+  --color-brand: var(--c-primary);
+  --color-brand-strong: color-mix(in oklab, var(--c-primary) 78%, black);
+  --color-brand-soft: color-mix(in oklab, var(--c-primary) 8%, white);
+  --color-brand-2: var(--c-secondary);
+  --color-surface: var(--c-bg);
+  --color-accent: var(--c-accent);
+}
+
+:root {
+  --c-primary: #1f4d2b;
+  --c-secondary: #e7efdc;
+  --c-bg: #f8f4ea;
+  --c-accent: #5d8c3c;
+  --header-h: 72px;
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  body {
+    @apply bg-surface text-ink font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 3px solid color-mix(in oklab, var(--c-accent) 70%, white);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  [hidden] { display: none !important; }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8;
+  }
+  .card {
+    @apply rounded-[var(--radius-card)] border border-line/70 bg-paper;
+    box-shadow: var(--shadow-card);
+  }
+  .btn-primary,
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition-colors duration-150 select-none;
+  }
+  .btn-primary {
+    @apply bg-brand text-white hover:bg-brand-strong active:bg-brand-strong;
+  }
+  .btn-ghost {
+    @apply border border-brand/25 bg-white/70 text-brand hover:bg-brand-soft;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-medium;
+  }
+  .demo-badge {
+    @apply inline-flex items-center rounded-full bg-warn-bg px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-warn uppercase ring-1 ring-warn/20;
+  }
+  .prose-bk {
+    @apply text-[1.0625rem] leading-relaxed text-ink/90;
+  }
+  .prose-bk h2 { @apply mt-10 mb-3 text-2xl font-semibold text-brand-strong sm:text-3xl; }
+  .prose-bk h3 { @apply mt-8 mb-2 text-xl font-semibold text-brand-strong; }
+  .prose-bk p { @apply my-4; }
+  .prose-bk ul { @apply my-4 list-disc space-y-1.5 pl-6 marker:text-accent; }
+  .prose-bk ol { @apply my-4 list-decimal space-y-1.5 pl-6 marker:text-accent; }
+  .prose-bk a { @apply font-medium text-brand underline decoration-brand/30 underline-offset-2 hover:decoration-brand; }
+  .prose-bk blockquote { @apply my-6 rounded-xl border-l-4 border-warn/50 bg-warn-bg/70 px-4 py-3 text-[0.95rem] text-ink; }
+  .prose-bk blockquote p { @apply my-0; }
+  .prose-bk strong { @apply font-semibold text-ink; }
+  .prose-bk em { @apply italic; }
+
+  .field-input {
+    @apply w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-base text-ink placeholder:text-muted/60 transition-colors outline-none;
+  }
+  .field-input:focus { @apply border-brand ring-4 ring-brand/15; }
+  .field-input[aria-invalid='true'] { @apply border-danger ring-4 ring-danger/10; }
+
+  /* Akordeoni (na mobilnom se zatvaraju, na desktopu su uvek otvoreni) */
+  details.acc > summary { list-style: none; }
+  details.acc > summary::-webkit-details-marker { display: none; }
+  @media (min-width: 1024px) {
+    details.acc > summary { pointer-events: none; cursor: default; }
+    details.acc > summary .acc-chevron { display: none; }
+  }
+}
+
+/* Dekorativno lišće u pozadini */
+.leaf-decor { pointer-events: none; position: absolute; opacity: 0.55; }
+
+/* Horizontalni skrol bez trake */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

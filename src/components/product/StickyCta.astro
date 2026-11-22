@@ -1,0 +1,42 @@
+---
+import Icon from '../Icon.astro';
+import { formatPrice, priceView } from '../../lib/format';
+import type { Product } from '../../lib/content';
+import type { MarketConfig } from '../../config/countries';
+
+interface Props {
+  product: Product;
+  market: MarketConfig;
+}
+const { product, market } = Astro.props;
+const d = product.data;
+const pv = priceView(d.priceStatus, d.packages);
+---
+
+{
+  d.orderEnabled && (
+    <div
+      class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-line bg-paper/95 shadow-[0_-8px_24px_-12px_rgb(0_0_0/0.25)] backdrop-blur transition-transform duration-200 lg:hidden"
+      style="padding-bottom: env(safe-area-inset-bottom)"
+      data-sticky-cta
+      aria-hidden="true"
+    >
+      <div class="container-site flex h-16 items-center gap-3">
+        <div class="min-w-0 flex-1 leading-tight">
+          <p class="truncate text-sm font-semibold text-ink">{d.name}</p>
+          {pv.show ? (
+            <p class="text-sm">
+              <span class="font-bold text-brand">od {formatPrice(pv.min!, market.currencyLabel)}</span>
+              {pv.isDemo && <span class="text-xs text-warn"> demo</span>}
+            </p>
+          ) : (
+            <p class="text-xs text-muted">Plaćanje pouzećem</p>
+          )}
+        </div>
+        <a href="#poruci" class="btn-primary shrink-0 px-5 py-2.5" tabindex="-1">
+          <Icon name="cart" size={18} /> Poruči sada
+        </a>
+      </div>
+    </div>
+  )
+}

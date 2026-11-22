@@ -1,0 +1,40 @@
+---
+/** Jednostavne informativne/pravne stranice */
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import DemoNotice from '../components/DemoNotice.astro';
+import LeafDecor from '../components/LeafDecor.astro';
+import { site } from '../config/site';
+import { isPlaceholder } from '../lib/seo';
+import { formatDate } from '../lib/format';
+
+interface Props {
+  title: string;
+  seoTitle?: string;
+  description: string;
+  path: string;
+  updatedAt?: Date;
+  legal?: boolean;
+  lead?: string;
+}
+const { title, seoTitle, description, path, updatedAt, legal = false, lead } = Astro.props;
+const draft = legal && isPlaceholder(site.operator.companyName);
+---
+
+<BaseLayout title={seoTitle ?? title} description={description} path={path} breadcrumbs={[{ name: title, href: path }]}>
+  {draft && <DemoNotice text="Nacrt: podaci o operateru nisu popunjeni, a pravni tekst treba da proveri pravnik pre objave." />}
+  <section class="relative overflow-hidden">
+    <LeafDecor class="-right-12 -top-4 hidden w-56 rotate-12 md:block" />
+    <div class="container-site relative py-8 lg:py-12">
+      <Breadcrumbs items={[{ name: title, href: path }]} />
+      <div class="mx-auto mt-6 max-w-3xl">
+        <h1 class="text-4xl leading-tight font-bold text-[#173d22] sm:text-5xl">{title}</h1>
+        {lead && <p class="mt-4 text-lg text-ink/80">{lead}</p>}
+        {updatedAt && <p class="mt-3 text-sm text-muted">Poslednja izmena: {formatDate(updatedAt)}</p>}
+        <div class="prose-bk mt-6">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

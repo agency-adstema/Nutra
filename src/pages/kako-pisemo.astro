@@ -1,0 +1,54 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../config/site';
+---
+
+<PageLayout
+  title="Kako biramo i pišemo"
+  seoTitle="Kako pišemo – urednička pravila i izvori"
+  description={`Urednička pravila sajta ${site.name}: izvori, provera cena, zdravstvene tvrdnje, video iskustva i ispravke.`}
+  path="/kako-pisemo/"
+  updatedAt={new Date('2026-11-22')}
+  lead="Pravila koja važe za svaki tekst, cenu i video na ovom sajtu."
+>
+  <h2>1. Izvori</h2>
+  <p>
+    Informacije o sastojcima povezujemo sa nezavisnim izvorima: Evropska agencija za lekove (EMA), Agencija za lekove i
+    medicinska sredstva Srbije (ALIMS), CDC, Cochrane i recenzirani naučni radovi. Sastav proizvoda prepisujemo sa
+    deklaracije. Na kraju svake stranice navodimo izvore.
+  </p>
+
+  <h2>2. Zdravstvene tvrdnje</h2>
+  <ul>
+    <li>Ne tvrdimo da proizvod leči, sprečava ili izleči bolest.</li>
+    <li>Tradicionalnu upotrebu biljke ne predstavljamo kao dokazano delovanje.</li>
+    <li>Ne pišemo da proizvod „preporučuju lekari“ bez proverljivog dokaza.</li>
+    <li>Upozorenja i kontraindikacije prikazujemo na vidnom mestu.</li>
+  </ul>
+
+  <h2>3. Cene</h2>
+  <p>
+    Cenu prikazujemo samo kada je proverena kod prodavca, i uz nju navodimo datum provere. Ne objavljujemo lažne popuste,
+    „poslednje komade“ ni odbrojavanja.
+  </p>
+
+  <h2>4. Video iskustva</h2>
+  <ul>
+    <li>Objavljujemo samo autentične snimke, uz dozvolu autora za korišćenje i prikazivanje.</li>
+    <li>Snimak nazivamo „iskustvom kupca“ samo kada je potvrđeno da je autor kupio i koristio proizvod.</li>
+    <li>Ime autora prikazujemo samo kada nam je to dozvolio.</li>
+    <li>Ne pravimo i ne naručujemo lažne recenzije.</li>
+  </ul>
+
+  <h2>5. Odvajanje sadržaja i prodaje</h2>
+  <p>
+    Zarađujemo proviziju kada poručite preko naše forme (<a href="/affiliate-izjava/">affiliate izjava</a>). Zbog toga
+    pišemo i ono što ne ide u prilog prodaji: ograničenja dokaza, kontraindikacije i situacije kada je potreban lekar.
+  </p>
+
+  <h2>6. Ispravke</h2>
+  <p>
+    Ako pronađete grešku, pišite nam (<a href="/kontakt/">kontakt</a>). Ispravku unosimo i ažuriramo datum poslednje
+    izmene.
+  </p>
+</PageLayout>

@@ -1,0 +1,26 @@
+---
+import { site } from '../config/site';
+interface Props {
+  size?: 'md' | 'sm';
+  class?: string;
+}
+const { size = 'md', class: cls = '' } = Astro.props;
+const text = site.logoText.replace(/\.$/, '');
+const hasDot = site.logoText.endsWith('.');
+---
+
+<a href="/" class={`group inline-flex items-center gap-2 text-brand-strong ${cls}`} aria-label={`${site.name} — početna`}>
+  <svg
+    viewBox="0 0 48 36"
+    class={size === 'md' ? 'h-8 w-11 sm:h-9 sm:w-12' : 'h-7 w-9'}
+    aria-hidden="true"
+  >
+    <path d="M24 34C25 22 31 9 46 4 44 19 36 31 24 34Z" fill="#2f6b3a"/>
+    <path d="M24 34C23 25 17 15 3 12 4 24 12 32 24 34Z" fill="#6a9a3f"/>
+    <path d="M24 34C28 25 35 14 44 7" stroke="#fff" stroke-opacity=".55" stroke-width="1.4" fill="none"/>
+    <path d="M24 34C20 27 13 19 5 14" stroke="#fff" stroke-opacity=".5" stroke-width="1.2" fill="none"/>
+  </svg>
+  <span class={`font-display font-bold tracking-tight text-[#173d22] ${size === 'md' ? 'text-[1.55rem] sm:text-[1.8rem]' : 'text-xl'}`}>
+    {text}{hasDot && <span class="text-[#173d22]">.</span>}
+  </span>
+</a>

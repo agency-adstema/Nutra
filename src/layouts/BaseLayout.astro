@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { PUBLIC_SITE_ENV } from 'astro:env/client';
+import { site } from '../config/site';
+import { organizationSchema, breadcrumbSchema } from '../lib/seo';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import Analytics from '../components/Analytics.astro';
+import defaultOg from '../assets/site/og-default.png';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Putanja stranice, npr. "/zglobovi-i-bolovi/nautubone/" */
+  path: string;
+  ogImage?: ImageMetadata;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+  breadcrumbs?: { name: string; href: string }[];
+  jsonLd?: Record<string, unknown>[];
+  /** CSS promenljive teme proizvoda */
+  themeStyle?: string;
+  /** Dodatna klasa na <body> (npr. pb-20 za sticky CTA na mobilnom) */
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description,
+  path,
+  ogImage,
+  ogImageAlt,
+  ogType = 'website',
+  noindex = false,
+  breadcrumbs = [],
+  jsonLd = [],
+  themeStyle,
+  bodyClass = '',
+} = Astro.props;
+
+const siteUrl = (Astro.site?.toString() ?? 'https://biljnikompas.rs/').replace(/\/$/, '');
+const canonical = new URL(path, `${siteUrl}/`).toString();
+const isProduction = PUBLIC_SITE_ENV === 'production';
+const robots = !isProduction || noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1';
+
+const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+
+let ogUrl: string;
+try {
+  const og = await getImage({ src: ogImage ?? defaultOg, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 82 });
+  ogUrl = new URL(og.src, `${siteUrl}/`).toString();
+} catch {
+  const og = await getImage({ src: ogImage ?? defaultOg, width: 1200, format: 'jpg' });
+  ogUrl = new URL(og.src, `${siteUrl}/`).toString();
+}
+
+const crumbs = breadcrumbs.length
+  ? [breadcrumbSchema([{ name: 'Početna', url: `${siteUrl}/` }, ...breadcrumbs.map((b) => ({ name: b.name, url: new URL(b.href, `${siteUrl}/`).toString() }))])]
+  : [];
+
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationSchema(siteUrl), ...crumbs, ...jsonLd],
+};
+---
+
+<!doctype html>
+<html lang="sr-Latn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#1f4d2b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:type" content={ogType === 'product' ? 'website' : ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:alt" content={ogImageAlt ?? site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
+    <slot name="head" />
+  </head>
+  <body class={bodyClass} style={themeStyle}>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow">Preskoči na sadržaj</a>
+    {
+      !isProduction && (
+        <div class="bg-ink text-center text-xs text-white/90 py-1.5 px-3" data-env-banner>
+          Preview / staging — sajt nije javno objavljen i nije indeksiran.
+        </div>
+      )
+    }
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <CookieConsent />
+    <Analytics />
+    <script>
+      import { captureAttribution } from '../scripts/attribution';
+      import { initGlobalTracking } from '../scripts/analytics';
+      captureAttribution();
+      initGlobalTracking();
+    </script>
+  </body>
+</html>

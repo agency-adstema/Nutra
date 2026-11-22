@@ -1,0 +1,30 @@
+---
+/** Dekorativno lišće (čist SVG, aria-hidden) */
+interface Props {
+  class?: string;
+  variant?: 'branch' | 'single';
+  color?: string;
+}
+const { class: cls = '', variant = 'branch', color = '#7aa35a' } = Astro.props;
+---
+
+{
+  variant === 'branch' ? (
+    <svg class={`leaf-decor ${cls}`} viewBox="0 0 220 220" aria-hidden="true" fill="none">
+      <path d="M20 205C70 160 120 100 205 20" stroke={color} stroke-opacity=".5" stroke-width="2" />
+      <g fill={color} fill-opacity=".38">
+        <path d="M60 165c-2-26 10-46 36-54 2 26-10 46-36 54Z" />
+        <path d="M60 165c-24-6-38-24-38-50 24 6 38 24 38 50Z" />
+        <path d="M110 112c-1-24 11-43 35-50 1 24-11 43-35 50Z" />
+        <path d="M110 112c-22-5-35-22-36-46 22 5 35 22 36 46Z" />
+        <path d="M156 64c0-20 9-35 29-41 0 20-9 35-29 41Z" />
+        <path d="M156 64c-18-4-28-17-29-37 18 4 28 17 29 37Z" />
+      </g>
+    </svg>
+  ) : (
+    <svg class={`leaf-decor ${cls}`} viewBox="0 0 120 120" aria-hidden="true">
+      <path d="M10 110C20 50 60 15 115 8 108 63 72 103 10 110Z" fill={color} fill-opacity=".3" />
+      <path d="M10 110C45 70 80 40 112 10" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" fill="none" />
+    </svg>
+  )
+}

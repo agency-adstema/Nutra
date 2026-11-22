@@ -1,0 +1,154 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from '../Icon.astro';
+import type { Product } from '../../lib/content';
+import { visibleVideos } from '../../lib/content';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+const d = product.data;
+const videos = visibleVideos(product);
+const allDemo = videos.length > 0 && videos.every((v) => v.demo);
+const verifiedCount = videos.filter((v) => v.verifiedPurchase && !v.demo).length;
+
+// Naslov sekcije: „iskustva kupaca“ samo kada postoje potvrđene kupovine (ili demo prikaz dizajna)
+const title = verifiedCount > 0 || allDemo ? (d.videoSectionTitle ?? 'Video iskustva kupaca') : `Video snimci o proizvodu ${d.name}`;
+const pill = allDemo
+  ? 'Demo: test snimci — nisu stvarna iskustva kupaca'
+  : verifiedCount > 0
+    ? 'Pravi Instagram video – uz dozvolu autora'
+    : 'Objavljeno uz dozvolu autora';
+
+function instagramEmbed(url: string): string {
+  const u = new URL(url);
+  const path = u.pathname.replace(/\/+$/, '');
+  return `https://www.instagram.com${path}/embed/`;
+}
+---
+
+{
+  videos.length > 0 && (
+    <section id="video" aria-labelledby="video-title" class="scroll-mt-28">
+      <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:gap-6">
+        <div class="lg:w-48 lg:shrink-0 lg:pt-4">
+          <h2 id="video-title" class="text-2xl font-semibold text-brand-strong lg:text-[2rem] lg:leading-tight">{title}</h2>
+          <p class={`mt-2 inline-block rounded-lg px-3 py-1.5 text-sm font-medium ${allDemo ? 'bg-warn-bg text-warn' : 'bg-brand-2 text-brand'}`}>{pill}</p>
+        </div>
+
+        <ul class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:px-0 lg:flex-1" role="list">
+          {videos.map((v, i) => (
+            <li class="w-[44%] shrink-0 snap-start sm:w-auto">
+              <figure class="h-full">
+                <div class="relative overflow-hidden rounded-2xl bg-ink/5 shadow-[var(--shadow-card)] ring-1 ring-black/5" data-video-card>
+                  <button
+                    type="button"
+                    class="group/play relative block aspect-[2/3] w-full"
+                    data-video-play
+                    data-type={v.type}
+                    data-src={v.type === 'hosted' ? v.src : undefined}
+                    data-embed={v.type === 'instagram' && v.url ? instagramEmbed(v.url) : undefined}
+                    data-title={v.title}
+                    data-product={d.slug}
+                    aria-label={`Pusti video: ${v.title}`}
+                  >
+                    <Picture
+                      src={v.thumbnail}
+                      alt=""
+                      widths={[240, 360, 480]}
+                      sizes="(min-width: 1024px) 220px, (min-width: 640px) 30vw, 45vw"
+                      formats={['avif', 'webp']}
+                      loading="lazy"
+                      class="absolute inset-0 h-full w-full object-cover"
+                    />
+                    <span class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
+                    <span class="absolute left-1/2 top-1/2 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/95 text-ink shadow-lg transition-transform group-hover/play:scale-110 sm:h-14 sm:w-14">
+                      <Icon name="play" size={24} class="translate-x-[1px]" />
+                    </span>
+                    {v.type === 'instagram' && (
+                      <span class="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-lg bg-black/35 text-white backdrop-blur-sm">
+                        <Icon name="instagram" size={20} />
+                      </span>
+                    )}
+                    {v.demo && <span class="demo-badge absolute left-2 top-2">Test</span>}
+                  </button>
+                  {v.type === 'instagram' && (
+                    <p class="sr-only">Klikom učitavate video sa Instagrama (Meta Platforms).</p>
+                  )}
+                </div>
+                <figcaption class="mt-2 px-0.5">
+                  <p class="text-sm font-semibold text-ink">{v.title}</p>
+                  {v.author && v.authorConsent && <p class="text-xs text-muted">{v.author}</p>}
+                  {v.description && <p class="mt-0.5 hidden text-xs text-muted sm:block">{v.description}</p>}
+                  <p class="mt-1 text-[11px] text-muted">
+                    {v.verifiedPurchase && !v.demo ? 'Potvrđena kupovina' : v.demo ? 'Interni test' : 'Video sa Instagrama'}
+                    {v.sourceUrl && (
+                      <>
+                        {' · '}
+                        <a href={v.sourceUrl} target="_blank" rel="noopener nofollow" class="underline hover:text-ink">Original</a>
+                      </>
+                    )}
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {videos.some((v) => v.type === 'instagram') && (
+        <p class="mt-3 text-xs text-muted">Instagram snimci se učitavaju tek kada kliknete na njih. Tada Instagram (Meta) može da obrađuje podatke o vašoj poseti — više u <a href="/kolacici/" class="underline">politici kolačića</a>.</p>
+      )}
+    </section>
+  )
+}
+
+<script>
+  import { track } from '../../scripts/analytics';
+
+  function stopOthers(except?: HTMLVideoElement) {
+    document.querySelectorAll<HTMLVideoElement>('[data-video-card] video').forEach((v) => {
+      if (v !== except) v.pause();
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-video-play]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest<HTMLElement>('[data-video-card]');
+      if (!card) return;
+      const { type, src, embed, title, product } = btn.dataset;
+      const params = { video_title: title, video_provider: type === 'instagram' ? 'instagram' : 'self_hosted', item_id: product };
+
+      if (type === 'hosted' && src) {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = 'auto';
+        video.className = 'aspect-[2/3] h-full w-full bg-black object-cover';
+        video.setAttribute('aria-label', title ?? 'Video');
+        let started = false;
+        video.addEventListener('play', () => {
+          stopOthers(video);
+          if (!started) {
+            started = true;
+            track('video_start', params);
+          }
+        });
+        video.addEventListener('ended', () => track('video_complete', params));
+        btn.replaceWith(video);
+        video.play().catch(() => {});
+      } else if (type === 'instagram' && embed) {
+        const iframe = document.createElement('iframe');
+        iframe.src = embed;
+        iframe.title = title ?? 'Instagram video';
+        iframe.loading = 'lazy';
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture; clipboard-write';
+        iframe.className = 'aspect-[2/3] h-full w-full bg-white';
+        iframe.setAttribute('allowfullscreen', '');
+        btn.replaceWith(iframe);
+        track('video_start', params);
+      }
+    });
+  });
+</script>

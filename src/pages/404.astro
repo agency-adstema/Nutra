@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout title="Stranica nije pronađena" description="Tražena stranica ne postoji ili je premeštena." path="/404/" noindex>
+  <section class="container-site py-20 text-center">
+    <p class="font-display text-7xl font-bold text-[#5d8c3c]">404</p>
+    <h1 class="mt-4 text-3xl font-bold text-[#173d22]">Stranica nije pronađena</h1>
+    <p class="mx-auto mt-3 max-w-md text-muted">Možda je premeštena ili je adresa pogrešno upisana. Pokušajte pretragu ili se vratite na početnu.</p>
+    <div class="mt-8 flex justify-center gap-3">
+      <a href="/" class="btn-primary">Početna</a>
+      <a href="/pretraga/" class="btn-ghost"><Icon name="search" size={18} /> Pretraga</a>
+    </div>
+  </section>
+</BaseLayout>

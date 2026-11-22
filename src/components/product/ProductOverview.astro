@@ -1,0 +1,147 @@
+---
+import Icon from '../Icon.astro';
+import { formatDate, formatPrice, priceView } from '../../lib/format';
+import type { Product } from '../../lib/content';
+import type { MarketConfig } from '../../config/countries';
+
+interface Props {
+  product: Product;
+  market: MarketConfig;
+}
+const { product, market } = Astro.props;
+const d = product.data;
+const pv = priceView(d.priceStatus, d.packages);
+
+const summaryCls =
+  'flex w-full items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3 lg:border-0 lg:bg-transparent lg:p-0';
+const h2Cls = 'text-lg font-semibold text-brand-strong lg:text-[1.75rem] lg:leading-tight';
+---
+
+<section class="container-site" aria-label="Informacije o proizvodu">
+  <div class="grid gap-3 lg:grid-cols-3 lg:gap-0 lg:divide-x lg:divide-line">
+    <!-- Šta je proizvod -->
+    <details class="acc group/acc lg:pr-8" id="opis" open data-acc>
+      <summary class={summaryCls}>
+        <h2 class={h2Cls}>Šta je {d.name}?</h2>
+        <Icon name="chevron-down" size={20} class="acc-chevron shrink-0 transition-transform group-open/acc:rotate-180" />
+      </summary>
+      <div class="px-1 pt-3 lg:px-0 lg:pt-4">
+        <p class="leading-relaxed text-ink/90">{d.intro}</p>
+      </div>
+    </details>
+
+    <!-- Sastav i upotreba -->
+    <details class="acc group/acc lg:px-8" id="sastav" open data-acc>
+      <summary class={summaryCls}>
+        <h2 class={h2Cls}>Sastav i upotreba</h2>
+        <Icon name="chevron-down" size={20} class="acc-chevron shrink-0 transition-transform group-open/acc:rotate-180" />
+      </summary>
+      <div class="space-y-4 px-1 pt-3 lg:px-0 lg:pt-4">
+        {
+          d.ingredients.length > 0 && (
+            <div class="overflow-hidden rounded-2xl border border-line bg-paper">
+              <table class="w-full text-sm">
+                <caption class="sr-only">Sastojci proizvoda {d.name}</caption>
+                <thead class="sr-only">
+                  <tr><th scope="col">Sastojak</th><th scope="col">Opis</th></tr>
+                </thead>
+                <tbody class="divide-y divide-line">
+                  {d.ingredients.map((ing) => (
+                    <tr>
+                      <th scope="row" class="w-[48%] border-r border-line p-3 text-left align-top font-normal">
+                        <span class="flex items-start gap-2.5">
+                          <Icon name={ing.icon} size={22} class="mt-0.5 shrink-0 text-accent" />
+                          <span>
+                            <span class="block font-semibold text-ink">{ing.name}</span>
+                            {ing.latin && <span class="block text-xs text-muted italic">({ing.latin})</span>}
+                          </span>
+                        </span>
+                      </th>
+                      <td class="p-3 align-top text-ink/85">{ing.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )
+        }
+        {d.ingredientsNote && <p class="text-xs text-muted">{d.ingredientsNote}</p>}
+
+        {
+          d.usage.length > 0 && (
+            <div class="rounded-2xl bg-brand-2/80 p-4">
+              <h3 class="text-lg font-semibold text-brand-strong">Kako se koristi?</h3>
+              <ol class="mt-2 space-y-2">
+                {d.usage.map((step, i) => (
+                  <li class="flex items-start gap-3 text-[15px] text-ink/90">
+                    <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand text-xs font-bold text-white">{i + 1}</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )
+        }
+      </div>
+    </details>
+
+    <!-- Cena i pakovanja -->
+    <details class="acc group/acc lg:pl-8" id="cena" open data-acc>
+      <summary class={summaryCls}>
+        <h2 class={h2Cls}>Cena i pakovanja</h2>
+        <Icon name="chevron-down" size={20} class="acc-chevron shrink-0 transition-transform group-open/acc:rotate-180" />
+      </summary>
+      <div class="space-y-3 px-1 pt-3 lg:px-0 lg:pt-4">
+        <div class="overflow-hidden rounded-2xl border border-line bg-paper">
+          <table class="w-full text-[15px]">
+            <caption class="sr-only">Pakovanja i cene proizvoda {d.name}</caption>
+            <thead class="bg-brand-2/70 text-left">
+              <tr>
+                <th scope="col" class="px-4 py-2.5 font-semibold">Pakovanje</th>
+                <th scope="col" class="px-4 py-2.5 text-right font-semibold">Cena ({market.currencyLabel})</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-line">
+              {
+                d.packages.map((p) => (
+                  <tr>
+                    <td class="px-4 py-2.5">{p.label}</td>
+                    <td class="px-4 py-2.5 text-right">
+                      {pv.show && p.price ? (
+                        <span class="text-lg font-bold text-brand">{formatPrice(p.price, '').trim()}</span>
+                      ) : (
+                        <span class="text-muted">potvrđuje operater</span>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+        <p
+          class={`flex items-start gap-2 rounded-xl px-4 py-3 text-sm ${pv.isVerified ? 'bg-brand-2/70 text-ink' : 'bg-warn-bg text-warn'}`}
+          data-price-status={d.priceStatus}
+        >
+          <Icon name="info" size={18} class="mt-0.5 shrink-0" />
+          {
+            pv.isVerified && d.priceCheckedAt ? (
+              <span><strong>Cena proverena:</strong> {formatDate(d.priceCheckedAt)}{d.priceSource && <> · {d.priceSource}</>}</span>
+            ) : pv.isDemo ? (
+              <span><strong>Demo cena</strong> — nije proverena kod prodavca.</span>
+            ) : (
+              <span>Cena još nije proverena, pa je ne prikazujemo. Operater će vam potvrditi tačnu cenu pre slanja.</span>
+            )
+          }
+        </p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<script is:inline>
+  // Na mobilnom akordeoni počinju zatvoreni (izvršava se pre prvog prikaza — bez pomeranja sadržaja)
+  if (window.matchMedia('(max-width: 1023px)').matches) {
+    document.querySelectorAll('details[data-acc]').forEach(function (d) { d.removeAttribute('open'); });
+  }
+</script>

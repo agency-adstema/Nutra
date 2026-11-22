@@ -1,0 +1,9 @@
+---
+import { PUBLIC_GA4_ID, PUBLIC_GTM_ID, PUBLIC_SITE_ENV } from 'astro:env/client';
+const cfg = { ga4Id: PUBLIC_GA4_ID || undefined, gtmId: PUBLIC_GTM_ID || undefined, env: PUBLIC_SITE_ENV };
+---
+
+<script is:inline define:vars={{ cfg }}>
+  window.__bk = cfg;
+  window.dataLayer = window.dataLayer || [];
+</script>

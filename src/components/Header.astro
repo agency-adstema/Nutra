@@ -1,0 +1,121 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+import { getCategories, categoryUrl } from '../lib/content';
+
+const categories = await getCategories();
+const current = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 border-b border-line/60 bg-[#fbf8f1]/92 backdrop-blur supports-[backdrop-filter]:bg-[#fbf8f1]/80" data-site-header>
+  <div class="container-site flex h-[var(--header-h)] items-center gap-4 lg:gap-8">
+    <Logo />
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Glavna navigacija">
+      <details class="relative" data-dropdown>
+        <summary class="flex cursor-pointer list-none items-center gap-1 rounded-lg px-3 py-2 font-medium text-ink hover:bg-black/5 [&::-webkit-details-marker]:hidden">
+          Kategorije <Icon name="chevron-down" size={18} />
+        </summary>
+        <div class="absolute left-0 top-full mt-2 w-80 rounded-2xl border border-line bg-paper p-2 shadow-xl">
+          {
+            categories.map((c) => (
+              <a href={categoryUrl(c)} class="flex items-start gap-3 rounded-xl p-3 hover:bg-[#f1ede2]">
+                <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#e7efdc] text-[#1f4d2b]">
+                  <Icon name={c.data.icon} size={20} />
+                </span>
+                <span>
+                  <span class="block font-semibold text-ink">{c.data.name}</span>
+                  <span class="block text-sm text-muted">{c.data.shortDescription}</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </details>
+      {
+        site.nav.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-lg px-3 py-2 font-medium text-ink hover:bg-black/5"
+            aria-current={current.startsWith(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <form action="/pretraga/" method="get" role="search" class="ml-auto hidden md:block">
+      <label for="header-search" class="sr-only">Pretraga</label>
+      <div class="relative">
+        <Icon name="search" size={20} class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink/70" />
+        <input
+          id="header-search"
+          name="q"
+          type="search"
+          placeholder="Pretražite proizvode, vodiče..."
+          class="h-11 w-64 rounded-full border border-line bg-white/80 pl-11 pr-4 text-[15px] text-ink placeholder:text-ink/60 outline-none focus:border-[#1f4d2b] focus:ring-4 focus:ring-[#1f4d2b]/10 xl:w-72"
+        />
+      </div>
+    </form>
+
+    <button
+      type="button"
+      class="group ml-auto grid h-11 w-11 place-items-center rounded-xl text-ink hover:bg-black/5 md:ml-2 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <span class="sr-only">Meni</span>
+      <Icon name="menu" size={26} class="group-aria-expanded:hidden" />
+      <Icon name="close" size={26} class="hidden group-aria-expanded:block" />
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="border-t border-line/60 bg-paper lg:hidden" hidden>
+    <div class="container-site space-y-4 py-4">
+      <form action="/pretraga/" method="get" role="search" class="md:hidden">
+        <label for="mobile-search" class="sr-only">Pretraga</label>
+        <div class="relative">
+          <Icon name="search" size={20} class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink/70" />
+          <input id="mobile-search" name="q" type="search" placeholder="Pretražite proizvode, vodiče..." class="field-input h-12 rounded-full pl-11" />
+        </div>
+      </form>
+      <nav aria-label="Mobilna navigacija" class="grid gap-1">
+        <p class="px-3 pt-1 text-xs font-semibold tracking-wider text-muted uppercase">Kategorije</p>
+        {
+          categories.map((c) => (
+            <a href={categoryUrl(c)} class="flex items-center gap-3 rounded-xl px-3 py-3 font-medium hover:bg-[#f1ede2]">
+              <Icon name={c.data.icon} size={20} class="text-[#1f4d2b]" />
+              {c.data.name}
+            </a>
+          ))
+        }
+        <hr class="my-2 border-line" />
+        {site.nav.map((item) => <a href={item.href} class="rounded-xl px-3 py-3 font-medium hover:bg-[#f1ede2]">{item.label}</a>)}
+        <a href="/kontakt/" class="rounded-xl px-3 py-3 font-medium hover:bg-[#f1ede2]">Kontakt</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    if (menu) menu.hidden = !open;
+  });
+  const dropdown = document.querySelector<HTMLDetailsElement>('[data-dropdown]');
+  document.addEventListener('click', (e) => {
+    if (dropdown?.open && !dropdown.contains(e.target as Node)) dropdown.open = false;
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (dropdown?.open) dropdown.open = false;
+      if (toggle?.getAttribute('aria-expanded') === 'true') toggle.click();
+    }
+  });
+</script>

@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout
+  title="Pretraga"
+  description="Pretražite proizvode, kategorije i vodiče."
+  path="/pretraga/"
+  noindex
+  breadcrumbs={[{ name: 'Pretraga', href: '/pretraga/' }]}
+>
+  <section class="container-site py-8 lg:py-12" data-search data-index-url="/search-index.json">
+    <Breadcrumbs items={[{ name: 'Pretraga', href: '/pretraga/' }]} />
+    <h1 class="mt-6 text-4xl font-bold text-[#173d22]">Pretraga</h1>
+    <form class="mt-6 max-w-2xl" role="search" data-search-form>
+      <label for="q" class="sr-only">Pojam za pretragu</label>
+      <div class="relative">
+        <Icon name="search" size={22} class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ink/60" />
+        <input id="q" name="q" type="search" autocomplete="off" placeholder="npr. gavez, zglobovi, paraziti" class="field-input h-14 rounded-2xl pl-12 text-lg" />
+      </div>
+    </form>
+    <p class="mt-6 text-muted" data-search-summary aria-live="polite"></p>
+    <ul class="mt-4 grid max-w-3xl gap-3" data-search-results></ul>
+  </section>
+</BaseLayout>
+
+<script>
+  import { normalizeSearch } from '../lib/format';
+  type Item = { title: string; url: string; type: string; description: string; keywords: string };
+
+  const root = document.querySelector<HTMLElement>('[data-search]')!;
+  const input = root.querySelector<HTMLInputElement>('input[name="q"]')!;
+  const list = root.querySelector<HTMLUListElement>('[data-search-results]')!;
+  const summary = root.querySelector<HTMLElement>('[data-search-summary]')!;
+  let index: Item[] = [];
+  const typeLabel: Record<string, string> = { product: 'Proizvod', category: 'Kategorija', guide: 'Vodič' };
+
+  function render(q: string) {
+    list.innerHTML = '';
+    const nq = normalizeSearch(q);
+    if (!nq) {
+      summary.textContent = 'Unesite pojam za pretragu.';
+      return;
+    }
+    const terms = nq.split(' ');
+    const hits = index
+      .map((it) => {
+        const hay = normalizeSearch(`${it.title} ${it.description} ${it.keywords}`);
+        const title = normalizeSearch(it.title);
+        let score = 0;
+        for (const t of terms) {
+          if (!hay.includes(t)) return { it, score: 0 };
+          score += title.includes(t) ? 3 : 1;
+        }
+        return { it, score };
+      })
+      .filter((h) => h.score > 0)
+      .sort((a, b) => b.score - a.score);
+    summary.textContent = hits.length ? `Rezultata: ${hits.length}` : `Nema rezultata za „${q}“.`;
+    for (const { it } of hits) {
+      const li = document.createElement('li');
+      li.innerHTML = `<a class="card block p-5 hover:shadow-[var(--shadow-soft)]"><span class="text-xs font-semibold uppercase tracking-wider text-[#5d8c3c]"></span><span class="mt-1 block text-lg font-semibold text-ink"></span><span class="mt-1 block text-[15px] text-muted"></span></a>`;
+      const a = li.querySelector('a')!;
+      a.href = it.url;
+      const spans = a.querySelectorAll('span');
+      spans[0].textContent = typeLabel[it.type] ?? it.type;
+      spans[1].textContent = it.title;
+      spans[2].textContent = it.description;
+      list.appendChild(li);
+    }
+  }
+
+  const q = new URLSearchParams(location.search).get('q') ?? '';
+  input.value = q;
+  fetch(root.dataset.indexUrl!)
+    .then((r) => r.json())
+    .then((data: Item[]) => {
+      index = data;
+      render(input.value);
+    })
+    .catch(() => (summary.textContent = 'Pretraga trenutno nije dostupna.'));
+
+  root.querySelector('[data-search-form]')!.addEventListener('submit', (e) => {
+    e.preventDefault();
+    try {
+      history.replaceState(null, '', `?q=${encodeURIComponent(input.value)}`);
+    } catch {
+      /* ignore */
+    }
+    render(input.value);
+  });
+  input.addEventListener('input', () => render(input.value));
+</script>
