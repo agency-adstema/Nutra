@@ -71,3 +71,29 @@ describe('validateOrderFields', () => {
     expect(r.ok && r.value.packageId).toBe('1-komad');
   });
 });
+
+
+describe('Order form phone formats for BA and HR', () => {
+  it('normalizuje hrvatski mobilni telefon', () => {
+    const number = normalizePhone('091 234 5678', markets.HR);
+    expect(number).toMatchObject({ ok: true, e164: '+385912345678' });
+  });
+  it('normalizuje bosanski mobilni telefon', () => {
+    const number = normalizePhone('061 123 456', markets.BA);
+    expect(number).toMatchObject({ ok: true, e164: '+38761123456' });
+  });
+  it('odbija pogrešan GEO telefona u hrvatskoj formi', () => {
+    const result = normalizePhone('+381 60 123 4567', markets.HR);
+    expect(result).toMatchObject({ ok: false, error: 'wrong_country' });
+  });
+  it('prihvata lokalni hrvatski format u validaciji order forme', () => {
+    const result = validateOrderFields(
+      { firstName: 'Ana', lastName: 'Horvat', phone: '091 234 5678', consent: true },
+      { market: markets.HR, packageIds: ['1-komad'], requireConsent: true },
+    );
+    expect(result).toMatchObject({
+      ok: true,
+      value: { phoneE164: '+385912345678', packageId: '1-komad' },
+    });
+  });
+});
