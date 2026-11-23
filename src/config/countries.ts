@@ -44,7 +44,7 @@ export const markets: Record<MarketCode, MarketConfig> = {
       nsnPattern: '^(?:6\\d{7,8}|[1-3]\\d{7,8})$',
       example: '060 123 45 67',
     },
-    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_RS', phoneFormat: 'e164' },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_RS', phoneFormat: 'national' },
   },
   BA: {
     code: 'BA',
@@ -54,7 +54,7 @@ export const markets: Record<MarketCode, MarketConfig> = {
     currency: 'BAM',
     currencyLabel: 'KM',
     phone: { dialCode: '387', nsnPattern: '^(?:6\\d{7,8}|[3-5]\\d{7})$', example: '061 123 456' },
-    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_BA', phoneFormat: 'e164' },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_BA', phoneFormat: 'national' },
   },
   HR: {
     code: 'HR',
@@ -64,7 +64,7 @@ export const markets: Record<MarketCode, MarketConfig> = {
     currency: 'EUR',
     currencyLabel: '€',
     phone: { dialCode: '385', nsnPattern: '^(?:9\\d{7,8})$', example: '091 234 5678' },
-    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_HR', phoneFormat: 'e164' },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_HR', phoneFormat: 'national' },
   },
   ME: {
     code: 'ME',
@@ -74,7 +74,7 @@ export const markets: Record<MarketCode, MarketConfig> = {
     currency: 'EUR',
     currencyLabel: '€',
     phone: { dialCode: '382', nsnPattern: '^(?:6\\d{7}|[2-5]\\d{7})$', example: '067 123 456' },
-    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_ME', phoneFormat: 'e164' },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_ME', phoneFormat: 'national' },
   },
   XK: {
     code: 'XK',
@@ -84,7 +84,7 @@ export const markets: Record<MarketCode, MarketConfig> = {
     currency: 'EUR',
     currencyLabel: '€',
     phone: { dialCode: '383', nsnPattern: '^(?:4\\d{7}|[2-3]\\d{7})$', example: '044 123 456' },
-    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_XK', phoneFormat: 'e164' },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_XK', phoneFormat: 'national' },
   },
 };
 

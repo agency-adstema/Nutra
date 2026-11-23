@@ -307,7 +307,27 @@ export function createOrderHandler(deps: OrderHandlerDeps) {
         { url, secret: deps.env('ORDER_WEBHOOK_SECRET'), fetchImpl },
       );
     } else {
-      result = await sendToMonadlead(payload, { url: deps.env('MONADLEAD_API_URL') || undefined, fetchImpl });
+      // MonadLead dokumentacija daje broj u lokalnom obliku („479-200-8330“) uz country_code.
+      // Ako MonadLead ipak odbije broj, probamo ostale oblike istog broja — samo kad je odbijen
+      // baš broj telefona, pa porudžbina sigurno nije kreirana i nema duplikata.
+      const nsn = fields.phoneNational.replace(/^0/, '');
+      const variants: Array<[string, string]> = [];
+      for (const v of [
+        ['config', phoneForCrm], ['national', fields.phoneNational], ['nsn', nsn],
+        ['e164_no_plus', fields.phoneE164.slice(1)], ['e164', fields.phoneE164],
+      ] as Array<[string, string]>) {
+        if (!variants.some(([, val]) => val === v[1])) variants.push(v);
+      }
+      result = { ok: false, kind: 'server' };
+      for (const [i, [format, phone]] of variants.entries()) {
+        result = await sendToMonadlead({ ...payload, phone }, { url: deps.env('MONADLEAD_API_URL') || undefined, fetchImpl });
+        const phoneRejected = !result.ok && (result.kind === 'validation' || result.kind === 'rejected') && result.field === 'phone';
+        if (result.ok) {
+          if (i > 0) log('warn', 'order_phone_format_fallback', { product: product.slug, format });
+          break;
+        }
+        if (!phoneRejected) break;
+      }
     }
 
     if (result.ok) {

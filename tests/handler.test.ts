@@ -92,7 +92,7 @@ describe('order handler', () => {
     expect(p).toMatchObject({
       api_key: 'SECRET-KEY',
       name: 'Marko Marković',
-      phone: '+381601234567',
+      phone: '0601234567', // lokalni oblik kao u MonadLead dokumentaciji
       offer_id: 'OFFER-1',
       country_code: 'RS',
       base_url: SITE,
@@ -136,7 +136,7 @@ describe('order handler', () => {
       api_key: 'NEW-ACCOUNT-TEST-KEY',
       offer_id: '2026',
       country_code: 'HR',
-      phone: '+385912345678',
+      phone: '0912345678',
     });
   });
 
@@ -258,5 +258,35 @@ describe('order handler', () => {
     const json = await res.json();
     expect(Object.keys(json.fieldErrors).sort()).toEqual(['consent', 'phone']);
     expect(calls).toHaveLength(0);
+  });
+});
+
+describe('MonadLead: oblik broja telefona', () => {
+  it('ako MonadLead odbije broj, proba sledeći oblik i ne pravi duplikat', async () => {
+    const { createOrderHandler } = await import('../src/lib/order/handler');
+    const sent: string[] = [];
+    const fetchImpl = (async (_url: string, init: RequestInit) => {
+      const p = JSON.parse(String(init.body));
+      sent.push(p.phone);
+      if (p.phone === '601234567') return new Response(JSON.stringify({ order_id: '777' }), { status: 200 });
+      return new Response(JSON.stringify({ phone: ['Invalid phone'] }), { status: 400 });
+    }) as unknown as typeof fetch;
+    const handler = createOrderHandler({
+      env: (k: string) => ({ ORDER_MODE: 'live', MONADLEAD_API_KEY_RS: 'K', SITE_URL: 'https://example.rs' } as Record<string, string>)[k],
+      siteUrl: 'https://example.rs',
+      requireConsent: false,
+      fetchImpl,
+      minFillMs: 0,
+      getProduct: async () => ({
+        slug: 'nautubone', name: 'Nautubone', market: 'RS', offerId: '51', orderEnabled: true, currency: 'RSD',
+        packages: [{ id: '1-komad', label: '1 pakovanje', quantity: 1, price: 3700 }],
+      }),
+    });
+    const res = await handler(new Request('https://example.rs/api/order/', {
+      method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://example.rs' },
+      body: JSON.stringify({ productSlug: 'nautubone', firstName: 'Ana', lastName: 'Test', phone: '060 123 4567', packageId: '1-komad', consent: true, website: '', startedAt: Date.now() - 10_000, idempotencyKey: 'phone-fallback-abcdef' }),
+    }), '10.9.9.9');
+    expect(res.status).toBe(200);
+    expect(sent).toEqual(['0601234567', '601234567']);
   });
 });
