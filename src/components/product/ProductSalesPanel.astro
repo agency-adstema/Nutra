@@ -88,10 +88,11 @@ const savedText = saved ? `UŠTEDA ${saved}` : '';
             <a
               href="#poruci"
               data-hero-package={tier.id}
-              class={`group flex items-center gap-3 rounded-xl border px-4 py-3 transition-colors hover:border-brand hover:bg-[#e9f1e4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${tier.quantity === 3 ? 'border-[#2c6d3c] bg-[#e8f0e2]' : 'border-line bg-white'}`}
+              data-selected={tier.quantity === 1 ? 'true' : 'false'}
+              class={`group flex items-center gap-3 rounded-xl border px-4 py-3 transition-colors hover:border-brand hover:bg-[#e9f1e4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand data-[selected=true]:border-brand data-[selected=true]:bg-[#edf5e8] data-[selected=true]:ring-2 data-[selected=true]:ring-[#a4c7a8] ${tier.quantity === 3 ? 'border-[#2c6d3c] bg-[#e8f0e2]' : 'border-line bg-white'}`}
             >
               <span class="grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 border-[#326f43]" aria-hidden="true">
-                <span class="h-2 w-2 rounded-full bg-[#326f43] opacity-0 transition-opacity group-hover:opacity-100"></span>
+                <span class="h-2 w-2 rounded-full bg-[#326f43] opacity-0 transition-opacity group-hover:opacity-100 group-data-[selected=true]:opacity-100"></span>
               </span>
               <span class="min-w-0 flex-1">
                 <span class="block text-sm font-bold text-ink">{tier.label}</span>
