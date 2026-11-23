@@ -3,6 +3,8 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import OfferCard from '../../components/OfferCard.astro';
+import { getCatalogOffersForCategory } from '../../data/offer-categories';
 import GuideCard from '../../components/GuideCard.astro';
 import FaqList from '../../components/FaqList.astro';
 import Icon from '../../components/Icon.astro';
@@ -29,6 +31,7 @@ const products = (await getProducts()).filter((p) => p.data.category.id === cate
 const guides = (await getGuides()).filter((g) => g.data.category?.id === category.id);
 const path = `/${d.slug}/`;
 const others = (await getCategories()).filter((c) => c.id !== category.id);
+const catalogOffers = getCatalogOffersForCategory(d.slug).filter((o) => !products.some((p) => p.data.name.toLowerCase() === o.name.toLowerCase()));
 ---
 
 <BaseLayout
@@ -37,7 +40,7 @@ const others = (await getCategories()).filter((c) => c.id !== category.id);
   path={path}
   breadcrumbs={[{ name: d.name, href: path }]}
   jsonLd={[{ '@type': 'CollectionPage', name: d.name, description: d.seo.description }, ...(d.faqSchema && d.faq.length ? [faqSchema(d.faq)] : [])]}
-  noindex={products.length === 0}
+  noindex={products.length === 0 && catalogOffers.length === 0}
 >
   <section class="relative overflow-hidden">
     <LeafDecor class="-right-10 top-0 w-56 rotate-12" />
@@ -79,6 +82,20 @@ const others = (await getCategories()).filter((c) => c.id !== category.id);
       )
     }
   </section>
+
+  {
+    catalogOffers.length > 0 && (
+      <section class="container-site py-8" aria-labelledby="kat-katalog">
+        <h2 id="kat-katalog" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">Dodatne ponude u kategoriji</h2>
+        <p class="mt-2 max-w-2xl text-muted">
+          Ponude za Srbiju. Cene i detalji biće objavljeni nakon potvrde; poručivanje još nije aktivirano.
+        </p>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {catalogOffers.map((offer) => <OfferCard offer={offer} />)}
+        </div>
+      </section>
+    )
+  }
 
   {
     guides.length > 0 && (
