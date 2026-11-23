@@ -20,8 +20,8 @@ demo: true
 publishedAt: 2026-11-22
 updatedAt: 2026-11-22
 
-heroImage: ../../assets/products/nautubone/hero.jpg
-heroImageAlt: Teglica Nautubone gela pored cvetova gaveza
+heroImage: ../../assets/products/nautubone/hero.webp
+heroImageAlt: Originalno pakovanje Nautubone gela 100 ml
 themePrimary: "#1f5a2c"
 themeSecondary: "#e6efd9"
 themeBackground: "#f8f4e9"

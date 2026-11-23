@@ -20,8 +20,8 @@ demo: true
 publishedAt: 2026-11-22
 updatedAt: 2026-11-22
 
-heroImage: ../../assets/products/bonecontrol/hero.png
-heroImageAlt: Ilustracija pakovanja BoneControl
+heroImage: ../../assets/products/bonecontrol/hero.webp
+heroImageAlt: Originalno pakovanje BoneControl gela 100 ml
 themePrimary: "#1f3d66"
 themeSecondary: "#e1ebf6"
 themeBackground: "#f3f6fa"

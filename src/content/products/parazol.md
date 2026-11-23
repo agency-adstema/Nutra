@@ -20,8 +20,8 @@ demo: true
 publishedAt: 2026-11-22
 updatedAt: 2026-11-22
 
-heroImage: ../../assets/products/parazol/hero.png
-heroImageAlt: Ilustracija pakovanja Parazol
+heroImage: ../../assets/products/parazol/hero.webp
+heroImageAlt: Originalno pakovanje Parazol biljnog čaja 50 g
 themePrimary: "#0f5c56"
 themeSecondary: "#e2efe9"
 themeBackground: "#f6f3ea"
