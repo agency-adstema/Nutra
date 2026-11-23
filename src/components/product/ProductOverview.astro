@@ -1,7 +1,7 @@
 ---
 import Icon from '../Icon.astro';
 import { formatDate, formatPrice, priceView } from '../../lib/format';
-import { getEditorialPrice, formatCatalogPrice, referencePriceNotice } from '../../data/offer-pricing';
+import { getEditorialPrice, formatCatalogPrice } from '../../data/offer-pricing';
 import type { Product } from '../../lib/content';
 import type { MarketConfig } from '../../config/countries';
 
@@ -137,23 +137,19 @@ const h2Cls = 'text-lg font-semibold text-brand-strong lg:text-[1.75rem] lg:lead
             </tbody>
           </table>
         </div>
-        <p
-          class={`flex items-start gap-2 rounded-xl px-4 py-3 text-sm ${pv.isVerified ? 'bg-brand-2/70 text-ink' : 'bg-warn-bg text-warn'}`}
-          data-price-status={d.priceStatus}
-        >
-          <Icon name="info" size={18} class="mt-0.5 shrink-0" />
-          {quotedPricing ? (
-            <span>
-              Cene za 1, 2 i 3 pakovanja preuzete su iz dostavljenog RS cenovnika.
-              Precrtane vrednosti su referentne cene iz tabele, ne potvrđene prethodne prodajne cene.
-              <span class="block mt-1">{referencePriceNotice(d.slug)}</span>
-            </span>
-          ) : pv.isVerified && d.priceCheckedAt ? (
-            <span><strong>Cena proverena:</strong> {formatDate(d.priceCheckedAt)}{d.priceSource && <> · {d.priceSource}</>}</span>
-          ) : (
-            <span>Cena nije objavljena u dostupnoj dokumentaciji.</span>
-          )}
-        </p>
+        {!quotedPricing && (
+          <p
+            class={`flex items-start gap-2 rounded-xl px-4 py-3 text-sm ${pv.isVerified ? 'bg-brand-2/70 text-ink' : 'bg-warn-bg text-warn'}`}
+            data-price-status={d.priceStatus}
+          >
+            <Icon name="info" size={18} class="mt-0.5 shrink-0" />
+            {pv.isVerified && d.priceCheckedAt ? (
+              <span><strong>Cena proverena:</strong> {formatDate(d.priceCheckedAt)}{d.priceSource && <> · {d.priceSource}</>}</span>
+            ) : (
+              <span>Cena nije objavljena u dostupnoj dokumentaciji.</span>
+            )}
+          </p>
+        )}
       </div>
     </details>
   </div>
