@@ -5,6 +5,7 @@ import { formatPrice, priceView } from '../../lib/format';
 import type { Product } from '../../lib/content';
 import type { Offer } from '../../data/offers';
 import { getOfferDetails } from '../../data/offer-details';
+import { getCatalogPrice, getEditorialPrice, formatCatalogPrice, referencePriceNotice } from '../../data/offer-pricing';
 import { getCatalogPrice } from '../../data/offer-pricing';
 import type { MarketConfig } from '../../config/countries';
 import { PUBLIC_STATIC_PREVIEW, PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
@@ -19,6 +20,7 @@ if (!product && !offer) throw new Error('OrderForm requires product or offer');
 const d = product?.data;
 const isCatalogPreview = !!offer;
 const catalogDetails = offer ? getOfferDetails(offer.geo, offer.slug) : undefined;
+const editorialPricing = product ? getEditorialPrice(d!.countryCode, d!.slug) : undefined;
 const catalogPricing = offer ? getCatalogPrice(offer.geo, offer.slug) : undefined;
 // Catalog forms are always in SAFE preview mode, including if the site is later built for production.
 // Until a real API offer ID and approved seller details are configured, nothing may be transmitted.
@@ -30,9 +32,10 @@ const priceStatus = offer ? 'unknown' as const : d!.priceStatus;
 const packages = offer
   ? (catalogPricing?.tiers.map(t => ({ id: t.id, label: t.label, quantity: t.quantity, default: t.quantity === 1, price: t.newPrice })) ??
      [{ id: '1-komad', label: '1 pakovanje', quantity: 1, default: true, price: undefined }])
-  : d!.packages;
+  : (editorialPricing?.tiers.map(t => ({ id: t.id, label: t.label, quantity: t.quantity, default: t.quantity === 1, price: t.newPrice })) ?? d!.packages);
 const orderEnabled = isCatalogPreview ? catalogDetails?.availableInAccount === true : !!d?.orderEnabled;
 const pv = priceView(priceStatus, packages);
+const visiblePricing = catalogPricing ?? editorialPricing;
 const defaultPkg = packages.find((p) => p.default) ?? packages[0];
 const requireConsent = site.consentMode === 'checkbox';
 
@@ -110,12 +113,21 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
                         <input type="radio" name="packageId" value={p.id} checked={p.id === defaultPkg.id} class="h-4 w-4 shrink-0 accent-[var(--c-primary)]" />
                         <span class="flex-1 text-[15px] font-semibold text-ink">{p.label}</span>
                         <span class="text-[15px] font-semibold text-brand">
-                          {(pv.show || (isCatalogPreview && catalogPricing)) && p.price != null ? formatPrice(p.price, market.currencyLabel) : <span class="font-normal text-muted">cena na upit</span>}
+                          {(pv.show || visiblePricing) && p.price != null ? (
+                            <>
+                              <strong>{formatPrice(p.price, market.currencyLabel)}</strong>
+                              {visiblePricing?.tiers.find(t => t.id === p.id)?.referencePrice != null && (
+                                <del class="ml-2 text-xs font-normal text-muted">
+                                  {formatCatalogPrice(visiblePricing.tiers.find(t => t.id === p.id)!.referencePrice!, 'RS')}
+                                </del>
+                              )}
+                            </>
+                          ) : <span class="font-normal text-muted">cena nije objavljena</span>}
                         </span>
                       </label>
                     ))}
                   </div>
-                  {isCatalogPreview && catalogPricing?.freeShippingPerSheet && (
+                  {visiblePricing?.freeShippingPerSheet && (
                     <p class="mt-3 text-xs text-muted">Besplatna dostava prema dostavljenom cenovniku partnera; potvrda uslova pre poručivanja.</p>
                   )}
                   <p class="mt-1 text-sm text-danger" data-error-for="packageId" hidden />
@@ -126,7 +138,12 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
             )
           }
 
-          {isCatalogPreview && catalogPricing && <p class="text-xs text-muted">Izbor paketa je prikaz ponude. Za 2 i 3 pakovanja stvarno naručivanje mora da potvrdi call centar.</p>}
+          {visiblePricing && (
+            <p class="text-xs text-muted">
+              {editorialPricing ? referencePriceNotice(d!.slug) : 'Referentne cene iz Excel dokumenta nisu potvrđene kao prethodne prodajne cene.'}
+              {' '}Izbor 2 ili 3 pakovanja je prikaz; za stvarno naručivanje mora se potvrditi prijem količine u call centru.
+            </p>
+          )}
 
           <!-- Honeypot: polje koje ljudi ne vide; botovi ga popune -->
           <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
@@ -162,7 +179,7 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
               <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".3" stroke-width="3" />
               <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
             </svg>
-            <span data-submit-label>{isCatalogPreview ? 'Proveri formu' : 'Pošalji porudžbinu'}</span>
+            <span data-submit-label>{isCatalogPreview || PUBLIC_STATIC_PREVIEW ? 'Proveri formu' : 'Pošalji porudžbinu'}</span>
           </button>
           </div>
 
