@@ -85,12 +85,44 @@ function initForm(form: HTMLFormElement) {
   });
   resetButtonLabel();
 
+  // Pozivni broj zemlje (+381 / +387 / +385) je unapred upisan; kupac kuca ostatak broja.
+  const phonePrefix = `+${cfg.phone.dialCode} `;
+  const phoneValue = () => {
+    const v = (fieldEl('phone') as HTMLInputElement)?.value ?? '';
+    return v.trim() === phonePrefix.trim() ? '' : v;
+  };
+  const phoneInput = fieldEl('phone') as HTMLInputElement | null;
+  if (phoneInput) {
+    if (!phoneInput.value) phoneInput.value = phonePrefix;
+    phoneInput.addEventListener('input', () => {
+      const v = phoneInput.value;
+      let next = v;
+      if (!v.startsWith(phonePrefix)) {
+        const dial = phonePrefix.trim();
+        const rest = v.startsWith(dial) ? v.slice(dial.length) : v.replace(/^\+/, '').replace(/^00/, '');
+        next = phonePrefix + rest.trimStart();
+      }
+      // „060…“ posle pozivnog broja postaje „60…“ (nula se ne bira uz +381/+387/+385)
+      if (next.startsWith(phonePrefix + '0')) next = phonePrefix + next.slice(phonePrefix.length + 1);
+      if (next === v) return;
+      phoneInput.value = next;
+      const end = next.length;
+      phoneInput.setSelectionRange(end, end);
+    });
+    phoneInput.addEventListener('focus', () => {
+      if (phoneInput.value.trim() === phonePrefix.trim()) {
+        phoneInput.value = phonePrefix;
+        requestAnimationFrame(() => phoneInput.setSelectionRange(phonePrefix.length, phonePrefix.length));
+      }
+    });
+  }
+
   const read = () => {
     const pkg = fieldEl('packageId');
     return {
       firstName: (fieldEl('firstName') as HTMLInputElement)?.value ?? '',
       lastName: (fieldEl('lastName') as HTMLInputElement)?.value ?? '',
-      phone: (fieldEl('phone') as HTMLInputElement)?.value ?? '',
+      phone: phoneValue(),
       packageId: pkg ? (pkg as HTMLInputElement).value : '',
       consent: (form.querySelector<HTMLInputElement>('input[name="consent"]')?.checked ?? false) as boolean,
       website: (fieldEl('website') as HTMLInputElement)?.value ?? '',
@@ -141,7 +173,7 @@ function initForm(form: HTMLFormElement) {
   form.addEventListener('focusout', (e) => {
     const name = (e.target as HTMLInputElement).name;
     if (!['firstName', 'lastName', 'phone'].includes(name)) return;
-    const value = (e.target as HTMLInputElement).value;
+    const value = name === 'phone' ? phoneValue() : (e.target as HTMLInputElement).value;
     if (!value) return; // ne prikazujemo grešku za prazno polje dok korisnik ne pokuša slanje
     const r = validate();
     setError(name, r.ok ? undefined : r.fieldErrors[name]);

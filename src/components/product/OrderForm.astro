@@ -88,7 +88,7 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
           <div class="grid gap-1.5 sm:grid-cols-[120px_1fr] sm:items-start sm:gap-4">
             <label for="of-phone" class={labelCls}>Broj telefona <span aria-hidden="true">*</span></label>
             <div>
-              <input id="of-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25" placeholder={`npr. ${market.phone.example}`} class="field-input" aria-describedby="of-phone-err of-phone-hint" />
+              <input id="of-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25" value={`+${market.phone.dialCode} `} placeholder={`+${market.phone.dialCode} ${market.phone.example.replace(/^0/, '')}`} class="field-input" aria-describedby="of-phone-err of-phone-hint" data-phone-prefix={`+${market.phone.dialCode} `} />
               <p id="of-phone-hint" class="mt-1 text-xs text-muted">Operater vas zove na ovaj broj radi potvrde porudžbine.</p>
               <p id="of-phone-err" class="mt-1 text-sm text-danger" data-error-for="phone" hidden />
             </div>
