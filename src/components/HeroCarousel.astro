@@ -13,6 +13,7 @@
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { getImage } from 'astro:assets';
+import sharp from 'sharp';
 import heroCfg from '../data/home-hero.json';
 import { getCategories, getProducts, productUrl } from '../lib/content';
 import { getOffer, offerUrl, verticalLabel, type OfferGeo } from '../data/offers';
@@ -26,6 +27,8 @@ interface HeroEntry {
   headline?: string;
   name?: string;
   quote?: boolean;
+  /** Opciono: CSS object-position za isecanje slike, npr. "50% 20%" */
+  imagePosition?: string;
 }
 interface Slide {
   slug: string;
@@ -38,6 +41,7 @@ interface Slide {
   quote: boolean;
   image: string | null;
   isPhoto: boolean;
+  position?: string;
 }
 
 const [products, categories] = await Promise.all([getProducts(), getCategories()]);
@@ -45,10 +49,21 @@ const firstSentence = (s: string) => (s.match(/^.*?[.!?](\s|$)/)?.[0] ?? s).trim
 const customerPhoto = (slug: string) =>
   ['jpg', 'jpeg', 'png', 'webp'].map((ext) => `/images/hero/${slug}.${ext}`).find((p) => existsSync(join(process.cwd(), 'public', p)));
 
+/** Sve slike kupaca se seku na isti format 4:3. Široke slike zadržavaju desnu stranu
+ *  (tekst), a kvadratne gornji deo (tekst i lice). */
+async function photoPosition(path: string, override?: string): Promise<string> {
+  if (override) return override;
+  const { width = 4, height = 3 } = await sharp(join(process.cwd(), 'public', path)).metadata();
+  return width / height > 4 / 3 ? '95% 50%' : '50% 25%';
+}
+
 const slides: Slide[] = [];
 for (const h of heroCfg as HeroEntry[]) {
-  const base = { slug: h.slug, product: h.product, headline: h.headline, name: h.name, quote: !!h.quote && !!h.name };
   const photo = customerPhoto(h.slug);
+  const base = {
+    slug: h.slug, product: h.product, headline: h.headline, name: h.name, quote: !!h.quote && !!h.name,
+    position: photo ? await photoPosition(photo, h.imagePosition) : undefined,
+  };
   if (h.link.type === 'product') {
     const slug = h.link.slug;
     const p = products.find((x) => x.data.slug === slug);
@@ -99,9 +114,6 @@ for (const h of heroCfg as HeroEntry[]) {
             data-item-name={s.product}
           >
             <span class={`relative block aspect-[4/3] w-full overflow-hidden ${s.isPhoto ? 'bg-[#2f6d1f]' : 'bg-[#e7efe0]'}`}>
-              {s.image && s.isPhoto && (
-                <img src={s.image} alt="" aria-hidden="true" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full scale-110 object-cover opacity-80 blur-xl" />
-              )}
               {s.image ? (
                 <img
                   src={s.image}
@@ -111,7 +123,8 @@ for (const h of heroCfg as HeroEntry[]) {
                   loading={i === 0 ? 'eager' : 'lazy'}
                   fetchpriority={i === 0 ? 'high' : undefined}
                   decoding="async"
-                  class={`relative h-full w-full object-contain transition duration-500 group-hover:scale-[1.03] ${s.isPhoto ? '' : 'p-6'}`}
+                  style={s.position ? `object-position: ${s.position}` : undefined}
+                  class={`h-full w-full transition duration-500 group-hover:scale-[1.03] ${s.isPhoto ? 'object-cover' : 'object-contain p-6'}`}
                 />
               ) : (
                 <span class="grid h-full place-items-center text-[#1f4b2b]"><Icon name="box" size={72} /></span>
