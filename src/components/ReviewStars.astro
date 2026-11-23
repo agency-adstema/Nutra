@@ -8,7 +8,7 @@ interface Props {
   /** Keep the review row aligned even on products without a sourced count. */
   showMissing?: boolean;
 }
-const { geo, slug, showMissing = true } = Astro.props;
+const { geo, slug, showMissing = false } = Astro.props;
 const review = getExternalReview(geo, slug);
 const score = review?.score.toFixed(1).replace('.', ',');
 const count = review?.count.toLocaleString('sr-RS');

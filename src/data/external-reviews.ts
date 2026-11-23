@@ -9,6 +9,7 @@
  * No HP offer inherits a rating from a non-HP product. No rating is fabricated.
  */
 import type { OfferGeo } from './offers';
+import imported from './limitedcharm-details.json';
 
 export interface ExternalReview {
   score: number;
@@ -57,7 +58,29 @@ export const externalReviews = new Map<string, ExternalReview>(
   ]),
 );
 
+type ImportedItem = { sourceUrl: string; reviews: { score: number | null; count: number | null } | null };
+const importedItems = (imported as { checkedAt: string; items: Record<string, ImportedItem> }).items;
+const norm = (slug: string) => slug.replace(/-/g, '');
+
+/** Ocena iz uvoza sa Limited Charm stranice (scripts/import-limitedcharm-details.py). */
+function importedReview(key: string): ExternalReview | undefined {
+  const item = importedItems[key];
+  const r = item?.reviews;
+  if (!r?.score || !r.count) return undefined;
+  return { score: r.score, count: r.count, sourceName: 'Limited Charm', sourceUrl: item.sourceUrl, checkedAt: (imported as { checkedAt: string }).checkedAt };
+}
+
 export function getExternalReview(geo: OfferGeo, slug: string): ExternalReview | undefined {
-  // Exact GEO+product match; don't transfer reviews to HP alternative offers.
-  return externalReviews.get(`${geo}/${slug}`);
+  // 1) ručno proverena ocena, 2) uvezena ocena za isto tržište,
+  // 3) isti proizvod (isti slug, bez crtica) na drugom Limited Charm tržištu.
+  // HP ponude nikad ne preuzimaju ocenu običnog proizvoda (hp-x ≠ x).
+  const exact = externalReviews.get(`${geo}/${slug}`) ?? importedReview(`${geo}/${slug}`);
+  if (exact) return exact;
+  for (const g of ['RS', 'BA', 'HR'] as const) {
+    if (g === geo) continue;
+    const key = Object.keys(importedItems).find((k) => k.startsWith(`${g}/`) && norm(k.slice(3)) === norm(slug));
+    const r = key ? importedReview(key) : undefined;
+    if (r) return r;
+  }
+  return undefined;
 }

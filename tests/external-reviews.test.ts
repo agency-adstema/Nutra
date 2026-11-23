@@ -29,8 +29,11 @@ describe('Sourced Limited Charm ratings on Nutra catalog cards', () => {
     expect(getExternalReview('BA','parazol')).toMatchObject({score:4.6,count:10});
   });
 
+  it('uses imported Limited Charm product-page ratings when no manual entry exists', () => {
+    expect(getExternalReview('RS','quick-fit')).toMatchObject({ score: 4.5, count: 12, sourceName: 'Limited Charm' });
+  });
+
   it('keeps missing ratings missing, not 4.9 by default', () => {
-    expect(getExternalReview('RS','quick-fit')).toBeUndefined();
     expect(getExternalReview('HR','cy-relief')).toBeUndefined();
     expect(getExternalReview('RS','hp-lossless')).toBeUndefined();
   });
