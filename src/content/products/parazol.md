@@ -1,18 +1,17 @@
 ---
-# DEMO PROIZVOD — sastav, cene i vizuelna tema su primer i moraju se proveriti pre objave.
 name: Parazol
 slug: parazol
 category: paraziti-i-detoks
 market: RS
-productType: Biljne kapi (demo)
+productType: Biljni preparat
 h1: Parazol biljne kapi
 shortDescription: Biljni preparat koji se prodaje za „čišćenje“ organizma — šta se zna, a šta ne.
-intro: Parazol se prodaje kao biljni preparat u kapima. Biljni preparat ne postavlja dijagnozu i ne leči parazitske infekcije — ako sumnjate na parazite, potreban je pregled i laboratorijska analiza. Podaci na ovoj stranici su demo i čekaju proveru.
+intro: Parazol se predstavlja kao biljni preparat. Tačan sastav i oblik proizvoda proveravaju se na originalnoj deklaraciji. Ako sumnjate na parazitsku infekciju, potreban je pregled i odgovarajuća laboratorijska analiza.
 highlights:
   - icon: drop
-    label: Biljne kapi
+    label: Biljni preparat
   - icon: plant
-    label: Biljni ekstrakti
+    label: Sastav na deklaraciji
   - icon: truck
     label: Plaćanje pouzećem
 featured: true
@@ -22,29 +21,21 @@ publishedAt: 2026-11-22
 updatedAt: 2026-11-22
 
 heroImage: ../../assets/products/parazol/hero.png
-heroImageAlt: Ilustracija bočice Parazol biljnih kapi (demo)
+heroImageAlt: Ilustracija pakovanja Parazol
 themePrimary: "#0f5c56"
 themeSecondary: "#e2efe9"
 themeBackground: "#f6f3ea"
 themeAccent: "#c0711f"
 
-ingredients:
-  - name: Pelin (demo)
-    latin: Artemisia absinthium
-    description: Tradicionalno se koristi kod gubitka apetita i blagih tegoba sa varenjem.
-    icon: plant
-  - name: Karanfilić (demo)
-    latin: Syzygium aromaticum
-    description: Začinska biljka; delovanje protiv parazita kod ljudi nije potvrđeno.
-    icon: flower
-ingredientsNote: "DEMO: sastav nije potvrđen. Pre objave prepisati tačan sastav sa deklaracije."
+ingredients: []
+ingredientsNote: "Tačan sastav biće objavljen nakon provere originalne deklaracije proizvoda."
 usage:
   - Koristiti isključivo prema uputstvu na pakovanju.
   - Ne prekoračiti preporučenu dozu i trajanje upotrebe.
 notFor:
-  - Deca i adolescenti mlađi od 18 godina — upotreba preparata sa pelinom se ne preporučuje.
+  - Deca i adolescenti, bez prethodnog saveta lekara.
   - Trudnice i dojilje.
-  - Osobe sa kamenom u žuči ili drugim bolestima žučnih puteva, bez saveta lekara.
+  - Osobe sa hroničnim oboljenjima ili na terapiji, bez saveta lekara.
 warnings:
   - Ako imate proliv, bol u stomaku, gubitak težine ili krv u stolici, javite se lekaru.
   - Dijagnoza parazita postavlja se laboratorijskim pregledom stolice ili drugim testovima.
@@ -79,19 +70,12 @@ offerId: "UNETI_OFFER_ID"
 countryCode: RS
 orderEnabled: true
 
-videos:
-  - type: instagram
-    url: https://www.instagram.com/reel/PRIMER_BEZ_DOZVOLE/
-    thumbnail: ../../assets/videos/nautubone-test-2.jpg
-    title: Primer Instagram snimka bez dozvole
-    description: Ovaj unos se NE prikazuje jer permission.granted nije true.
-    permission: { granted: false }
-    demo: true
+videos: []
 
 related: []
 seo:
   title: Parazol kapi – sastav, upotreba, cena i upozorenja
-  description: "Parazol u Srbiji: sastav, način upotrebe, upozorenja i kada se obratiti lekaru. Demo stranica — podaci čekaju proveru."
+  description: "Parazol: informacije o sastavu, načinu upotrebe, upozorenjima i kada se obratiti lekaru."
 ---
 
 ### Paraziti: zašto je dijagnoza na prvom mestu
