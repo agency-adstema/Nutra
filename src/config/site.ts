@@ -7,7 +7,7 @@
 export const site = {
   name: 'Moja Zdravica',
   /** Tekst logotipa u headeru/footeru */
-  logoText: 'moja zdravica.',
+  logoText: 'Moja Zdravica',
   tagline: 'Prirodni preparati: sastav, upotreba, cene i upozorenja',
   description:
     'Informativni vodič kroz prirodne preparate za Srbiju, Bosnu i Hercegovinu i Hrvatsku: sastav, način upotrebe, upozorenja i informacije o cenama.',
