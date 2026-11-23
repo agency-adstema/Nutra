@@ -5,7 +5,6 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import GuideCard from '../../components/GuideCard.astro';
 import FaqList from '../../components/FaqList.astro';
-import DemoNotice from '../../components/DemoNotice.astro';
 import Icon from '../../components/Icon.astro';
 import LeafDecor from '../../components/LeafDecor.astro';
 import { getCategories, getProducts, getGuides, type Category } from '../../lib/content';
@@ -40,7 +39,6 @@ const others = (await getCategories()).filter((c) => c.id !== category.id);
   jsonLd={[{ '@type': 'CollectionPage', name: d.name, description: d.seo.description }, ...(d.faqSchema && d.faq.length ? [faqSchema(d.faq)] : [])]}
   noindex={products.length === 0}
 >
-  {d.demo && <DemoNotice text="Demo sadržaj: tekst kategorije je primer i čeka uredničku proveru." />}
   <section class="relative overflow-hidden">
     <LeafDecor class="-right-10 top-0 w-56 rotate-12" />
     <div class="container-site relative py-8 lg:py-12">
