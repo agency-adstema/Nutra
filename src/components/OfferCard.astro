@@ -23,20 +23,26 @@ const quotedPricing = getCatalogPrice(offer.geo, offer.slug);
     )}
     <span class="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">{offer.geo}</span>
   </a>
-  <div class="flex grow flex-col p-5">
+  <div class="flex grow flex-col p-5" data-offer-card-body>
     <p class="text-xs font-semibold uppercase tracking-widest text-accent">{catalogMarkets[offer.geo].name}</p>
-    <h3 class="mt-2 text-xl font-semibold text-ink">
+    <h3 class="mt-2 line-clamp-2 min-h-[3.5rem] text-xl font-semibold leading-7 text-ink">
       <a class="hover:text-brand" href={offerUrl(offer)}>{offer.name}</a>
     </h3>
-    <div class="mt-3 flex flex-wrap gap-2">
+    <div class="mt-2 flex min-h-[2.5rem] flex-wrap content-start items-start gap-2">
       {offer.verticals.map((v) => <span class="rounded-full bg-[#f3efe4] px-2.5 py-1 text-xs text-ink/75">{verticalLabel(v)}</span>)}
     </div>
-    {details?.description && <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">{details.description}</p>}
-    {details?.form && <p class="mt-2 text-sm text-ink/80">Oblik: {details.form}{details.package ? ` · ${details.package}` : ''}</p>}
+    <p class="mt-2 line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-muted">
+      {details?.description?.trim() || 'Detaljan opis proizvoda trenutno nije dostupan.'}
+    </p>
+    <p class="mt-2 min-h-[2.5rem] text-sm leading-5 text-ink/80">
+      {details?.form
+        ? <>Oblik: {details.form}{details.package ? ` · ${details.package}` : ''}</>
+        : 'Informacije o pakovanju na stranici proizvoda.'}
+    </p>
     {quotedPricing ? (
-      <div class="mt-4"><OfferPrice pricing={quotedPricing} compact /></div>
+      <div class="mt-3"><OfferPrice pricing={quotedPricing} catalogCard /></div>
     ) : (
-      <p class="mt-3 text-sm font-medium text-muted">Trenutno nije dostupno za poručivanje</p>
+      <p class="mt-3 min-h-[164px] text-sm font-medium text-muted">Trenutno nije dostupno za poručivanje</p>
     )}
     <a class="mt-auto inline-flex items-center gap-2 pt-5 font-semibold text-brand hover:underline" href={offerUrl(offer)}>
       Detalji proizvoda <Icon name="arrow-right" size={18} />
