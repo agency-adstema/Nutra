@@ -34,7 +34,7 @@ describe('Cloudflare R2 video gallery', () => {
     expect(() => videoR2Url('../secret.mp4')).toThrow();
     expect(() => videoR2Url('/absolute.mp4')).toThrow();
   });
-  it('does not borrow video testimonials for differently named HP offers', () => {
+  it('does not borrow video testimonials for differently named offers', () => {
     expect(getProductVideos('RS','hp-nautubone')).toHaveLength(0);
     expect(getProductVideos('HR','hp-nautubone')).toHaveLength(0);
     expect(getProductVideos('RS','hp-pro-caps')).toHaveLength(0);

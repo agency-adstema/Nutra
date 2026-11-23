@@ -5,21 +5,16 @@ import { getSuppliedOfferId } from '../src/server/catalog-offer-ids';
 
 describe('Partner product sheets integrated into Nutra', () => {
   it('contains exactly one data sheet for every catalog offer', () => {
-    expect(offerDetails).toHaveLength(45);
-    expect(new Set(offerDetails.map(d => d.country + '/' + d.slug)).size).toBe(45);
+    expect(offerDetails).toHaveLength(20);
+    expect(new Set(offerDetails.map(d => d.country + '/' + d.slug)).size).toBe(20);
+    expect(offerDetails.some(d => d.slug.startsWith('hp-'))).toBe(false);
     for (const o of offers) expect(getOfferDetails(o.geo, o.slug)).toBeDefined();
   });
 
-  it('has price and image for the 41 available offers but none for 4 unavailable BA offers', () => {
+  it('has price and image for all 20 available offers', () => {
     const available = offerDetails.filter(d => d.availableInAccount);
-    const unavailable = offerDetails.filter(d => !d.availableInAccount);
-    expect(available).toHaveLength(41);
-    expect(unavailable).toHaveLength(4);
+    expect(available).toHaveLength(20);
     expect(available.every(d => d.price && d.imageUrl && d.priceAmount && d.priceAmount > 0)).toBe(true);
-    expect(unavailable.every(d => d.country === 'BA' && !d.price && !d.imageUrl)).toBe(true);
-    expect(unavailable.map(d => d.slug).sort()).toEqual(
-      ['hp-cardio-zen','hp-glyco-balance','hp-para-clean','hp-slim-ease'].sort()
-    );
     expect(available.every(d => getSuppliedOfferId(d.country, d.slug))).toBe(true);
   });
 
@@ -34,21 +29,18 @@ describe('Partner product sheets integrated into Nutra', () => {
     expect(getOfferDetails('RS','dia-drops')).toMatchObject({ price:'3700 RSD',form:'Kapi',package:'30 ml',currency:'RSD' });
     expect(getOfferDetails('HR','cy-relief')).toMatchObject({ price:'39 EUR',currency:'EUR', availableInAccount:true });
     expect(getOfferDetails('BA','nautubone')).toMatchObject({ price:'55 KM',currency:'BAM',form:'Gel',package:'100 ml' });
-    expect(getOfferDetails('RS','hp-nautubone')).toMatchObject({ price:'3700 RSD',currency:'RSD',form:'Gel',package:'100 ml' });
+    expect(getOfferDetails('RS','hp-nautubone')).toBeUndefined();
   });
 
   it('all Serbian catalog offers use the corrected 3700 RSD price', () => {
     const rs=offerDetails.filter(d=>d.country==='RS'&&d.availableInAccount);
-    expect(rs).toHaveLength(19);
+    expect(rs).toHaveLength(8);
     expect(rs.every(d=>d.priceAmount===3700 && d.price==='3700 RSD')).toBe(true);
   });
 
   it('does not manufacture missing ingredients or usage', () => {
-    expect(getOfferDetails('RS','hp-bone-control')?.composition).toBeNull();
-    expect(getOfferDetails('RS','hp-bone-control')?.usage).toBeNull();
     expect(getOfferDetails('BA','cy-relief')?.usage).toBeNull();
     expect(getOfferDetails('HR','cy-relief')?.usage).toBeNull();
-    expect(getOfferDetails('BA','hp-cardio-zen')?.description).toBeNull();
   });
 
   it('maps each photo to exact supplied partner domain (not another offer)', () => {

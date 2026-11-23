@@ -16,9 +16,7 @@ Never store an API key in code, GitHub, a query string or frontend JavaScript.
 ## Pricing limitations from the uploaded Excel
 
 - 20 regular catalog offers have one/two/three-package *quoted* prices.
-- 21 HP catalog offers have only a one-package quoted price.
-- Four unavailable BA offers are disabled.
-- Old HP prices are **unconfirmed proposals**, so never show them as past prices.
+- All HP catalog offers were removed on 23 Nov 2026 (they duplicated regular products).
 - Regular "old" reference prices are from the sheet, not verified sales history.
 - The uploaded spreadsheet says free delivery and 1–2 working days, but delivery
   times, stock scarcity and time-limited offers have not been verified; DO NOT

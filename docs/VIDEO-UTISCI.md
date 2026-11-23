@@ -13,7 +13,7 @@ Na sajtu `src/config/video.ts` izlaže `VIDEO_BASE_URL` i kodira zasebne delove 
 
 `src/data/product-videos.json` sadrži 61 snimak za 32 proizvoda, iz `spisak_videa.csv` (UTF-8 BOM, delimiter ;). U javnom HTML-u nema Instagram linkova.
 
-**Nazivi se povezuju isključivo po tačnom nazivu proizvoda**; HP alternative ne preuzimaju recenzije drugih proizvoda. Video-snimci postoje u javnim stranicama samo za proizvode za koje imamo sigurno podudaranje.
+**Nazivi se povezuju isključivo po tačnom nazivu proizvoda**; snimci se ne prenose na proizvode sa sličnim nazivom. Video-snimci postoje u javnim stranicama samo za proizvode za koje imamo sigurno podudaranje.
 
 ## Učitavanje (performance)
 

@@ -1,10 +1,10 @@
 /**
  * Product-specific prices copied from the exact uploaded spreadsheet (worksheet
- * "Cene", 45 rows) and normalized into src/data/products.json -> pricing.packages.
+ * "Cene") and normalized into src/data/products.json -> pricing.packages.
+ * HP offers were removed from the catalog on 23 Nov 2026.
  *
  * Regular "old" amounts are REFERENCE prices from the partner sheet; not
  * independently verified previous sale prices. Never assert verified markdown.
- * HP "old" prices were explicitly labeled proposals; omit old/savings/% for HP.
  * Free shipping and 1–2 business days are partner-supplied delivery estimates.
  */
 import productsJson from './products.json';
@@ -23,7 +23,7 @@ export type PriceTier = {
 };
 export type CatalogPrice = {
   geo: OfferGeo;
-  type: 'regular' | 'hp';
+  type: 'regular';
   currency: 'RSD' | 'BAM' | 'EUR';
   currencyLabel: 'RSD' | 'KM' | '€';
   freeShippingPerSheet: boolean;
@@ -63,16 +63,16 @@ export function getCatalogPrice(geo: OfferGeo, slug: string): CatalogPrice | und
   const source = sourceByKey.get(geo + '/' + slug);
   const details = getOfferDetails(geo, slug);
   if (!source?.pricing || !source.offer_id || !details?.availableInAccount) return undefined;
-  const type = slug.startsWith('hp-') ? 'hp' : 'regular';
+  const type = 'regular' as const;
   const tiers = source.pricing.packages.map(p => ({
     id: p.id,
     quantity: p.quantity,
     label: p.quantity === 1 ? (geo === 'HR' ? '1 pakiranje' : '1 pakovanje')
       : `${p.quantity} ${geo === 'HR' ? 'pakiranja' : 'pakovanja'}`,
     newPrice: p.price,
-    referencePrice: type === 'hp' ? null : p.oldPrice,
-    savings: type === 'hp' ? null : p.savings,
-    discountPercent: type === 'hp' ? null : p.discountPercent,
+    referencePrice: p.oldPrice,
+    savings: p.savings,
+    discountPercent: p.discountPercent,
     unitPrice: p.unitPrice,
   }));
   if (!tiers.length || tiers[0].newPrice !== details.priceAmount ||
@@ -92,7 +92,7 @@ export function getCatalogPrice(geo: OfferGeo, slug: string): CatalogPrice | und
 }
 
 /** Three legacy RS editorial pages use regular RS price sheet; Nautubone and
- * BoneControl were not individual regular RS rows in the 45-offer sheet. */
+ * BoneControl were not individual regular RS rows in the offer sheet. */
 export function getEditorialPrice(geo: string, slug: string): CatalogPrice | undefined {
   if (geo !== 'RS' || !['nautubone', 'bonecontrol', 'parazol'].includes(slug)) return undefined;
   return getCatalogPrice('RS', 'parazol');

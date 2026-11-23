@@ -5,43 +5,44 @@ import {
 } from '../src/data/offers';
 
 describe('Katalog ponuda RS/BA/HR', () => {
-  it('čuva svih 56 redova primljene liste bez gubljenja GEO podataka', () => {
-    expect(sourceOfferRows).toHaveLength(56);
+  it('čuva 24 reda liste (bez HP ponuda) bez gubljenja GEO podataka', () => {
+    expect(sourceOfferRows).toHaveLength(24);
+    expect(sourceOfferRows.some((row) => /^HP\b/i.test(row.name))).toBe(false);
     expect(sourceOfferRows.every((row) => ['RS', 'BA', 'HR'].includes(row.geo))).toBe(true);
   });
 
-  it('čuva 45 izvornih ponuda, prikazuje 38: RS 18, BA 8, HR 12', () => {
-    expect(allOffers).toHaveLength(45);
-    expect(offers).toHaveLength(38);
-    expect(getOffersByGeo('RS')).toHaveLength(18);
-    expect(getOffersByGeo('BA')).toHaveLength(8);
-    expect(getOffersByGeo('HR')).toHaveLength(12);
+  it('čuva 20 ponuda i prikazuje svih 20: RS 8, BA 4, HR 8', () => {
+    expect(allOffers).toHaveLength(20);
+    expect(offers).toHaveLength(20);
+    expect(getOffersByGeo('RS')).toHaveLength(8);
+    expect(getOffersByGeo('BA')).toHaveLength(4);
+    expect(getOffersByGeo('HR')).toHaveLength(8);
     expect(new Set(offers.map((offer) => `${offer.geo}/${offer.slug}`)).size).toBe(offers.length);
-    for(const slug of ['hp-cardio-zen','hp-glyco-balance','hp-para-clean','hp-slim-ease']) expect(getOffer('BA',slug)).toBeUndefined();
-    for (const geo of ['RS', 'BA', 'HR'] as const) {
-      expect(getOffer(geo, 'hp-beauty-derm')).toBeUndefined();
-      expect(offers.some(o => o.geo === geo && o.slug === 'hp-beauty-derm')).toBe(false);
-    }
     expect(getOffer('HR', 'beauty-derm')).toBeDefined();
+  });
+
+  it('nijedna HP ponuda nije u katalogu ni u jednoj zemlji', () => {
+    expect(allOffers.some((o) => o.slug.startsWith('hp-') || /^HP\b/i.test(o.name))).toBe(false);
+    for (const geo of ['RS', 'BA', 'HR'] as const) {
+      for (const slug of ['hp-beauty-derm', 'hp-nautubone', 'hp-bone-control', 'hp-testoy-gel', 'hp-parazol']) {
+        expect(getOffer(geo, slug)).toBeUndefined();
+      }
+    }
   });
 
   it('spaja samo iste ponude na istom tržištu, bez mešanja država', () => {
     expect(getOffer('RS', 'testoy')?.verticals).toEqual(['Potency', 'Male Enlargement']);
-    expect(getOffer('BA', 'hp-testoy-gel')?.verticals).toEqual(['Potency', 'Male Enlargement']);
-    expect(getOffer('HR', 'hp-testoy-gel')?.verticals).toEqual(['Potency']);
-    expect(getOffer('RS', 'hp-testoy-gel')?.verticals).toEqual(['Potency']);
     expect(getOffer('BA', 'pro-caps')?.verticals).toEqual(['Prostatitis']);
-    expect(getOffer('BA', 'hp-nautubone')?.verticals).toEqual(['Joints']);
+    expect(getOffer('BA', 'cy-relief')?.verticals).toEqual(['Cystitis']);
     expect(getOffer('HR', 'nautubone')?.verticals).toEqual(['Joints']);
     expect(getOffer('BA', 'nautubone')?.verticals).toEqual(['Joints']);
   });
 
-  it('ne meša HP i standardne verzije ponuda', () => {
+  it('zadržava standardne verzije ponuda', () => {
     expect(getOffer('BA', 'nautubone')).toBeDefined();
-    expect(getOffer('BA', 'hp-nautubone')).toBeDefined();
-    expect(getOffer('HR', 'hp-parazol')).toBeDefined();
+    expect(getOffer('HR', 'nautubone')).toBeDefined();
     expect(getOffer('RS', 'parazol')).toBeDefined();
-    expect(getOffer('RS', 'hp-bone-control')).toBeDefined();
+    expect(getOffer('RS', 'u-caps')).toBeDefined();
   });
 
   it('ne otvara porudžbine dok ne dobijemo API offer ID, cenu i validirane slike', () => {

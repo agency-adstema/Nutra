@@ -1,11 +1,11 @@
 /**
  * Second MonadLead advertiser account: RS, BA, HR offer IDs supplied by site operator 23 Nov 2026.
- * 100 received rows -> 93 unique pairs; seven verbatim repeated rows removed.
+ * Seven verbatim repeated rows removed. All "HP" offers were removed on 23 Nov 2026
+ * (merchant decision: they duplicated the regular products).
  *
  * Offer IDs are identifiers, not credentials. The API KEY remains server-only in
  * MONADLEAD_API_KEY_CATALOG. Do not set ORDER_MODE=live merely because IDs are present.
- * Entries for offers not yet in /ponude/ remain dormant. Four BA offers are
- * explicitly unavailable and must NEVER accept orders until separately verified.
+ * Entries for offers not yet in /ponude/ remain dormant.
  */
 import { slugifyOffer } from '../data/offers';
 
@@ -49,41 +49,12 @@ const rsSource = `
 401|Cellulflex
 416|AdipoStop
 426|U Caps
-463|HP O Caps
 464|TestoY Gel
 538|Keto Tea
 569|Para Caps
-584|HP Mikoherb
-585|HP Diatea
-586|HP Prostamid
-587|HP Varcosin
-588|HP GoSlim
-613|HP Hemomax
-617|HP Parazol
-624|HP U Caps
-627|HP Quick Fit
 632|Altea
-643|HP Altea
-645|HP Beauty Derm
-658|HP TestoY
-673|HP Nefro Aktiv
-680|HP Cellulflex
-684|HP HydroMax
-706|HP Pro Caps
-713|HP Wrinkless
-717|HP Bone Control
-727|HP Para Caps
-729|HP Lossless
-732|HP Apollos
 747|PreNutra
-805|HP Go Potent
-880|HP Deep Inhale
 1007|SecretDiet
-1018|HP Dermal
-1047|HP TestoY Gel
-1189|HP Nautubone
-1191|HP Hypertea
-1192|HP Hemoroclear
 1317|Power Pulse XXL
 1423|Para Clean
 1490|Liv Caps
@@ -92,55 +63,33 @@ const rsSource = `
 1493|Slim Ease
 1494|Cardio Zen
 1527|Dia Caps
-1633|HP Slim Ease
 1655|Vivus Steam Mop 9 in 1
 1656|Kitchen Mixer/Blender
 1657|TurboFry MultiChef 3in1
-1662|HP Pro Drops
 1670|Caffitaly
 1690|Vasculief
 1756|Valerisan
-1757|HP Valerisan
 1768|Erek X
-1769|HP Erek X
 `.trim();
 
 
 const hrSource = `
 302|Beauty Derm
-676|HP Beauty Derm
 752|CY-relief
 1167|Deep Inhale
 92|Diatea
-583|HP GoSlim
 301|Mikoherb
 90|Nautubone
-1186|HP Nautubone
-551|HP Parazol
 315|Pro Caps
-1576|HP Testoy Gel
 95|Varcosin
 `.trim();
 
 const baSource = `
 862|CY-relief
-866|HP Beauty Derm
 17|Nautubone
-1188|HP Nautubone
-724|HP Para Caps
 18|Parazol
 292|Pro Caps
-705|HP Pro Caps
-1644|HP Testoy Gel
 `.trim();
-
-/** User explicitly confirmed these four BA offers do not exist in their account. */
-const unavailableBA = new Set([
-  'hp-cardio-zen',
-  'hp-glyco-balance',
-  'hp-para-clean',
-  'hp-slim-ease',
-]);
 
 const idsByGeo = new Map<string, Map<string, string>>();
 for (const [geo, source] of [['RS', rsSource], ['HR', hrSource], ['BA', baSource]] as const) {
@@ -162,13 +111,8 @@ export const suppliedRsOfferCount = idsByGeo.get('RS')!.size;
 export const suppliedHrOfferCount = idsByGeo.get('HR')!.size;
 export const suppliedBaOfferCount = idsByGeo.get('BA')!.size;
 
-export function isExplicitlyUnavailableOffer(geo: string, slug: string): boolean {
-  return geo === 'BA' && unavailableBA.has(slug);
-}
-
 /** Exact GEO + slug matching, with only the established BoneControl editorial alias. */
 export function getSuppliedOfferId(geo: string, slug: string): string | undefined {
-  if (isExplicitlyUnavailableOffer(geo, slug)) return undefined;
   const normalised = geo === 'RS' && slug === 'bonecontrol' ? 'bone-control' : slug;
   return idsByGeo.get(geo)?.get(normalised);
 }

@@ -16,10 +16,9 @@ describe('Sourced Limited Charm ratings on Nutra catalog cards', () => {
     }
   });
 
-  it('does not attribute original product reviews to HP variants', () => {
-    for (const offer of offers.filter(o => o.slug.startsWith('hp-'))) {
-      expect(getExternalReview(offer.geo, offer.slug)).toBeUndefined();
-    }
+  it('has no HP offers left to attach reviews to', () => {
+    expect(offers.some(o => o.slug.startsWith('hp-'))).toBe(false);
+    expect(getExternalReview('RS','hp-nautubone')).toBeUndefined();
   });
 
   it('different markets may have different counts for the same product', () => {

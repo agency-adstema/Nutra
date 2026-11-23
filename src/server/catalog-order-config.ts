@@ -4,7 +4,7 @@
  */
 import { catalogMarkets, getOffer, type OfferGeo } from '../data/offers';
 import type { ProductOrderConfig } from '../lib/order/handler';
-import { getSuppliedOfferId, isExplicitlyUnavailableOffer } from './catalog-offer-ids';
+import { getSuppliedOfferId } from './catalog-offer-ids';
 import productSheets from '../data/products.json';
 
 export const catalogOfferEnvKey = (geo: OfferGeo, slug: string) =>
@@ -18,9 +18,8 @@ export function getCatalogOrderConfig(
   const offer = getOffer(geo, slug);
   if (!offer) return undefined;
 
-  const unavailable = isExplicitlyUnavailableOffer(geo, slug);
   const sheet = productSheets.find(p => p.country === geo && p.slug === slug);
-  if (!sheet?.pricing || !sheet.offer_id || unavailable) return undefined;
+  if (!sheet?.pricing || !sheet.offer_id) return undefined;
   // The exact offer_id from products.json is matched against the independently
   // supplied server-side account mapping. Never look up / accept hp_offer_id.
   const referenceId = getSuppliedOfferId(geo, slug);
@@ -36,7 +35,7 @@ export function getCatalogOrderConfig(
     offerId: validId ? id : '',
     apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG',
     offerEnvKey: key,
-    orderEnabled: !unavailable && validId && env('CATALOG_ORDERS_ENABLED') === 'true',
+    orderEnabled: validId && env('CATALOG_ORDERS_ENABLED') === 'true',
     currency: catalogMarkets[geo].currency,
     // API order-create only documents offer_id (no quantity/package field).
     // Until the merchant confirms a bundle mechanism, live requests accept

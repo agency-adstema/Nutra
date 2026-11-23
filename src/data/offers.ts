@@ -5,8 +5,10 @@
  * inventory, imagery rights, conversion payout, fulfillment details or API offer IDs.
  * Entries here are discoverable in the shop, but cannot accept orders.
  *
- * Preserve source casing and all source rows. Duplicate name+GEO rows are merged;
+ * Preserve source casing. Duplicate name+GEO rows are merged;
  * distinct verticals on one offer are kept as tags.
+ * Merchant decision (23 Nov 2026): all "HP" offers removed from the catalog in
+ * every GEO; they duplicated the regular products.
  */
 import productsJson from './products.json';
 export type OfferGeo = 'RS' | 'BA' | 'HR';
@@ -58,51 +60,19 @@ CY-relief|HR|Cystitis
 Nautubone|BA|Joints
 Pro Caps|BA|Prostatitis
 Deep Inhale|HR|Muscle
-HP Para Caps|BA|Parasites
-HP Testoy Gel|HR|Potency
-HP Cardio Zen|BA|Hypertension
 Power Pulse XXL|RS|Potency
-HP Testoy Gel|BA|Potency
-HP Testoy Gel|BA|Male Enlargement
-HP Para Clean|BA|Parasites
 Beauty Derm|HR|Beauty
-HP Parazol|HR|Parasites
 Dia Drops|RS|Diabetes
 Pro Caps|BA|Prostatitis
 Quick Fit|RS|Weight Loss
-HP Lossless|RS|Hair
-HP Varcosin|RS|Varicose
-HP Pro Caps|BA|Prostatitis
-HP Beauty Derm|BA|Beauty
-HP GoSlim|RS|Weight Loss
-HP Slim Ease|BA|Weight Loss
 Parazol|BA|Parasites
-HP Glyco Balance|BA|Diabetes
-HP Nautubone|BA|Joints
 CY-relief|BA|Cystitis
-HP Para Caps|RS|Parasites
 Nautubone|HR|Joints
 Pro Caps|HR|Prostatitis
-HP Pro Caps|RS|Prostatitis
-HP Nautubone|BA|Joints
 Nautubone|HR|Joints
-HP TestoY Gel|RS|Potency
 CY-relief|BA|Cystitis
-HP Nautubone|BA|Joints
-HP Nautubone|RS|Joints
 Mikoherb|HR|Fungus
-HP Beauty Derm|RS|Health & Beauty
-HP U Caps|RS|Hearing
-HP Bone Control|RS|Joints
-HP Nautubone|HR|Joints
-HP Para Clean|BA|Parasites
 Diatea|HR|Diabetes
-HP TestoY Gel|RS|Potency
-HP Beauty Derm|HR|Beauty
-HP Slim Ease|BA|Weight Loss
-HP Slim Ease|RS|Weight Loss
-HP Lossless|RS|Hair
-HP GoSlim|HR|Weight Loss
 Varcosin|HR|Varicose
 `.trim();
 
@@ -128,9 +98,7 @@ for (const row of sourceOfferRows) {
   if (!offer.verticals.includes(row.vertical)) offer.verticals.push(row.vertical);
 }
 
-// Preserve all 45 source offers for audit, but publish only the 41 with
-// pricing.packages and a matched offer_id. Four unavailable BA products disappear
-// from navigation, search, categories and newly generated offer pages.
+// Publish only offers with pricing.packages and a matched offer_id.
 export const allOffers: Offer[] = Array.from(catalogMap.values()).sort(
   (a, b) => catalogGeoOrder.indexOf(a.geo) - catalogGeoOrder.indexOf(b.geo)
     || a.name.localeCompare(b.name, 'sr'),
@@ -139,12 +107,7 @@ const sellableKeys = new Set(
   productsJson.filter(p => p.offer_id && p.pricing && p.pricing.packages?.length > 0)
     .map(p => p.country + '/' + p.slug),
 );
-// Merchant decision (23 Nov 2026): remove HP Beauty Derm in every GEO.
-// Keep the source records only for historical reconciliation, not storefront output.
-export const excludedPublicOfferSlugs = new Set(['hp-beauty-derm']);
-export const offers: Offer[] = allOffers.filter(
-  o => sellableKeys.has(o.geo + '/' + o.slug) && !excludedPublicOfferSlugs.has(o.slug),
-);
+export const offers: Offer[] = allOffers.filter((o) => sellableKeys.has(o.geo + '/' + o.slug));
 export const getOffersByGeo = (geo: OfferGeo) => offers.filter((offer) => offer.geo === geo);
 export const offerUrl = (offer: Offer) => `/ponude/${offer.geo.toLowerCase()}/${offer.slug}/`;
 export const geoUrl = (geo: OfferGeo) => `/ponude/${geo.toLowerCase()}/`;

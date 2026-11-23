@@ -142,29 +142,29 @@ describe('order handler', () => {
 
   it('catalog nikada ne koristi stari API ključ ako novi nije podešen', async () => {
     const catalogProduct: ProductOrderConfig = {
-      slug: 'ba-hp-nautubone', name: 'HP Nautubone', market: 'BA',
+      slug: 'ba-nautubone', name: 'Nautubone', market: 'BA',
       currency: 'BAM', offerId: '', orderEnabled: true,
-      apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG', offerEnvKey: 'CATALOG_OFFER_ID_BA_HP_NAUTUBONE',
+      apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG', offerEnvKey: 'CATALOG_OFFER_ID_BA_NAUTUBONE',
       packages: [{ id: '1-komad', label: '1 pakovanje', quantity: 1 }],
     };
     const { handler, calls } = setup({
       product: catalogProduct,
-      env: { MONADLEAD_API_KEY_CATALOG: '', CATALOG_OFFER_ID_BA_HP_NAUTUBONE: '1769' },
+      env: { MONADLEAD_API_KEY_CATALOG: '', CATALOG_OFFER_ID_BA_NAUTUBONE: '1769' },
     });
-    const res = await handler(req(body({ productSlug: 'ba-hp-nautubone', phone: '061 123 456' })));
+    const res = await handler(req(body({ productSlug: 'ba-nautubone', phone: '061 123 456' })));
     expect(res.status).toBe(503);
     expect(calls).toHaveLength(0);
   });
 
   it('catalog ne šalje porudžbinu bez eksplicitnog offer ID za konkretan proizvod', async () => {
     const catalogProduct: ProductOrderConfig = {
-      slug: 'rs-hp-bone-control', name: 'HP Bone Control', market: 'RS',
+      slug: 'rs-u-caps', name: 'U Caps', market: 'RS',
       currency: 'RSD', offerId: '', orderEnabled: true,
-      apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG', offerEnvKey: 'CATALOG_OFFER_ID_RS_HP_BONE_CONTROL',
+      apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG', offerEnvKey: 'CATALOG_OFFER_ID_RS_U_CAPS',
       packages: [{ id: '1-komad', label: '1 pakovanje', quantity: 1 }],
     };
     const { handler, calls } = setup({ product: catalogProduct, env: { MONADLEAD_API_KEY_CATALOG: 'NEW-ACCOUNT-TEST-KEY' } });
-    const res = await handler(req(body({ productSlug: 'rs-hp-bone-control' })));
+    const res = await handler(req(body({ productSlug: 'rs-u-caps' })));
     expect(res.status).toBe(503);
     expect(calls).toHaveLength(0);
   });

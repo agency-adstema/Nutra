@@ -35,7 +35,7 @@ for (const [product, videos] of Object.entries(manifest)) {
 }
 const safeFile = /^[^/\\]+\/[A-Za-z0-9_. -]+\.mp4$/;
 export function getProductVideos(_geo: OfferGeo, productSlug: string): ProductVideo[] {
-  // Do not map raw "Lossless" videos onto "HP Lossless" or similarly named offers.
+  // Exact slug match only; never map videos onto similarly named offers.
   const files = bySlug.get(productSlug) ?? [];
   const unique = new Set<string>();
   return files.slice(0,5).flatMap(item => {
