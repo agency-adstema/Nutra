@@ -6,7 +6,7 @@ import { getSuppliedOfferId } from '../src/server/catalog-offer-ids';
 describe('Partner product sheets integrated into Nutra', () => {
   it('contains exactly one data sheet for every catalog offer', () => {
     expect(offerDetails).toHaveLength(167);
-    expect(new Set(offerDetails.map(d => d.country + '/' + d.slug)).size).toBe(20);
+    expect(new Set(offerDetails.map(d => d.country + '/' + d.slug)).size).toBe(167);
     expect(offerDetails.some(d => d.slug.startsWith('hp-'))).toBe(false);
     for (const o of offers) expect(getOfferDetails(o.geo, o.slug)).toBeDefined();
   });
