@@ -1,8 +1,15 @@
 ---
+import { Picture } from 'astro:assets';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import LeafDecor from '../../../components/LeafDecor.astro';
 import Icon from '../../../components/Icon.astro';
+import FaqList from '../../../components/FaqList.astro';
+import OrderForm from '../../../components/product/OrderForm.astro';
+import { site } from '../../../config/site';
+import { getMarket } from '../../../config/countries';
 import { catalogMarkets, geoUrl, offerUrl, offers, verticalLabel, type Offer } from '../../../data/offers';
+import parazolPack from '../../../assets/products/parazol/hero.webp';
 
 export function getStaticPaths() {
   return offers.map((offer) => ({
@@ -12,62 +19,227 @@ export function getStaticPaths() {
 }
 interface Props { offer: Offer; }
 const { offer } = Astro.props;
-const market = catalogMarkets[offer.geo];
+const market = getMarket(offer.geo);
+const info = catalogMarkets[offer.geo];
 const path = offerUrl(offer);
-const detailedProduct = offer.geo === 'RS' && offer.slug === 'parazol' ? '/paraziti-i-detoks/parazol/' : null;
+const primaryVertical = verticalLabel(offer.verticals[0] ?? 'Proizvod');
+const hasOriginalImage = offer.geo === 'RS' && offer.slug === 'parazol';
+const crumbs = [
+  { name: 'Ponude', href: '/ponude/' },
+  { name: info.name, href: geoUrl(offer.geo) },
+  { name: offer.name, href: path },
+];
+const tabs = [
+  { href: '#opis', label: 'Opis proizvoda' },
+  { href: '#sastav', label: 'Sastav i upotreba' },
+  { href: '#cena', label: 'Cena i pakovanja' },
+  { href: '#poruci', label: 'Poručite' },
+];
+const faq = [
+  { q: `Kolika je cena proizvoda ${offer.name}?`, a: 'Cena još nije potvrđena za ovo tržište. Prikazaćemo je kada je dobijemo od prodavca.' },
+  { q: 'Kako mogu da poručim?', a: 'Forma je trenutno prikaz za proveru dizajna i ne šalje porudžbine. Poručivanje će biti aktivirano nakon povezivanja sa prodavcem.' },
+  { q: 'Koji broj telefona treba uneti?', a: `Primer broja za tržište ${info.name}: ${market.phone.example}.` },
+];
+const productInfo = {
+  slug: `${offer.geo.toLowerCase()}-${offer.slug}`,
+  name: offer.name,
+  category: offer.verticals.join(','),
+  currency: market.currency,
+};
 ---
 
-<BaseLayout
-  title={`${offer.name} – ${market.name}`}
-  description={`${offer.name} – ponuda za ${market.name}. Oblasti: ${offer.verticals.map(verticalLabel).join(', ')}. Detalji o ceni i naručivanju još nisu potvrđeni.`}
-  path={path}
-  noindex
-  breadcrumbs={[
-    { name: 'Ponude', href: '/ponude/' },
-    { name: market.name, href: geoUrl(offer.geo) },
-    { name: offer.name, href: path },
-  ]}
->
-  <section class="container-site py-10 lg:py-16">
-    <Breadcrumbs items={[
-      { name: 'Ponude', href: '/ponude/' },
-      { name: market.name, href: geoUrl(offer.geo) },
-      { name: offer.name, href: path },
-    ]} />
-    <div class="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
-      <div class="flex min-h-72 items-center justify-center rounded-3xl bg-[#e7efdc] text-brand">
-        <div class="flex flex-col items-center gap-4">
-          <Icon name="box" size={76} />
-          <p class="text-sm font-medium">Fotografija proizvoda u pripremi</p>
+<BaseLayout title={`${offer.name} – ${info.name} | Cena i poručivanje`}
+  description={`${offer.name} za ${info.name}. Kategorija ${primaryVertical}. Pregled sastava, upotrebe i informacija o poručivanju nakon provere kod prodavca.`}
+  path={path} noindex breadcrumbs={crumbs} bodyClass="pb-20 lg:pb-0">
+  <div data-product-page data-product={JSON.stringify(productInfo)}>
+    <!-- Hero: dizajn prilagođen postojećoj Nautubone stranici -->
+    <section class="relative overflow-hidden" data-hero>
+      <LeafDecor class="-right-10 -top-6 hidden w-64 rotate-12 lg:block" />
+      <div class="container-site relative pt-4 pb-8 lg:pt-5 lg:pb-12">
+        <Breadcrumbs items={crumbs} class="mb-4 lg:mb-6" />
+        <div class="grid items-center gap-6 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+          <div class="overflow-hidden rounded-[1.75rem] bg-brand-2 shadow-[var(--shadow-soft)] ring-1 ring-black/5">
+            {hasOriginalImage ? (
+              <Picture src={parazolPack} alt="Originalno pakovanje Parazol biljnog čaja 50 g"
+                widths={[480,720,1104]} sizes="(min-width: 1024px) 560px, 100vw"
+                formats={['avif','webp']} loading="eager" fetchpriority="high"
+                class="aspect-[16/9] h-full w-full object-contain p-6 lg:aspect-[16/10] lg:p-8" />
+            ) : (
+              <div class="flex aspect-[16/9] w-full flex-col items-center justify-center gap-4 p-8 text-center lg:aspect-[16/10]">
+                <Icon name="box" size={74} class="text-brand" />
+                <p class="text-sm text-ink/75">Originalna fotografija proizvoda u pripremi</p>
+              </div>
+            )}
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="pill bg-accent px-3.5 text-[13px] font-semibold text-white sm:text-sm">{primaryVertical}</span>
+              <span class="pill bg-brand-2 px-3.5 text-[13px] font-semibold text-brand sm:text-sm">{info.name}</span>
+            </div>
+            <h1 class="mt-3 text-[2.5rem] leading-[1.05] font-bold text-brand-strong sm:text-5xl lg:text-[3.6rem]">{offer.name}</h1>
+            <p class="mt-3 text-lg text-ink/85 sm:text-xl">
+              Ponuda iz oblasti {primaryVertical.toLowerCase()} za tržište {info.name}.
+              Detalji sastava, pakovanja i upotrebe biće dopunjeni nakon provere.
+            </p>
+            <ul class="mt-6 grid grid-cols-3 divide-x divide-line rounded-2xl sm:max-w-xl">
+              {[
+                { icon: 'box', label: 'Pakovanje na proveri' },
+                { icon: 'shield', label: 'Podaci se proveravaju' },
+                { icon: 'truck', label: 'Planirano pouzeće' },
+              ].map((item) => (
+                <li class="flex flex-col items-center gap-1.5 px-2 text-center sm:flex-row sm:gap-3 sm:px-4 sm:text-left first:sm:pl-0">
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-2 text-brand sm:h-12 sm:w-12">
+                    <Icon name={item.icon} size={24} />
+                  </span>
+                  <span class="text-[13px] font-medium text-ink sm:text-[15px]">{item.label}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+              <div class="flex flex-1 items-center rounded-2xl bg-brand-2 px-5 py-3.5" data-hero-price>
+                <p class="text-ink/80">Cena ({market.currencyLabel}) još nije potvrđena.</p>
+              </div>
+              <a href="#poruci" class="btn-primary px-7 py-4 text-lg shadow-lg shadow-brand/20" data-hero-cta>
+                <Icon name="cart" size={22} /> Forma poručivanja
+              </a>
+            </div>
+            <p class="mt-4 flex items-center gap-2 text-[15px] text-ink/80">
+              <Icon name="info" size={20} /> Prikaz je u pripremi; porudžbine se trenutno ne šalju.
+            </p>
+          </div>
         </div>
       </div>
-      <div>
-        <span class="inline-flex items-center rounded-full bg-[#f3efe4] px-4 py-2 text-sm font-semibold text-ink/80">{market.name} · {offer.geo}</span>
-        <h1 class="mt-5 text-4xl font-bold leading-tight text-[#173d22] sm:text-5xl">{offer.name}</h1>
-        <p class="mt-5 text-lg text-ink/75">
-          Ponuda je evidentirana u katalogu proizvoda za tržište {market.name}.
-          Podaci o sastavu, pakovanju i načinu upotrebe biće objavljeni nakon provere kod prodavca.
-        </p>
-        <h2 class="mt-8 text-lg font-semibold text-ink">Oblasti proizvoda</h2>
-        <div class="mt-3 flex flex-wrap gap-2">
-          {offer.verticals.map((vertical) => <span class="rounded-full bg-brand-2 px-3 py-2 text-sm text-brand">{verticalLabel(vertical)}</span>)}
+    </section>
+
+    <nav class="sticky top-[var(--header-h)] z-30 hidden py-2 lg:block" aria-label="Sadržaj stranice">
+      <div class="container-site">
+        <ul class="mx-auto flex max-w-4xl items-center justify-between gap-1 rounded-2xl border border-line bg-paper/95 p-1.5 shadow-sm backdrop-blur">
+          {tabs.map((tab, i) => (
+            <li class="flex-1">
+              <a href={tab.href} data-tab aria-current={i === 0 ? 'true' : undefined}
+                class="block rounded-xl px-4 py-2 text-center text-[15px] font-medium text-ink/85 transition-colors hover:bg-brand-soft aria-[current=true]:bg-brand aria-[current=true]:text-white">
+                {tab.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="space-y-14 pt-6 lg:space-y-20 lg:pt-10">
+      <section class="container-site" aria-label="Informacije o proizvodu">
+        <div class="grid gap-3 lg:grid-cols-3 lg:gap-0 lg:divide-x lg:divide-line">
+          <details class="acc group/acc lg:pr-8" id="opis" open data-acc>
+            <summary class="flex w-full items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3 lg:border-0 lg:bg-transparent lg:p-0">
+              <h2 class="text-lg font-semibold text-brand-strong lg:text-[1.75rem]">Šta je {offer.name}?</h2>
+              <Icon name="chevron-down" size={20} class="acc-chevron shrink-0 transition-transform group-open/acc:rotate-180" />
+            </summary>
+            <div class="px-1 pt-3 leading-relaxed text-ink/90 lg:px-0 lg:pt-4">
+              <p>Proizvod se nalazi u katalogu za {info.name}, u oblasti {offer.verticals.map(verticalLabel).join(', ')}.</p>
+              <p class="mt-3">Detalje o nameni i obliku proizvoda potvrdićemo na osnovu zvaničnog pakovanja.</p>
+            </div>
+          </details>
+          <details class="acc group/acc lg:px-8" id="sastav" open data-acc>
+            <summary class="flex w-full items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3 lg:border-0 lg:bg-transparent lg:p-0">
+              <h2 class="text-lg font-semibold text-brand-strong lg:text-[1.75rem]">Sastav i upotreba</h2>
+              <Icon name="chevron-down" size={20} class="acc-chevron shrink-0 transition-transform group-open/acc:rotate-180" />
+            </summary>
+            <div class="space-y-4 px-1 pt-3 lg:px-0 lg:pt-4">
+              <p class="rounded-2xl border border-line bg-paper p-4 text-ink/90">Sastav nije dostavljen. Ne objavljujemo nepotvrđene sastojke ni medicinske tvrdnje.</p>
+              <div class="rounded-2xl bg-brand-2/80 p-4">
+                <h3 class="text-lg font-semibold text-brand-strong">Kako se koristi?</h3>
+                <p class="mt-2 text-ink/90">Upotreba će biti objašnjena nakon provere deklaracije proizvoda.</p>
+              </div>
+            </div>
+          </details>
+          <details class="acc group/acc lg:pl-8" id="cena" open data-acc>
+            <summary class="flex w-full items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3 lg:border-0 lg:bg-transparent lg:p-0">
+              <h2 class="text-lg font-semibold text-brand-strong lg:text-[1.75rem]">Cena i pakovanja</h2>
+              <Icon name="chevron-down" size={20} class="acc-chevron shrink-0 transition-transform group-open/acc:rotate-180" />
+            </summary>
+            <div class="space-y-3 px-1 pt-3 lg:px-0 lg:pt-4">
+              <div class="overflow-hidden rounded-2xl border border-line bg-paper">
+                <table class="w-full text-[15px]">
+                  <thead class="bg-brand-2/70 text-left">
+                    <tr><th class="px-4 py-2.5 font-semibold">Pakovanje</th><th class="px-4 py-2.5 text-right font-semibold">Cena ({market.currencyLabel})</th></tr>
+                  </thead>
+                  <tbody><tr><td class="px-4 py-3">1 pakovanje (sadržaj na proveri)</td><td class="px-4 py-3 text-right text-muted">U pripremi</td></tr></tbody>
+                </table>
+              </div>
+              <p class="flex items-start gap-2 rounded-xl bg-warn-bg px-4 py-3 text-sm text-warn">
+                <Icon name="info" size={18} class="mt-0.5 shrink-0" /> Cena i dostupnost još nisu potvrđene.
+              </p>
+            </div>
+          </details>
         </div>
-        <div class="mt-8 rounded-2xl border border-line bg-paper p-5">
-          <h2 class="text-lg font-semibold text-ink">Cena i poručivanje</h2>
-          <p class="mt-2 text-ink/75">
-            Cena i dostupnost još nisu potvrđene. Online porudžbine za ovu ponudu nisu aktivirane.
+      </section>
+
+      <section class="container-site grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:gap-12" aria-labelledby="detalji-title">
+        <div>
+          <h2 id="detalji-title" class="text-2xl font-semibold text-brand-strong sm:text-[2rem]">Detaljnije o proizvodu {offer.name}</h2>
+          <div class="prose-bk mt-3">
+            <p>Proizvod je na listi ponuda za {info.name}. Pripada oblasti {offer.verticals.map(verticalLabel).join(', ')}.</p>
+            <p>Označavanje oblasti ne dokazuje učinak proizvoda. Sastav, način korišćenja i upozorenja moraju biti potvrđeni na deklaraciji.</p>
+          </div>
+        </div>
+        <aside class="space-y-4">
+          <div class="card p-5">
+            <h2 class="flex items-center gap-2 text-xl font-semibold text-ink"><Icon name="shield" size={22} class="text-accent" /> Kome nije namenjen</h2>
+            <p class="mt-3 text-[15px] text-ink/85">Ograničenja upotrebe zavise od sastava proizvoda i biće navedena na osnovu originalnog uputstva.</p>
+          </div>
+          <div class="rounded-[var(--radius-card)] border border-warn/25 bg-warn-bg/70 p-5">
+            <h2 class="flex items-center gap-2 text-xl font-semibold text-ink"><Icon name="alert" size={22} class="text-warn" /> Upozorenja</h2>
+            <p class="mt-3 text-[15px] text-ink/90">Pre upotrebe pročitajte deklaraciju. Za zdravstvena pitanja i postojeću terapiju posavetujte se sa lekarom ili farmaceutom.</p>
+          </div>
+          <p class="flex items-start gap-2 rounded-xl bg-paper px-4 py-3 text-sm text-muted ring-1 ring-line">
+            <Icon name="info" size={18} class="mt-0.5 shrink-0" /><span>{site.medicalDisclaimer}</span>
           </p>
-          <p class="mt-3 text-sm text-muted">Informacije o proizvodu ne predstavljaju medicinski savet.</p>
+        </aside>
+      </section>
+
+      <div class="container-site"><FaqList items={faq} title={`Često postavljana pitanja o proizvodu ${offer.name}`} /></div>
+
+      <div class="container-site">
+        <div class="grid items-start gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
+          <div class="lg:pt-6">
+            <h2 class="text-2xl font-semibold text-brand-strong sm:text-[2rem]">Kako izgleda poručivanje</h2>
+            <ol class="mt-6 space-y-5">
+              {[
+                ['Popunite formu', 'Ime, prezime i broj telefona — bez registracije.'],
+                ['Operater potvrđuje', 'Nakon aktiviranja ponude operater potvrđuje cenu, pakovanje i dostavu.'],
+                ['Plaćanje pouzećem', 'Predviđeno plaćanje pri preuzimanju, prema uslovima prodavca.'],
+              ].map(([label, desc], i) => (
+                <li class="flex gap-4">
+                  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand font-bold text-white">{i + 1}</span>
+                  <span><span class="block font-semibold text-ink">{label}</span><span class="block text-ink/75">{desc}</span></span>
+                </li>
+              ))}
+            </ol>
+            <p class="mt-6 rounded-xl bg-warn-bg p-4 text-sm text-ink">Forma je u pripremi. Nema slanja podataka u CRM dok ne budu potvrđeni offer ID i podaci prodavca.</p>
+          </div>
+          <OrderForm offer={offer} market={market} />
         </div>
-        {detailedProduct && (
-          <a href={detailedProduct} class="mt-6 inline-flex items-center gap-2 font-semibold text-brand hover:underline">
-            Pogledaj detaljan opis proizvoda <Icon name="arrow-right" size={18} />
-          </a>
-        )}
-        <a href={geoUrl(offer.geo)} class="mt-6 inline-flex items-center gap-2 font-semibold text-brand hover:underline">
-          <Icon name="arrow-right" size={18} class="rotate-180" /> Ostale ponude za {market.shortName}
-        </a>
       </div>
     </div>
-  </section>
+
+    <div class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-line bg-paper/95 shadow-[0_-8px_24px_-12px_rgb(0_0_0/0.25)] backdrop-blur transition-transform duration-200 lg:hidden" style="padding-bottom: env(safe-area-inset-bottom)" data-sticky-cta aria-hidden="true">
+      <div class="container-site flex h-16 items-center gap-3">
+        <div class="min-w-0 flex-1 leading-tight">
+          <p class="truncate text-sm font-semibold text-ink">{offer.name}</p>
+          <p class="text-xs text-muted">Forma poručivanja</p>
+        </div>
+        <a href="#poruci" class="btn-primary shrink-0 px-5 py-2.5" tabindex="-1"><Icon name="cart" size={18} /> Poruči sada</a>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
+
+<script is:inline>
+  if (window.matchMedia('(max-width: 1023px)').matches) {
+    document.querySelectorAll('details[data-acc]').forEach(function (d) { d.removeAttribute('open'); });
+  }
+</script>
+<script>
+  import { initProductPage } from '../../../scripts/product-page';
+  initProductPage();
+</script>
