@@ -23,6 +23,10 @@ export interface ProductOrderConfig {
   offerId: string;
   orderEnabled: boolean;
   currency: string;
+  /** For a separate MonadLead account. No fallbacks to the legacy account when provided. */
+  apiKeyEnv?: string;
+  /** Server-only offer-id mapping key, e.g. CATALOG_OFFER_ID_HR_CY_RELIEF. */
+  offerEnvKey?: string;
   packages: Array<{ id: string; label: string; quantity: number; price?: number; offerId?: string }>;
 }
 
@@ -196,7 +200,7 @@ export function createOrderHandler(deps: OrderHandlerDeps) {
     if (!v.ok) return json(400, { status: 'invalid', message: orderMessages.crm_validation, code: 'validation', fieldErrors: v.fieldErrors });
     const fields = v.value;
     const pkg = product.packages.find((p) => p.id === fields.packageId)!;
-    const offerId = (pkg.offerId || deps.env(envOfferKey(product.slug)) || product.offerId || '').trim();
+    const offerId = (pkg.offerId || deps.env(product.offerEnvKey || envOfferKey(product.slug)) || product.offerId || '').trim();
 
     const mode = deps.env('ORDER_MODE') === 'live' ? 'live' : 'test';
 
@@ -237,7 +241,9 @@ export function createOrderHandler(deps: OrderHandlerDeps) {
     const subs = resolveSubs({ attribution, productSlug: product.slug, packageId: pkg.id, ownHost: new URL(siteUrl).hostname });
     const utm = pickUtm(attribution);
     const crm = market.crm;
-    const apiKey = deps.env(crm.apiKeyEnv) || deps.env('MONADLEAD_API_KEY') || '';
+    const apiKey = product.apiKeyEnv
+      ? (deps.env(product.apiKeyEnv) || '')
+      : (deps.env(crm.apiKeyEnv) || deps.env('MONADLEAD_API_KEY') || '');
     const phoneForCrm =
       crm.phoneFormat === 'national' ? fields.phoneNational : crm.phoneFormat === 'e164_no_plus' ? fields.phoneE164.slice(1) : fields.phoneE164;
 
