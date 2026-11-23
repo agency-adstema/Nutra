@@ -60,7 +60,7 @@ const description = details?.description?.trim() || 'Više informacija o proizvo
     </div>
 
     <div class="mt-3 rounded-xl bg-[#f0f2ee] px-3 py-2 text-xs font-bold text-[#225b37]">
-      Besplatna dostava
+      {quotedPricing?.freeShippingPerSheet ? 'Besplatna dostava' : 'Dostava prema uslovima prodavca'}
     </div>
   </div>
 </article>
