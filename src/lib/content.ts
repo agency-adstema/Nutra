@@ -35,5 +35,5 @@ export const guideUrl = (g: Guide) => `/vodici/${g.data.slug}/`;
 
 /** Videi koji smeju da se prikažu: samo uz potvrđenu dozvolu */
 export function visibleVideos(p: Product) {
-  return p.data.videos.filter((v) => v.permission.granted === true);
+  return p.data.videos.filter((v) => v.permission.granted === true && !v.demo);
 }
