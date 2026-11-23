@@ -1,42 +1,40 @@
 ---
-import { getExternalReview } from '../../data/external-reviews';
-import type { OfferGeo } from '../../data/offers';
 import { formatDate } from '../../lib/format';
 import { site } from '../../config/site';
-import type { Product } from '../../lib/content';
 
-interface Props {
-  product: Product;
+export interface QuotedReviewsView {
+  productName: string;
+  sourceName: string;
+  checkedAt: Date;
+  score?: number | null;
+  count?: number | null;
+  items: { text: string; initials: string; score: number }[];
 }
-const { product } = Astro.props;
-const d = product.data;
-const q = d.quotedReviews;
-const geo = (['RS', 'BA', 'HR'] as const).includes(d.countryCode as OfferGeo) ? (d.countryCode as OfferGeo) : undefined;
-const summary = geo ? getExternalReview(geo, d.slug) : undefined;
+interface Props {
+  data?: QuotedReviewsView | null;
+}
+const q = Astro.props.data;
 const fmtScore = (n: number) => n.toFixed(1).replace('.', ',');
 const fill = (n: number) => `${Math.max(0, Math.min(100, (n / 5) * 100))}%`;
+const recenzija = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'recenzije prikazane' : 'recenzija prikazanih');
 ---
 
 {
-  q && (
+  q && q.items.length > 0 && (
     <section class="container-site" id="recenzije" aria-labelledby="recenzije-title" data-review-display="external-source">
       <p class="text-xs font-bold uppercase tracking-[0.22em] text-brand-strong">Iskustva kupaca</p>
-      <h2 id="recenzije-title" class="mt-2 text-2xl font-semibold text-ink sm:text-[2rem]">Šta kupci pišu o proizvodu {d.name}</h2>
+      <h2 id="recenzije-title" class="mt-2 text-2xl font-semibold text-ink sm:text-[2rem]">Šta kupci pišu o proizvodu {q.productName}</h2>
 
-      {summary && (
+      {q.score != null && q.count != null && (
         <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-[var(--radius-card)] bg-brand-2/70 px-6 py-6 sm:px-8">
-          <span class="font-sans text-5xl font-extrabold tracking-tight text-brand-strong sm:text-6xl">{fmtScore(summary.score)}</span>
+          <span class="font-sans text-5xl font-extrabold tracking-tight text-brand-strong sm:text-6xl">{fmtScore(q.score)}</span>
           <span class="flex flex-col gap-1">
-            <span
-              class="relative inline-block whitespace-nowrap text-[26px] leading-none tracking-[-1px]"
-              role="img"
-              aria-label={`Ocena ${fmtScore(summary.score)} od 5`}
-            >
+            <span class="relative inline-block whitespace-nowrap text-[26px] leading-none tracking-[-1px]" role="img" aria-label={`Ocena ${fmtScore(q.score)} od 5`}>
               <span class="text-[#d6d9cf]" aria-hidden="true">★★★★★</span>
-              <span class="absolute left-0 top-0 overflow-hidden whitespace-nowrap text-[#f28b00]" style={`width: ${fill(summary.score)}`} aria-hidden="true">★★★★★</span>
+              <span class="absolute left-0 top-0 overflow-hidden whitespace-nowrap text-[#f28b00]" style={`width: ${fill(q.score)}`} aria-hidden="true">★★★★★</span>
             </span>
             <span class="text-sm font-semibold text-ink/75">
-              Na osnovu {summary.count.toLocaleString('sr-RS')} recenzija prikazanih na sajtu {summary.sourceName}
+              Na osnovu {q.count.toLocaleString('sr-RS')} {recenzija(q.count)} na sajtu {q.sourceName}
             </span>
           </span>
         </div>

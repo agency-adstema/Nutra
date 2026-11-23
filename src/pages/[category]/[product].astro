@@ -17,6 +17,8 @@ import { priceView, themeStyle } from '../../lib/format';
 import { productSchema, faqSchema } from '../../lib/seo';
 import { getMarket } from '../../config/countries';
 import { site } from '../../config/site';
+import { getExternalReview } from '../../data/external-reviews';
+import { getLcDetails, lcCheckedAt, lcSourceName } from '../../data/limitedcharm-details';
 
 export async function getStaticPaths() {
   const products = await getProducts();
@@ -37,6 +39,25 @@ const videos = visibleVideos(product);
 const pv = priceView(d.priceStatus, d.packages);
 const path = productUrl(product);
 const siteUrl = (Astro.site?.toString() ?? '').replace(/\/$/, '');
+const lc = getLcDetails(d.countryCode, d.slug);
+const ext = d.countryCode === 'RS' || d.countryCode === 'BA' || d.countryCode === 'HR' ? getExternalReview(d.countryCode, d.slug) : undefined;
+const composition = d.composition
+  ? { ...d.composition, label: d.composition.activeLabel, name: d.composition.activeName, latin: d.composition.activeLatin }
+  : lc?.composition
+    ? { ...lc.composition, sourceName: lcSourceName, checkedAt: lcCheckedAt }
+    : null;
+const quoted = d.quotedReviews
+  ? {
+      productName: d.name,
+      sourceName: d.quotedReviews.sourceName,
+      checkedAt: d.quotedReviews.checkedAt,
+      score: lc?.reviews?.score ?? ext?.score,
+      count: lc?.reviews?.count ?? ext?.count,
+      items: d.quotedReviews.items,
+    }
+  : lc?.reviews
+    ? { productName: d.name, sourceName: lcSourceName, checkedAt: lcCheckedAt, ...lc.reviews }
+    : null;
 const heroImg = await getImage({ src: d.heroImage, width: 1104, format: 'jpg' });
 
 const jsonLd: Record<string, unknown>[] = [
@@ -58,7 +79,7 @@ const tabs = [
   { href: '#opis', label: 'Opis proizvoda' },
   { href: '#sastav', label: 'Sastav i upotreba' },
   { href: '#cena', label: 'Cena i pakovanja' },
-  ...(d.quotedReviews ? [{ href: '#recenzije', label: 'Recenzije' }] : []),
+  ...(quoted ? [{ href: '#recenzije', label: 'Recenzije' }] : []),
   ...(videos.length ? [{ href: '#video', label: 'Video iskustva' }] : []),
   ...(d.orderEnabled ? [{ href: '#poruci', label: 'Poručite' }] : []),
 ];
@@ -116,7 +137,7 @@ const productInfo = {
     <div class="space-y-14 pt-6 lg:space-y-20 lg:pt-10">
       <ProductOverview product={product} market={market} />
 
-      <ProductComposition product={product} />
+      <ProductComposition data={composition} />
 
       <!-- Detaljno + kome nije namenjen / upozorenja -->
       <section class="container-site grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:gap-12" aria-labelledby="detalji-title">
@@ -192,7 +213,7 @@ const productInfo = {
         )
       }
 
-      <QuotedReviews product={product} />
+      <QuotedReviews data={quoted} />
 
       <div class="container-site">
         <FaqList items={d.faq} title={`Često postavljana pitanja o proizvodu ${d.name}`} />

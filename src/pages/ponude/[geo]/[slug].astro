@@ -11,6 +11,9 @@ import { catalogMarkets, geoUrl, offerUrl, offers, verticalLabel, type Offer } f
 import { getOfferDetails, getOfferImage } from '../../../data/offer-details';
 import { getCatalogPrice, formatCatalogPrice, popularPackageBadge, deliveryTerms } from '../../../data/offer-pricing';
 import ProductSalesPanel from '../../../components/product/ProductSalesPanel.astro';
+import ProductComposition from '../../../components/product/ProductComposition.astro';
+import QuotedReviews from '../../../components/product/QuotedReviews.astro';
+import { getLcDetails, lcCheckedAt, lcSourceName } from '../../../data/limitedcharm-details';
 
 export function getStaticPaths() {
   return offers.map((offer) => ({
@@ -36,6 +39,9 @@ const panelHighlights = [
   ...(details?.composition ? details.composition.split(/;\s*/).slice(0, 2).map(part => `Sastojak prema deklaraciji: ${part.trim()}`) : []),
   ...(details?.usage ? [`Način upotrebe: ${details.usage.split(/\.\s+/)[0].trim()}`] : []),
 ].slice(0, 3);
+const lc = getLcDetails(offer.geo, offer.slug);
+const composition = lc?.composition ? { ...lc.composition, sourceName: lcSourceName, checkedAt: lcCheckedAt } : null;
+const quoted = lc?.reviews ? { productName: offer.name, sourceName: lcSourceName, checkedAt: lcCheckedAt, ...lc.reviews } : null;
 const crumbs = [
   { name: 'Ponude', href: '/ponude/' },
   { name: info.name, href: geoUrl(offer.geo) },
@@ -45,6 +51,7 @@ const tabs = [
   { href: '#opis', label: 'Opis proizvoda' },
   { href: '#sastav', label: 'Sastav i upotreba' },
   { href: '#cena', label: 'Cena i pakovanja' },
+  ...(quoted ? [{ href: '#recenzije', label: 'Recenzije' }] : []),
   { href: '#poruci', label: 'Poručite' },
 ];
 const faq = [
@@ -217,6 +224,8 @@ const productInfo = {
         </div>
       </section>
 
+      <ProductComposition data={composition} />
+
       <section class="container-site grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:gap-12" aria-labelledby="detalji-title">
         <div>
           <h2 id="detalji-title" class="text-2xl font-semibold text-brand-strong sm:text-[2rem]">Detaljnije o proizvodu {offer.name}</h2>
@@ -240,6 +249,8 @@ const productInfo = {
           </p>
         </aside>
       </section>
+
+      <QuotedReviews data={quoted} />
 
       <div class="container-site"><FaqList items={faq} title={`Često postavljana pitanja o proizvodu ${offer.name}`} /></div>
 
