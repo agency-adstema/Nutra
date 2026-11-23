@@ -1,0 +1,1 @@
+import{t as e}from"./product-page.CwnNDe__.js";e();
