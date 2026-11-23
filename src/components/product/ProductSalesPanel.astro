@@ -65,14 +65,12 @@ const savedText = saved ? `UŠTEDA ${saved}` : '';
           {current}
         </strong>
         {old && (
-          <span class="text-sm text-muted">
-            <span class="sr-only">Referentna cena:</span>
-            <del class="whitespace-nowrap">{old}</del>
+          <span class="text-xs text-muted">
+            Referentna: <del class="whitespace-nowrap text-sm">{old}</del>
           </span>
         )}
         {saved && <span class="rounded-md bg-[#e2e7df] px-3 py-1 text-xs font-extrabold text-[#183f27]">{savedText}</span>}
       </div>
-      {old && <p class="mt-1 text-[11px] text-muted">Precrtani iznos je referentna cena iz cenovnika partnera, ne potvrđena ranija prodajna cena.</p>}
       <div class="mt-3 flex flex-wrap items-center gap-1.5 text-[13px] leading-relaxed">
         <span class="font-bold text-brand">Besplatna dostava</span>
         <span class="text-muted">·</span>
