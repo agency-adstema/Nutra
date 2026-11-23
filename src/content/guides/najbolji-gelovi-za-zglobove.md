@@ -32,7 +32,7 @@ seo:
 
 Na policama apoteka i u online prodaji nalazi se mnogo gelova „za zglobove“. Na prvi pogled liče, ali se po statusu i dokazima veoma razlikuju. Ovaj vodič objašnjava razliku i pomaže da postavite prava pitanja pre kupovine.
 
-> **Primer vodiča (demo).** Pre objave tekst treba da pregleda stručna osoba (farmaceut ili lekar).
+> Tekst je informativnog karaktera i ne zamenjuje savet lekara ili farmaceuta.
 
 ## Tri vrste gelova
 
