@@ -94,16 +94,19 @@ function initForm(form: HTMLFormElement) {
   const phoneInput = fieldEl('phone') as HTMLInputElement | null;
   if (phoneInput) {
     if (!phoneInput.value) phoneInput.value = phonePrefix;
+    // Broj se sam formatira dok se kuca: +381 61 293 8152 (grupe 2 · 3 · ostatak).
+    const formatLocal = (digits: string) =>
+      [digits.slice(0, 2), digits.slice(2, 5), digits.slice(5)].filter(Boolean).join(' ');
     phoneInput.addEventListener('input', () => {
       const v = phoneInput.value;
-      let next = v;
-      if (!v.startsWith(phonePrefix)) {
-        const dial = phonePrefix.trim();
-        const rest = v.startsWith(dial) ? v.slice(dial.length) : v.replace(/^\+/, '').replace(/^00/, '');
-        next = phonePrefix + rest.trimStart();
-      }
-      // „060…“ posle pozivnog broja postaje „60…“ (nula se ne bira uz +381/+387/+385)
-      if (next.startsWith(phonePrefix + '0')) next = phonePrefix + next.slice(phonePrefix.length + 1);
+      const dial = phonePrefix.trim(); // +381
+      const dialDigits = dial.slice(1); // 381
+      let digits = (v.startsWith(dial) ? v.slice(dial.length) : v).replace(/\D/g, '');
+      // zalepljen ceo broj sa pozivnim brojem (+381…, 00381…, 381…) — pozivni broj se ne ponavlja
+      if (digits.startsWith('00' + dialDigits)) digits = digits.slice(2 + dialDigits.length);
+      else if (digits.startsWith(dialDigits) && digits.length >= dialDigits.length + 8) digits = digits.slice(dialDigits.length);
+      digits = digits.replace(/^0+/, '').slice(0, 10); // „060…“ → „60…“
+      const next = phonePrefix + formatLocal(digits);
       if (next === v) return;
       phoneInput.value = next;
       const end = next.length;
