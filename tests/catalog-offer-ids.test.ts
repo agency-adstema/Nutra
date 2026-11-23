@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { offers, getOffer, type OfferGeo } from '../src/data/offers';
+import { offers, allOffers, getOffer, type OfferGeo } from '../src/data/offers';
 import {
   getSuppliedOfferId, isExplicitlyUnavailableOffer,
   suppliedRsOfferCount, suppliedHrOfferCount, suppliedBaOfferCount,
@@ -21,7 +21,8 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     expect(connected.filter(o => o.geo === 'RS')).toHaveLength(19);
     expect(connected.filter(o => o.geo === 'HR')).toHaveLength(13);
     expect(connected.filter(o => o.geo === 'BA')).toHaveLength(9);
-    expect(offers.filter(o => !getSuppliedOfferId(o.geo, o.slug)).map(o => o.geo + '/' + o.slug).sort())
+    expect(offers.filter(o => !getSuppliedOfferId(o.geo, o.slug))).toHaveLength(0);
+    expect(allOffers.filter(o => !getSuppliedOfferId(o.geo, o.slug)).map(o => o.geo + '/' + o.slug).sort())
       .toEqual(missingBA.map(s => 'BA/' + s).sort());
   });
 
@@ -77,8 +78,8 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
       expect(getSuppliedOfferId('BA', slug)).toBeUndefined();
       const env = (key: string) => key === 'CATALOG_ORDERS_ENABLED' ? 'true' : '99999';
       const config = getCatalogOrderConfig('BA', slug, env);
-      expect(config?.orderEnabled).toBe(false);
-      expect(config?.offerId).toBe('');
+      expect(getOffer('BA', slug)).toBeUndefined();
+      expect(config).toBeUndefined();
     }
   });
 
@@ -116,6 +117,6 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
 
   it('niti jedan key ne sme da pomeša zemlju i proizvod', () => {
     const keys = offers.map(o => catalogOfferEnvKey(o.geo as OfferGeo, o.slug));
-    expect(new Set(keys).size).toBe(45);
+    expect(new Set(keys).size).toBe(41);
   });
 });
