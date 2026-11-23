@@ -9,9 +9,8 @@ import { site } from '../../../config/site';
 import { getMarket } from '../../../config/countries';
 import { catalogMarkets, geoUrl, offerUrl, offers, verticalLabel, type Offer } from '../../../data/offers';
 import { getOfferDetails, getOfferImage } from '../../../data/offer-details';
-import { getCatalogPrice, formatCatalogPrice } from '../../../data/offer-pricing';
+import { getCatalogPrice, formatCatalogPrice, popularPackageBadge, deliveryTerms } from '../../../data/offer-pricing';
 import OfferPrice from '../../../components/OfferPrice.astro';
-import { PUBLIC_SITE_ENV } from 'astro:env/client';
 
 export function getStaticPaths() {
   return offers.map((offer) => ({
@@ -33,7 +32,6 @@ const packageName = [details?.form, details?.package].filter(Boolean).join(' · 
 const pricing = getCatalogPrice(offer.geo, offer.slug);
 const tiers = pricing?.tiers ?? [];
 const displayedPrice = tiers[0] ? formatCatalogPrice(tiers[0].newPrice, offer.geo) : null;
-const showSourceReference = PUBLIC_SITE_ENV !== 'production';
 const crumbs = [
   { name: 'Ponude', href: '/ponude/' },
   { name: info.name, href: geoUrl(offer.geo) },
@@ -182,21 +180,27 @@ const productInfo = {
                   </thead>
                   <tbody>
                     {tiers.length > 0 ? tiers.map(t => (
-                      <tr class="border-t border-line/70">
-                        <td class="px-4 py-3">
-                          <strong>{t.label}</strong>
-                          {details?.package && <span class="block text-xs text-muted">{t.quantity} × {details.package}</span>}
+                      <tr class={`border-t border-line/70 ${t.quantity === 3 ? 'bg-[#e5efd8]' : ''}`} data-package-tier={t.quantity}>
+                        <td class="px-4 py-4 align-top">
+                          <div class="flex flex-wrap items-center gap-2">
+                            <strong>{t.label}</strong>
+                            {popularPackageBadge(offer.geo, t.quantity) && (
+                              <span class="rounded-full bg-[#1f5a2c] px-2.5 py-1 text-xs font-bold text-white">
+                                {popularPackageBadge(offer.geo, t.quantity)}
+                              </span>
+                            )}
+                          </div>
+                          {details?.package && <span class="mt-1 block text-xs text-muted">{t.quantity} × {details.package}</span>}
+                          <span class="mt-1 block text-xs text-[#235d2d]">Besplatna dostava</span>
                         </td>
-                        <td class="px-4 py-3 text-right">
-                          <strong class="text-brand">{formatCatalogPrice(t.newPrice, offer.geo)}</strong>
-                          {showSourceReference && t.referencePrice != null && (
-                            <span class="block text-xs text-muted">
-                              Referentna cena iz cenovnika: <del>{formatCatalogPrice(t.referencePrice, offer.geo)}</del>
-                            </span>
+                        <td class="px-4 py-4 text-right align-top">
+                          {t.referencePrice != null && (
+                            <span class="block text-sm text-muted">Stara referentna: <del>{formatCatalogPrice(t.referencePrice, offer.geo)}</del></span>
                           )}
-                          {t.quantity > 1 && (
-                            <span class="block text-xs text-muted">Po pakovanju: {formatCatalogPrice(Math.round(t.newPrice/t.quantity), offer.geo)}</span>
-                          )}
+                          <strong class="block text-2xl font-extrabold text-brand">{formatCatalogPrice(t.newPrice, offer.geo)}</strong>
+                          {t.savings != null && <span class="mt-1 block text-sm font-bold text-[#225d30]">UŠTEDA {formatCatalogPrice(t.savings, offer.geo)}</span>}
+                          {t.discountPercent != null && <span class="mt-1 inline-block rounded-full bg-[#dcebbf] px-2 py-0.5 text-xs font-bold text-[#225d30]">-{t.discountPercent}%</span>}
+                          <span class="mt-1 block text-xs text-muted">Po pakovanju: {formatCatalogPrice(t.unitPrice, offer.geo)}</span>
                         </td>
                       </tr>
                     )) : (
@@ -208,9 +212,15 @@ const productInfo = {
               <p class="flex items-start gap-2 rounded-xl bg-warn-bg px-4 py-3 text-sm text-warn">
                 <Icon name="info" size={18} class="mt-0.5 shrink-0" />
                 {displayedPrice
-                  ? 'Cene su prenete iz dostavljenog cenovnika partnera. Dostava je u dokumentu navedena kao besplatna; cenu i uslove potvrđuje prodavac. Stare referentne cene nisu nezavisno proverene.'
+                  ? 'Stara cena je referentna vrednost iz partnerskog cenovnika, a ne nezavisno proverena ranija prodajna cena. Ušteda i procenat računaju se prema toj vrednosti.'
                   : 'Nema aktivne ponude za ovu zemlju u partnerskom nalogu.'}
               </p>
+              {pricing && (
+                <div class="rounded-xl bg-brand-2 px-4 py-3 text-sm font-semibold text-brand-strong">
+                  {deliveryTerms(offer.geo)}
+                  <p class="mt-1 text-xs font-normal text-muted">Rok dostave 1–2 radna dana je procena preuzeta iz dokumentacije partnera.</p>
+                </div>
+              )}
             </div>
           </details>
         </div>
