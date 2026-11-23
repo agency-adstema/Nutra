@@ -5,6 +5,7 @@ import {
   suppliedRsOfferCount, suppliedHrOfferCount, suppliedBaOfferCount,
 } from '../src/server/catalog-offer-ids';
 import { catalogOfferEnvKey, getCatalogOrderConfig } from '../src/server/catalog-order-config';
+import productSheets from '../src/data/products.json';
 
 const missingBA = ['hp-cardio-zen', 'hp-glyco-balance', 'hp-para-clean', 'hp-slim-ease'];
 
@@ -113,6 +114,18 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     const env = (k: string) => k === key ? '8888' : undefined;
     expect(getCatalogOrderConfig('HR', 'cy-relief', env)?.offerId).toBe('8888');
     expect(getCatalogOrderConfig('HR', 'cy-relief', env)?.orderEnabled).toBe(false);
+  });
+
+  it('svih 41 stranica koristi isključivo products.json offer_id, nikada hp_offer_id', () => {
+    const env = () => undefined;
+    for (const offer of offers) {
+      const source = productSheets.find(p => p.country === offer.geo && p.slug === offer.slug)!;
+      const config = getCatalogOrderConfig(offer.geo, offer.slug, env);
+      expect(config?.offerId).toBe(String(source.offer_id));
+      expect(config?.packages.map(p => p.id)).toEqual(['1-komad']);
+      expect(config?.apiKeyEnv).toBe('MONADLEAD_API_KEY_CATALOG');
+      expect(source).not.toHaveProperty('hp_offer_id');
+    }
   });
 
   it('niti jedan key ne sme da pomeša zemlju i proizvod', () => {
