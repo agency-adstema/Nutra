@@ -1,0 +1,58 @@
+name: Build Nutra staging preview
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nutra-staging-preview
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    name: Test, build and publish gh-pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Generate static staging site
+        run: npm run build:static-preview
+        env:
+          PUBLIC_SITE_ENV: staging
+          PUBLIC_STATIC_PREVIEW: 'true'
+          PUBLIC_MARKET: RS
+          SITE_URL: https://lamena.io
+          ORDER_MODE: test
+
+      - name: Check build output
+        run: |
+          test -s preview-dist/index.html
+          test -s preview-dist/robots.txt
+          grep -qi "noindex" preview-dist/index.html
+          touch preview-dist/.nojekyll
+
+      - name: Publish built files to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./preview-dist
+          publish_branch: gh-pages
+          keep_files: false
