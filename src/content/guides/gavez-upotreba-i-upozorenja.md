@@ -24,7 +24,7 @@ seo:
 
 Gavez je višegodišnja biljka ljubičastih ili belih cvetova, a u narodnoj upotrebi poznat je pre svega kao sastojak masti „za kosti i zglobove“.
 
-> **Primer vodiča (demo).** Pre objave tekst treba da pregleda stručna osoba.
+> Tekst je informativnog karaktera i ne zamenjuje savet lekara ili farmaceuta.
 
 ## Šta kaže Evropska agencija za lekove
 
