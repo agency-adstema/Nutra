@@ -38,10 +38,10 @@ const h1 = d.h1 ?? d.name;
             formats={['avif', 'webp']}
             loading="eager"
             fetchpriority="high"
-            class="aspect-[16/9] h-full w-full object-cover lg:aspect-[16/10]"
+            class="aspect-[16/9] h-full w-full object-contain p-5 lg:aspect-[16/10] lg:p-7"
           />
         </div>
-        {d.demo && <p class="mt-2 text-xs text-muted">Slika proizvoda je ilustrativna. Originalna fotografija pakovanja biće dodata nakon provere.</p>}
+
         {d.brandLogo && (
           <div class="absolute bottom-4 left-4 rounded-xl bg-white/90 p-2 shadow">
             <Picture src={d.brandLogo} alt={`${d.name} logo`} widths={[160]} formats={['webp']} class="h-8 w-auto" />
