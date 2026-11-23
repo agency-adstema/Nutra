@@ -160,13 +160,34 @@ location = $API_PATH/api/order/ {
     add_header Cache-Control "no-store" always;
 }
 EOF
-  vhost=$(grep -rl "server_name[^;]*$API_DOMAIN" /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null | head -1 || true)
+  # -R prati symlinkove (sites-enabled → sites-available)
+  vhost=""
+  [[ -n "$API_PATH" ]] && vhost=$(grep -RlE "location \\^~ $API_PATH/" /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null | head -1 || true)
+  [[ -z "$vhost" ]] && vhost=$(grep -RlE "server_name[^;]*${API_DOMAIN//./\\.}" /etc/nginx/sites-enabled /etc/nginx/conf.d 2>/dev/null | head -1 || true)
   if [[ -n "$vhost" ]] && grep -q "$SNIPPET" "$vhost"; then
     echo "Snippet je već uključen u $vhost"
     nginx -t && systemctl reload nginx
+  elif [[ -n "$vhost" ]]; then
+    backup="/root/nginx-$(basename "$vhost")-$(date +%Y%m%d%H%M%S).bak"
+    cp -L "$vhost" "$backup"
+    if [[ -n "$API_PATH" ]] && grep -qE "location \^~ $API_PATH/" "$vhost"; then
+      # odmah ispred postojeće statičke lokacije sajta (isti server blok)
+      sed --follow-symlinks -i "s#^\(\s*\)location \^~ $API_PATH/ {#\1include $SNIPPET;\n\1location ^~ $API_PATH/ {#" "$vhost"
+    else
+      # posle server_name reda za ovaj domen
+      sed --follow-symlinks -i "/server_name[^;]*${API_DOMAIN//./\\.}/a\    include $SNIPPET;" "$vhost"
+    fi
+    if nginx -t 2>/dev/null; then
+      systemctl reload nginx
+      echo "Snippet uključen u $vhost (rezervna kopija: $backup)"
+    else
+      cp "$backup" "$(readlink -f "$vhost")"
+      nginx -t || true
+      warn "nginx provera nije prošla — vratio sam staru konfiguraciju. Ručno dodaj u HTTPS server { } blok:"
+      echo "       include $SNIPPET;"
+    fi
   else
-    warn "Ostao je JEDAN ručni korak:"
-    echo "   Otvori nginx fajl za $API_DOMAIN ${vhost:+($vhost)} i u HTTPS server { } blok dodaj red:"
+    warn "Nisam našao nginx fajl za $API_DOMAIN. U njegov HTTPS server { } blok dodaj red:"
     echo "       include $SNIPPET;"
     echo "   pa pokreni:  nginx -t && systemctl reload nginx"
   fi
