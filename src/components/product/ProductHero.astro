@@ -31,6 +31,7 @@ const panelHighlights = d.highlights.map(h => h.label).filter(Boolean).slice(0,4
             widths={[480,720,1104]}
             sizes="(min-width: 1024px) 560px, 100vw"
             formats={['avif','webp']}
+      fallbackFormat="webp"
             loading="eager"
             fetchpriority="high"
             class="h-[390px] w-full object-contain sm:h-[480px] lg:h-[620px]"

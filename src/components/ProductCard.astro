@@ -40,6 +40,7 @@ const href = productUrl(product);
       widths={[360,560,720]}
       sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
       formats={['avif','webp']}
+      fallbackFormat="webp"
       class="h-full max-h-[226px] w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
       loading={eager ? 'eager' : 'lazy'}
     />
