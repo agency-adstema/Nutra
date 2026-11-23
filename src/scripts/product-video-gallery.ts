@@ -1,54 +1,64 @@
-/** 2 videos per screen; next/previous moves by TWO, not by one. */
+/** R2 poster-first video gallery: native <video preload="none"> loads no MP4
+ * until user requests playback. Mobile navigation scrolls two clips per step;
+ * desktop shows 4 videos in a grid. No third-party iframe or Instagram links.
+ */
 export function initProductVideoGalleries(): void {
-  document.querySelectorAll<HTMLElement>('[data-product-video-gallery]').forEach((root) => {
+  document.querySelectorAll<HTMLElement>('[data-product-video-gallery]').forEach(root => {
     if (root.dataset.videoGalleryReady === 'true') return;
     root.dataset.videoGalleryReady = 'true';
 
-    const pages = [...root.querySelectorAll<HTMLElement>('[data-video-page]')];
+    const viewport = root.querySelector<HTMLElement>('[data-video-viewport]');
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-product-video-card]')];
+    const videos = [...root.querySelectorAll<HTMLVideoElement>('video')];
     const prev = root.querySelector<HTMLButtonElement>('[data-video-prev]');
     const next = root.querySelector<HTMLButtonElement>('[data-video-next]');
-    const currentEl = root.querySelector<HTMLElement>('[data-video-current]');
-    if (!pages.length) return;
+    const indicator = root.querySelector<HTMLElement>('[data-video-current]');
+    if (!viewport || cards.length === 0) return;
+    const pageCount = Math.ceil(cards.length/2);
+    let page = 0;
 
-    let current = 0;
-    const render = () => {
-      pages.forEach((page, index) => {
-        const active = index === current;
-        page.hidden = !active;
-        page.classList.toggle('hidden', !active);
-        if (!active) page.querySelectorAll<HTMLVideoElement>('video').forEach((v) => v.pause());
-      });
-      if (prev) prev.disabled = current === 0;
-      if (next) next.disabled = current === pages.length - 1;
-      if (currentEl) currentEl.textContent = root.dataset.productVideoCount === '0'
-        ? '0 / 0'
-        : `${current + 1} / ${pages.length}`;
+    const controls = () => {
+      if (prev) prev.disabled = page === 0;
+      if (next) next.disabled = page >= pageCount - 1;
+      if (indicator) indicator.textContent = `${page+1} / ${pageCount}`;
     };
-    prev?.addEventListener('click', () => { if (current > 0) { current--; render(); } });
-    next?.addEventListener('click', () => { if (current < pages.length - 1) { current++; render(); } });
-    render();
-
-    root.querySelectorAll<HTMLButtonElement>('[data-product-video-play]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const src = btn.dataset.src;
-        if (!src) return;
-        const player = document.createElement('video');
-        player.src = src;
-        player.controls = true;
-        player.playsInline = true;
-        player.preload = 'metadata';
-        player.className = 'absolute inset-0 h-full w-full bg-black object-contain';
-        player.setAttribute('aria-label', btn.dataset.videoTitle || 'Video o proizvodu');
-        const poster = btn.querySelector<HTMLImageElement>('img')?.src;
-        if (poster) player.poster = poster;
-        player.addEventListener('play', () => {
-          root.querySelectorAll<HTMLVideoElement>('video').forEach((other) => {
-            if (other !== player) other.pause();
-          });
+    const go = (newPage: number) => {
+      page = Math.min(pageCount-1,Math.max(0,newPage));
+      const target=cards[page*2];
+      if(target){
+        viewport.scrollTo({
+          left: target.offsetLeft - cards[0].offsetLeft,
+          behavior: 'smooth',
         });
-        btn.replaceWith(player);
-        player.play().catch(() => { /* mobile browsers may require pressing play */ });
-      }, { once: true });
-    });
+      }
+      controls();
+    };
+    prev?.addEventListener('click', () => go(page-1));
+    next?.addEventListener('click', () => go(page+1));
+
+    // Keep arrows in sync if visitors swipe instead of clicking.
+    let framePending=false;
+    viewport.addEventListener('scroll', () => {
+      if(framePending) return;
+      framePending=true;
+      requestAnimationFrame(() => {
+        framePending=false;
+        const w=cards.length > 1 ? cards[1].offsetLeft-cards[0].offsetLeft : viewport.clientWidth;
+        if(w > 0){
+          page = Math.max(0,Math.min(pageCount-1,Math.round(viewport.scrollLeft/(w*2))));
+          controls();
+        }
+      });
+    }, {passive:true});
+
+    for(const video of videos){
+      video.addEventListener('play', () => {
+        // Pause other players everywhere on the page.
+        document.querySelectorAll<HTMLVideoElement>('video').forEach(other => {
+          if(other !== video && !other.paused) other.pause();
+        });
+      });
+    }
+    controls();
   });
 }
