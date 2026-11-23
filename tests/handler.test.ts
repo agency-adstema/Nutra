@@ -21,7 +21,7 @@ const product: ProductOrderConfig = {
 
 type Call = { url: string; body: Record<string, string> };
 
-function setup(opts: { env?: Record<string, string>; crm?: (body: Record<string, string>) => Response | Promise<Response> } = {}) {
+function setup(opts: { env?: Record<string, string>; product?: ProductOrderConfig; crm?: (body: Record<string, string>) => Response | Promise<Response> } = {}) {
   const calls: Call[] = [];
   const logs: Array<{ level: string; event: string; data?: Record<string, unknown> }> = [];
   const env: Record<string, string> = { ORDER_MODE: 'live', MONADLEAD_API_KEY: 'SECRET-KEY', ...opts.env };
@@ -33,7 +33,10 @@ function setup(opts: { env?: Record<string, string>; crm?: (body: Record<string,
   const log: Logger = (level, event, data) => logs.push({ level, event, data });
   const handler = createOrderHandler({
     env: (k) => env[k],
-    getProduct: async (slug) => (slug === product.slug ? product : undefined),
+    getProduct: async (slug) => {
+      const configured = opts.product ?? product;
+      return slug === configured.slug ? configured : undefined;
+    },
     siteUrl: SITE,
     requireConsent: true,
     store: new MemoryStore(() => NOW),
@@ -107,6 +110,63 @@ describe('order handler', () => {
     expect(dump).not.toContain('601234567');
     expect(dump).not.toContain('SECRET-KEY');
     expect(dump).toContain('ML-1');
+  });
+
+  it('izdvojeni catalog nalog: zaseban API key + offer ID iz server env-a + HR country_code', async () => {
+    const catalogProduct: ProductOrderConfig = {
+      slug: 'hr-cy-relief', name: 'CY-relief', market: 'HR',
+      currency: 'EUR', offerId: '', orderEnabled: true,
+      apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG', offerEnvKey: 'CATALOG_OFFER_ID_HR_CY_RELIEF',
+      packages: [{ id: '1-komad', label: '1 pakovanje', quantity: 1 }],
+    };
+    const { handler, calls } = setup({
+      product: catalogProduct,
+      env: {
+        MONADLEAD_API_KEY: 'LEGACY-NEVER-USE',
+        MONADLEAD_API_KEY_CATALOG: 'NEW-ACCOUNT-TEST-KEY',
+        CATALOG_OFFER_ID_HR_CY_RELIEF: '2026',
+      },
+      crm: () => new Response('{"type":"success","order_id":456,"body":{"click_id":"abc"}}', { status: 200 }),
+    });
+    const res = await handler(req(body({ productSlug: 'hr-cy-relief', phone: '091 234 5678' })));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ status: 'created', orderId: '456' });
+    expect(calls).toHaveLength(1);
+    expect(calls[0].body).toMatchObject({
+      api_key: 'NEW-ACCOUNT-TEST-KEY',
+      offer_id: '2026',
+      country_code: 'HR',
+      phone: '+385912345678',
+    });
+  });
+
+  it('catalog nikada ne koristi stari API ključ ako novi nije podešen', async () => {
+    const catalogProduct: ProductOrderConfig = {
+      slug: 'ba-hp-nautubone', name: 'HP Nautubone', market: 'BA',
+      currency: 'BAM', offerId: '', orderEnabled: true,
+      apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG', offerEnvKey: 'CATALOG_OFFER_ID_BA_HP_NAUTUBONE',
+      packages: [{ id: '1-komad', label: '1 pakovanje', quantity: 1 }],
+    };
+    const { handler, calls } = setup({
+      product: catalogProduct,
+      env: { MONADLEAD_API_KEY_CATALOG: '', CATALOG_OFFER_ID_BA_HP_NAUTUBONE: '1769' },
+    });
+    const res = await handler(req(body({ productSlug: 'ba-hp-nautubone', phone: '061 123 456' })));
+    expect(res.status).toBe(503);
+    expect(calls).toHaveLength(0);
+  });
+
+  it('catalog ne šalje porudžbinu bez eksplicitnog offer ID za konkretan proizvod', async () => {
+    const catalogProduct: ProductOrderConfig = {
+      slug: 'rs-hp-bone-control', name: 'HP Bone Control', market: 'RS',
+      currency: 'RSD', offerId: '', orderEnabled: true,
+      apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG', offerEnvKey: 'CATALOG_OFFER_ID_RS_HP_BONE_CONTROL',
+      packages: [{ id: '1-komad', label: '1 pakovanje', quantity: 1 }],
+    };
+    const { handler, calls } = setup({ product: catalogProduct, env: { MONADLEAD_API_KEY_CATALOG: 'NEW-ACCOUNT-TEST-KEY' } });
+    const res = await handler(req(body({ productSlug: 'rs-hp-bone-control' })));
+    expect(res.status).toBe(503);
+    expect(calls).toHaveLength(0);
   });
 
   it('offer ID pakovanja ima prednost; offer iz zahteva se ignoriše', async () => {
