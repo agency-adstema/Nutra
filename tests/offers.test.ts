@@ -10,14 +10,19 @@ describe('Katalog ponuda RS/BA/HR', () => {
     expect(sourceOfferRows.every((row) => ['RS', 'BA', 'HR'].includes(row.geo))).toBe(true);
   });
 
-  it('čuva 45 izvornih ponuda, prikazuje 41 sa cenom: RS 19, BA 9, HR 13', () => {
+  it('čuva 45 izvornih ponuda, prikazuje 38: RS 18, BA 8, HR 12', () => {
     expect(allOffers).toHaveLength(45);
-    expect(offers).toHaveLength(41);
-    expect(getOffersByGeo('RS')).toHaveLength(19);
-    expect(getOffersByGeo('BA')).toHaveLength(9);
-    expect(getOffersByGeo('HR')).toHaveLength(13);
+    expect(offers).toHaveLength(38);
+    expect(getOffersByGeo('RS')).toHaveLength(18);
+    expect(getOffersByGeo('BA')).toHaveLength(8);
+    expect(getOffersByGeo('HR')).toHaveLength(12);
     expect(new Set(offers.map((offer) => `${offer.geo}/${offer.slug}`)).size).toBe(offers.length);
     for(const slug of ['hp-cardio-zen','hp-glyco-balance','hp-para-clean','hp-slim-ease']) expect(getOffer('BA',slug)).toBeUndefined();
+    for (const geo of ['RS', 'BA', 'HR'] as const) {
+      expect(getOffer(geo, 'hp-beauty-derm')).toBeUndefined();
+      expect(offers.some(o => o.geo === geo && o.slug === 'hp-beauty-derm')).toBe(false);
+    }
+    expect(getOffer('HR', 'beauty-derm')).toBeDefined();
   });
 
   it('spaja samo iste ponude na istom tržištu, bez mešanja država', () => {
