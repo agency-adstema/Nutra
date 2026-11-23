@@ -41,6 +41,7 @@ export const site = {
   },
 
   nav: [
+    { label: 'Ponude', href: '/ponude/' },
     { label: 'Vodiči', href: '/vodici/' },
     { label: 'O nama', href: '/o-nama/' },
   ],
