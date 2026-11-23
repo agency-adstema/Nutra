@@ -95,7 +95,7 @@ export function getCatalogPrice(geo: OfferGeo, slug: string): CatalogPrice | und
  * BoneControl were not individual regular RS rows in the offer sheet. */
 export function getEditorialPrice(geo: string, slug: string): CatalogPrice | undefined {
   if (geo !== 'RS' || !['nautubone', 'bonecontrol', 'parazol'].includes(slug)) return undefined;
-  return getCatalogPrice('RS', 'parazol');
+  return getCatalogPrice('RS', slug === 'bonecontrol' ? 'bone-control' : slug);
 }
 export function formatCatalogPrice(amount: number, geo: OfferGeo): string {
   const amountText = new Intl.NumberFormat(
