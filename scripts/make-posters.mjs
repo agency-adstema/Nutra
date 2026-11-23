@@ -12,7 +12,7 @@
  */
 import { readFile, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join, sep } from 'node:path';
+import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const cfg = JSON.parse(await readFile(new URL('../src/config/video.json', import.meta.url), 'utf8'));
@@ -55,8 +55,8 @@ async function status(url) {
   return response.status;
 }
 
-function executable(name,argv,{allowFailure=false}={}){
-  const run=spawnSync(name,argv,{encoding:'utf8',stdio:'pipe',maxBuffer:4*1024*1024,shell:false});
+function executable(name,argv,{allowFailure=false,shell=false}={}){
+  const run=spawnSync(name,argv,{encoding:'utf8',stdio:'pipe',maxBuffer:4*1024*1024,shell});
   if(run.error || run.status!==0){
     const message=(run.error?.message || run.stderr || run.stdout || '').trim().slice(-1200);
     if(!allowFailure) throw new Error(`${name} exited ${run.status}: ${message}`);
@@ -77,7 +77,6 @@ const temp=await mkdtemp(join(tmpdir(),'zdravica-r2-posters-'));
 const records={uploaded:[],existing:[],missingVideos:[],errors:[],pending:[]};
 try {
   executable('ffmpeg',['-version']);
-  const npx=process.platform==='win32'?'npx.cmd':'npx';
   const seen=new Set();
   for(let i=0;i<table.length;i++){
     const [product,fileRaw] = table[i];
@@ -113,10 +112,10 @@ try {
     if(!frame.ok){records.errors.push({file,reason:'ffmpeg: '+frame.message});continue;}
     // Exact R2 key, with literal spaces (not %20), under the chosen bucket.
     const objectKey=`${BUCKET}/${PREFIX}/${posterPath}`;
-    const upload=executable(npx,['wrangler','r2','object','put',objectKey,
+    const upload=executable('npx',['wrangler','r2','object','put',objectKey,
       '--file',out,'--content-type=image/jpeg',
       '--cache-control=public, max-age=31536000, immutable','--remote'
-    ],{allowFailure:true});
+    ],{allowFailure:true,shell:process.platform==='win32'});
     if(!upload.ok){records.errors.push({file,reason:'Wrangler: '+upload.message});continue;}
     records.uploaded.push(posterPath);
     console.log(`[UPLOADED] ${posterPath}`);
