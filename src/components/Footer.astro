@@ -1,6 +1,5 @@
 ---
 import Logo from './Logo.astro';
-import Icon from './Icon.astro';
 import { site } from '../config/site';
 import { getCategories, categoryUrl } from '../lib/content';
 
@@ -15,10 +14,6 @@ const year = new Date().getFullYear();
       <p class="mt-4 max-w-sm text-sm leading-relaxed text-muted">
         {site.name} je vodič kroz prirodne preparate. Nismo apoteka niti medicinska ustanova.
         Prodavac potvrđuje porudžbinu telefonskim pozivom.
-      </p>
-      <p class="mt-4 flex items-start gap-2 text-sm italic text-ink/80">
-        <Icon name="info" size={18} class="mt-0.5 shrink-0" />
-        {site.medicalDisclaimer} Dodaci ishrani nisu lekovi.
       </p>
     </div>
 

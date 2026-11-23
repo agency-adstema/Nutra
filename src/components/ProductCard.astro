@@ -64,28 +64,22 @@ const href = productUrl(product);
     </p>
 
     <div class="mt-auto pt-4">
-      <div class="flex items-end justify-between gap-2">
-        <div class="min-w-0">
-          {quotedPricing ? (
-            <OfferPrice pricing={quotedPricing} catalogCard />
-          ) : pv.show ? (
-            <div class="flex min-h-[60px] flex-col justify-end">
-              <span class="text-xs text-muted">Cena od</span>
-              <strong class="whitespace-nowrap text-xl font-extrabold leading-7 text-brand">{formatPrice(pv.min!, market.currencyLabel)}</strong>
-            </div>
-          ) : (
-            <p class="text-xs text-muted">Cena na upit</p>
-          )}
+      {quotedPricing ? (
+        <OfferPrice pricing={quotedPricing} catalogCard />
+      ) : pv.show ? (
+        <div class="flex min-h-[60px] flex-col justify-end">
+          <span class="text-xs text-muted">Cena od</span>
+          <strong class="whitespace-nowrap text-xl font-extrabold leading-7 text-brand">{formatPrice(pv.min!, market.currencyLabel)}</strong>
         </div>
-        <a href={href} class="inline-flex shrink-0 items-center gap-1.5 pb-0.5 text-sm font-bold text-brand hover:underline"
-           data-select-item data-list={list}
-           data-item-id={d.slug} data-item-name={d.name} data-item-category={d.category.id}>
-          Naruči <Icon name="chevron-right" size={17} />
-        </a>
-      </div>
+      ) : (
+        <p class="text-xs text-muted">Cena na upit</p>
+      )}
+      <a href={href} class="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-[#1f5a2c] px-4 py-3.5 text-base font-bold text-white shadow-md shadow-[#1f5a2c]/25 transition hover:bg-[#173d22] active:scale-[0.99]"
+         data-select-item data-list={list}
+         data-item-id={d.slug} data-item-name={d.name} data-item-category={d.category.id}>
+        <Icon name="cart" size={20} /> Naruči odmah
+      </a>
     </div>
-    <div class="mt-3 rounded-xl bg-[#f0f2ee] px-3 py-2 text-xs font-bold text-[#225b37]">
-      Besplatna dostava
-    </div>
+    <p class="mt-2.5 text-center text-xs font-bold text-[#225b37]">Besplatna dostava · Plaćanje pouzećem</p>
   </div>
 </article>
