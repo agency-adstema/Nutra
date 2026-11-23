@@ -9,12 +9,17 @@ import { getCategories, getProducts, getGuides, categoryUrl, productUrl } from '
 import { websiteSchema } from '../lib/seo';
 import { site } from '../config/site';
 import { catalogGeoOrder, catalogMarkets, getOffersByGeo, geoUrl, offers } from '../data/offers';
+import { getCatalogOffersForCategory } from '../data/offer-categories';
 
 const [categories, products, guides] = await Promise.all([getCategories(), getProducts(), getGuides()]);
 const featured = products.filter((p) => p.data.featured).slice(0, 6);
 const latestGuides = guides.slice(0, 3);
 const catName = (id?: string) => categories.find((c) => c.id === id)?.data.name;
-const countByCat = (id: string) => products.filter((p) => p.data.category.id === id).length;
+const countByCat = (id: string) => {
+  const editorial = products.filter((p) => p.data.category.id === id);
+  const categoryOffers = getCatalogOffersForCategory(id);
+  return editorial.length + categoryOffers.filter((o) => !editorial.some((p) => p.data.name.toLowerCase() === o.name.toLowerCase())).length;
+};
 const heroProducts = featured.slice(0, 3);
 const siteUrl = (Astro.site?.toString() ?? '').replace(/\/$/, '');
 
