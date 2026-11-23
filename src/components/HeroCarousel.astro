@@ -15,7 +15,7 @@ import { join } from 'node:path';
 import { getImage } from 'astro:assets';
 import heroCfg from '../data/home-hero.json';
 import { getCategories, getProducts, productUrl } from '../lib/content';
-import { catalogMarkets, getOffer, offerUrl, verticalLabel, type OfferGeo } from '../data/offers';
+import { getOffer, offerUrl, verticalLabel, type OfferGeo } from '../data/offers';
 import { getOfferDetails, getOfferImage } from '../data/offer-details';
 import Icon from './Icon.astro';
 
@@ -57,7 +57,7 @@ for (const h of heroCfg as HeroEntry[]) {
     slides.push({
       ...base,
       href: productUrl(p),
-      eyebrow: `${categories.find((c) => c.id === p.data.category.id)?.data.name ?? p.data.productType} · Srbija`,
+      eyebrow: categories.find((c) => c.id === p.data.category.id)?.data.name ?? p.data.productType,
       text: firstSentence(p.data.shortDescription),
       image: photo ?? pack,
       isPhoto: !!photo,
@@ -69,7 +69,7 @@ for (const h of heroCfg as HeroEntry[]) {
     slides.push({
       ...base,
       href: offerUrl(o),
-      eyebrow: `${verticalLabel(o.verticals[0] ?? 'Proizvod')} · ${catalogMarkets[o.geo].shortName}`,
+      eyebrow: verticalLabel(o.verticals[0] ?? 'Proizvod'),
       text: firstSentence(details?.description ?? ''),
       image: photo ?? getOfferImage(details),
       isPhoto: !!photo,
