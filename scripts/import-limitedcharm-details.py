@@ -7,7 +7,10 @@ otvara https://limitedcharm.com/<geo>/proizvod/<slug> i upisuje u
 src/data/limitedcharm-details.json:
   - composition: naslov, aktivni sastojak, INCI lista, oznake, slika sastojka
   - reviews: prikazana ocena, broj recenzija i komentari (tekst, inicijali, ocena)
+  - pricing: pakovanja 1/2/3 sa starom i novom cenom i besplatnom dostavom
 Slike sastojaka čuva u public/images/sastav/<geo>-<slug>.webp.
+Naš slug se povezuje sa Limited Charm slugom preko ALIASES, pa istog sluga,
+pa poređenjem bez crtica sa listom /<geo>/svi-proizvodi (npr. goslim ↔ go-slim).
 
 Podaci su tvrdnje prodavca. Sajt ih prikazuje sa oznakom izvora i ne ubacuje
 ih u JSON-LD. Proizvod bez neke sekcije se preskače, ništa se ne izmišlja.
@@ -56,6 +59,44 @@ def fetch(url: str) -> bytes | None:
     except Exception as e:  # noqa: BLE001
         print(f"  greška {url}: {e}")
     return None
+
+
+PRICE_RE = re.compile(
+    r"\b([123])\s+Pak(?:ovanj|iranj)\w*\s+([\d.,]+)\s*(RSD|KM|€|EUR)\s+([\d.,]+)\s*(?:RSD|KM|€|EUR)",
+    re.IGNORECASE,
+)
+
+
+def amount(s: str) -> float:
+    s = s.strip()
+    if "," in s:  # 78,00 / 1.234,50
+        s = s.replace(".", "").replace(",", ".")
+    else:  # 5.500
+        s = s.replace(".", "")
+    return float(s)
+
+
+def parse_pricing(soup) -> dict | None:
+    """Pakovanja sa LC stranice: „1 Pakovanje 5.500 RSD 3.700 RSD … 2 Pakovanja …“."""
+    page = text(soup.body or soup)
+    tiers = {}
+    for m in PRICE_RE.finditer(page):
+        q = int(m.group(1))
+        old, new = amount(m.group(2)), amount(m.group(4))
+        if q not in tiers and 0 < new < old:
+            tiers[q] = {"quantity": q, "oldPrice": old, "price": new}
+    if 1 not in tiers or len(tiers) < 2:
+        return None
+    return {
+        "tiers": [tiers[q] for q in sorted(tiers)],
+        "freeDelivery": bool(re.search(r"Besplatna dostava", page, re.IGNORECASE)),
+    }
+
+
+def lc_catalog(geo: str) -> dict[str, str]:
+    raw = fetch(f"{BASE}/{geo.lower()}/svi-proizvodi")
+    slugs = set(re.findall(rf"/{geo.lower()}/proizvod/([a-z0-9-]+)", raw.decode("utf-8", "replace"))) if raw else set()
+    return {s.replace("-", ""): s for s in slugs}
 
 
 def parse(html: str) -> tuple[dict | None, dict | None, str | None]:
@@ -107,7 +148,7 @@ def parse(html: str) -> tuple[dict | None, dict | None, str | None]:
                 "items": items,
             }
 
-    return composition, reviews, img_src
+    return composition, reviews, img_src, parse_pricing(soup)
 
 
 def main() -> int:
@@ -115,21 +156,22 @@ def main() -> int:
     keys = [(p["country"], p["slug"]) for p in products] + CONTENT_PRODUCTS
     seen, out = set(), {}
     IMG_DIR.mkdir(parents=True, exist_ok=True)
+    catalogs = {g: lc_catalog(g) for g in ("RS", "BA", "HR")}
 
     for geo, slug in keys:
         key = f"{geo}/{slug}"
         if key in seen:
             continue
         seen.add(key)
-        src_slug = ALIASES.get(slug, slug)
+        src_slug = ALIASES.get(slug) or catalogs.get(geo, {}).get(slug.replace("-", "")) or slug
         url = f"{BASE}/{geo.lower()}/proizvod/{src_slug}"
         print(f"{key} ← {url}")
         raw = fetch(url)
         if not raw:
             continue
-        composition, reviews, img_src = parse(raw.decode("utf-8", "replace"))
-        if not composition and not reviews:
-            print("  nema sekcije Sastav ni komentara — preskačem")
+        composition, reviews, img_src, pricing = parse(raw.decode("utf-8", "replace"))
+        if not composition and not reviews and not pricing:
+            print("  nema sekcije Sastav, komentara ni cena — preskačem")
             continue
 
         if composition and img_src:
@@ -141,8 +183,8 @@ def main() -> int:
             else:
                 print("  slika sastojka nije preuzeta")
 
-        out[key] = {"sourceUrl": url, "composition": composition, "reviews": reviews}
-        print(f"  sastav={'da' if composition else 'ne'} komentari={len(reviews['items']) if reviews else 0}")
+        out[key] = {"sourceUrl": url, "composition": composition, "reviews": reviews, "pricing": pricing}
+        print(f"  sastav={'da' if composition else 'ne'} komentari={len(reviews['items']) if reviews else 0} pakovanja={len(pricing['tiers']) if pricing else 0}")
 
     if not out:
         print("Ništa nije uvezeno — prekidam bez izmene fajla.")
