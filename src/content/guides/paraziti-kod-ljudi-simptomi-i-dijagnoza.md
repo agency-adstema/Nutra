@@ -27,7 +27,7 @@ seo:
 
 Reklame za preparate „protiv parazita“ često nabrajaju opšte simptome — umor, nadimanje, glad za slatkim — i sugerišu da ih ima „skoro svako“. Stvarnost je drugačija: parazitska infekcija se dokazuje laboratorijski, a leči lekovima.
 
-> **Primer vodiča (demo).** Pre objave tekst treba da pregleda lekar.
+> Tekst je informativnog karaktera i ne zamenjuje stručnu dijagnozu ili savet lekara.
 
 ## Simptomi koji mogu ukazivati na crevne parazite
 
