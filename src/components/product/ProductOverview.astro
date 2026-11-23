@@ -127,8 +127,6 @@ const h2Cls = 'text-lg font-semibold text-brand-strong lg:text-[1.75rem] lg:lead
           {
             pv.isVerified && d.priceCheckedAt ? (
               <span><strong>Cena proverena:</strong> {formatDate(d.priceCheckedAt)}{d.priceSource && <> · {d.priceSource}</>}</span>
-            ) : pv.isDemo ? (
-              <span><strong>Demo cena</strong> — nije proverena kod prodavca.</span>
             ) : (
               <span>Cena još nije proverena, pa je ne prikazujemo. Operater će vam potvrditi tačnu cenu pre slanja.</span>
             )
