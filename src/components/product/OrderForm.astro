@@ -118,7 +118,7 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
                               <strong>{formatPrice(p.price, market.currencyLabel)}</strong>
                               {visiblePricing?.tiers.find(t => t.id === p.id)?.referencePrice != null && (
                                 <del class="ml-2 text-xs font-normal text-muted">
-                                  {formatCatalogPrice(visiblePricing.tiers.find(t => t.id === p.id)!.referencePrice!, 'RS')}
+                                  {formatCatalogPrice(visiblePricing.tiers.find(t => t.id === p.id)!.referencePrice!, visiblePricing.geo)}
                                 </del>
                               )}
                             </>
