@@ -1,0 +1,39 @@
+---
+import { getExternalReview } from '../data/external-reviews';
+import type { OfferGeo } from '../data/offers';
+
+interface Props {
+  geo: OfferGeo;
+  slug: string;
+  /** Keep the review row aligned even on products without a sourced count. */
+  showMissing?: boolean;
+}
+const { geo, slug, showMissing = true } = Astro.props;
+const review = getExternalReview(geo, slug);
+const score = review?.score.toFixed(1).replace('.', ',');
+const count = review?.count.toLocaleString('sr-RS');
+const fill = review ? `${Math.max(0, Math.min(100, review.score / 5 * 100))}%` : '0%';
+---
+
+<div class="flex min-h-6 items-center" data-review-display={review ? 'limited-charm' : 'unavailable'}>
+  {review ? (
+    <a
+      href={review.sourceUrl}
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      class="inline-flex max-w-full flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs hover:underline"
+      title={`Ocena ${score}/5 na osnovu ${review.count} recenzija prikazanih na Limited Charm sajtu. Nezavisna provera nije izvršena. Podatak: ${review.checkedAt}`}
+      aria-label={`Na Limited Charm: ocena ${score} od 5, ${review.count} recenzija za proizvod ${slug}. Otvori izvor.`}
+    >
+      <span class="relative inline-block whitespace-nowrap text-[16px] leading-none tracking-[-2px]" aria-hidden="true">
+        <span class="text-[#d6d9cf]">★★★★★</span>
+        <span class="absolute left-0 top-0 overflow-hidden whitespace-nowrap text-[#f28b00]" style={`width: ${fill}`}>★★★★★</span>
+      </span>
+      <strong class="font-semibold text-ink">{score}</strong>
+      <span class="text-muted">({count})</span>
+      <span class="text-[10px] text-muted">na Limited Charm</span>
+    </a>
+  ) : showMissing ? (
+    <span class="text-[11px] text-muted" data-reviews-missing>Ocene nisu dostupne</span>
+  ) : null}
+</div>
