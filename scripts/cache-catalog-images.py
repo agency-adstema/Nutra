@@ -54,7 +54,10 @@ def load_one(p):
         return None, type(exc).__name__
 
 def main():
-    items = json.loads(DATA.read_text(encoding="utf-8"))
+    # Keep products.json source history intact but never publish excluded HP
+    # Beauty Derm images for RS, BA or HR on the static storefront.
+    items = [p for p in json.loads(DATA.read_text(encoding="utf-8"))
+             if p.get("slug") != "hp-beauty-derm"]
     DEST.mkdir(parents=True, exist_ok=True)
     manifest = {}
     skipped = []
