@@ -70,6 +70,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/altea": {
@@ -100,6 +120,26 @@
             "score": 3.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/apolloss": {
@@ -155,6 +195,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/beauty-derm": {
@@ -225,6 +285,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/bone-control": {
@@ -295,6 +375,81 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "RS/cardio-zen": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/cardiozen",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Beli luk, kopriva i jabukovo sirće.",
+        "label": "Aktivni sastojak",
+        "name": "Allium sativum + Urtica dioica",
+        "latin": "Allium sativum · Urtica dioica",
+        "inci": "Suvi ekstrakt lukovice belog luka (Allium sativum) 12-14:1, kapsula (želatin, boja: kalcijum-karbonat), jabukovo sirće u prahu standardizovano na 8% jabučne kiseline, suvi ekstrakt lista koprive (Urtica dioica) 8-10:1, sredstva protiv zgrudnjavanja: silicijum-dioksid i magnezijum-stearat; maltodekstrin.",
+        "tags": [
+          "15 kapsula (7,8 g)",
+          "Beli luk 12-14:1",
+          "Kopriva 8-10:1",
+          "Bez veštačkih boja"
+        ],
+        "imageAlt": "Allium sativum + Urtica dioica",
+        "image": "/images/sastav/rs-cardio-zen.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 2,
+        "items": [
+          {
+            "text": "Pomoglo mi je, osećam razliku. Ranije me je znalo boleti i to bi se spuštalo ka vratu, a otkako sam počela ovo da pijem, toga više nema.",
+            "initials": "S.Z.",
+            "score": 4.5
+          },
+          {
+            "text": "Pomoglo mi je, osećam razliku. Ranije me je znalo boleti i to bi se spuštalo ka vratu, a otkako sam počela ovo da pijem, toga više nema.",
+            "initials": "S.Z.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/cellulflex": {
@@ -365,6 +520,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/deep-inhale": {
@@ -395,6 +570,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/dermal": {
@@ -465,6 +660,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/dia-drops": {
@@ -535,6 +750,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/diatea": {
@@ -605,6 +840,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/easy-slim": {
@@ -640,6 +895,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/erek-x": {
@@ -680,6 +955,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/gluco-caps": {
@@ -750,6 +1045,206 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "RS/gopotent": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/go-potent",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Rtanjski čaj u središtu formule.",
+        "label": "Aktivni sastojak",
+        "name": "Rtanjski čaj i kopriva",
+        "latin": "Satureja montana · Urtica dioica",
+        "inci": "Herba rtanjskog čaja (Satureja montana), herba bosiljka (Ocimum basilicum), list matičnjaka (Melissa officinalis), list ružmarina (Rosmarinus officinalis), list koprive (Urtica dioica).",
+        "tags": [
+          "Rinfuz mešavina",
+          "Bez aditiva",
+          "Bez šećera",
+          "Priprema 15 min"
+        ],
+        "imageAlt": "Rtanjski čaj i kopriva",
+        "image": "/images/sastav/rs-gopotent.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 9,
+        "items": [
+          {
+            "text": "Koristio sam ih tri meseca i baš sam bio zadovoljan. Stvarno mi je prijalo, pa nemam šta drugo da kažem osim pohvale.",
+            "initials": "H.T.",
+            "score": 5.0
+          },
+          {
+            "text": "Meni je dosta pomoglo i sada je sve u redu, tako da mi za sada više ne treba. Hvalim vas gde god stignem, a ako zatreba, znam gde ću se javiti.",
+            "initials": "D.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Za svoje godine sam više nego zadovoljan. Bili smo supruga i ja nedavno na odmoru i sve je funkcionisalo kako treba, tako da ne bih menjao ništa.",
+            "initials": "D.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Redovno koristim svaki dan i zadovoljan sam kako mi ide. Uklopio sam to u dan bez problema i nastavljam po istom.",
+            "initials": "S.R.",
+            "score": 4.5
+          },
+          {
+            "text": "Sve mi je normalno, ništa me ne boli i noć prespavam mirno bez stalnog ustajanja. Za mene je to najbolji pokazatelj da mi prija.",
+            "initials": "V.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Dobro je, uzimam to redovno i zadovoljan sam. Uklopilo mi se u svakodnevnu rutinu bez ikakvog napora, tako da nemam potrebe da menjam bilo šta.",
+            "initials": "J.V.",
+            "score": 4.5
+          },
+          {
+            "text": "Godinama već vodim računa o sebi i uzimam ponešto preventivno. Sa ovim sam zadovoljan, u mojim godinama ne očekujem čuda, ali mi prija.",
+            "initials": "S.V.",
+            "score": 4.0
+          },
+          {
+            "text": "Preporučio sam ih dvojici poznanika i jedan je odmah uzeo više kutija. Meni su kapsule bile zanimljive i rekao bih da je nešto poboljšano otkako ih uzimam.",
+            "initials": "Z.J.",
+            "score": 4.0
+          },
+          {
+            "text": "U mojim poznim godinama mogu reći da sam zadovoljan. Ne tražim čuda, ali meni ovo odgovara i to je za mene dovoljno.",
+            "initials": "S.I.",
+            "score": 4.0
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "RS/goslim": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/go-slim",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Klasična biljna mešavina za creva.",
+        "label": "Aktivni sastojak",
+        "name": "Sena i krušina",
+        "latin": "Cassia senna · Rhamnus frangula",
+        "inci": "Plod komorača (Foeniculum vulgare), plod kima (Carum carvi), plod kleke (Juniperus communis), cvet kamilice (Matricaria chamomilla), list sene (Cassia senna), kora krušine (Rhamnus frangula).",
+        "tags": [
+          "Rinfuz mešavina",
+          "Bez šećera",
+          "Priprema 30 min",
+          "Bez aditiva"
+        ],
+        "imageAlt": "Sena i krušina",
+        "image": "/images/sastav/rs-goslim.webp"
+      },
+      "reviews": {
+        "score": 4.4,
+        "count": 18,
+        "items": [
+          {
+            "text": "Uveče ga napravim, popijem i ujutru sve ide kako treba. Rešila sam problem bez grčeva u stomaku i bez ikakvih neprijatnosti. Prezadovoljna sam, stvarno.",
+            "initials": "M.G.",
+            "score": 5.0
+          },
+          {
+            "text": "Popila sam tek jednu turu, a apetit mi se skroz smanjio. S obzirom na godine, osećam se kao zmaj. Zadovoljna sam onim što sam do sada videla.",
+            "initials": "S.Đ.",
+            "score": 5.0
+          },
+          {
+            "text": "Imala sam velikih problema sa stolicom, znalo je da prođe i po nekoliko dana. Sada idem normalno, ujutru, a nekad i tokom dana. Što se toga tiče, stvarno sam zadovoljna.",
+            "initials": "M.Đ.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristim već treće pakovanje i osećam se mnogo bolje. Smršala sam, nisam naduta i sve je u redu. Dobar je, zadovoljna sam.",
+            "initials": "A.D.",
+            "score": 4.5
+          },
+          {
+            "text": "Za nekoliko meseci sam izgubila dosta kilograma i baš sam zadovoljna. Meni ovo stvarno odgovara i osećam se dobro.",
+            "initials": "S.G.",
+            "score": 4.5
+          },
+          {
+            "text": "Otkako pijem taj čaj, idem redovno i bez muke. Ranije sam se nadimala i bilo mi je neprijatno, a sada je stvarno super. Svaki dan je normalno i zadovoljna sam.",
+            "initials": "Z.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Napravila sam kraću pauzu, pa sam nastavila i sve i dalje funkcioniše. Otkako pijem čaj, idem redovno ujutru i uveče. Zadovoljna sam.",
+            "initials": "S.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Već odavno koristim i mogu reći da sam zadovoljan. Pričao sam o tome i ćerki, pa ćemo videti hoće li i ona uzeti. Meni je to dovoljna preporuka.",
+            "initials": "D.A.",
+            "score": 4.5
+          },
+          {
+            "text": "Kad sam probala vaš čaj, on mi je rešio problem koji me dugo mučio. Uzela sam i kapsule i već sam pri kraju pakovanja. Zadovoljna sam i to mogu mirno da kažem.",
+            "initials": "S.B.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/hemomax": {
@@ -820,6 +1315,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/hemoroclear": {
@@ -890,6 +1405,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/hydromax": {
@@ -945,6 +1480,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/hyper-caps": {
@@ -1015,6 +1570,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/hyper-drops": {
@@ -1085,6 +1660,116 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "RS/hypertea": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/hyper-tea",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Glog, imela i valerijana.",
+        "label": "Aktivni sastojak",
+        "name": "Glog i bela imela",
+        "latin": "Crataegus oxyacantha · Viscum album",
+        "inci": "List sa cvetom gloga (Crataegus oxycantha) 30%, herba hajdučke trave (Achillea millefolium) 20%, list bele imele (Viscum album) 20%, koren valerijane (Valeriana officinalis) 10%, list breze (Betula sp.) 10% i plod divlje ruže (Rosa canina) 10%.",
+        "tags": [
+          "Rinfuz mešavina",
+          "Bez šećera",
+          "Bez aditiva",
+          "Priprema 15–30 min"
+        ],
+        "imageAlt": "Glog i bela imela",
+        "image": "/images/sastav/rs-hypertea.webp"
+      },
+      "reviews": {
+        "score": 4.3,
+        "count": 5,
+        "items": [
+          {
+            "text": "Uzimala sam to prošlog leta i posle mi je bilo stvarno super. Nesvestice koje sam imala više se nisu javljale. Popila sam koliko su mi preporučili i sada naručujem ponovo.",
+            "initials": "S.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Čaj pijem jednom dnevno, popodne, i to mi je ušlo u naviku. Zadovoljan sam njime i osećam se dobro.",
+            "initials": "C.C.",
+            "score": 4.5
+          },
+          {
+            "text": "Pomogao mi je dok sam ga koristio, to mogu da kažem. Otad je prošlo dosta vremena, ali sećam se da mi je prijao.",
+            "initials": "S.L.",
+            "score": 4.0
+          },
+          {
+            "text": "Ne koristim ga dugo, ali koliko vidim, dobro je. Zadovoljna sam i nastavljam dalje.",
+            "initials": "M.Š.",
+            "score": 4.0
+          },
+          {
+            "text": "Redovno ga koristim i osećam da mi je malo bolje. Zadovoljna sam kako mi se uklopio u dan.",
+            "initials": "K.I.",
+            "score": 4.0
+          },
+          {
+            "text": "Popijem ga prije jela i osjećam se bolje nego ranije. Uvečer sam ga izbacio i tako mi najbolje odgovara.",
+            "initials": "V.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Osjetio sam da mi djeluje. Poslije obroka lijepo popijem jednu šolju i to me održava kroz dan. Zadovoljan sam.",
+            "initials": "A.H.",
+            "score": 4.5
+          },
+          {
+            "text": "Ujutru kad ustanem prvo popijem čaj i to mi je ušlo u rutinu. Uz šetnju i sve ostalo što radim, zadovoljan sam kako se osjećam.",
+            "initials": "M.Š.",
+            "score": 4.0
+          },
+          {
+            "text": "Odlično se osjećam otkako ga pijem. Nemam ni potrebe da išta provjeravam, jednostavno mi je dobro.",
+            "initials": "B.T.",
+            "score": 5.0
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/intimotea": {
@@ -1105,7 +1790,27 @@
         "imageAlt": "Biljna mešavina za žene",
         "image": "/images/sastav/rs-intimotea.webp"
       },
-      "reviews": null
+      "reviews": null,
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
     },
     "RS/keto-tea": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/keto-tea",
@@ -1150,6 +1855,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/lossless": {
@@ -1220,6 +1945,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/mikoherb": {
@@ -1290,6 +2035,111 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "RS/mikotea": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/miko-tea",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Lavanda, sladić i orah.",
+        "label": "Aktivni sastojak",
+        "name": "Biljna mešavina za kupku",
+        "latin": "Lavandula angustifolia · Juglans regia",
+        "inci": "Cvet lavande (Lavandula flos) 20%, cvet rosopasa (Chelidonium majus) 20%, koren sladića (Glycyrrhiza radix) 30%, list oraha (Juglans folium) 30%. Neto količina: 50 g.",
+        "tags": [
+          "50 g",
+          "Spoljna upotreba",
+          "Rinfuz mešavina",
+          "Proizvedeno u Srbiji"
+        ],
+        "imageAlt": "Biljna mešavina za kupku",
+        "image": "/images/sastav/rs-mikotea.webp"
+      },
+      "reviews": {
+        "score": 4.7,
+        "count": 8,
+        "items": [
+          {
+            "text": "Baš vam hvala, prezadovoljna sam onim što sam dobila. Htela sam i ranije da se javim, ali nisam imala priliku. Zaista mi je prijalo.",
+            "initials": "M.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Kupovala sam i u inostranstvu, ali mi ništa nije pomoglo. Jedino mi je ovo super i prezadovoljna sam. Konačno vidim neku razliku.",
+            "initials": "K.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Zahvalna sam, jer sam inače preosetljiva na gutanje. Ovo se kod mene pokazalo fenomenalno i lako mi je za upotrebu. Nisam očekivala da će tako ići.",
+            "initials": "L.D.",
+            "score": 5.0
+          },
+          {
+            "text": "Vidim promenu iz dubine, kako nokat raste. Ne boli me više, normalno gazim i normalno hodam. Za mene je to veliki napredak.",
+            "initials": "M.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Još uvek tretiram ono što je ostalo, ali ide napred. Zadovoljna sam, koristim redovno i pomaže mi. Za sada nemam nikakvih primedbi.",
+            "initials": "M.I.",
+            "score": 4.5
+          },
+          {
+            "text": "Bolje je nego ranije, nemam svrab ni bolove. Boja se polako menja i mislim da ide na bolje. Zadovoljna sam kako napreduje.",
+            "initials": "J.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Zadovoljna sam, jednu sam iskoristila i sada koristim drugu. Tek sam u toku, ali za sada nemam primedbi. Nastaviću do kraja.",
+            "initials": "N.V.",
+            "score": 4.5
+          },
+          {
+            "text": "Dosta je bolje nego što je bilo, mogu slobodno da kažem. Zadovoljna sam onim što vidim do sada. Nemam se na šta požaliti.",
+            "initials": "A.D.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/nautubone": {
@@ -1360,6 +2210,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/nefro-aktiv": {
@@ -1415,6 +2285,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/o-caps": {
@@ -1485,6 +2375,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/omni-potent": {
@@ -1520,6 +2430,186 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "RS/para-caps": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/paracaps",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Orah, karanfilić i beli luk.",
+        "label": "Aktivni sastojak",
+        "name": "Ekstrakt lista oraha",
+        "latin": "Juglans regia · Syzygium aromaticum · Allium sativum",
+        "inci": "Suvi ekstrakt lista oraha (Juglans regia) 3-4:1, suvi ekstrakt cvetnog pupoljka karanfilića (Syzygium aromaticum) 4:1, kapsula (želatin, boja: kalcijum-karbonat), suvi ekstrakt lukovice belog luka (Allium sativum) 12-14:1, sredstvo protiv zgrudnjavanja: magnezijum-stearat.",
+        "tags": [
+          "15 kapsula (7,5 g)",
+          "Bez veštačkih boja",
+          "1 dnevno",
+          "Hladno i tamno mesto"
+        ],
+        "imageAlt": "Ekstrakt lista oraha",
+        "image": "/images/sastav/rs-para-caps.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 23,
+        "items": [
+          {
+            "text": "Sa ovim kapsulama sam sredila ono što me najviše smetalo. Stomak i struk su splasnuli, nadimanja više nema, a probava mi radi kao švajcarski sat. Noge mi nisu više teške i umorne i imam mnogo više energije.",
+            "initials": "M.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Čaj sam koristila redovno i jako mi je pomogao, sada sam već pri kraju pakovanja. Stvarno sam zadovoljna kako mi prija.",
+            "initials": "V.R.",
+            "score": 5.0
+          },
+          {
+            "text": "Sada mi je drastično bolje, ne može se ni porediti sa onim kako mi je ranije bilo. Godinama sam se mučila. Odličan preparat, to sam rekla i juče.",
+            "initials": "J.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Odlično je, odlično, mogu samo to da kažem. To koristim redovno i osećam se super, kod mene je sve na visokom nivou.",
+            "initials": "D.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Otkad sam počela da pijem ovu terapiju, sve se lepo sredilo i regulisalo. Osetila sam da mi je spalo i oko vrata. Vas sam preporučila mnogima.",
+            "initials": "D.G.",
+            "score": 5.0
+          },
+          {
+            "text": "Meni se sada celo stanje popravilo i sve je super. Prezadovoljna sam, iskreno nisam očekivala da će mi tako prijati.",
+            "initials": "V.D.",
+            "score": 5.0
+          },
+          {
+            "text": "Svakim danom mi je sve bolje i to se lepo oseti. Znate šta, sve je to sada mnogo bolje nego ranije i izuzetno sam zadovoljna.",
+            "initials": "G.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Što se samog proizvoda tiče, zadovoljna sam njime u potpunosti. Nemam nikakvu zamerku i to je ono što mogu da kažem iz svog iskustva.",
+            "initials": "S.J.",
+            "score": 5.0
+          },
+          {
+            "text": "U suštini mi sve ide okej i osećam se potpuno dobro. Falilo mi je jedino da izbacim onaj višak iz stomaka i to se sada sredilo. Super je.",
+            "initials": "K.A.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "RS/para-clean": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/paraclean",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Kopriva, karanfilić i beli luk.",
+        "label": "Aktivni sastojak",
+        "name": "Ekstrakt lista koprive",
+        "latin": "Urtica dioica · Syzygium aromaticum · Allium sativum",
+        "inci": "Suvi ekstrakt lista koprive (Urtica dioica) 8-10:1, suvi ekstrakt cvetnog pupoljka karanfilića (Syzygium aromaticum) 4:1, kapsula (želatin, boja: kalcijum-karbonat), suvi ekstrakt lukovice belog luka (Allium sativum) 12-14:1, sredstvo protiv zgrudnjavanja: magnezijum-stearat.",
+        "tags": [
+          "15 kapsula (7,5 g)",
+          "Biljni ekstrakti",
+          "1 dnevno",
+          "Hladno i suvo mesto"
+        ],
+        "imageAlt": "Ekstrakt lista koprive",
+        "image": "/images/sastav/rs-para-clean.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 5,
+        "items": [
+          {
+            "text": "Nisam ovo očekivala, iskreno da vam kažem. Popila sam tek par kapsula i već mi je bolje, tako da sam zaista zadovoljna.",
+            "initials": "M.N.",
+            "score": 5.0
+          },
+          {
+            "text": "Uzimam ovo ujutru i uveče, uz još jedan preparat koji već pijem. Bolje mi je otkako sam počela i to lepo osetim.",
+            "initials": "M.D.",
+            "score": 4.5
+          },
+          {
+            "text": "Mast koristim s vremena na vreme, ali u suštini stalno. Čim osetim da me nešto malo zaboli, namažem i pomogne mi. Onako kako me je ranije bolelo, sada me više ne boli.",
+            "initials": "V.T.",
+            "score": 4.5
+          },
+          {
+            "text": "Bolje mi je nego ranije. Jedno vreme sam jela na silu, po par zalogaja, jer nisam mogla uopšte, a sada mi se vratio apetit.",
+            "initials": "M.N.",
+            "score": 4.5
+          },
+          {
+            "text": "Sve je dobro kod mene, ne mogu se požaliti. Za moje godine kažu da super izgledam, a i sama se tako osećam, tako da sam zadovoljna.",
+            "initials": "S.K.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/parazol": {
@@ -1590,6 +2680,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/prenutra": {
@@ -1630,6 +2740,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/pro-caps": {
@@ -1700,6 +2830,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/pro-drops": {
@@ -1770,6 +2920,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/prostamid": {
@@ -1825,6 +2995,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/quick-fit": {
@@ -1895,6 +3085,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/secretdiet": {
@@ -1965,6 +3175,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/slim-ease": {
@@ -2015,6 +3245,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/testoy": {
@@ -2085,76 +3335,26 @@
             "score": 4.0
           }
         ]
-      }
-    },
-    "RS/testoy-gel": {
-      "sourceUrl": "https://limitedcharm.com/rs/proizvod/testoy-gel",
-      "composition": {
-        "eyebrow": "Sastav",
-        "title": "INCI sastav.",
-        "label": "Aktivni sastojak",
-        "name": "Aloe vera i ginseng",
-        "latin": "Aloe barbadensis · Panax ginseng",
-        "inci": "Aqua, Glycerin, Aloe Barbadensis Leaf Extract, Caprylhydroxamic Acid, Glyceryl Caprylate, Capsicum Annuum Fruit Extract, Xanthan Gum, Calendula Officinalis Flower Oil, Salvia Officinalis Oil, Phenoxyethanol, Ethylhexylglycerin, Parfum, Panax Ginseng Root Powder.",
-        "tags": [
-          "Spoljna upotreba",
-          "Nije lubrikant",
-          "Hladno i tamno mesto",
-          "Biljna baza"
-        ],
-        "imageAlt": "Aloe vera i ginseng",
-        "image": "/images/sastav/rs-testoy-gel.webp"
       },
-      "reviews": {
-        "score": 4.4,
-        "count": 9,
-        "items": [
+      "pricing": {
+        "tiers": [
           {
-            "text": "Sve što sam naručio kod vas bilo je savršeno, i prvi i drugi put. Prezadovoljan sam preparatima i iskreno mogu da dam najvišu ocenu.",
-            "initials": "V.M.",
-            "score": 5.0
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
           },
           {
-            "text": "S ovim preparatom je sve sasvim zadovoljavajuće, čak odlično. Žena je prezadovoljna, a to dosta govori. Nemam baš nikakvu zamerku.",
-            "initials": "S.S.",
-            "score": 5.0
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
           },
           {
-            "text": "Prezadovoljan sam, a trenutno imam i zalihu kod kuće. Sve teče kako treba, pa nastavljam po istom. Nemam šta više da dodam.",
-            "initials": "N.M.",
-            "score": 5.0
-          },
-          {
-            "text": "Dugo ga već koristim i zadovoljan sam, pomaže mi. Kapsule ne volim da pijem, pa mi ovako mnogo više odgovara. Tako mi je sve mnogo jednostavnije.",
-            "initials": "Z.K.",
-            "score": 4.5
-          },
-          {
-            "text": "Iskreno, za sada sam zadovoljan i sve mi funkcioniše kako treba. Baš zato nisam ni poručivao nove količine, imam dovoljno.",
-            "initials": "O.P.",
-            "score": 4.0
-          },
-          {
-            "text": "U mojim godinama sam zadovoljan, ide to i dalje, možda malo ređe nego pre. Meni je to sasvim dovoljno i nemam zamerki.",
-            "initials": "R.J.",
-            "score": 4.0
-          },
-          {
-            "text": "Nemam nikakvih problema, uzimam ga više kao preventivu. Sve je solidno, a supruga je prezadovoljna, tako da smo oboje na dobitku.",
-            "initials": "M.O.",
-            "score": 4.0
-          },
-          {
-            "text": "Vidi se pomak, možda ne odmah veliki, ali uglavnom je bolje. Zadovoljan sam onim što sam dobio i nastavljam. Nema tu velike priče, jednostavno radi.",
-            "initials": "J.S.",
-            "score": 4.0
-          },
-          {
-            "text": "Ja sam zadovoljan, toliko mogu da kažem. Odgovara mi i nemam potrebu da menjam nešto drugo. Sve mi je kako treba i tako nastavljam.",
-            "initials": "U.T.",
-            "score": 4.0
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
           }
-        ]
+        ],
+        "freeDelivery": true
       }
     },
     "RS/u-caps": {
@@ -2225,6 +3425,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/varcolex": {
@@ -2295,6 +3515,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/varcosin": {
@@ -2365,6 +3605,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/viva-lift": {
@@ -2385,7 +3645,27 @@
         "imageAlt": "Kolagen i hijaluronska kiselina",
         "image": "/images/sastav/rs-viva-lift.webp"
       },
-      "reviews": null
+      "reviews": null,
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
+      }
     },
     "RS/wrinkless": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/wrinkless",
@@ -2455,6 +3735,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/acnosin": {
@@ -2525,6 +3825,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/altea": {
@@ -2555,6 +3875,26 @@
             "score": 3.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/apolloss": {
@@ -2610,6 +3950,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/beauty-derm": {
@@ -2680,6 +4040,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/bone-control": {
@@ -2750,6 +4130,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/celluless": {
@@ -2820,6 +4220,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/cellulflex": {
@@ -2890,6 +4310,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/deep-inhale": {
@@ -2925,6 +4365,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/dermal": {
@@ -2995,6 +4455,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/dia-drops": {
@@ -3065,6 +4545,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/diatea": {
@@ -3135,6 +4635,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/easy-slim": {
@@ -3170,6 +4690,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/erek-x": {
@@ -3220,6 +4760,261 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "BA/fertilitea": {
+      "sourceUrl": "https://limitedcharm.com/ba/proizvod/fertili-tea",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Biljke iz ženske tradicije.",
+        "label": "Aktivni sastojak",
+        "name": "Vrkuta",
+        "latin": "Alchemilla vulgaris",
+        "inci": "Kamilica, kopriva, matičnjak, kunica, vrkuta, neven.",
+        "tags": [
+          "Vrkuta",
+          "Kunica",
+          "Kamilica",
+          "Neven"
+        ],
+        "imageAlt": "Vrkuta",
+        "image": "/images/sastav/ba-fertilitea.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 2,
+        "items": [
+          {
+            "text": "Koristim ovo redovno i baš sam zadovoljna. Nemam nikakvih primjedbi, meni je sasvim odgovaralo. Toliko mogu reći iz svog iskustva.",
+            "initials": "B.J.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristim ovo redovno i baš sam zadovoljna. Nemam nikakvih primjedbi, meni je sasvim odgovaralo. Toliko mogu reći iz svog iskustva.",
+            "initials": "B.J.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "BA/gopotent": {
+      "sourceUrl": "https://limitedcharm.com/ba/proizvod/go-potent",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Mediteranske biljke u šolji.",
+        "label": "Aktivni sastojak",
+        "name": "Primorski vrijesak",
+        "latin": "Satureja montana",
+        "inci": "Primorski vrijesak, bosiljak, matičnjak, ruzmarin, kopriva.",
+        "tags": [
+          "Vrijesak",
+          "Bosiljak",
+          "Ruzmarin",
+          "Kopriva"
+        ],
+        "imageAlt": "Primorski vrijesak",
+        "image": "/images/sastav/ba-gopotent.webp"
+      },
+      "reviews": {
+        "score": 4.4,
+        "count": 5,
+        "items": [
+          {
+            "text": "Koristio sam ih duže vrijeme i baš sam bio zadovoljan. Stvarno mi je prijalo, pa nemam šta drugo reći osim pohvale.",
+            "initials": "H.T.",
+            "score": 5.0
+          },
+          {
+            "text": "Redovno koristim svaki dan i zadovoljan sam kako mi ide. Uklopio sam to u dan bez problema i nastavljam po istom.",
+            "initials": "S.R.",
+            "score": 4.5
+          },
+          {
+            "text": "Sve mi je normalno, ništa me ne boli i noć prespavam mirno, bez stalnog ustajanja. Za mene je to najbolji pokazatelj da mi prija.",
+            "initials": "V.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Mogu reći da sam zadovoljan onim što ovaj čaj postiže. Pijem ga bez problema i za mene je to sasvim dovoljno.",
+            "initials": "M.Đ.",
+            "score": 4.0
+          },
+          {
+            "text": "U mojim poznim godinama mogu reći da sam zadovoljan. Ne tražim čuda, ali meni ovo odgovara i to mi je sasvim dovoljno.",
+            "initials": "S.I.",
+            "score": 4.0
+          },
+          {
+            "text": "Meni je dosta pomoglo i sada je sve u redu, tako da mi za sada više ne treba. Hvalim vas gde god stignem, a ako zatreba, znam gde ću se javiti.",
+            "initials": "D.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Za svoje godine sam više nego zadovoljan. Bili smo supruga i ja nedavno na odmoru i sve je funkcionisalo kako treba, tako da ne bih menjao ništa.",
+            "initials": "D.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Dobro je, uzimam to redovno i zadovoljan sam. Uklopilo mi se u svakodnevnu rutinu bez ikakvog napora, tako da nemam potrebe da menjam bilo šta.",
+            "initials": "J.V.",
+            "score": 4.5
+          },
+          {
+            "text": "Godinama već vodim računa o sebi i uzimam ponešto preventivno. Sa ovim sam zadovoljan, u mojim godinama ne očekujem čuda, ali mi prija.",
+            "initials": "S.V.",
+            "score": 4.0
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "BA/goslim": {
+      "sourceUrl": "https://limitedcharm.com/ba/proizvod/go-slim",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Dobitna kombinacija za probavu.",
+        "label": "Aktivni sastojak",
+        "name": "Komorač",
+        "latin": "Foeniculum vulgare",
+        "inci": "Kim, komorač, cvijet kamilice, smreka, sena, krušina, sladić.",
+        "tags": [
+          "Kim",
+          "Komorač",
+          "Sena",
+          "Sladić"
+        ],
+        "imageAlt": "Komorač",
+        "image": "/images/sastav/ba-goslim.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 5,
+        "items": [
+          {
+            "text": "Za nekoliko mjeseci sam izgubila dosta kilograma i baš sam zadovoljna. Meni ovo stvarno odgovara i osjećam se dobro.",
+            "initials": "S.G.",
+            "score": 5.0
+          },
+          {
+            "text": "Go Slim sam koristila prije nekoliko godina i stvarno mi je pomogao. Osjetila sam razliku i na probavi i na metabolizmu. Meni je zaista djelovalo.",
+            "initials": "A.B.",
+            "score": 4.5
+          },
+          {
+            "text": "Potrošila sam nekoliko pakovanja i meni je super djelovao. Za par mjeseci sam skinula višak i, što je najvažnije, nisam ga brzo vratila. Zadovoljna sam kako se to zadržalo.",
+            "initials": "J.P.",
+            "score": 4.5
+          },
+          {
+            "text": "U posljednje vrijeme ga koristim slabije, zbog porodičnih prilika. Ali drugim ljudima ga i dalje preporučujem, na svoje ime. To valjda najbolje govori.",
+            "initials": "D.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Pio sam po jednu kapsulu svako jutro, dvadesetak minuta prije obroka. Prošle godine sam ga koristio nekoliko mjeseci i skinuo sam višak, ali kad sam prekinuo brzo mi se vratilo. Zato sam se sada ponovo vratio tome.",
+            "initials": "S.S.",
+            "score": 4.0
+          },
+          {
+            "text": "Uveče ga napravim, popijem i ujutru sve ide kako treba. Rešila sam problem bez grčeva u stomaku i bez ikakvih neprijatnosti. Prezadovoljna sam, stvarno.",
+            "initials": "M.G.",
+            "score": 5.0
+          },
+          {
+            "text": "Popila sam tek jednu turu, a apetit mi se skroz smanjio. S obzirom na godine, osećam se kao zmaj. Zadovoljna sam onim što sam do sada videla.",
+            "initials": "S.Đ.",
+            "score": 5.0
+          },
+          {
+            "text": "Imala sam velikih problema sa stolicom, znalo je da prođe i po nekoliko dana. Sada idem normalno, ujutru, a nekad i tokom dana. Što se toga tiče, stvarno sam zadovoljna.",
+            "initials": "M.Đ.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristim već treće pakovanje i osećam se mnogo bolje. Smršala sam, nisam naduta i sve je u redu. Dobar je, zadovoljna sam.",
+            "initials": "A.D.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/hemomax": {
@@ -3290,6 +5085,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/hemoroclear": {
@@ -3360,6 +5175,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/hydromax": {
@@ -3415,6 +5250,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/hyper-caps": {
@@ -3485,6 +5340,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/hyper-drops": {
@@ -3555,6 +5430,97 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": null
+    },
+    "BA/hypertea": {
+      "sourceUrl": "https://limitedcharm.com/ba/proizvod/hyper-tea",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Šest biljaka, jedna namjena.",
+        "label": "Aktivni sastojak",
+        "name": "Glog",
+        "latin": "Crataegus oxycantha",
+        "inci": "Cvijet i list gloga, korijen valerijane, list breze, plod šipka, kunica, list bijele imele.",
+        "tags": [
+          "Glog",
+          "Valerijana",
+          "Imela",
+          "Bez šećera"
+        ],
+        "imageAlt": "Glog",
+        "image": "/images/sastav/ba-hypertea.webp"
+      },
+      "reviews": {
+        "score": 4.4,
+        "count": 7,
+        "items": [
+          {
+            "text": "Odlično se osjećam otkako ga pijem. Nemam ni potrebe da išta provjeravam, jednostavno mi je dobro.",
+            "initials": "B.T.",
+            "score": 5.0
+          },
+          {
+            "text": "Čaj mi stvarno prija. Primijetila sam da se lakše krećem i da imam malo više energije nego prije. Sve u svemu, dobro se osjećam.",
+            "initials": "H.B.",
+            "score": 4.5
+          },
+          {
+            "text": "Ovih dana mi je puno bolje, tegobe su se smirile i ujutro više nemam onih neugodnosti. Vidim da ima poboljšanja otkako pijem čaj.",
+            "initials": "B.D.",
+            "score": 4.5
+          },
+          {
+            "text": "Osjetio sam da mi djeluje. Poslije obroka lijepo popijem jednu šolju i to me održava kroz dan. Zadovoljan sam.",
+            "initials": "A.H.",
+            "score": 4.5
+          },
+          {
+            "text": "Popijem ga prije jela i osjećam se bolje nego ranije. Uvečer sam ga izbacio i tako mi najbolje odgovara.",
+            "initials": "V.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Ujutru kad ustanem prvo popijem čaj i to mi je ušlo u rutinu. Uz šetnju i sve ostalo što radim, zadovoljan sam kako se osjećam.",
+            "initials": "M.Š.",
+            "score": 4.0
+          },
+          {
+            "text": "Ne koristim ga dugo, ali koliko vidim, dobro je. Zadovoljna sam i nastavljam dalje.",
+            "initials": "M.Š.",
+            "score": 4.0
+          },
+          {
+            "text": "Čaj pijem jednom dnevno, popodne, i to mi je ušlo u naviku. Zadovoljan sam njime i osećam se dobro.",
+            "initials": "C.C.",
+            "score": 4.5
+          },
+          {
+            "text": "Redovno ga koristim i osećam da mi je malo bolje. Zadovoljna sam kako mi se uklopio u dan.",
+            "initials": "K.I.",
+            "score": 4.0
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/intimotea": {
@@ -3590,6 +5556,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/keto-tea": {
@@ -3635,6 +5621,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/lossless": {
@@ -3705,6 +5711,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/mikoherb": {
@@ -3775,6 +5801,111 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "BA/mikotea": {
+      "sourceUrl": "https://limitedcharm.com/ba/proizvod/miko-tea",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Prirodni sastav kupke.",
+        "label": "Aktivni sastojak",
+        "name": "Lavanda",
+        "latin": "Lavandula angustifolia",
+        "inci": "Lavanda, korijen sladića, list oraha, ekstrakt biljke zmijino mlijeko.",
+        "tags": [
+          "Lavanda",
+          "Sladić",
+          "Orah",
+          "Antiseptik"
+        ],
+        "imageAlt": "Lavanda",
+        "image": "/images/sastav/ba-mikotea.webp"
+      },
+      "reviews": {
+        "score": 4.4,
+        "count": 5,
+        "items": [
+          {
+            "text": "Kupovala sam i u inostranstvu, ali mi ništa nije pomoglo. Jedino mi je ovo super i prezadovoljna sam. Konačno vidim neku razliku.",
+            "initials": "K.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Dosta je bolje nego što je bilo, mogu slobodno reći. Zadovoljna sam onim što vidim do sada. Nemam se na šta požaliti.",
+            "initials": "A.D.",
+            "score": 4.5
+          },
+          {
+            "text": "Vidim promjenu iz dubine, kako nokat raste. Ne boli me više, normalno gazim i normalno hodam. Za mene je to veliki napredak.",
+            "initials": "M.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Bolje je nego prije, nemam svrab ni bolove. Boja se polako mijenja i mislim da ide na bolje. Zadovoljna sam kako napreduje.",
+            "initials": "J.M.",
+            "score": 4.0
+          },
+          {
+            "text": "Zadovoljna sam, jednu sam potrošila i sada koristim drugu. Tek sam u toku, ali za sada nemam primjedbi. Nastavit ću do kraja.",
+            "initials": "N.V.",
+            "score": 4.0
+          },
+          {
+            "text": "Baš vam hvala, prezadovoljna sam onim što sam dobila. Htela sam i ranije da se javim, ali nisam imala priliku. Zaista mi je prijalo.",
+            "initials": "M.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Zahvalna sam, jer sam inače preosetljiva na gutanje. Ovo se kod mene pokazalo fenomenalno i lako mi je za upotrebu. Nisam očekivala da će tako ići.",
+            "initials": "L.D.",
+            "score": 5.0
+          },
+          {
+            "text": "Još uvek tretiram ono što je ostalo, ali ide napred. Zadovoljna sam, koristim redovno i pomaže mi. Za sada nemam nikakvih primedbi.",
+            "initials": "M.I.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/nautubone": {
@@ -3845,6 +5976,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/nefro-aktiv": {
@@ -3900,6 +6051,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/o-caps": {
@@ -3970,6 +6141,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/omni-potent": {
@@ -4000,6 +6191,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/parazol": {
@@ -4070,6 +6281,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/prenutra": {
@@ -4110,6 +6341,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/pro-caps": {
@@ -4180,6 +6431,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/pro-drops": {
@@ -4250,6 +6521,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/prostamid": {
@@ -4306,6 +6597,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/psorizin": {
@@ -4341,6 +6652,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/quick-fit": {
@@ -4410,6 +6741,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/testox": {
@@ -4459,6 +6810,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/testoy-gel": {
@@ -4528,6 +6899,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/u-caps": {
@@ -4598,6 +6989,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/varcolex": {
@@ -4668,6 +7079,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/varcosin": {
@@ -4738,6 +7169,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "BA/wrinkless": {
@@ -4808,6 +7259,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 110.0,
+            "price": 55.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 220.0,
+            "price": 85.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 100.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/altea": {
@@ -4838,6 +7309,26 @@
             "score": 3.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/apolloss": {
@@ -4893,6 +7384,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/beauty-derm": {
@@ -4963,6 +7474,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/bone-control": {
@@ -5033,6 +7564,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/celluless": {
@@ -5068,6 +7619,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/deep-inhale": {
@@ -5098,6 +7669,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/dermal": {
@@ -5168,6 +7759,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/dia-drops": {
@@ -5238,6 +7849,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/diatea": {
@@ -5308,6 +7939,206 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "HR/gopotent": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/go-potent",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Mješavina iz prirode.",
+        "label": "Aktivni sastojak",
+        "name": "Primorski vrijesak",
+        "latin": "Satureja montana",
+        "inci": "Primorski vrijesak, bosiljak, matičnjak, ružmarin, kopriva.",
+        "tags": [
+          "Čaj",
+          "Za muškarce",
+          "3× dnevno",
+          "Biljna baza"
+        ],
+        "imageAlt": "Primorski vrijesak",
+        "image": "/images/sastav/hr-gopotent.webp"
+      },
+      "reviews": {
+        "score": 4.3,
+        "count": 5,
+        "items": [
+          {
+            "text": "Redovito ga koristim svaki dan i zadovoljan sam kako mi ide. Uklopio sam to u dan bez problema i nastavljam po istom.",
+            "initials": "S.R.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristio sam ih neko vrijeme i baš sam bio zadovoljan. Stvarno mi je prijalo, pa nemam što drugo reći osim pohvale.",
+            "initials": "H.T.",
+            "score": 4.5
+          },
+          {
+            "text": "Sve mi je normalno, ništa me ne muči i noć prespavam mirno, bez stalnog ustajanja. To mi je najbolji pokazatelj da mi odgovara.",
+            "initials": "V.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Mogu reći da sam zadovoljan onim što ovaj čaj postiže. Pijem ga bez problema i meni je to sasvim dovoljno.",
+            "initials": "M.Đ.",
+            "score": 4.0
+          },
+          {
+            "text": "U svojim poznim godinama mogu reći da sam zadovoljan. Ne tražim čuda, no meni ovo odgovara i to mi je dovoljno.",
+            "initials": "S.I.",
+            "score": 4.0
+          },
+          {
+            "text": "Meni je dosta pomoglo i sada je sve u redu, tako da mi za sada više ne treba. Hvalim vas gde god stignem, a ako zatreba, znam gde ću se javiti.",
+            "initials": "D.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Za svoje godine sam više nego zadovoljan. Bili smo supruga i ja nedavno na odmoru i sve je funkcionisalo kako treba, tako da ne bih menjao ništa.",
+            "initials": "D.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Dobro je, uzimam to redovno i zadovoljan sam. Uklopilo mi se u svakodnevnu rutinu bez ikakvog napora, tako da nemam potrebe da menjam bilo šta.",
+            "initials": "J.V.",
+            "score": 4.5
+          },
+          {
+            "text": "Godinama već vodim računa o sebi i uzimam ponešto preventivno. Sa ovim sam zadovoljan, u mojim godinama ne očekujem čuda, ali mi prija.",
+            "initials": "S.V.",
+            "score": 4.0
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "HR/goslim": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/go-slim",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Prirodna baza za probavu.",
+        "label": "Aktivni sastojak",
+        "name": "Kim, komorač i kamilica",
+        "latin": "Carum carvi · Foeniculum vulgare · Matricaria chamomilla",
+        "inci": "Kim, komorač, cvijet kamilice, smreka, sena, krušina, sladić.",
+        "tags": [
+          "Čaj",
+          "Detoks",
+          "Biljna baza",
+          "Probava"
+        ],
+        "imageAlt": "Kim, komorač i kamilica",
+        "image": "/images/sastav/hr-goslim.webp"
+      },
+      "reviews": {
+        "score": 4.7,
+        "count": 5,
+        "items": [
+          {
+            "text": "Za nekoliko mjeseci izgubila sam dosta kilograma i baš sam zadovoljna. Meni ovo stvarno odgovara i osjećam se dobro.",
+            "initials": "S.G.",
+            "score": 5.0
+          },
+          {
+            "text": "Mogu vam reći da sam prezadovoljna Go Slim čajem. Kamo sreće da ga je bilo i prije, ne bih toliko čekala. Stvarno mi odgovara.",
+            "initials": "M.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Uzimala sam to i prije, pa sam napravila stanku od nekoliko godina. Sada sam se vratila i naručila novo pakiranje jer se jednostavno osjećam super kad ga pijem. Nije mi bitno samo skidanje kilograma, nego i kako se osjećam.",
+            "initials": "M.A.",
+            "score": 4.5
+          },
+          {
+            "text": "Meni je najvažnije što imam redovitu stolicu otkako pijem taj čaj. Popijem ga ujutro i navečer, prvenstveno zbog probave. Kilaža mi nije bitna, ovo mi je puno važnije i super djeluje.",
+            "initials": "S.T.",
+            "score": 4.5
+          },
+          {
+            "text": "Lijepo mi je što ovo nisu neka teška odricanja. Apetit mi je smanjen, osjećaj gladi gotovo da i ne postoji, a nisam umorna. Tek sam na početku, ali zasad sam zadovoljna.",
+            "initials": "V.Š.",
+            "score": 4.5
+          },
+          {
+            "text": "Uveče ga napravim, popijem i ujutru sve ide kako treba. Rešila sam problem bez grčeva u stomaku i bez ikakvih neprijatnosti. Prezadovoljna sam, stvarno.",
+            "initials": "M.G.",
+            "score": 5.0
+          },
+          {
+            "text": "Popila sam tek jednu turu, a apetit mi se skroz smanjio. S obzirom na godine, osećam se kao zmaj. Zadovoljna sam onim što sam do sada videla.",
+            "initials": "S.Đ.",
+            "score": 5.0
+          },
+          {
+            "text": "Imala sam velikih problema sa stolicom, znalo je da prođe i po nekoliko dana. Sada idem normalno, ujutru, a nekad i tokom dana. Što se toga tiče, stvarno sam zadovoljna.",
+            "initials": "M.Đ.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristim već treće pakovanje i osećam se mnogo bolje. Smršala sam, nisam naduta i sve je u redu. Dobar je, zadovoljna sam.",
+            "initials": "A.D.",
+            "score": 4.5
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/hemoroclear": {
@@ -5378,6 +8209,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/hyper-caps": {
@@ -5448,6 +8299,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/hyper-drops": {
@@ -5518,6 +8389,116 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
+      }
+    },
+    "HR/hypertea": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/hyper-tea",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Tradicionalna mješavina.",
+        "label": "Aktivni sastojak",
+        "name": "Glog i valerijana",
+        "latin": "Crataegus · Valeriana officinalis",
+        "inci": "Cvijet i list gloga, korijen valerijane, list breze, plod šipka, kunica, list bijele imele. Ne preporučuje se trudnicama i osobama s kroničnim oboljenjima.",
+        "tags": [
+          "Čaj",
+          "Bez šećera",
+          "Biljna baza",
+          "Smirenje"
+        ],
+        "imageAlt": "Glog i valerijana",
+        "image": "/images/sastav/hr-hypertea.webp"
+      },
+      "reviews": {
+        "score": 4.1,
+        "count": 5,
+        "items": [
+          {
+            "text": "Čaj pijem popodne i to mi je već ušlo u naviku. Zadovoljan sam njime i osjećam se dobro.",
+            "initials": "C.C.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristim ga tek mjesec dana, dakle ne dugo, ali već vidim da će biti učinka. Zasad sam zadovoljna.",
+            "initials": "M.P.",
+            "score": 4.0
+          },
+          {
+            "text": "Redovito ga koristim i osjećam da mi je malo bolje. Zadovoljna sam kako mi se uklopio u dan.",
+            "initials": "K.I.",
+            "score": 4.0
+          },
+          {
+            "text": "Ne koristim ga dugo, ali koliko vidim, dobar je. Zadovoljna sam i nastavljam dalje.",
+            "initials": "M.Š.",
+            "score": 4.0
+          },
+          {
+            "text": "Pomogao mi je dok sam ga koristio, to mogu reći. Otad je prošlo dosta vremena, ali sjećam se da mi je prijao.",
+            "initials": "S.L.",
+            "score": 4.0
+          },
+          {
+            "text": "Uzimala sam to prošlog leta i posle mi je bilo stvarno super. Nesvestice koje sam imala više se nisu javljale. Popila sam koliko su mi preporučili i sada naručujem ponovo.",
+            "initials": "S.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Popijem ga prije jela i osjećam se bolje nego ranije. Uvečer sam ga izbacio i tako mi najbolje odgovara.",
+            "initials": "V.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Osjetio sam da mi djeluje. Poslije obroka lijepo popijem jednu šolju i to me održava kroz dan. Zadovoljan sam.",
+            "initials": "A.H.",
+            "score": 4.5
+          },
+          {
+            "text": "Ujutru kad ustanem prvo popijem čaj i to mi je ušlo u rutinu. Uz šetnju i sve ostalo što radim, zadovoljan sam kako se osjećam.",
+            "initials": "M.Š.",
+            "score": 4.0
+          }
+        ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/keto-tea": {
@@ -5563,6 +8544,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/lossless": {
@@ -5633,6 +8634,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/mikoherb": {
@@ -5703,6 +8724,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/nautubone": {
@@ -5773,6 +8814,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/nefro-aktiv": {
@@ -5828,6 +8889,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/o-caps": {
@@ -5898,6 +8979,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/omni-potent": {
@@ -5928,6 +9029,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/parazol": {
@@ -5998,6 +9119,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/prenutra": {
@@ -6038,6 +9179,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/pro-caps": {
@@ -6108,6 +9269,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/pro-drops": {
@@ -6178,6 +9359,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/prostamid": {
@@ -6233,6 +9434,26 @@
             "score": 5.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/quick-fit": {
@@ -6303,6 +9524,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/testoy": {
@@ -6373,6 +9614,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/testoy-gel": {
@@ -6443,6 +9704,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/u-caps": {
@@ -6513,6 +9794,26 @@
             "score": 4.0
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "HR/varcosin": {
@@ -6583,6 +9884,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 78.0,
+            "price": 39.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 156.0,
+            "price": 69.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 330.0,
+            "price": 78.0
+          }
+        ],
+        "freeDelivery": true
       }
     },
     "RS/bonecontrol": {
@@ -6653,6 +9974,26 @@
             "score": 4.5
           }
         ]
+      },
+      "pricing": {
+        "tiers": [
+          {
+            "quantity": 1,
+            "oldPrice": 5500.0,
+            "price": 3700.0
+          },
+          {
+            "quantity": 2,
+            "oldPrice": 11000.0,
+            "price": 5850.0
+          },
+          {
+            "quantity": 3,
+            "oldPrice": 16500.0,
+            "price": 6800.0
+          }
+        ],
+        "freeDelivery": true
       }
     }
   }
