@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Icon from '../../../../components/Icon.astro';
+import { catalogMarkets, geoUrl, offerUrl, offers, verticalLabel, type Offer } from '../../../../data/offers';
+
+export function getStaticPaths() {
+  return offers.map((offer) => ({
+    params: { geo: offer.geo.toLowerCase(), slug: offer.slug },
+    props: { offer },
+  }));
+}
+interface Props { offer: Offer; }
+const { offer } = Astro.props;
+const market = catalogMarkets[offer.geo];
+const path = offerUrl(offer);
+const detailedProduct = offer.geo === 'RS' && offer.slug === 'parazol' ? '/paraziti-i-detoks/parazol/' : null;
+---
+
+<BaseLayout
+  title={`${offer.name} – ${market.name}`}
+  description={`${offer.name} – ponuda za ${market.name}. Oblasti: ${offer.verticals.map(verticalLabel).join(', ')}. Detalji o ceni i naručivanju još nisu potvrđeni.`}
+  path={path}
+  noindex
+  breadcrumbs={[
+    { name: 'Ponude', href: '/ponude/' },
+    { name: market.name, href: geoUrl(offer.geo) },
+    { name: offer.name, href: path },
+  ]}
+>
+  <section class="container-site py-10 lg:py-16">
+    <Breadcrumbs items={[
+      { name: 'Ponude', href: '/ponude/' },
+      { name: market.name, href: geoUrl(offer.geo) },
+      { name: offer.name, href: path },
+    ]} />
+    <div class="mt-8 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+      <div class="flex min-h-72 items-center justify-center rounded-3xl bg-[#e7efdc] text-brand">
+        <div class="flex flex-col items-center gap-4">
+          <Icon name="box" size={76} />
+          <p class="text-sm font-medium">Fotografija proizvoda u pripremi</p>
+        </div>
+      </div>
+      <div>
+        <span class="inline-flex items-center rounded-full bg-[#f3efe4] px-4 py-2 text-sm font-semibold text-ink/80">{market.name} · {offer.geo}</span>
+        <h1 class="mt-5 text-4xl font-bold leading-tight text-[#173d22] sm:text-5xl">{offer.name}</h1>
+        <p class="mt-5 text-lg text-ink/75">
+          Ponuda je evidentirana u katalogu proizvoda za tržište {market.name}.
+          Podaci o sastavu, pakovanju i načinu upotrebe biće objavljeni nakon provere kod prodavca.
+        </p>
+        <h2 class="mt-8 text-lg font-semibold text-ink">Oblasti proizvoda</h2>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {offer.verticals.map((vertical) => <span class="rounded-full bg-brand-2 px-3 py-2 text-sm text-brand">{verticalLabel(vertical)}</span>)}
+        </div>
+        <div class="mt-8 rounded-2xl border border-line bg-paper p-5">
+          <h2 class="text-lg font-semibold text-ink">Cena i poručivanje</h2>
+          <p class="mt-2 text-ink/75">
+            Cena i dostupnost još nisu potvrđene. Online porudžbine za ovu ponudu nisu aktivirane.
+          </p>
+          <p class="mt-3 text-sm text-muted">Informacije o proizvodu ne predstavljaju medicinski savet.</p>
+        </div>
+        {detailedProduct && (
+          <a href={detailedProduct} class="mt-6 inline-flex items-center gap-2 font-semibold text-brand hover:underline">
+            Pogledaj detaljan opis proizvoda <Icon name="arrow-right" size={18} />
+          </a>
+        )}
+        <a href={geoUrl(offer.geo)} class="mt-6 inline-flex items-center gap-2 font-semibold text-brand hover:underline">
+          <Icon name="arrow-right" size={18} class="rotate-180" /> Ostale ponude za {market.shortName}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
