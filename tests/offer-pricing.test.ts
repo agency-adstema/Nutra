@@ -11,16 +11,16 @@ const regular: Record<OfferGeo, number[][]> = {
 const hp: Record<OfferGeo,number> = {RS:3700, BA:30, HR:20};
 
 describe('Cene u XLSX: redovi 2-46, list Cene', () => {
-  it('41 dostupna proizvoda i 4 nedostupna BA nemaju prikaz cene', () => {
+  it('38 javnih proizvoda sa cenom, 3 izbačena HP Beauty Derm i 4 nedostupna BA', () => {
     const mapped = offers.filter(o=>getCatalogPrice(o.geo,o.slug));
-    expect(mapped).toHaveLength(41);
+    expect(mapped).toHaveLength(38);
     expect(allOffers.filter(o=>!getCatalogPrice(o.geo,o.slug)).map(o=>o.geo+'/'+o.slug).sort())
       .toEqual(['BA/hp-cardio-zen','BA/hp-glyco-balance','BA/hp-para-clean','BA/hp-slim-ease'].sort());
   });
 
   it('svih 19 aktivnih RS ponuda imaju cenu jednog pakovanja 3.700 RSD, bez 2.000 RSD', () => {
     const rs = offers.filter(o => o.geo === 'RS');
-    expect(rs).toHaveLength(19);
+    expect(rs).toHaveLength(18);
     for (const offer of rs) {
       const pricing = getCatalogPrice('RS', offer.slug);
       expect(pricing?.tiers[0].newPrice).toBe(3700);
@@ -42,9 +42,9 @@ describe('Cene u XLSX: redovi 2-46, list Cene', () => {
     }
   });
 
-  it('21 HP proizvod imaju SAMO jednu cenu, bez izmišljene precrtane stare cene', () => {
+  it('18 javnih HP proizvoda imaju SAMO jednu cenu, bez izmišljene precrtane stare cene', () => {
     const hpOffers=offers.filter(o=>o.slug.startsWith('hp-')&&getCatalogPrice(o.geo,o.slug));
-    expect(hpOffers).toHaveLength(21);
+    expect(hpOffers).toHaveLength(18);
     for(const o of hpOffers) {
       const p=getCatalogPrice(o.geo,o.slug)!;
       expect(p.type).toBe('hp');
