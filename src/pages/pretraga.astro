@@ -35,7 +35,7 @@ import Icon from '../components/Icon.astro';
   const list = root.querySelector<HTMLUListElement>('[data-search-results]')!;
   const summary = root.querySelector<HTMLElement>('[data-search-summary]')!;
   let index: Item[] = [];
-  const typeLabel: Record<string, string> = { product: 'Proizvod', category: 'Kategorija', guide: 'Vodič' };
+  const typeLabel: Record<string, string> = { product: 'Proizvod', offer: 'Ponuda', category: 'Kategorija', guide: 'Vodič' };
 
   function render(q: string) {
     list.innerHTML = '';
