@@ -97,7 +97,7 @@ function initForm(form: HTMLFormElement) {
     // Broj se sam formatira dok se kuca: +381 61 293 8152 (grupe 2 · 3 · ostatak).
     const formatLocal = (digits: string) =>
       [digits.slice(0, 2), digits.slice(2, 5), digits.slice(5)].filter(Boolean).join(' ');
-    phoneInput.addEventListener('input', () => {
+    const reformatPhone = () => {
       const v = phoneInput.value;
       const dial = phonePrefix.trim(); // +381
       const dialDigits = dial.slice(1); // 381
@@ -111,7 +111,15 @@ function initForm(form: HTMLFormElement) {
       phoneInput.value = next;
       const end = next.length;
       phoneInput.setSelectionRange(end, end);
+    };
+    // Android tastature (npr. Samsung) šalju cifre kroz „composition“ — formatiramo i kad se završi.
+    phoneInput.addEventListener('input', (e) => {
+      if (!(e as InputEvent).isComposing) reformatPhone();
     });
+    phoneInput.addEventListener('compositionend', reformatPhone);
+    phoneInput.addEventListener('keyup', reformatPhone);
+    phoneInput.addEventListener('change', reformatPhone);
+    phoneInput.addEventListener('blur', reformatPhone);
     phoneInput.addEventListener('focus', () => {
       if (phoneInput.value.trim() === phonePrefix.trim()) {
         phoneInput.value = phonePrefix;
