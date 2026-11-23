@@ -130,12 +130,17 @@ try {
   const after = await (await fetch(`http://127.0.0.1:${MOCK_PORT}/__orders`)).json();
   ok(after.length === 1, 'test režim nije poslao ništa u CRM');
 
-  // 6) Video se pokreće klikom
+  // 6) Objavljeni video je samo autentičan, uz potvrđenu dozvolu.
   await page.goto(`http://127.0.0.1:${LIVE_PORT}${PRODUCT}`);
-  await page.locator('[data-video-play]').first().click();
-  await page.waitForTimeout(800);
-  ok((await page.locator('[data-video-card] video').count()) === 1, 'video se učitava tek na klik');
-  ok(events.includes('video_start'), 'video_start događaj');
+  const approvedVideos = page.locator('[data-video-play]');
+  if (await approvedVideos.count()) {
+    await approvedVideos.first().click();
+    await page.waitForTimeout(800);
+    ok((await page.locator('[data-video-card] video, [data-video-card] iframe').count()) >= 1, 'dozvoljeni video se učitava tek na klik');
+    ok(events.includes('video_start'), 'video_start događaj');
+  } else {
+    ok((await page.locator('#video').count()) === 0, 'nema lažnih video-recenzija dok ne dodamo stvarne snimke');
+  }
 
   // 7) Sticky CTA na mobilnom
   await page.evaluate(() => window.scrollTo(0, 1600));
