@@ -31,10 +31,11 @@ export function getOfferDetails(geo: OfferGeo, slug: string): OfferDetails | und
   return entries.get(`${geo}/${slug}`);
 }
 
-/** Self-hosted when downloaded during staging build; remote original is fallback. */
+/** Use only a downloaded, self-hosted copy from the static build.
+ * Never hotlink products from the MonadLead API domain.
+ */
 export function getOfferImage(details: OfferDetails | undefined): string | null {
   if (!details?.imageUrl) return null;
   const key = `${details.country}/${details.slug}`;
-  const local = (manifest as Record<string,string>)[key];
-  return local || details.imageUrl;
+  return (manifest as Record<string,string>)[key] ?? null;
 }
