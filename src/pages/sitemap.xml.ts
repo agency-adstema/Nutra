@@ -12,7 +12,6 @@ const STATIC_PAGES = [
   '/kontakt/',
   '/kako-pisemo/',
   '/obrada-porudzbina/',
-  '/affiliate-izjava/',
   '/politika-privatnosti/',
   '/kolacici/',
   '/uslovi-koriscenja/',
