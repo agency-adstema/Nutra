@@ -102,7 +102,7 @@ for (const h of heroCfg as HeroEntry[]) {
               {s.image ? (
                 <img
                   src={s.image}
-                  alt={s.isPhoto ? `${s.name ?? 'Kupac'} sa proizvodom ${s.product}` : `Pakovanje proizvoda ${s.product}`}
+                  alt={s.isPhoto ? `Osoba sa proizvodom ${s.product}` : `Pakovanje proizvoda ${s.product}`}
                   width="720"
                   height="495"
                   loading={i === 0 ? 'eager' : 'lazy'}
@@ -135,14 +135,11 @@ for (const h of heroCfg as HeroEntry[]) {
         ))}
       </div>
 
-      <button type="button" class="absolute left-2 top-[34%] grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow-lg hover:bg-white" aria-label="Prethodni proizvod" data-prev>
-        <Icon name="chevron-right" size={20} class="rotate-180" />
-      </button>
-      <button type="button" class="absolute right-2 top-[34%] grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow-lg hover:bg-white" aria-label="Sledeći proizvod" data-next>
-        <Icon name="chevron-right" size={20} />
-      </button>
-
-      <div class="mt-4 flex justify-center gap-2">
+      <div class="mt-4 flex items-center justify-center gap-3">
+        <button type="button" class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line bg-paper text-ink shadow-sm hover:bg-white" aria-label="Prethodni proizvod" data-prev>
+          <Icon name="chevron-right" size={18} class="rotate-180" />
+        </button>
+        <div class="flex items-center gap-2">
         {slides.map((s, i) => (
           <button
             type="button"
@@ -152,6 +149,10 @@ for (const h of heroCfg as HeroEntry[]) {
             data-dot={i}
           />
         ))}
+        </div>
+        <button type="button" class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line bg-paper text-ink shadow-sm hover:bg-white" aria-label="Sledeći proizvod" data-next>
+          <Icon name="chevron-right" size={18} />
+        </button>
       </div>
     </div>
   )
