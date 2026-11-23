@@ -2,7 +2,6 @@
 import { getEntry, render } from 'astro:content';
 import { getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import DemoNotice from '../../components/DemoNotice.astro';
 import Icon from '../../components/Icon.astro';
 import ProductHero from '../../components/product/ProductHero.astro';
 import ProductOverview from '../../components/product/ProductOverview.astro';
@@ -87,7 +86,6 @@ const productInfo = {
   bodyClass="pb-20 lg:pb-0"
 >
   <div data-product-page data-product={JSON.stringify(productInfo)}>
-    {d.demo && <DemoNotice />}
 
     <ProductHero product={product} categoryName={category.data.name} categoryHref={`/${category.data.slug}/`} market={market} />
 
