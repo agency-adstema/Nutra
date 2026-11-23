@@ -5,7 +5,7 @@ import { formatPrice, priceView } from '../../lib/format';
 import type { Product } from '../../lib/content';
 import type { Offer } from '../../data/offers';
 import { getOfferDetails } from '../../data/offer-details';
-import { getCatalogPrice, getEditorialPrice, formatCatalogPrice, referencePriceNotice } from '../../data/offer-pricing';
+import { getCatalogPrice, getEditorialPrice, formatCatalogPrice, popularPackageBadge, deliveryTerms, referencePriceNotice } from '../../data/offer-pricing';
 import type { MarketConfig } from '../../config/countries';
 import { PUBLIC_STATIC_PREVIEW, PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
 
@@ -107,24 +107,41 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
                 <span class={labelCls} aria-hidden="true">Pakovanje</span>
                 <div>
                   <div class="grid gap-2">
-                    {packages.map((p) => (
-                      <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-line bg-white px-3.5 py-2.5 transition-colors has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:ring-2 has-[:checked]:ring-brand/15 hover:border-brand/50">
-                        <input type="radio" name="packageId" value={p.id} checked={p.id === defaultPkg.id} class="h-4 w-4 shrink-0 accent-[var(--c-primary)]" />
-                        <span class="flex-1 text-[15px] font-semibold text-ink">{p.label}</span>
-                        <span class="text-[15px] font-semibold text-brand">
-                          {(pv.show || visiblePricing) && p.price != null ? (
-                            <>
-                              <strong>{formatPrice(p.price, market.currencyLabel)}</strong>
-                              {visiblePricing?.tiers.find(t => t.id === p.id)?.referencePrice != null && (
-                                <del class="ml-2 text-xs font-normal text-muted">
-                                  {formatCatalogPrice(visiblePricing.tiers.find(t => t.id === p.id)!.referencePrice!, visiblePricing.geo)}
-                                </del>
+                    {packages.map((p) => {
+                      const tier = visiblePricing?.tiers.find(t => t.id === p.id);
+                      const badge = tier ? popularPackageBadge(visiblePricing!.geo, tier.quantity) : null;
+                      return (
+                        <label class={`relative block cursor-pointer rounded-xl border px-4 py-3 transition-colors has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:ring-2 has-[:checked]:ring-brand/15 hover:border-brand/50 ${tier?.quantity === 3 ? 'border-[#4c8a3a] bg-[#e5efd8]' : 'border-line bg-white'}`} data-package-choice={p.id}>
+                          {badge && (
+                            <span class="mb-2 inline-block rounded-full bg-[#1f5a2c] px-3 py-1 text-[11px] font-extrabold tracking-wide text-white">
+                              {badge}
+                            </span>
+                          )}
+                          <span class="flex items-start gap-3">
+                            <input type="radio" name="packageId" value={p.id} checked={p.id === defaultPkg.id} class="mt-2 h-4 w-4 shrink-0 accent-[var(--c-primary)]" />
+                            <span class="min-w-0 flex-1">
+                              <strong class="block text-[15px] text-ink">{p.label}</strong>
+                              <span class="mt-1 block text-xs font-medium text-[#235d2d]">Besplatna dostava</span>
+                              {tier && <span class="mt-1 block text-xs text-muted">Po pakovanju: {formatCatalogPrice(tier.unitPrice, visiblePricing!.geo)}</span>}
+                            </span>
+                            <span class="min-w-0 text-right">
+                              {tier?.referencePrice != null && (
+                                <del class="block text-xs text-muted">{formatCatalogPrice(tier.referencePrice, visiblePricing!.geo)}</del>
                               )}
-                            </>
-                          ) : <span class="font-normal text-muted">cena nije objavljena</span>}
-                        </span>
-                      </label>
-                    ))}
+                              <strong class="block whitespace-nowrap text-lg font-extrabold text-brand">
+                                {tier ? formatCatalogPrice(tier.newPrice, visiblePricing!.geo) : p.price != null ? formatPrice(p.price, market.currencyLabel) : 'Cena nije navedena'}
+                              </strong>
+                              {tier?.savings != null && (
+                                <span class="block text-xs font-bold text-[#236232]">UŠTEDA {formatCatalogPrice(tier.savings, visiblePricing!.geo)}</span>
+                              )}
+                              {tier?.discountPercent != null && (
+                                <span class="mt-1 inline-block rounded-full bg-[#dcebbf] px-2 py-0.5 text-xs font-bold text-[#225d30]">-{tier.discountPercent}%</span>
+                              )}
+                            </span>
+                          </span>
+                        </label>
+                      );
+                    })}
                   </div>
                   {visiblePricing?.freeShippingPerSheet && (
                     <p class="mt-3 text-xs text-muted">Besplatna dostava prema dostavljenom cenovniku partnera; potvrda uslova pre poručivanja.</p>
@@ -133,9 +150,31 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
                 </div>
               </fieldset>
             ) : (
-              <input type="hidden" name="packageId" value={defaultPkg.id} />
+              <>
+                <input type="hidden" name="packageId" value={defaultPkg.id} />
+                {visiblePricing && (
+                  <div class="rounded-xl border border-brand/25 bg-white px-4 py-3">
+                    <span class="block text-sm font-semibold text-ink">{defaultPkg.label}</span>
+                    <strong class="mt-1 block text-2xl font-extrabold text-brand">
+                      {formatCatalogPrice(visiblePricing.tiers[0].newPrice, visiblePricing.geo)}
+                    </strong>
+                    <span class="mt-1 block text-xs text-muted">Po pakovanju: {formatCatalogPrice(visiblePricing.tiers[0].unitPrice, visiblePricing.geo)}</span>
+                  </div>
+                )}
+              </>
             )
           }
+
+          {visiblePricing && (
+            <div class="rounded-xl border border-brand/15 bg-white/75 px-4 py-3" aria-live="polite">
+              <span class="block text-xs font-semibold uppercase tracking-wide text-muted">Ukupno za izabrano pakovanje</span>
+              <strong class="block text-2xl font-bold text-brand" data-order-total>
+                {formatCatalogPrice(visiblePricing.tiers[0].newPrice, visiblePricing.geo)}
+              </strong>
+              <p class="mt-2 text-xs font-medium text-ink/80">{deliveryTerms(visiblePricing.geo)}</p>
+              <p class="mt-1 text-[11px] text-muted">Rok isporuke je procena partnera, a ne garantovani termin.</p>
+            </div>
+          )}
 
           {visiblePricing && (
             <p class="text-xs text-muted">
@@ -178,7 +217,7 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
               <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".3" stroke-width="3" />
               <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
             </svg>
-            <span data-submit-label>{isCatalogPreview || PUBLIC_STATIC_PREVIEW ? 'Proveri formu' : 'Pošalji porudžbinu'}</span>
+            <span data-submit-label>{isCatalogPreview || PUBLIC_STATIC_PREVIEW ? 'Proveri formu' : visiblePricing ? `NARUČI POUZEĆEM — ${formatCatalogPrice(visiblePricing.tiers[0].newPrice, visiblePricing.geo)}` : 'Pošalji porudžbinu'}</span>
           </button>
           </div>
 
