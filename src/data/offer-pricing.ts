@@ -97,12 +97,6 @@ export function getEditorialPrice(geo: string, slug: string): CatalogPrice | und
   if (geo !== 'RS' || !['nautubone', 'bonecontrol', 'parazol'].includes(slug)) return undefined;
   return getCatalogPrice('RS', 'parazol');
 }
-export function referencePriceNotice(slug: string): string {
-  return slug === 'nautubone' || slug === 'bonecontrol'
-    ? 'Cene iz opšteg RS Regular cenovnika; za ovaj proizvod pojedinačne cene još nisu potvrđene.'
-    : 'Precrtana vrednost je referentna cena iz partnerovog cenovnika, ne potvrđena ranija prodajna cena.';
-}
-
 export function formatCatalogPrice(amount: number, geo: OfferGeo): string {
   const amountText = new Intl.NumberFormat(
     geo === 'RS' ? 'sr-RS' : geo === 'BA' ? 'bs-BA' : 'hr-HR',
