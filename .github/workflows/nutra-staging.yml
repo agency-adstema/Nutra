@@ -33,6 +33,10 @@ jobs:
       - name: Run unit tests
         run: npm test
 
+      - name: Cache catalog product images (user-supplied links)
+        run: python3 scripts/cache-catalog-images.py
+
+
       - name: Generate static staging site
         run: npm run build:static-preview
         env:
