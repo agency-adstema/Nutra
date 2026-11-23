@@ -3,31 +3,46 @@ import Icon from '../Icon.astro';
 import { site } from '../../config/site';
 import { formatPrice, priceView } from '../../lib/format';
 import type { Product } from '../../lib/content';
+import type { Offer } from '../../data/offers';
 import type { MarketConfig } from '../../config/countries';
 import { PUBLIC_STATIC_PREVIEW, PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
 
 interface Props {
-  product: Product;
+  product?: Product;
+  offer?: Offer;
   market: MarketConfig;
 }
-const { product, market } = Astro.props;
-const d = product.data;
-const pv = priceView(d.priceStatus, d.packages);
-const defaultPkg = d.packages.find((p) => p.default) ?? d.packages[0];
+const { product, offer, market } = Astro.props;
+if (!product && !offer) throw new Error('OrderForm requires product or offer');
+const d = product?.data;
+const isCatalogPreview = !!offer;
+// Catalog forms are always in SAFE preview mode, including if the site is later built for production.
+// Until a real API offer ID and approved seller details are configured, nothing may be transmitted.
+const name = offer?.name ?? d!.name;
+const slug = offer ? `${offer.geo.toLowerCase()}-${offer.slug}` : d!.slug;
+const category = offer ? offer.verticals[0] : d!.category.id;
+const currency = offer ? market.currency : d!.currency;
+const priceStatus = offer ? 'unknown' as const : d!.priceStatus;
+const packages = offer
+  ? [{ id: '1-komad', label: '1 pakovanje', quantity: 1, default: true, price: undefined }]
+  : d!.packages;
+const orderEnabled = isCatalogPreview || !!d?.orderEnabled;
+const pv = priceView(priceStatus, packages);
+const defaultPkg = packages.find((p) => p.default) ?? packages[0];
 const requireConsent = site.consentMode === 'checkbox';
 
 const formConfig = {
-  slug: d.slug,
-  name: d.name,
-  category: d.category.id,
-  currency: d.currency,
-  priceStatus: d.priceStatus,
-  prices: Object.fromEntries(d.packages.map((p) => [p.id, p.price ?? null])),
-  packageIds: d.packages.map((p) => p.id),
+  slug,
+  name,
+  category,
+  currency,
+  priceStatus,
+  prices: Object.fromEntries(packages.map((p) => [p.id, p.price ?? null])),
+  packageIds: packages.map((p) => p.id),
   phone: market.phone,
   requireConsent,
   endpoint: '/api/order/',
-  staticPreview: PUBLIC_STATIC_PREVIEW,
+  staticPreview: isCatalogPreview || PUBLIC_STATIC_PREVIEW,
 };
 
 const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
@@ -37,14 +52,20 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
   <div class="overflow-hidden rounded-[1.5rem] border border-brand/15 bg-brand-2/60 shadow-[var(--shadow-soft)]">
     <div class="flex items-center justify-center gap-2.5 bg-brand px-5 py-4 text-white">
       <Icon name="leaf" size={24} class="text-white/90" />
-      <h2 id="order-title" class="text-2xl font-semibold sm:text-[1.75rem]">Poručite {d.name}</h2>
+      <h2 id="order-title" class="text-2xl font-semibold sm:text-[1.75rem]">Poručite {name}</h2>
     </div>
 
     {
-      !d.orderEnabled ? (
+      !orderEnabled ? (
         <p class="p-6 text-center text-muted">Poručivanje ovog proizvoda trenutno nije dostupno.</p>
       ) : (
         <form class="space-y-4 p-5 sm:p-6" novalidate data-order-form data-config={JSON.stringify(formConfig)}>
+          {isCatalogPreview && (
+            <div class="rounded-xl border border-warn/30 bg-warn-bg px-4 py-3 text-sm text-ink">
+              <strong>Prikaz forme za poručivanje.</strong> Porudžbine za ovu ponudu još nisu aktivirane.
+              Formular služi za proveru dizajna i ne šalje unete podatke.
+            </div>
+          )}
           <div class="space-y-4" data-form-fields>
           <div class="grid gap-1.5 sm:grid-cols-[120px_1fr] sm:items-start sm:gap-4">
             <label for="of-first" class={labelCls}>Ime <span aria-hidden="true">*</span></label>
@@ -72,13 +93,13 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
           </div>
 
           {
-            d.packages.length > 1 ? (
+            packages.length > 1 ? (
               <fieldset class="grid gap-1.5 sm:grid-cols-[120px_1fr] sm:gap-4">
                 <legend class="sr-only">Pakovanje</legend>
                 <span class={labelCls} aria-hidden="true">Pakovanje</span>
                 <div>
                   <div class="grid gap-2">
-                    {d.packages.map((p) => (
+                    {packages.map((p) => (
                       <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-line bg-white px-3.5 py-2.5 transition-colors has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:ring-2 has-[:checked]:ring-brand/15 hover:border-brand/50">
                         <input type="radio" name="packageId" value={p.id} checked={p.id === defaultPkg.id} class="h-4 w-4 shrink-0 accent-[var(--c-primary)]" />
                         <span class="flex-1 text-[15px] font-semibold text-ink">{p.label}</span>
@@ -130,7 +151,7 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
               <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".3" stroke-width="3" />
               <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
             </svg>
-            <span data-submit-label>Pošalji porudžbinu</span>
+            <span data-submit-label>{isCatalogPreview ? 'Proveri formu' : 'Pošalji porudžbinu'}</span>
           </button>
           </div>
 
@@ -138,7 +159,9 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
 
           <p class="flex items-center justify-center gap-2 text-center text-sm text-ink/80">
             <Icon name="truck" size={18} class="shrink-0" />
-            Plaćanje pouzećem. Operater će vas kontaktirati radi potvrde porudžbine.
+            {isCatalogPreview
+              ? 'Planirano plaćanje pouzećem nakon aktiviranja ponude.'
+              : 'Plaćanje pouzećem. Operater će vas kontaktirati radi potvrde porudžbine.'}
           </p>
         </form>
       )
