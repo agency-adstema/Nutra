@@ -40,23 +40,26 @@ const principles = [
   <section class="relative overflow-hidden">
     <LeafDecor class="-left-12 top-10 w-56 -rotate-12" />
     <LeafDecor class="-right-8 bottom-4 hidden w-44 rotate-[160deg] md:block" variant="single" />
-    <div class="container-site relative grid items-center gap-10 py-12 lg:grid-cols-[1.1fr_1fr] lg:py-20">
+    <div class="container-site relative grid items-end gap-6 pt-10 pb-8 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:pt-16 lg:pb-10">
       <div>
         <p class="pill bg-[#e7efdc] text-[#1f4d2b]"><Icon name="leaf" size={16} /> Nezavisan informativni vodič</p>
         <h1 class="mt-5 text-[2.6rem] leading-[1.05] font-bold text-[#173d22] sm:text-6xl">
           Prirodni preparati, <span class="text-[#5d8c3c] italic">bez preterivanja</span>.
         </h1>
-        <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink/80">
+      </div>
+      <div>
+        <p class="max-w-xl text-lg leading-relaxed text-ink/80">
           Sastav, način upotrebe, upozorenja i informacije o cenama prirodnih preparata za Srbiju, Bosnu i Hrvatsku — na jednom mestu,
           uz izvore. Kada odlučite, poručujete jednostavno, uz plaćanje pouzećem.
         </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
           <a href="/ponude/" class="btn-primary px-6 py-3.5">Pogledajte ponude <Icon name="arrow-right" size={18} /></a>
           <a href="/vodici/" class="btn-ghost px-6 py-3.5">Čitajte vodiče</a>
         </div>
-        <p class="mt-6 flex items-center gap-2 text-sm text-muted"><Icon name="info" size={16} /> {site.medicalDisclaimer}</p>
+        <p class="mt-5 flex items-center gap-2 text-sm text-muted"><Icon name="info" size={16} /> {site.medicalDisclaimer}</p>
       </div>
-
+    </div>
+    <div class="container-site relative pb-12 lg:pb-16">
       <HeroCarousel />
     </div>
   </section>

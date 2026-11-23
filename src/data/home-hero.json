@@ -1,12 +1,92 @@
 [
-  { "slug": "nautubone", "product": "Nautubone", "link": { "type": "product", "slug": "nautubone" } },
-  { "slug": "beauty-derm", "product": "Beauty Derm", "link": { "type": "offer", "geo": "HR", "slug": "beauty-derm" } },
-  { "slug": "parazol", "product": "Parazol", "link": { "type": "product", "slug": "parazol" } },
-  { "slug": "bonecontrol", "product": "BoneControl", "link": { "type": "product", "slug": "bonecontrol" } },
-  { "slug": "dia-drops", "product": "Dia Drops", "link": { "type": "offer", "geo": "RS", "slug": "dia-drops" } },
-  { "slug": "mikoherb", "product": "Mikoherb", "link": { "type": "offer", "geo": "RS", "slug": "mikoherb" } },
-  { "slug": "pro-caps", "product": "Pro Caps", "link": { "type": "offer", "geo": "BA", "slug": "pro-caps" } },
-  { "slug": "varcosin", "product": "Varcosin", "link": { "type": "offer", "geo": "HR", "slug": "varcosin" } },
-  { "slug": "o-caps", "product": "O Caps", "link": { "type": "offer", "geo": "RS", "slug": "o-caps" } },
-  { "slug": "u-caps", "product": "U Caps", "link": { "type": "offer", "geo": "RS", "slug": "u-caps" } }
+  {
+    "slug": "nautubone",
+    "product": "Nautubone",
+    "link": { "type": "product", "slug": "nautubone" },
+    "video": "Nautubone/Nautubone_5.mp4",
+    "name": "Sadik S.",
+    "topic": "Zglobovi i mišići",
+    "headline": "Pet meseci, ujutru i uveče — Nautubone mu je postao navika.",
+    "story": "Sadik S. Nautubone gel nanosi već oko pet meseci, dva puta dnevno: ujutru i uveče. U snimku objašnjava kako ga koristi i kaže da mu je gel danas deo redovne rutine."
+  },
+  {
+    "slug": "beauty-derm",
+    "product": "Beauty Derm",
+    "link": { "type": "offer", "geo": "HR", "slug": "beauty-derm" },
+    "video": "Beauty Derm/Beauty_Derm_4.mp4",
+    "name": "Azra P.",
+    "topic": "Nega lica",
+    "headline": "Azra primećuje da joj je koža finija i mekša.",
+    "story": "Azra P. redovno koristi Beauty Derm kremu. Kaže da je od tada primetila promenu na koži lica — da je finija, mekša i nežnija na dodir. Celo iskustvo sa kremom opisuje u snimku."
+  },
+  {
+    "slug": "bonecontrol",
+    "product": "BoneControl",
+    "link": { "type": "product", "slug": "bonecontrol" },
+    "video": "BoneControl/BoneControl_2.mp4",
+    "name": "Ika R.",
+    "topic": "Zglobovi i mišići",
+    "headline": "Ika kaže da se ponovo snalazi sama.",
+    "story": "Ika R. je naručila BoneControl gel i danas je, kako kaže, zadovoljna — najviše zbog toga što ponovo sama može da se snađe u svakodnevnim poslovima. O svom iskustvu priča pred kamerom."
+  },
+  {
+    "slug": "parazol",
+    "product": "Parazol",
+    "link": { "type": "product", "slug": "parazol" },
+    "video": "Parazol/Parazol_1.mp4",
+    "name": "Naser U.",
+    "topic": "Varenje i detoks",
+    "headline": "Zbog mučnina u stomaku Naser je odlučio da proba Parazol.",
+    "story": "Naser U. je imao mučnine u stomaku i rešio je da proba Parazol biljni čaj. Kako je prošao, priča sam u snimku."
+  },
+  {
+    "slug": "mikoherb",
+    "product": "Mikoherb",
+    "link": { "type": "offer", "geo": "RS", "slug": "mikoherb" },
+    "video": "Mikoherb/Mikoherb_1.mp4",
+    "name": "Sedika D.",
+    "topic": "Nega stopala",
+    "headline": "Sedika je stopalima odlučila da posveti više nege.",
+    "story": "Sedika D. kaže da joj je koža na stopalima s godinama postala grublja, pa je odlučila da joj posveti malo više pažnje. Za to koristi Mikoherb gel, a u snimku priča kakvo je njeno iskustvo."
+  },
+  {
+    "slug": "dia-drops",
+    "product": "Dia Drops",
+    "link": { "type": "offer", "geo": "RS", "slug": "dia-drops" },
+    "video": "Dia Drops/Dia_Drops_2.mp4",
+    "name": "Danica A.",
+    "topic": "Šećer i metabolizam",
+    "headline": "Danica kaže da lakše završava svakodnevne obaveze.",
+    "story": "Danica A. koristi Dia Drops biljne kapi i kaže da se od tada oseća lakše i da joj svakodnevni poslovi lakše idu od ruke. Kapi su dodatak ishrani i ne zamenjuju terapiju koju je propisao lekar."
+  },
+  {
+    "slug": "pro-caps",
+    "product": "Pro Caps",
+    "link": { "type": "offer", "geo": "BA", "slug": "pro-caps" },
+    "video": "Pro Caps/Pro_Caps_1.mp4",
+    "name": "Elvis M.",
+    "topic": "Muško zdravlje",
+    "headline": "Elvis je zbog tegoba s prostatom odlučio da proba Pro Caps.",
+    "story": "Elvis M. je imao tegobe s prostatom i rešio je da proba Pro Caps kapsule. U snimku otvoreno priča o tome šta ga je mučilo i kakvo je njegovo iskustvo sa kapsulama."
+  },
+  {
+    "slug": "o-caps",
+    "product": "O Caps",
+    "link": { "type": "offer", "geo": "RS", "slug": "o-caps" },
+    "video": "O Caps/O_Caps_2.mp4",
+    "name": "Rabija M.",
+    "topic": "Vid i oči",
+    "headline": "Rabiji je smetala tačka nasred oka.",
+    "story": "Rabija M. kaže da ju je nasred oka mučila tačka koja joj je stalno smetala. U snimku priča o tome i o svom iskustvu sa O Caps kapsulama."
+  },
+  {
+    "slug": "u-caps",
+    "product": "U Caps",
+    "link": { "type": "offer", "geo": "RS", "slug": "u-caps" },
+    "video": "U Caps/U_Caps_1.mp4",
+    "name": "Đurđa T.",
+    "topic": "Sluh",
+    "headline": "Đurđu je mučilo zujanje u ušima.",
+    "story": "Đurđa T. je imala problem sa zujanjem u ušima. Pred kamerom priča o tome i o svom iskustvu sa U Caps kapsulama."
+  }
 ]
