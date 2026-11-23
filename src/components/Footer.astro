@@ -26,6 +26,7 @@ const year = new Date().getFullYear();
       <p class="mb-3 text-sm font-semibold tracking-wider text-ink uppercase">Kategorije</p>
       <ul class="space-y-2 text-sm">
         {categories.map((c) => <li><a class="text-muted hover:text-ink" href={categoryUrl(c)}>{c.data.name}</a></li>)}
+        <li><a class="text-muted hover:text-ink" href="/ponude/">Sve ponude</a></li>
         <li><a class="text-muted hover:text-ink" href="/vodici/">Vodiči</a></li>
       </ul>
     </nav>
