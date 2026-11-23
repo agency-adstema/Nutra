@@ -138,7 +138,7 @@ const productInfo = {
 
     <div class="space-y-14 pt-6 lg:space-y-20 lg:pt-10">
       <section class="container-site" aria-label="Informacije o proizvodu">
-        <div class="grid gap-3 lg:grid-cols-3 lg:gap-0 lg:divide-x lg:divide-line">
+        <div class="grid gap-3 lg:grid-cols-[0.95fr_0.95fr_1.2fr] lg:gap-0 lg:divide-x lg:divide-line">
           <details class="acc group/acc lg:pr-8" id="opis" open data-acc>
             <summary class="flex w-full items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3 lg:border-0 lg:bg-transparent lg:p-0">
               <h2 class="text-lg font-semibold text-brand-strong lg:text-[1.75rem]">Šta je {offer.name}?</h2>
@@ -173,38 +173,47 @@ const productInfo = {
               <Icon name="chevron-down" size={20} class="acc-chevron shrink-0 transition-transform group-open/acc:rotate-180" />
             </summary>
             <div class="space-y-3 px-1 pt-3 lg:px-0 lg:pt-4">
-              <div class="overflow-hidden rounded-2xl border border-line bg-paper">
-                <table class="w-full text-[15px]">
+              <div class="overflow-hidden rounded-xl border border-line bg-paper">
+                <table class="w-full table-fixed text-[13px]">
                   <thead class="bg-brand-2/70 text-left">
-                    <tr><th class="px-4 py-2.5 font-semibold">Pakovanje</th><th class="px-4 py-2.5 text-right font-semibold">Cena ({market.currencyLabel})</th></tr>
+                    <tr><th class="w-[45%] px-3 py-2 text-left font-semibold">Pakovanje</th><th class="w-[55%] px-3 py-2 text-right font-semibold">Cena ({market.currencyLabel})</th></tr>
                   </thead>
                   <tbody>
                     {tiers.length > 0 ? tiers.map(t => (
                       <tr class={`border-t border-line/70 ${t.quantity === 3 ? 'bg-[#e5efd8]' : ''}`} data-package-tier={t.quantity}>
-                        <td class="px-4 py-4 align-top">
-                          <div class="flex flex-wrap items-center gap-2">
-                            <strong>{t.label}</strong>
-                            {popularPackageBadge(offer.geo, t.quantity) && (
-                              <span class="rounded-full bg-[#1f5a2c] px-2.5 py-1 text-xs font-bold text-white">
-                                {popularPackageBadge(offer.geo, t.quantity)}
-                              </span>
-                            )}
-                          </div>
-                          {details?.package && <span class="mt-1 block text-xs text-muted">{t.quantity} × {details.package}</span>}
-                          <span class="mt-1 block text-xs text-[#235d2d]">Besplatna dostava</span>
-                        </td>
-                        <td class="px-4 py-4 text-right align-top">
-                          {t.referencePrice != null && (
-                            <span class="block text-sm text-muted">Stara referentna: <del>{formatCatalogPrice(t.referencePrice, offer.geo)}</del></span>
+                        <td class="px-3 py-2.5 align-middle">
+                          <strong class="block text-[13px] font-semibold leading-tight text-ink">{t.label}</strong>
+                          {popularPackageBadge(offer.geo, t.quantity) && (
+                            <span class="mt-1 inline-block max-w-full rounded-md bg-[#1f5a2c] px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white">
+                              {popularPackageBadge(offer.geo, t.quantity)}
+                            </span>
                           )}
-                          <strong class="block text-2xl font-extrabold text-brand">{formatCatalogPrice(t.newPrice, offer.geo)}</strong>
-                          {t.savings != null && <span class="mt-1 block text-sm font-bold text-[#225d30]">UŠTEDA {formatCatalogPrice(t.savings, offer.geo)}</span>}
-                          {t.discountPercent != null && <span class="mt-1 inline-block rounded-full bg-[#dcebbf] px-2 py-0.5 text-xs font-bold text-[#225d30]">-{t.discountPercent}%</span>}
-                          <span class="mt-1 block text-xs text-muted">Po pakovanju: {formatCatalogPrice(t.unitPrice, offer.geo)}</span>
+                          {details?.package && <span class="mt-1 block text-[11px] leading-tight text-muted">{t.quantity} × {details.package}</span>}
+                        </td>
+                        <td class="px-3 py-2.5 text-right align-middle">
+                          {t.referencePrice != null && (
+                            <span class="block whitespace-nowrap text-[11px] leading-tight text-muted">
+                              Stara: <del>{formatCatalogPrice(t.referencePrice, offer.geo)}</del>
+                            </span>
+                          )}
+                          <strong class="mt-0.5 block whitespace-nowrap text-[16px] font-bold leading-5 text-brand">
+                            {formatCatalogPrice(t.newPrice, offer.geo)}
+                          </strong>
+                          {(t.savings != null || t.discountPercent != null) && (
+                            <span class="mt-0.5 block whitespace-nowrap text-[11px] leading-tight text-[#225d30]">
+                              {t.savings != null && <strong>Ušteda {formatCatalogPrice(t.savings, offer.geo)}</strong>}
+                              {t.discountPercent != null && <span class="ml-1 font-semibold">· -{t.discountPercent}%</span>}
+                            </span>
+                          )}
+                          {t.quantity > 1 && (
+                            <span class="mt-0.5 block whitespace-nowrap text-[11px] leading-tight text-muted">
+                              Po komadu: {formatCatalogPrice(t.unitPrice, offer.geo)}
+                            </span>
+                          )}
                         </td>
                       </tr>
                     )) : (
-                      <tr><td class="px-4 py-3">Nema potvrđenog pakovanja</td><td class="px-4 py-3 text-right">Nije dostupno</td></tr>
+                      <tr><td class="px-3 py-2">Nema ponude</td><td class="px-3 py-2 text-right">Nije dostupno</td></tr>
                     )}
                   </tbody>
                 </table>
