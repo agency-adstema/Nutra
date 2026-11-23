@@ -16,12 +16,12 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     expect(suppliedBaOfferCount).toBe(9);
   });
 
-  it('povezuje 41 od 45 katalog ponuda; jedine rupe su četiri nedostupne BA ponude', () => {
+  it('objavljuje 38 ponuda, izostavlja 3 HP Beauty Derm i 4 nedostupne BA', () => {
     const connected = offers.filter(o => getSuppliedOfferId(o.geo, o.slug));
-    expect(connected).toHaveLength(41);
-    expect(connected.filter(o => o.geo === 'RS')).toHaveLength(19);
-    expect(connected.filter(o => o.geo === 'HR')).toHaveLength(13);
-    expect(connected.filter(o => o.geo === 'BA')).toHaveLength(9);
+    expect(connected).toHaveLength(38);
+    expect(connected.filter(o => o.geo === 'RS')).toHaveLength(18);
+    expect(connected.filter(o => o.geo === 'HR')).toHaveLength(12);
+    expect(connected.filter(o => o.geo === 'BA')).toHaveLength(8);
     expect(offers.filter(o => !getSuppliedOfferId(o.geo, o.slug))).toHaveLength(0);
     expect(allOffers.filter(o => !getSuppliedOfferId(o.geo, o.slug)).map(o => o.geo + '/' + o.slug).sort())
       .toEqual(missingBA.map(s => 'BA/' + s).sort());
@@ -29,7 +29,6 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
 
   it.each([
     ['HR', 'beauty-derm', '302'],
-    ['HR', 'hp-beauty-derm', '676'],
     ['HR', 'cy-relief', '752'],
     ['HR', 'deep-inhale', '1167'],
     ['HR', 'diatea', '92'],
@@ -42,7 +41,6 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     ['HR', 'hp-testoy-gel', '1576'],
     ['HR', 'varcosin', '95'],
     ['BA', 'cy-relief', '862'],
-    ['BA', 'hp-beauty-derm', '866'],
     ['BA', 'nautubone', '17'],
     ['BA', 'hp-nautubone', '1188'],
     ['BA', 'hp-para-caps', '724'],
@@ -106,6 +104,9 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     expect(getCatalogOrderConfig('BA', 'nautubone', env)).toMatchObject({ offerId: '17', orderEnabled: true });
     expect(getCatalogOrderConfig('RS', 'testoy', env)).toMatchObject({ offerId: '59', orderEnabled: true });
     expect(getCatalogOrderConfig('BA', 'nepostoji', env)).toBeUndefined();
+    for (const geo of ['RS', 'BA', 'HR'] as const) {
+      expect(getCatalogOrderConfig(geo, 'hp-beauty-derm', env)).toBeUndefined();
+    }
   });
 
   it('server-only ključ pojedinačnog offera može da zameni unapred uneseni ID', () => {
@@ -116,7 +117,7 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     expect(getCatalogOrderConfig('HR', 'cy-relief', env)?.orderEnabled).toBe(false);
   });
 
-  it('svih 41 stranica koristi isključivo products.json offer_id, nikada hp_offer_id', () => {
+  it('svih 38 javnih stranica koristi isključivo products.json offer_id, nikada hp_offer_id', () => {
     const env = () => undefined;
     for (const offer of offers) {
       const source = productSheets.find(p => p.country === offer.geo && p.slug === offer.slug)!;
@@ -130,6 +131,6 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
 
   it('niti jedan key ne sme da pomeša zemlju i proizvod', () => {
     const keys = offers.map(o => catalogOfferEnvKey(o.geo as OfferGeo, o.slug));
-    expect(new Set(keys).size).toBe(41);
+    expect(new Set(keys).size).toBe(38);
   });
 });
