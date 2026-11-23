@@ -10,16 +10,11 @@ interface Props {
 const { product } = Astro.props;
 const d = product.data;
 const videos = visibleVideos(product);
-const allDemo = videos.length > 0 && videos.every((v) => v.demo);
-const verifiedCount = videos.filter((v) => v.verifiedPurchase && !v.demo).length;
+const verifiedCount = videos.filter((v) => v.verifiedPurchase).length;
 
-// Naslov sekcije: „iskustva kupaca“ samo kada postoje potvrđene kupovine (ili demo prikaz dizajna)
-const title = verifiedCount > 0 || allDemo ? (d.videoSectionTitle ?? 'Video iskustva kupaca') : `Video snimci o proizvodu ${d.name}`;
-const pill = allDemo
-  ? 'Demo: test snimci — nisu stvarna iskustva kupaca'
-  : verifiedCount > 0
-    ? 'Pravi Instagram video – uz dozvolu autora'
-    : 'Objavljeno uz dozvolu autora';
+// Iskustvima kupaca nazivamo samo videe za koje postoji potvrda kupovine.
+const title = verifiedCount > 0 ? (d.videoSectionTitle ?? 'Video iskustva kupaca') : `Video snimci o proizvodu ${d.name}`;
+const pill = verifiedCount > 0 ? 'Video iskustva uz dozvolu autora' : 'Objavljeno uz dozvolu autora';
 
 function instagramEmbed(url: string): string {
   const u = new URL(url);
@@ -34,7 +29,7 @@ function instagramEmbed(url: string): string {
       <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:gap-6">
         <div class="lg:w-48 lg:shrink-0 lg:pt-4">
           <h2 id="video-title" class="text-2xl font-semibold text-brand-strong lg:text-[2rem] lg:leading-tight">{title}</h2>
-          <p class={`mt-2 inline-block rounded-lg px-3 py-1.5 text-sm font-medium ${allDemo ? 'bg-warn-bg text-warn' : 'bg-brand-2 text-brand'}`}>{pill}</p>
+          <p class={`mt-2 inline-block rounded-lg px-3 py-1.5 text-sm font-medium bg-brand-2 text-brand`}>{pill}</p>
         </div>
 
         <ul class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:px-0 lg:flex-1" role="list">
@@ -71,7 +66,6 @@ function instagramEmbed(url: string): string {
                         <Icon name="instagram" size={20} />
                       </span>
                     )}
-                    {v.demo && <span class="demo-badge absolute left-2 top-2">Test</span>}
                   </button>
                   {v.type === 'instagram' && (
                     <p class="sr-only">Klikom učitavate video sa Instagrama (Meta Platforms).</p>
@@ -82,7 +76,7 @@ function instagramEmbed(url: string): string {
                   {v.author && v.authorConsent && <p class="text-xs text-muted">{v.author}</p>}
                   {v.description && <p class="mt-0.5 hidden text-xs text-muted sm:block">{v.description}</p>}
                   <p class="mt-1 text-[11px] text-muted">
-                    {v.verifiedPurchase && !v.demo ? 'Potvrđena kupovina' : v.demo ? 'Interni test' : 'Video sa Instagrama'}
+                    {v.verifiedPurchase ? 'Potvrđena kupovina' : 'Video sa Instagrama'}
                     {v.sourceUrl && (
                       <>
                         {' · '}
