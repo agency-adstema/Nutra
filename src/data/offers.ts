@@ -37,6 +37,21 @@ const verticalLabels: Record<string, string> = {
   'Hair': 'Kosa',
   'Varicose': 'Proširene vene',
   'Health & Beauty': 'Zdravlje i lepota',
+  'Bones': 'Kosti',
+  'Skin Immunity': 'Imunitet kože',
+  'Acne': 'Akne',
+  'Liver': 'Jetra',
+  'Alcohol addiction': 'Zavisnost od alkohola',
+  'Cellulite': 'Celulit',
+  'Lungs': 'Pluća',
+  'Psoriasis': 'Psorijaza',
+  'Fertility Problems': 'Plodnost',
+  'Hemorrhoids': 'Hemoroidi',
+  'Kidney': 'Bubrezi',
+  'Gastritis': 'Gastritis',
+  'Brain boosters': 'Pamćenje i koncentracija',
+  'Breast Enlargement': 'Povećanje grudi',
+  'Immunity': 'Imunitet',
 };
 export const verticalLabel = (value: string) => verticalLabels[value] ?? value;
 
