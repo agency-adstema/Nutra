@@ -42,9 +42,18 @@ const year = new Date().getFullYear();
 
   </div>
   <div class="border-t border-line/70">
-    <div class="container-site flex flex-col gap-2 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+    <div class="container-site grid gap-2 py-5 text-xs text-muted sm:grid-cols-3 sm:items-center">
       <p>© {year} {site.name}. Sva prava zadržana.</p>
-
+      <a
+        href="https://adstema.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-fit font-medium text-muted transition-colors hover:text-brand-strong hover:underline sm:justify-self-center"
+        aria-label="Powered by Adstema — poseti adstema.com"
+      >
+        Powered by <span class="font-semibold text-brand-strong">Adstema</span>
+      </a>
+      <div aria-hidden="true"></div>
     </div>
   </div>
 </footer>
