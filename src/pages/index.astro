@@ -72,7 +72,7 @@ const principles = [
                 formats={['avif', 'webp']}
                 loading={i === 0 ? 'eager' : 'lazy'}
                 fetchpriority={i === 0 ? 'high' : undefined}
-                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                class="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.03]"
               />
               <span class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-sm font-semibold text-ink shadow">{p.data.name}</span>
             </a>
