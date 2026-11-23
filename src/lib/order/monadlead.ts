@@ -9,7 +9,6 @@
  *  500 → serverska greška
  */
 import type { SubValues } from '../tracking';
-import { scrub } from './log';
 
 export const MONADLEAD_DEFAULT_URL = 'https://api.monadlead.com/api/v1/orders/create/';
 
@@ -74,7 +73,7 @@ export type CrmResult =
 function pick(body: unknown, key: string): string | undefined {
   if (!body || typeof body !== 'object') return undefined;
   const b = body as Record<string, any>;
-  const v = b[key] ?? b.data?.[key] ?? b.result?.[key] ?? b.order?.[key === 'order_id' ? 'id' : key];
+  const v = b[key] ?? b.body?.[key] ?? b.data?.[key] ?? b.result?.[key] ?? b.order?.[key === 'order_id' ? 'id' : key];
   if (v === undefined || v === null || v === '') return undefined;
   return String(v).slice(0, 100);
 }
@@ -92,17 +91,25 @@ export function parseMonadleadResponse(status: number, text: string): CrmResult 
   } catch {
     body = undefined;
   }
-  const detail = scrub(text).slice(0, 300);
+  // Never log the raw upstream body: some providers echo api_key, phone and name.
+  // Only document-defined field/reason codes are safe to retain.
+  const b = body && typeof body === 'object' ? body as Record<string, unknown> : {};
+  const providerField = typeof b.field === 'string' ? b.field : '';
+  const providerReason = typeof b.reason === 'string' ? b.reason.toLowerCase().trim() : '';
+  const safeReason = ['incorrect', 'empty', 'wrong format', 'not found'].includes(providerReason) ? providerReason : '';
+  const field = detectField(providerField || text);
+  const detail = safeReason ? `field=${field}; reason=${safeReason}` : undefined;
 
   if (status === 200 || status === 201) {
-    const b = (body ?? {}) as Record<string, unknown>;
+    const orderId = pick(body, 'order_id');
     const explicitFailure =
-      b.success === false || b.status === 'error' || b.status === false || b.ok === false ||
-      (b.error !== undefined && b.error !== null && b.error !== false && !pick(body, 'order_id'));
-    if (explicitFailure) return { ok: false, kind: 'rejected', status, field: detectField(text), detail };
-    return { ok: true, orderId: pick(body, 'order_id'), clickId: pick(body, 'click_id') };
+      b.type === 'error' || b.success === false || b.status === 'error' || b.status === false || b.ok === false ||
+      (b.error !== undefined && b.error !== null && b.error !== false);
+    // Reject unknown 200 responses or missing order_id; do not promise a placed order.
+    if (explicitFailure || !orderId) return { ok: false, kind: 'rejected', status, field, detail };
+    return { ok: true, orderId, clickId: pick(body, 'click_id') };
   }
-  if (status === 400 || status === 422) return { ok: false, kind: 'validation', status, field: detectField(text), detail };
+  if (status === 400 || status === 422) return { ok: false, kind: 'validation', status, field, detail };
   if ([401, 403, 404, 405, 406, 415].includes(status)) return { ok: false, kind: 'config', status, detail };
   return { ok: false, kind: 'server', status, detail };
 }
