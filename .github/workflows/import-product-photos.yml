@@ -1,0 +1,45 @@
+name: Import product packaging images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/import-product-photos.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  import-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Nutra
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Download and validate source images
+        run: python3 scripts/import-limitedcharm-images.py
+
+      - name: Commit all three WebP images and content references
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/assets/products/nautubone/hero.webp src/assets/products/bonecontrol/hero.webp src/assets/products/parazol/hero.webp
+          git add src/content/products/nautubone.md src/content/products/bonecontrol.md src/content/products/parazol.md
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Images already imported; no new commit."
+          else
+            git commit -m "Import real product package photos from authorized Limited Charm source"
+            git push origin HEAD:main
+          fi
+
+      - name: Trigger staging build for GitHub token commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run nutra-staging.yml --ref main
