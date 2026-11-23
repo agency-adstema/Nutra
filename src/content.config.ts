@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const hex = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Boja mora biti u formatu #RRGGBB');
-const marketEnum = z.enum(['RS', 'BA', 'ME', 'XK']);
+const marketEnum = z.enum(['RS', 'BA', 'HR', 'ME', 'XK']);
 const sources = z
   .array(z.object({ title: z.string(), url: z.url(), publisher: z.string().optional() }))
   .default([]);
