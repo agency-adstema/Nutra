@@ -85,7 +85,7 @@ const sellableKeys = new Set(
     .map(p => p.country + '/' + p.slug),
 );
 /** Ponude koje je vlasnik sajta uklonio (23. 11. 2026). */
-export const removedOffers = new Set(['RS/para-clean']);
+export const removedOffers = new Set(['RS/para-clean', 'RS/slim-ease', 'HR/slim-ease', 'HR/erelift', 'HR/insulera']);
 export const offers: Offer[] = allOffers.filter((o) => sellableKeys.has(o.geo + '/' + o.slug) && !removedOffers.has(o.geo + '/' + o.slug));
 export const getOffersByGeo = (geo: OfferGeo) => offers.filter((offer) => offer.geo === geo);
 export const offerUrl = (offer: Offer) => `/ponude/${offer.geo.toLowerCase()}/${offer.slug}/`;

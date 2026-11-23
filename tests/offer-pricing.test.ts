@@ -10,16 +10,16 @@ const regular: Record<OfferGeo, number[][]> = {
 };
 
 describe('Cene u XLSX: redovi 2-46, list Cene', () => {
-  it('svih 166 javnih proizvoda ima cenu, bez HP ponuda', () => {
+  it('svih 162 javna proizvoda ima cenu, bez HP ponuda', () => {
     const mapped = offers.filter(o=>getCatalogPrice(o.geo,o.slug));
-    expect(mapped).toHaveLength(166);
+    expect(mapped).toHaveLength(162);
     expect(allOffers.filter(o=>!getCatalogPrice(o.geo,o.slug))).toHaveLength(0);
     expect(offers.some(o=>o.slug.startsWith('hp-'))).toBe(false);
   });
 
-  it('svih 54 RS ponuda imaju cenu jednog pakovanja 3.700 RSD, bez 2.000 RSD', () => {
+  it('svih 53 RS ponude imaju cenu jednog pakovanja 3.700 RSD, bez 2.000 RSD', () => {
     const rs = offers.filter(o => o.geo === 'RS');
-    expect(rs).toHaveLength(54);
+    expect(rs).toHaveLength(53);
     for (const offer of rs) {
       const pricing = getCatalogPrice('RS', offer.slug);
       expect(pricing?.tiers[0].newPrice).toBe(3700);
@@ -27,8 +27,8 @@ describe('Cene u XLSX: redovi 2-46, list Cene', () => {
     }
   });
 
-  it('166 regular proizvoda ima tačnu direktnu cenu, uz dodatne pakete samo gde su dostavljeni', () => {
-    expect(offers).toHaveLength(166);
+  it('162 regular proizvoda ima tačnu direktnu cenu, uz dodatne pakete samo gde su dostavljeni', () => {
+    expect(offers).toHaveLength(162);
     for (const o of offers) {
       const p = getCatalogPrice(o.geo, o.slug)!;
       expect(p.type).toBe('regular');
