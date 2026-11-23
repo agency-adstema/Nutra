@@ -201,8 +201,15 @@ pre=$(curl -s -o /dev/null -w '%{http_code}' -X OPTIONS -H "Origin: https://lame
   -H "Access-Control-Request-Method: POST" "$API_URL" || true)
 post=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H "Origin: https://lamena.io" \
   -H "Content-Type: application/json" -d '{}' "$API_URL" || true)
+direct=$(curl -s -o /dev/null -w '%{http_code}' --resolve "$API_DOMAIN:443:127.0.0.1" -X POST -H "Origin: https://lamena.io" \
+  -H "Content-Type: application/json" -d '{}' "$API_URL" || true)
+echo "POST direktno na nginx (bez Cloudflare) → $direct (očekivano 400)"
 echo "OPTIONS sa lamena.io → $pre (očekivano 204)"
 echo "POST prazan zahtev    → $post (očekivano 400, bez slanja porudžbine)"
+if [[ "$direct" == "400" && "$post" == "403" ]]; then
+  warn "Server radi (400 direktno). 403 spolja daje Cloudflare zaštita za curl sa servera —"
+  echo "   to je u redu, iz pregledača (sa sajta) porudžbine prolaze. Probaj porudžbinu na sajtu."
+fi
 if [[ "$post" == "405" ]]; then
   warn "POST vraća 405: ispred servera je verovatno Cloudflare Worker za $API_DOMAIN$API_PATH* (samo GET)."
   echo "   U Cloudflare → Workers Routes dodaj rutu  $API_DOMAIN$API_PATH/api/*  sa Worker: None,"
