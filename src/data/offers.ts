@@ -1,9 +1,8 @@
 /**
  * Partner offer catalog supplied by the operator on 2026-11-23.
  *
- * Source fields: offer name, GEO and vertical. We have NO verified prices,
- * inventory, imagery rights, conversion payout, fulfillment details or API offer IDs.
- * Entries here are discoverable in the shop, but cannot accept orders.
+ * Source fields: exact product name, GEO, category, offer ID, direct price
+ * and image URL from the merchant's JSON. Order submission remains separate.
  *
  * Preserve source casing. Duplicate name+GEO rows are merged;
  * distinct verticals on one offer are kept as tags.
@@ -11,6 +10,7 @@
  * every GEO; they duplicated the regular products.
  */
 import productsJson from './products.json';
+import monadleadOffers from './monadlead-non-hp.json';
 export type OfferGeo = 'RS' | 'BA' | 'HR';
 export const catalogMarkets: Record<OfferGeo, { name: string; shortName: string; currency: string }> = {
   RS: { name: 'Srbija', shortName: 'Srbija', currency: 'RSD' },
@@ -49,40 +49,17 @@ export interface Offer {
   orderEnabled: false;
 }
 
-const rawOfferRows = `
-TestoY|RS|Potency
-TestoY|RS|Male Enlargement
-Parazol|RS|Parasites
-O caps|RS|Vision
-Mikoherb|RS|Fungus
-U Caps|RS|Hearing
-CY-relief|HR|Cystitis
-Nautubone|BA|Joints
-Pro Caps|BA|Prostatitis
-Deep Inhale|HR|Muscle
-Power Pulse XXL|RS|Potency
-Beauty Derm|HR|Beauty
-Dia Drops|RS|Diabetes
-Pro Caps|BA|Prostatitis
-Quick Fit|RS|Weight Loss
-Parazol|BA|Parasites
-CY-relief|BA|Cystitis
-Nautubone|HR|Joints
-Pro Caps|HR|Prostatitis
-Nautubone|HR|Joints
-CY-relief|BA|Cystitis
-Mikoherb|HR|Fungus
-Diatea|HR|Diabetes
-Varcosin|HR|Varicose
-`.trim();
-
-export const sourceOfferRows = rawOfferRows.split('\n').map((line) => {
-  const [name, geo, vertical] = line.trim().split('|');
-  if (!name || !['RS', 'BA', 'HR'].includes(geo) || !vertical) {
-    throw new Error(`Neispravan red u katalogu ponuda: ${line}`);
-  }
-  return { name, geo: geo as OfferGeo, vertical };
-});
+/** Every direct-price non-HP MonadLead offer supplied on 23 November 2026.
+ * Category labels remain verbatim from the partner and are split by comma.
+ * Hardware, private/VIP and test lists were explicitly excluded.
+ */
+export const sourceOfferRows = monadleadOffers.flatMap((offer) =>
+  offer.category.split(',').map((vertical) => ({
+    name: offer.product,
+    geo: offer.geo as OfferGeo,
+    vertical: vertical.trim(),
+  })).filter((record) => record.vertical.length > 0)
+);
 
 export const slugifyOffer = (name: string) =>
   name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
