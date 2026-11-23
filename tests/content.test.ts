@@ -55,7 +55,8 @@ describe('format', () => {
   });
   it('priceView: unknown cena se ne prikazuje', () => {
     expect(priceView('unknown', [{ id: 'a', label: 'a', quantity: 1, price: 100 }]).show).toBe(false);
-    expect(priceView('demo', [{ id: 'a', label: 'a', quantity: 1, price: 100 }])).toMatchObject({ show: true, isDemo: true, min: 100 });
+    expect(priceView('demo', [{ id: 'a', label: 'a', quantity: 1, price: 100 }])).toMatchObject({ show: false, isDemo: true });
+    expect(priceView('verified', [{ id: 'a', label: 'a', quantity: 1, price: 100 }])).toMatchObject({ show: true, isVerified: true, min: 100 });
   });
   it('normalizeSearch', () => {
     expect(normalizeSearch('Đumbir  ČAJ')).toBe('djumbir caj');
