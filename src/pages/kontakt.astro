@@ -2,6 +2,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import { site } from '../config/site';
 const op = site.operator;
+const contactEmail = op.email.startsWith('[POPUNITI') ? '' : op.email;
 ---
 
 <PageLayout
@@ -12,28 +13,22 @@ const op = site.operator;
 >
   <h2>Pitanja o sadržaju sajta</h2>
   <p>
-    Ako ste primetili grešku u tekstu, cenu koja više ne važi ili imate pitanje o sadržaju, pišite nam na
-    <a href={`mailto:${op.email}`}>{op.email}</a>. Odgovaramo radnim danima.
+    {contactEmail
+      ? <>Ako ste primetili grešku u tekstu ili imate pitanje o sadržaju, pišite nam na <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</>
+      : <>Kontakt adresa biće dostupna pre početka prijema porudžbina.</>}
   </p>
   {op.phone && <p>Telefon: <a href={`tel:${op.phone.replace(/\s/g, '')}`} data-location="kontakt">{op.phone}</a></p>}
 
   <h2>Pitanja o porudžbini</h2>
   <p>
     Porudžbine obrađuje {site.orderProcessing.sellerDescription}. Za status porudžbine, dostavu, povraćaj ili reklamaciju
-    obratite se operateru koji vas je pozvao radi potvrde. Ako ne možete da ih dobijete, pišite nam i pomoći ćemo da
-    porudžbinu prosledimo nadležnima.
+    obratite se operateru koji vas je pozvao radi potvrde.
   </p>
 
   <h2>Zahtevi u vezi sa ličnim podacima</h2>
   <p>
     Za uvid, ispravku ili brisanje podataka pogledajte <a href="/politika-privatnosti/">politiku privatnosti</a> i pišite
-    na {op.email} sa naznakom „Lični podaci“.
+    na {contactEmail ? <a href={`mailto:${contactEmail}`}>{contactEmail}</a> : 'kontakt adresu, koja će biti objavljena pre aktiviranja poručivanja'}, sa naznakom „Lični podaci“.
   </p>
 
-  <h2>Operater sajta</h2>
-  <p>
-    {op.companyName}<br />
-    {op.address}<br />
-    MB: {op.registrationNumber} · PIB: {op.taxId}
-  </p>
 </PageLayout>
