@@ -1,16 +1,25 @@
 ---
 import Icon from './Icon.astro';
 import { catalogMarkets, offerUrl, verticalLabel, type Offer } from '../data/offers';
+import { getOfferDetails, getOfferImage } from '../data/offer-details';
 
 interface Props { offer: Offer; }
 const { offer } = Astro.props;
+const details = getOfferDetails(offer.geo, offer.slug);
+const photo = getOfferImage(details);
 ---
 
 <article class="card flex h-full flex-col overflow-hidden border border-line/60">
-  <div class="relative grid min-h-36 place-items-center bg-[#e7efdc] p-6 text-[#1f4d2b]" aria-hidden="true">
-    <Icon name="box" size={46} />
+  <a href={offerUrl(offer)} class="relative grid min-h-44 place-items-center bg-[#e7efdc] p-5 text-[#1f4d2b]" aria-label={`Pogledajte ${offer.name}`}>
+    {photo ? (
+      <img src={photo} alt={`Fotografija pakovanja ${offer.name} prema katalogu partnera`}
+        loading="lazy" decoding="async" width="340" height="240"
+        class="h-44 w-full object-contain transition-transform duration-300 hover:scale-[1.03]" />
+    ) : (
+      <Icon name="box" size={46} />
+    )}
     <span class="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">{offer.geo}</span>
-  </div>
+  </a>
   <div class="flex grow flex-col p-5">
     <p class="text-xs font-semibold uppercase tracking-widest text-accent">{catalogMarkets[offer.geo].name}</p>
     <h3 class="mt-2 text-xl font-semibold text-ink">
@@ -19,9 +28,20 @@ const { offer } = Astro.props;
     <div class="mt-3 flex flex-wrap gap-2">
       {offer.verticals.map((v) => <span class="rounded-full bg-[#f3efe4] px-2.5 py-1 text-xs text-ink/75">{verticalLabel(v)}</span>)}
     </div>
-    <p class="mt-3 text-sm text-muted">Cena i detalji će biti objavljeni nakon potvrde.</p>
+    {details?.description && <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">{details.description}</p>}
+    {details?.form && <p class="mt-2 text-sm text-ink/80">Oblik: {details.form}{details.package ? ` · ${details.package}` : ''}</p>}
+    {details?.price && details.availableInAccount ? (
+      <div class="mt-4">
+        <p class="text-xl font-semibold text-brand">{details.price}</p>
+        <p class="text-xs text-muted">Cena iz partnerskog cenovnika, podložna potvrdi</p>
+      </div>
+    ) : (
+      <p class="mt-3 text-sm font-medium text-muted">
+        {details?.availableInAccount === false ? 'Trenutno nije dostupno za poručivanje' : 'Cena na upit'}
+      </p>
+    )}
     <a class="mt-auto inline-flex items-center gap-2 pt-5 font-semibold text-brand hover:underline" href={offerUrl(offer)}>
-      Detalji ponude <Icon name="arrow-right" size={18} />
+      Detalji proizvoda <Icon name="arrow-right" size={18} />
     </a>
   </div>
 </article>
