@@ -1,51 +1,66 @@
 ---
 import Icon from './Icon.astro';
-import { catalogMarkets, offerUrl, verticalLabel, type Offer } from '../data/offers';
+import ReviewStars from './ReviewStars.astro';
+import OfferPrice from './OfferPrice.astro';
+import { offerUrl, verticalLabel, type Offer } from '../data/offers';
 import { getOfferDetails, getOfferImage } from '../data/offer-details';
 import { getCatalogPrice } from '../data/offer-pricing';
-import OfferPrice from './OfferPrice.astro';
 
 interface Props { offer: Offer; }
 const { offer } = Astro.props;
 const details = getOfferDetails(offer.geo, offer.slug);
 const photo = getOfferImage(details);
 const quotedPricing = getCatalogPrice(offer.geo, offer.slug);
+const href = offerUrl(offer);
+const primaryCategory = verticalLabel(offer.verticals[0] ?? 'Proizvod');
+const description = details?.description?.trim() || 'Više informacija o proizvodu na stranici ponude.';
 ---
 
-<article class="card flex h-full flex-col overflow-hidden border border-line/60">
-  <a href={offerUrl(offer)} class="relative grid min-h-44 place-items-center bg-[#e7efdc] p-5 text-[#1f4d2b]" aria-label={`Pogledajte ${offer.name}`}>
+<article
+  class="group flex h-full flex-col overflow-hidden rounded-[22px] border border-[#e5e2d9] bg-white shadow-sm transition-shadow hover:shadow-[var(--shadow-soft)]"
+  data-offer-card
+  data-geo={offer.geo}
+  data-offer-slug={offer.slug}
+>
+  <a href={href} class="relative grid h-60 shrink-0 place-items-center overflow-hidden bg-[#e8efe1] p-4 text-[#1f4d2b]" aria-label={`Pogledaj ${offer.name}`}>
     {photo ? (
       <img src={photo} alt={`Fotografija pakovanja ${offer.name} prema katalogu partnera`}
-        loading="lazy" decoding="async" width="340" height="240"
-        class="h-44 w-full object-contain transition-transform duration-300 hover:scale-[1.03]" />
+        loading="lazy" decoding="async" width="400" height="260"
+        class="h-full max-h-[226px] w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
     ) : (
-      <Icon name="box" size={46} />
+      <Icon name="box" size={52} />
     )}
-    <span class="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">{offer.geo}</span>
+    <span class="absolute left-3 top-3 max-w-[80%] rounded-full bg-[#173d22] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+      {primaryCategory}
+    </span>
+    <span class="absolute right-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-semibold text-brand">{offer.geo}</span>
   </a>
-  <div class="flex grow flex-col p-5" data-offer-card-body>
-    <p class="text-xs font-semibold uppercase tracking-widest text-accent">{catalogMarkets[offer.geo].name}</p>
-    <h3 class="mt-2 line-clamp-2 min-h-[3.5rem] text-xl font-semibold leading-7 text-ink">
-      <a class="hover:text-brand" href={offerUrl(offer)}>{offer.name}</a>
+  <div class="flex min-h-[286px] grow flex-col px-5 pb-5 pt-4" data-offer-card-body>
+    <ReviewStars geo={offer.geo} slug={offer.slug} />
+
+    <h3 class="mt-1.5 line-clamp-2 min-h-[2rem] font-serif text-xl font-bold leading-7 text-[#173d22]">
+      <a href={href} class="hover:text-brand">{offer.name}</a>
     </h3>
-    <div class="mt-2 flex min-h-[2.5rem] flex-wrap content-start items-start gap-2">
-      {offer.verticals.map((v) => <span class="rounded-full bg-[#f3efe4] px-2.5 py-1 text-xs text-ink/75">{verticalLabel(v)}</span>)}
+
+    <p class="mt-1 line-clamp-2 min-h-[3rem] text-sm leading-6 text-ink/80">{description}</p>
+
+    <div class="mt-auto pt-4">
+      {quotedPricing ? (
+        <div class="flex items-end justify-between gap-2">
+          <div class="min-w-0"><OfferPrice pricing={quotedPricing} catalogCard /></div>
+          <a href={href} class="inline-flex shrink-0 items-center gap-1.5 pb-0.5 text-sm font-bold text-brand hover:underline">
+            Naruči <Icon name="chevron-right" size={17} />
+          </a>
+        </div>
+      ) : (
+        <a href={href} class="inline-flex items-center gap-1 text-sm font-semibold text-brand">
+          Detalji proizvoda <Icon name="arrow-right" size={17} />
+        </a>
+      )}
     </div>
-    <p class="mt-2 line-clamp-3 min-h-[4.5rem] text-sm leading-6 text-muted">
-      {details?.description?.trim() || 'Detaljan opis proizvoda trenutno nije dostupan.'}
-    </p>
-    <p class="mt-2 min-h-[2.5rem] text-sm leading-5 text-ink/80">
-      {details?.form
-        ? <>Oblik: {details.form}{details.package ? ` · ${details.package}` : ''}</>
-        : 'Informacije o pakovanju na stranici proizvoda.'}
-    </p>
-    {quotedPricing ? (
-      <div class="mt-3"><OfferPrice pricing={quotedPricing} catalogCard /></div>
-    ) : (
-      <p class="mt-3 min-h-[164px] text-sm font-medium text-muted">Trenutno nije dostupno za poručivanje</p>
-    )}
-    <a class="mt-auto inline-flex items-center gap-2 pt-5 font-semibold text-brand hover:underline" href={offerUrl(offer)}>
-      Detalji proizvoda <Icon name="arrow-right" size={18} />
-    </a>
+
+    <div class="mt-3 rounded-xl bg-[#f0f2ee] px-3 py-2 text-xs font-bold text-[#225b37]">
+      Besplatna dostava
+    </div>
   </div>
 </article>
