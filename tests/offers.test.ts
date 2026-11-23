@@ -5,18 +5,18 @@ import {
 } from '../src/data/offers';
 
 describe('Katalog ponuda RS/BA/HR', () => {
-  it('čuva 24 reda liste (bez HP ponuda) bez gubljenja GEO podataka', () => {
-    expect(sourceOfferRows).toHaveLength(24);
+  it('čuva 199 kategorijskih redova liste (bez HP ponuda) bez gubljenja GEO podataka', () => {
+    expect(sourceOfferRows).toHaveLength(199);
     expect(sourceOfferRows.some((row) => /^HP\b/i.test(row.name))).toBe(false);
     expect(sourceOfferRows.every((row) => ['RS', 'BA', 'HR'].includes(row.geo))).toBe(true);
   });
 
-  it('čuva 20 ponuda i prikazuje svih 20: RS 8, BA 4, HR 8', () => {
-    expect(allOffers).toHaveLength(20);
-    expect(offers).toHaveLength(20);
-    expect(getOffersByGeo('RS')).toHaveLength(8);
-    expect(getOffersByGeo('BA')).toHaveLength(4);
-    expect(getOffersByGeo('HR')).toHaveLength(8);
+  it('čuva 167 ponuda i prikazuje svih 167: RS 55, BA 65, HR 47', () => {
+    expect(allOffers).toHaveLength(167);
+    expect(offers).toHaveLength(167);
+    expect(getOffersByGeo('RS')).toHaveLength(55);
+    expect(getOffersByGeo('BA')).toHaveLength(65);
+    expect(getOffersByGeo('HR')).toHaveLength(47);
     expect(new Set(offers.map((offer) => `${offer.geo}/${offer.slug}`)).size).toBe(offers.length);
     expect(getOffer('HR', 'beauty-derm')).toBeDefined();
   });
@@ -34,8 +34,8 @@ describe('Katalog ponuda RS/BA/HR', () => {
     expect(getOffer('RS', 'testoy')?.verticals).toEqual(['Potency', 'Male Enlargement']);
     expect(getOffer('BA', 'pro-caps')?.verticals).toEqual(['Prostatitis']);
     expect(getOffer('BA', 'cy-relief')?.verticals).toEqual(['Cystitis']);
-    expect(getOffer('HR', 'nautubone')?.verticals).toEqual(['Joints']);
-    expect(getOffer('BA', 'nautubone')?.verticals).toEqual(['Joints']);
+    expect(getOffer('HR', 'nautubone')?.verticals).toEqual(['Bones', 'Joints']);
+    expect(getOffer('BA', 'nautubone')?.verticals).toEqual(['Bones', 'Joints']);
   });
 
   it('zadržava standardne verzije ponuda', () => {
