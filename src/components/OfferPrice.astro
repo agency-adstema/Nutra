@@ -24,7 +24,9 @@ const priceRef = reference != null ? formatCatalogPrice(reference, pricing.geo) 
       )}
     </div>
     <p class={compact ? 'text-[11px] leading-snug text-muted' : 'text-xs leading-relaxed text-ink/75'}>
-      {note || 'Referentna cena iz partnerskog cenovnika; nije potvrđena prethodna prodajna cena.'}
+      {note || (priceRef
+        ? 'Precrtana vrednost je referentna cena iz partnerskog cenovnika, ne potvrđena prethodna prodajna cena.'
+        : 'Cena iz partnerskog cenovnika; konačan iznos potvrđuje prodavac.')}
     </p>
   </div>
 )}
