@@ -1,0 +1,1 @@
+import{t as e}from"./product-page.aauzx1Uh.js";e();
