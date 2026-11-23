@@ -41,7 +41,6 @@ const href = productUrl(product);
       class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
       loading={eager ? 'eager' : 'lazy'}
     />
-    {d.demo && <span class="demo-badge absolute left-3 top-3">Demo</span>}
   </a>
   <div class="flex flex-1 flex-col p-5">
     <p class="text-xs font-semibold tracking-wider text-accent uppercase">{d.productType}</p>
@@ -64,7 +63,6 @@ const href = productUrl(product);
             <>
               <span class="text-muted">Cena od</span>
               <span class="block text-lg font-bold text-brand">{formatPrice(pv.min!, market.currencyLabel)}</span>
-              {pv.isDemo && <span class="text-xs text-warn">demo cena</span>}
             </>
           ) : (
             <span class="text-muted">Cena se potvrđuje</span>
