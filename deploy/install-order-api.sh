@@ -61,8 +61,8 @@ NODE_BIN="$(command -v node)"
 say "Preuzimam kod u $APP_DIR"
 id -u nutra-orders >/dev/null 2>&1 || useradd --system --home "$APP_DIR" --shell /usr/sbin/nologin nutra-orders
 if [[ -d "$APP_DIR/.git" ]]; then
-  git -C "$APP_DIR" fetch --depth 1 origin main
-  git -C "$APP_DIR" reset --hard origin/main
+  git -c safe.directory="$APP_DIR" -C "$APP_DIR" fetch --depth 1 origin main
+  git -c safe.directory="$APP_DIR" -C "$APP_DIR" reset --hard origin/main
 else
   rm -rf "$APP_DIR"
   git clone --depth 1 --branch main "$REPO" "$APP_DIR"
