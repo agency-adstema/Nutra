@@ -74,13 +74,17 @@ const savedText = saved ? `UŠTEDA ${saved}` : '';
         {saved && <span class="rounded-md bg-[#e2e7df] px-3 py-1 text-xs font-extrabold text-[#183f27]">{savedText}</span>}
       </div>
       <div class="mt-3 flex flex-wrap items-center gap-1.5 text-[13px] leading-relaxed">
-        <span class="font-bold text-brand">Besplatna dostava</span>
-        <span class="text-muted">·</span>
+        {pricing.freeShippingPerSheet && (
+          <>
+            <span class="font-bold text-brand">Besplatna dostava</span>
+            <span class="text-muted">·</span>
+          </>
+        )}
         <span>Plaćanje pouzećem</span>
         <span class="text-muted">·</span>
-        <span class="text-muted">Dostava 1–2 radna dana*</span>
+        <span class="text-muted">{pricing.estimatedDeliveryBusinessDays ? 'Dostava 1–2 radna dana*' : 'Uslove dostave potvrđuje prodavac'}</span>
       </div>
-      <p class="text-[11px] text-muted">* Procena roka dostave iz dokumentacije partnera.</p>
+      {pricing.estimatedDeliveryBusinessDays && <p class="text-[11px] text-muted">* Procena roka dostave iz dokumentacije partnera.</p>}
 
       {hasOrderForm && (
         <div class="mt-5 grid gap-2" aria-label="Izaberite pakovanje" data-hero-packages>
