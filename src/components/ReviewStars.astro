@@ -28,7 +28,7 @@ const fill = review ? `${Math.max(0, Math.min(100, review.score / 5 * 100))}%` :
       </span>
       <strong class="font-semibold text-ink">{score}</strong>
       <span class="text-muted">({count})</span>
-      <span class="text-[10px] text-muted">eksterne ocene</span>
+      
     </span>
   ) : showMissing ? (
     <span class="text-[11px] text-muted" data-reviews-missing>Ocene nisu dostupne</span>
