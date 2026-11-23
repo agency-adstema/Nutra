@@ -1,6 +1,7 @@
 ---
 import Icon from '../Icon.astro';
 import { formatPrice, priceView } from '../../lib/format';
+import { getEditorialPrice, formatCatalogPrice } from '../../data/offer-pricing';
 import type { Product } from '../../lib/content';
 import type { MarketConfig } from '../../config/countries';
 
@@ -11,6 +12,7 @@ interface Props {
 const { product, market } = Astro.props;
 const d = product.data;
 const pv = priceView(d.priceStatus, d.packages);
+const quotedPricing = getEditorialPrice(d.countryCode, d.slug);
 ---
 
 {
@@ -24,7 +26,14 @@ const pv = priceView(d.priceStatus, d.packages);
       <div class="container-site flex h-16 items-center gap-3">
         <div class="min-w-0 flex-1 leading-tight">
           <p class="truncate text-sm font-semibold text-ink">{d.name}</p>
-          {pv.show ? (
+          {quotedPricing ? (
+            <p class="text-sm">
+              <span class="font-bold text-brand">{formatCatalogPrice(quotedPricing.tiers[0].newPrice, 'RS')}</span>
+              {quotedPricing.tiers[0].referencePrice != null && (
+                <del class="ml-2 text-xs text-muted">{formatCatalogPrice(quotedPricing.tiers[0].referencePrice!, 'RS')}</del>
+              )}
+            </p>
+          ) : pv.show ? (
             <p class="text-sm">
               <span class="font-bold text-brand">od {formatPrice(pv.min!, market.currencyLabel)}</span>
             </p>
