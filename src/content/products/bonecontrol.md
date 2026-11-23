@@ -3,15 +3,15 @@ name: BoneControl
 slug: bonecontrol
 category: zglobovi-i-bolovi
 market: RS
-productType: Preparat za zglobove
-h1: BoneControl
-shortDescription: Informacije o preparatu BoneControl, sastavu i načinu korišćenja.
-intro: Za BoneControl trenutno proveravamo tačan oblik proizvoda, sastav i način upotrebe prema originalnoj deklaraciji. Dodatak ishrani nije zamena za propisanu medicinsku terapiju.
+productType: Gel za zglobove i mišiće
+h1: BoneControl gel 100 ml
+shortDescription: Gel sa ekstraktom korena gaveza za masažu zglobova i mišića, pakovanje 100 ml.
+intro: BoneControl je gel za spoljašnju upotrebu i masažu zglobova i mišića u pakovanju od 100 ml. Prema podacima prodavca sadrži ekstrakt korena gaveza i biljna ulja. Sastav i uputstvo proverite na deklaraciji.
 highlights:
-  - icon: capsule
-    label: Informacije o upotrebi
+  - icon: leaf
+    label: Gel za spoljašnju upotrebu
   - icon: shield
-    label: Provera deklaracije
+    label: Pakovanje 100 ml
   - icon: truck
     label: Plaćanje pouzećem
 featured: true
@@ -27,26 +27,36 @@ themeSecondary: "#e1ebf6"
 themeBackground: "#f3f6fa"
 themeAccent: "#2f6fb3"
 
-ingredients: []
-ingredientsNote: "Sastav i količine sastojaka biće objavljeni nakon provere deklaracije."
+ingredients:
+  - name: Ekstrakt korena gaveza
+    latin: Symphytum officinale
+    description: Biljni sastojak koji je naveden u sastavu kod prodavca.
+    icon: flower
+  - name: Ulje geranijuma
+    description: Mirisni biljni sastojak naveden u sastavu proizvoda.
+    icon: drop
+  - name: Rimska kamilica
+    description: Biljni sastojak naveden u INCI sastavu.
+    icon: flower
+ingredientsNote: "Sastojci su preuzeti iz opisa prodavca Limited Charm. Pre upotrebe proverite pun INCI sastav na originalnoj deklaraciji."
 usage:
-  - Uzimati prema uputstvu na pakovanju.
-  - Ne prekoračiti preporučenu dnevnu dozu.
-  - Dodatak ishrani ne zamenjuje raznovrsnu ishranu.
+  - Nanesite malu količinu gela na neoštećenu kožu.
+  - Lagano masirajte dok se gel ne upije.
+  - Operite ruke posle upotrebe i pratite uputstvo na pakovanju.
 notFor:
-  - Deca, trudnice i dojilje, osim po savetu lekara.
-  - Osobe alergične na školjke ili rakove, ako proizvod sadrži glukozamin iz tih izvora.
-  - Osobe koje koriste lekove protiv zgrušavanja krvi, bez prethodnog saveta lekara.
+  - Osobe preosetljive na neki od sastojaka gela.
+  - Deca, trudnice i dojilje bez saveta zdravstvenog radnika.
 warnings:
-  - Pre upotrebe se posavetujte sa lekarom ili farmaceutom ako koristite druge lekove.
+  - Samo za spoljašnju upotrebu. Ne nanositi na otvorene rane i izbegavati kontakt sa očima.
+  - Prekinite upotrebu ako dođe do iritacije kože.
   - Čuvati van domašaja dece.
   - Ako bol u zglobovima traje ili se pogoršava, obratite se lekaru.
 
 faq:
-  - q: Koja je cena BoneControl kapsula?
+  - q: Koja je cena BoneControl gela?
     a: Cena još nije proverena, pa je ne prikazujemo kao tačnu. Operater vam potvrđuje cenu prilikom poziva.
-  - q: Da li je BoneControl lek?
-    a: Status proizvoda i deklaraciju treba proveriti kod prodavca. Dodaci ishrani nisu lekovi.
+  - q: Kako se koristi BoneControl gel?
+    a: Namenjen je spoljašnjoj upotrebi. Nanesite na kožu i lagano utrljajte prema uputstvu sa pakovanja.
 faqSchema: false
 sources: []
 
@@ -64,14 +74,14 @@ orderEnabled: true
 videos: []
 related: [nautubone]
 seo:
-  title: BoneControl kapsule – sastav, upotreba i cena
+  title: BoneControl gel 100 ml – sastav, upotreba i cena
   description: "BoneControl: informacije o proizvodu, načinu upotrebe, upozorenjima i poručivanju uz plaćanje pouzećem."
 ---
 
-### Šta treba proveriti pre objave
+### Gel za masažu zglobova i mišića
 
-Pre naručivanja potrebno je potvrditi vrstu proizvoda (kapsule, gel ili nešto drugo), tačan sastav sa deklaracije, preporučenu dozu, broj kapsula u pakovanju i cenu kod prodavca.
+BoneControl se prodaje kao gel od 100 ml za lokalnu masažu. Prilikom izbora proverite INCI sastav, eventualna upozorenja i rok upotrebe na pakovanju.
 
-### Kako čitati deklaraciju dodatka ishrani
+### Važna napomena
 
-Na deklaraciji potražite količinu svakog sastojka po dnevnoj dozi, upozorenja i podatke o proizvođaču i uvozniku. Tvrdnje na pakovanju treba da budu u skladu sa propisima o dodacima ishrani — dodatak ishrani ne sme da tvrdi da leči ili sprečava bolest.
+Gel za masažu nije zamena za medicinsku dijagnozu ili propisano lečenje. Ako imate izražen otok, povredu ili uporan bol, posavetujte se sa lekarom.
