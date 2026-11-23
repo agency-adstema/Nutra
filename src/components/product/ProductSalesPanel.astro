@@ -81,8 +81,12 @@ const savedText = saved ? `UŠTEDA ${saved}` : '';
           </>
         )}
         <span>Plaćanje pouzećem</span>
-        <span class="text-muted">·</span>
-        <span class="text-muted">{pricing.estimatedDeliveryBusinessDays ? 'Dostava 1–2 radna dana*' : 'Uslove dostave potvrđuje prodavac'}</span>
+        {(pricing.estimatedDeliveryBusinessDays || !pricing.freeShippingPerSheet) && (
+          <>
+            <span class="text-muted">·</span>
+            <span class="text-muted">{pricing.estimatedDeliveryBusinessDays ? 'Dostava 1–2 radna dana*' : 'Uslove dostave potvrđuje prodavac'}</span>
+          </>
+        )}
       </div>
       {pricing.estimatedDeliveryBusinessDays && <p class="text-[11px] text-muted">* Procena roka dostave iz dokumentacije partnera.</p>}
 
@@ -100,9 +104,9 @@ const savedText = saved ? `UŠTEDA ${saved}` : '';
               </span>
               <span class="min-w-0 flex-1">
                 <span class="block text-sm font-bold text-ink">{tier.label}</span>
-                {popularPackageBadge(geo, tier.quantity) && (
+                {popularPackageBadge(geo, tier.quantity, tier.discountPercent) && (
                   <span class="mt-1 inline-block max-w-full rounded-md bg-[#21562e] px-2 py-0.5 text-[10px] font-bold text-white">
-                    {popularPackageBadge(geo, tier.quantity)}
+                    {popularPackageBadge(geo, tier.quantity, tier.discountPercent)}
                   </span>
                 )}
                 {tier.quantity > 1 && <span class="mt-1 block text-[11px] text-muted">Po pakovanju: {formatCatalogPrice(tier.unitPrice, geo)}</span>}

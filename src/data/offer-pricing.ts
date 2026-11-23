@@ -9,6 +9,7 @@
  */
 import productsJson from './products.json';
 import { getOfferDetails } from './offer-details';
+import { getLcDetails } from './limitedcharm-details';
 import type { OfferGeo } from './offers';
 
 export type PriceTier = {
@@ -79,6 +80,36 @@ export function getCatalogPrice(geo: OfferGeo, slug: string): CatalogPrice | und
       source.pricing.currency !== details.currency) {
     throw new Error(`Price mismatch between products.json and offer-details.json: ${geo}/${slug}`);
   }
+  // Pakovanja 2 i 3 i stare cene sa Limited Charm stranice istog proizvoda — samo kad je
+  // cena jednog pakovanja ista kao u našoj ponudi (isti proizvod, ista cena porudžbine).
+  const lc = getLcDetails(geo, slug)?.pricing;
+  const lcTiers = lc && lc.tiers[0]?.quantity === 1 && lc.tiers[0].price === tiers[0].newPrice
+    ? lc.tiers.filter((t) => t.quantity >= 1 && t.quantity <= 3)
+    : null;
+  if (lcTiers && lcTiers.length > tiers.length) {
+    return {
+      geo, type,
+      currency: source.pricing.currency,
+      currencyLabel: currencyLabels[geo],
+      freeShippingPerSheet: lc!.freeDelivery || source.delivery?.free === true,
+      estimatedDeliveryBusinessDays: source.delivery?.estimatedBusinessDays?.length === 2
+        ? [source.delivery.estimatedBusinessDays[0], source.delivery.estimatedBusinessDays[1]]
+        : null,
+      paymentOnDelivery: true,
+      priceVerifiedWithMerchant: false,
+      tiers: lcTiers.map((t) => ({
+        id: `${t.quantity}-${t.quantity === 1 ? 'komad' : 'komada'}` as PriceTier['id'],
+        quantity: t.quantity as PriceTier['quantity'],
+        label: t.quantity === 1 ? (geo === 'HR' ? '1 pakiranje' : '1 pakovanje')
+          : `${t.quantity} ${geo === 'HR' ? 'pakiranja' : 'pakovanja'}`,
+        newPrice: t.price,
+        referencePrice: t.oldPrice,
+        savings: Math.round((t.oldPrice - t.price) * 100) / 100,
+        discountPercent: Math.round((1 - t.price / t.oldPrice) * 100),
+        unitPrice: t.price / t.quantity,
+      })),
+    };
+  }
   return {
     geo, type,
     currency: source.pricing.currency,
@@ -107,8 +138,9 @@ export function formatCatalogPrice(amount: number, geo: OfferGeo): string {
   return geo === 'HR' ? `${amountText} €` : `${amountText} ${currencyLabels[geo]}`;
 }
 
-export function popularPackageBadge(geo: OfferGeo, quantity: number): string | null {
+export function popularPackageBadge(geo: OfferGeo, quantity: number, discountPercent?: number | null): string | null {
   if (quantity !== 3) return null;
+  if (discountPercent) return `${geo === 'RS' ? 'NAJPOPULARNIJE' : 'Najpopularnije'} · -${discountPercent}%`;
   if (geo === 'RS') return 'NAJPOPULARNIJE · -59%';
   if (geo === 'BA') return 'Najpopularnije · Najbolja cijena';
   return 'Najpopularnije · -67%';

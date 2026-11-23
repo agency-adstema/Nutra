@@ -172,9 +172,9 @@ const productInfo = {
                       <tr class={`border-t border-line/70 ${t.quantity === 3 ? 'bg-[#e5efd8]' : ''}`} data-package-tier={t.quantity}>
                         <td class="px-3 py-2.5 align-middle">
                           <strong class="block text-[13px] font-semibold leading-tight text-ink">{t.label}</strong>
-                          {popularPackageBadge(offer.geo, t.quantity) && (
+                          {popularPackageBadge(offer.geo, t.quantity, t.discountPercent) && (
                             <span class="mt-1 inline-block max-w-full rounded-md bg-[#1f5a2c] px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white">
-                              {popularPackageBadge(offer.geo, t.quantity)}
+                              {popularPackageBadge(offer.geo, t.quantity, t.discountPercent)}
                             </span>
                           )}
                           {details?.package && <span class="mt-1 block text-[11px] leading-tight text-muted">{t.quantity} × {details.package}</span>}
@@ -270,9 +270,9 @@ const productInfo = {
                 </li>
               ))}
             </ol>
-            <p class="mt-6 rounded-xl bg-warn-bg p-4 text-sm text-ink">{isAvailable
-              ? 'Cena i detalji su preneti iz partnerove dokumentacije. Forma trenutno ne šalje podatke u CRM dok ne aktiviramo bezbedan backend.'
-              : 'Nema aktivne ponude za ovo tržište. Poručivanje nije dostupno.'}</p>
+            {!isAvailable && (
+              <p class="mt-6 rounded-xl bg-warn-bg p-4 text-sm text-ink">Nema aktivne ponude za ovo tržište. Poručivanje nije dostupno.</p>
+            )}
           </div>
           <OrderForm offer={offer} market={market} />
         </div>

@@ -68,13 +68,6 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
         <p class="p-6 text-center text-muted">Ova ponuda trenutno nije dostupna u partnerskom nalogu za izabranu zemlju. Poručivanje nije moguće.</p>
       ) : (
         <form class="space-y-4 p-5 sm:p-6" novalidate data-order-form data-config={JSON.stringify(formConfig)}>
-          {isCatalogPreview && safePreview && (
-            <div class="rounded-xl border border-warn/30 bg-warn-bg px-4 py-3 text-sm text-ink">
-              <strong>Forma za poručivanje još nije aktivirana.</strong> Ovaj prikaz služi za proveru dizajna i validacije;
-              nijedan uneti podatak neće biti poslat u CRM.
-              {catalogPricing && <p class="mt-2">Cene za {catalogPricing.tiers.length} {catalogPricing.tiers.length === 1 ? 'opciju' : 'opcije'} pakovanja preuzete su iz partnerskog cenovnika. Konačan iznos podleže potvrdi prodavca.</p>}
-            </div>
-          )}
           <div class="space-y-4" data-form-fields>
           <div class="grid gap-1.5 sm:grid-cols-[120px_1fr] sm:items-start sm:gap-4">
             <label for="of-first" class={labelCls}>Ime <span aria-hidden="true">*</span></label>
@@ -110,7 +103,7 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
                   <div class="grid gap-2">
                     {packages.map((p) => {
                       const tier = visiblePricing?.tiers.find(t => t.id === p.id);
-                      const badge = tier ? popularPackageBadge(visiblePricing!.geo, tier.quantity) : null;
+                      const badge = tier ? popularPackageBadge(visiblePricing!.geo, tier.quantity, tier.discountPercent) : null;
                       return (
                         <label class={`relative block cursor-pointer rounded-xl border px-4 py-3 transition-colors has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:ring-2 has-[:checked]:ring-brand/15 hover:border-brand/50 ${tier?.quantity === 3 ? 'border-[#4c8a3a] bg-[#e5efd8]' : 'border-line bg-white'}`} data-package-choice={p.id}>
                           {badge && (

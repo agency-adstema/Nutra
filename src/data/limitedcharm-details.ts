@@ -26,10 +26,15 @@ export interface LcReviews {
   count: number | null;
   items: LcReview[];
 }
+export interface LcPricing {
+  tiers: { quantity: number; oldPrice: number; price: number }[];
+  freeDelivery: boolean;
+}
 export interface LcDetails {
   sourceUrl: string;
   composition: LcComposition | null;
   reviews: LcReviews | null;
+  pricing?: LcPricing | null;
 }
 
 const data = raw as { sourceName: string; checkedAt: string; items: Record<string, LcDetails> };
