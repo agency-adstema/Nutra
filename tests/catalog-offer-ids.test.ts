@@ -9,17 +9,17 @@ import productSheets from '../src/data/products.json';
 
 describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
   it('čuva dostavljenu listu bez ponavljanja i bez HP ponuda', () => {
-    expect(suppliedRsOfferCount).toBe(60);
-    expect(suppliedHrOfferCount).toBe(8);
-    expect(suppliedBaOfferCount).toBe(4);
+    expect(suppliedRsOfferCount).toBe(55);
+    expect(suppliedHrOfferCount).toBe(47);
+    expect(suppliedBaOfferCount).toBe(65);
   });
 
-  it('objavljuje 20 ponuda, sve sa offer ID-jem', () => {
+  it('objavljuje svih 167 ponuda, sve sa offer ID-jem', () => {
     const connected = offers.filter(o => getSuppliedOfferId(o.geo, o.slug));
-    expect(connected).toHaveLength(20);
-    expect(connected.filter(o => o.geo === 'RS')).toHaveLength(8);
-    expect(connected.filter(o => o.geo === 'HR')).toHaveLength(8);
-    expect(connected.filter(o => o.geo === 'BA')).toHaveLength(4);
+    expect(connected).toHaveLength(167);
+    expect(connected.filter(o => o.geo === 'RS')).toHaveLength(55);
+    expect(connected.filter(o => o.geo === 'HR')).toHaveLength(47);
+    expect(connected.filter(o => o.geo === 'BA')).toHaveLength(65);
     expect(allOffers.filter(o => !getSuppliedOfferId(o.geo, o.slug))).toHaveLength(0);
   });
 
@@ -100,7 +100,7 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     expect(getCatalogOrderConfig('HR', 'cy-relief', env)?.orderEnabled).toBe(false);
   });
 
-  it('svih 20 javnih stranica koristi isključivo products.json offer_id, nikada hp_offer_id', () => {
+  it('svih 167 javnih stranica koristi isključivo products.json offer_id, nikada hp_offer_id', () => {
     const env = () => undefined;
     for (const offer of offers) {
       const source = productSheets.find(p => p.country === offer.geo && p.slug === offer.slug)!;
@@ -114,6 +114,6 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
 
   it('niti jedan key ne sme da pomeša zemlju i proizvod', () => {
     const keys = offers.map(o => catalogOfferEnvKey(o.geo as OfferGeo, o.slug));
-    expect(new Set(keys).size).toBe(20);
+    expect(new Set(keys).size).toBe(167);
   });
 });
