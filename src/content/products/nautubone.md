@@ -5,13 +5,13 @@ category: zglobovi-i-bolovi
 market: RS
 productType: Gel za zglobove i mišiće
 h1: Nautubone gel
-shortDescription: Gel za masažu zglobova i mišića; sastav i deklaracija se proveravaju.
-intro: Nautubone se predstavlja kao gel za masažu i negu područja zglobova i mišića. Pre kupovine proverite tačan sastav i uputstvo na originalnoj deklaraciji.
+shortDescription: Biljni gel sa ekstraktom korena gaveza i eteričnim uljima, za masažu zglobova, leđa i mišića.
+intro: Nautubone je biljni gel za masažu i negu bolnih mesta — zglobova, leđa i mišića. Glavni sastojak je ekstrakt korena gaveza, uz ulja geranijuma i muškatne žalfije i ekstrakt rimske kamilice.
 highlights:
   - icon: leaf
     label: Spoljna upotreba
-  - icon: plant
-    label: Sastav na deklaraciji
+  - icon: root
+    label: Gavez i eterična ulja
   - icon: truck
     label: Plaćanje pouzećem
 featured: true
@@ -27,12 +27,72 @@ themeSecondary: "#e6efd9"
 themeBackground: "#f8f4e9"
 themeAccent: "#6a9a3f"
 
-ingredients: []
-ingredientsNote: "Tačan sastav objavićemo nakon provere originalne deklaracije proizvoda."
+ingredients:
+  - name: Ekstrakt korena gaveza
+    latin: Symphytum officinale
+    icon: root
+    description: Glavni biljni sastojak gela. Koren gaveza se tradicionalno koristi u mastima i kremama za kožu.
+  - name: Ulje geranijuma
+    latin: Pelargonium graveolens, Pelargonium roseum
+    icon: flower
+    description: Eterično ulje cvetnog mirisa.
+  - name: Ulje muškatne žalfije
+    latin: Salvia sclarea
+    icon: leaf
+    description: Eterično ulje, deo mirisne kompozicije gela.
+  - name: Ekstrakt cveta rimske kamilice
+    latin: Anthemis nobilis
+    icon: flower
+    description: Biljni ekstrakt koji se često koristi u proizvodima za negu kože.
+ingredientsNote: "Sastav prema podacima prodavca (Limited Charm, 23.11.2026). Uporedite ga sa deklaracijom na pakovanju."
+composition:
+  eyebrow: Sastav
+  title: Gavez i eterična ulja.
+  image: ../../assets/products/nautubone/sastav-gavez.png
+  imageAlt: Ilustracija biljke gavez sa ljubičastim cvetovima i korenom
+  activeLabel: Aktivni sastojak
+  activeName: Ekstrakt korena gaveza
+  activeLatin: Symphytum officinale
+  inci: "Aqua, Propylene Glycol, Glycerin, Symphytum Officinale Root Extract, Carbomer, Pelargonium Graveolens Oil, Pelargonium Roseum Oil, Salvia Sclarea Oil, Sodium Hydroxide, Anthemis Nobilis Flower Extract."
+  tags: ["Spoljna upotreba", "Za masažu", "Biljna baza", "Čuvati do 25°C"]
+  sourceName: Limited Charm
+  checkedAt: 2026-11-23
+quotedReviews:
+  sourceName: Limited Charm
+  sourceUrl: https://limitedcharm.com/rs/proizvod/nautubone
+  checkedAt: 2026-11-23
+  items:
+    - initials: T.S.
+      score: 5
+      text: Otkako sam počela da mažem ovu kremu, ruke i prsti su mi mnogo mirniji i nema one ukočenosti. Posle tri nedelje sam osetila pravu razliku i veoma sam zadovoljna. Preporučila sam je već mnogima.
+    - initials: D.O.
+      score: 5
+      text: Namažem samo ujutru i to mi drži ceo dan, noge i kukovi me ne muče do večeri. Odličan je, iskreno, i redovno ga koristim. Razliku sam osetila već posle prvog mazanja.
+    - initials: J.S.
+      score: 5
+      text: Oteklina na kolenu mi je splasnula posle svega nekoliko mazanja, treći put je već bilo gotovo. Jednu tubu sam dala prijatelju i kaže da je i njemu pomogla. Meni je super, koleno me više ne muči.
+    - initials: V.V.
+      score: 5
+      text: Prija mi i odgovara mi, tako da sam zadovoljna. Nikad ne naručim samo jednu, uvek uzmem dve ili tri, koliko mogu. Preporučujem je prijateljicama koje imaju slične tegobe.
+    - initials: K.E.
+      score: 5
+      text: Jako sam bila zadovoljna, toliko da sam jednu kremu htela da poklonim prijateljici. Koristila sam je sigurno četiri-pet puta i sad bih rado ponovo. Uporna sam, mažem i ujutru i uveče.
+    - initials: Z.V.
+      score: 5
+      text: Super mi je pomoglo i svima ovde pričam o tome. Otkako se mažem, tegobe su mnogo manje, ima ih još pomalo, ali neuporedivo. Sad ću da naručim za muža, pa ću posle ja.
+    - initials: N.S.
+      score: 5
+      text: Vrat mi je bio glavni razlog, nisam mogla glavu da okrenem kako treba. Sada je okrećem najnormalnije i to mi je najvažnije. Mazala sam i koleno, pa je i tu sve prošlo divno.
+    - initials: M.M.
+      score: 5
+      text: Komšinica mi je pre nekoliko godina donela kremu i pokazala se odlično. Namazala sam koleno jednom kad sam pala i odmah mi je bilo lakše. Preporučila sam je i svojima, čak sam podelila i na mreži.
+    - initials: M.M.
+      score: 5
+      text: Prošli put sam uzela dve i iskoristila ih do kraja, pa sam se oduševila. Uzela sam ih kad nisam mogla desno koleno da savladam i mnogo mi je pomoglo.
 usage:
   - Nanesite tanak sloj na bolno mesto.
   - Umasirajte dok se ne upije.
-  - Učestalost nanošenja proverite na pakovanju.
+  - Prema opisu prodavca, nanošenje se može ponoviti više puta dnevno — pridržavajte se uputstva na pakovanju.
 notFor:
   - Deca i adolescenti — preparati sa korenom gaveza namenjeni su odraslima.
   - Trudnice i dojilje, osim po savetu lekara.
@@ -64,11 +124,11 @@ faq:
   - q: Gde kupiti Nautubone?
     a: Nautubone možete poručiti preko forme na ovoj stranici. Biljni kompas nije apoteka ni prodavac — porudžbinu obrađuje prodavac, a operater vas poziva radi potvrde. Plaćanje je pouzećem.
   - q: Šta sadrži Nautubone?
-    a: Tačan sastav još nije potvrđen. Proverite ga na originalnoj deklaraciji proizvoda.
+    a: "Prema podacima prodavca: Aqua, Propylene Glycol, Glycerin, Symphytum Officinale Root Extract (ekstrakt korena gaveza), Carbomer, ulja geranijuma (Pelargonium Graveolens i Roseum) i muškatne žalfije (Salvia Sclarea), Sodium Hydroxide i ekstrakt cveta rimske kamilice (Anthemis Nobilis). Uporedite sa deklaracijom na pakovanju."
   - q: Kako se koristi Nautubone gel?
     a: Način i učestalost nanošenja proverite u uputstvu na originalnom pakovanju.
   - q: Kakva su iskustva sa Nautubone gelom?
-    a: Objavljujemo samo autentične video snimke uz dozvolu autora. Snimak označavamo kao iskustvo kupca samo kada je potvrđeno da je autor kupio i koristio proizvod.
+    a: Na ovoj stranici prikazujemo ocenu i komentare sa sajta prodavca Limited Charm, uz jasnu oznaku izvora — to nisu recenzije kupaca ovog sajta. Video snimke objavljujemo samo uz dozvolu autora.
   - q: Da li je Nautubone lek?
     a: Ne. Prema dostupnim podacima, to nije registrovan lek. Ne zamenjuje pregled i terapiju koju propisuje lekar.
 faqSchema: false

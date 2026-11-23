@@ -75,6 +75,36 @@ const products = defineCollection({
         .array(z.object({ name: z.string(), latin: z.string().optional(), description: z.string(), icon: iconEnum.default('leaf') }))
         .default([]),
       ingredientsNote: z.string().optional(),
+      /** Istaknuta sekcija „Sastav“: slika, aktivni sastojak, INCI lista i oznake */
+      composition: z
+        .object({
+          eyebrow: z.string().default('Sastav'),
+          title: z.string(),
+          image: image().optional(),
+          imageAlt: z.string().optional(),
+          activeLabel: z.string().default('Aktivni sastojak'),
+          activeName: z.string(),
+          activeLatin: z.string().optional(),
+          inci: z.string(),
+          tags: z.array(z.string()).default([]),
+          sourceName: z.string().optional(),
+          checkedAt: z.coerce.date().optional(),
+        })
+        .optional(),
+      /**
+       * Komentari preuzeti sa sajta prodavca, uvek prikazani uz naziv izvora.
+       * Nisu recenzije kupaca ovog sajta i ne ulaze u JSON-LD.
+       */
+      quotedReviews: z
+        .object({
+          sourceName: z.string(),
+          sourceUrl: z.url(),
+          checkedAt: z.coerce.date(),
+          items: z
+            .array(z.object({ text: z.string(), initials: z.string().max(6), score: z.number().min(1).max(5) }))
+            .min(1),
+        })
+        .optional(),
       usage: z.array(z.string()).default([]),
       notFor: z.array(z.string()).default([]),
       warnings: z.array(z.string()).default([]),

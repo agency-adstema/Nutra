@@ -1,0 +1,72 @@
+---
+import { getExternalReview } from '../../data/external-reviews';
+import type { OfferGeo } from '../../data/offers';
+import { formatDate } from '../../lib/format';
+import { site } from '../../config/site';
+import type { Product } from '../../lib/content';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+const d = product.data;
+const q = d.quotedReviews;
+const geo = (['RS', 'BA', 'HR'] as const).includes(d.countryCode as OfferGeo) ? (d.countryCode as OfferGeo) : undefined;
+const summary = geo ? getExternalReview(geo, d.slug) : undefined;
+const fmtScore = (n: number) => n.toFixed(1).replace('.', ',');
+const fill = (n: number) => `${Math.max(0, Math.min(100, (n / 5) * 100))}%`;
+---
+
+{
+  q && (
+    <section class="container-site" id="recenzije" aria-labelledby="recenzije-title" data-review-display="external-source">
+      <p class="text-xs font-bold uppercase tracking-[0.22em] text-brand-strong">Iskustva kupaca</p>
+      <h2 id="recenzije-title" class="mt-2 text-2xl font-semibold text-ink sm:text-[2rem]">Šta kupci pišu o proizvodu {d.name}</h2>
+
+      {summary && (
+        <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-[var(--radius-card)] bg-brand-2/70 px-6 py-6 sm:px-8">
+          <span class="font-sans text-5xl font-extrabold tracking-tight text-brand-strong sm:text-6xl">{fmtScore(summary.score)}</span>
+          <span class="flex flex-col gap-1">
+            <span
+              class="relative inline-block whitespace-nowrap text-[26px] leading-none tracking-[-1px]"
+              role="img"
+              aria-label={`Ocena ${fmtScore(summary.score)} od 5`}
+            >
+              <span class="text-[#d6d9cf]" aria-hidden="true">★★★★★</span>
+              <span class="absolute left-0 top-0 overflow-hidden whitespace-nowrap text-[#f28b00]" style={`width: ${fill(summary.score)}`} aria-hidden="true">★★★★★</span>
+            </span>
+            <span class="text-sm font-semibold text-ink/75">
+              Na osnovu {summary.count.toLocaleString('sr-RS')} recenzija prikazanih na sajtu {summary.sourceName}
+            </span>
+          </span>
+        </div>
+      )}
+
+      <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {q.items.map((r) => (
+          <li class="flex flex-col rounded-[var(--radius-card)] border border-line/70 bg-paper p-6">
+            <span class="flex items-center gap-2">
+              <span class="relative inline-block whitespace-nowrap text-[18px] leading-none tracking-[-1px]" role="img" aria-label={`Ocena ${fmtScore(r.score)} od 5`}>
+                <span class="text-[#d6d9cf]" aria-hidden="true">★★★★★</span>
+                <span class="absolute left-0 top-0 overflow-hidden whitespace-nowrap text-[#f28b00]" style={`width: ${fill(r.score)}`} aria-hidden="true">★★★★★</span>
+              </span>
+              <span class="text-sm font-semibold text-muted">{fmtScore(r.score)}</span>
+            </span>
+            <blockquote class="mt-4 flex-1 leading-relaxed text-ink/85">„{r.text}“</blockquote>
+            <span class="mt-5 flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-full bg-brand-2 text-xs font-bold text-brand-strong" aria-hidden="true">
+                {r.initials.replace(/\./g, '')}
+              </span>
+              <span class="font-semibold text-ink">{r.initials}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-5 max-w-3xl text-sm text-muted">
+        Ocena i komentari preuzeti su sa sajta {q.sourceName} ({formatDate(q.checkedAt)}). Nisu recenzije kupaca sajta {site.name}
+        i nismo ih nezavisno proverili. Individualni rezultati mogu da se razlikuju.
+      </p>
+    </section>
+  )
+}

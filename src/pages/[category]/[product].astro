@@ -5,6 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import ProductHero from '../../components/product/ProductHero.astro';
 import ProductOverview from '../../components/product/ProductOverview.astro';
+import ProductComposition from '../../components/product/ProductComposition.astro';
+import QuotedReviews from '../../components/product/QuotedReviews.astro';
 import VideoReviews from '../../components/product/VideoReviews.astro';
 import OrderForm from '../../components/product/OrderForm.astro';
 import StickyCta from '../../components/product/StickyCta.astro';
@@ -56,6 +58,7 @@ const tabs = [
   { href: '#opis', label: 'Opis proizvoda' },
   { href: '#sastav', label: 'Sastav i upotreba' },
   { href: '#cena', label: 'Cena i pakovanja' },
+  ...(d.quotedReviews ? [{ href: '#recenzije', label: 'Recenzije' }] : []),
   ...(videos.length ? [{ href: '#video', label: 'Video iskustva' }] : []),
   ...(d.orderEnabled ? [{ href: '#poruci', label: 'Poručite' }] : []),
 ];
@@ -112,6 +115,8 @@ const productInfo = {
 
     <div class="space-y-14 pt-6 lg:space-y-20 lg:pt-10">
       <ProductOverview product={product} market={market} />
+
+      <ProductComposition product={product} />
 
       <!-- Detaljno + kome nije namenjen / upozorenja -->
       <section class="container-site grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:gap-12" aria-labelledby="detalji-title">
@@ -186,6 +191,8 @@ const productInfo = {
           </section>
         )
       }
+
+      <QuotedReviews product={product} />
 
       <div class="container-site">
         <FaqList items={d.faq} title={`Često postavljana pitanja o proizvodu ${d.name}`} />

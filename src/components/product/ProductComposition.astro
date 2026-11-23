@@ -1,0 +1,55 @@
+---
+import { Picture } from 'astro:assets';
+import { formatDate } from '../../lib/format';
+import type { Product } from '../../lib/content';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+const c = product.data.composition;
+---
+
+{
+  c && (
+    <section class="container-site" id="sastav-detaljno" aria-labelledby="sastav-detaljno-title">
+      <p class="text-xs font-bold uppercase tracking-[0.22em] text-brand-strong">{c.eyebrow}</p>
+      <h2 id="sastav-detaljno-title" class="mt-2 text-2xl font-semibold text-ink sm:text-[2rem]">{c.title}</h2>
+
+      <div class={`mt-6 grid items-center gap-6 lg:gap-8 ${c.image ? 'lg:grid-cols-2' : ''}`}>
+        {c.image && (
+          <div class="overflow-hidden rounded-[var(--radius-card)] bg-[#f9f4ea]">
+            <Picture
+              src={c.image}
+              alt={c.imageAlt ?? c.activeName}
+              widths={[360, 556]}
+              sizes="(min-width: 1024px) 556px, 100vw"
+              formats={['avif', 'webp']}
+              loading="lazy"
+              class="h-auto w-full"
+            />
+          </div>
+        )}
+
+        <div class="card p-6 sm:p-8">
+          <p class="text-xs font-bold uppercase tracking-[0.22em] text-brand-strong">{c.activeLabel}</p>
+          <h3 class="mt-3 text-2xl font-semibold text-ink sm:text-[1.9rem] sm:leading-tight">{c.activeName}</h3>
+          {c.activeLatin && <p class="mt-1 italic text-muted">{c.activeLatin}</p>}
+          <p class="mt-5 leading-relaxed text-ink/80">{c.inci}</p>
+          {c.tags.length > 0 && (
+            <ul class="mt-6 flex flex-wrap gap-2.5" aria-label="Oznake proizvoda">
+              {c.tags.map((t) => (
+                <li class="rounded-full bg-brand-2 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-brand-strong">{t}</li>
+              ))}
+            </ul>
+          )}
+          {c.sourceName && (
+            <p class="mt-6 text-xs text-muted">
+              Sastav prema podacima prodavca ({c.sourceName}{c.checkedAt && <>, provereno {formatDate(c.checkedAt)}</>}). Uporedite sa deklaracijom na pakovanju.
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
