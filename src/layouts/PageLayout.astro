@@ -2,10 +2,7 @@
 /** Jednostavne informativne/pravne stranice */
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import DemoNotice from '../components/DemoNotice.astro';
 import LeafDecor from '../components/LeafDecor.astro';
-import { site } from '../config/site';
-import { isPlaceholder } from '../lib/seo';
 import { formatDate } from '../lib/format';
 
 interface Props {
@@ -17,12 +14,10 @@ interface Props {
   legal?: boolean;
   lead?: string;
 }
-const { title, seoTitle, description, path, updatedAt, legal = false, lead } = Astro.props;
-const draft = legal && isPlaceholder(site.operator.companyName);
+const { title, seoTitle, description, path, updatedAt, lead } = Astro.props;
 ---
 
 <BaseLayout title={seoTitle ?? title} description={description} path={path} breadcrumbs={[{ name: title, href: path }]}>
-  {draft && <DemoNotice text="Nacrt: podaci o operateru nisu popunjeni, a pravni tekst treba da proveri pravnik pre objave." />}
   <section class="relative overflow-hidden">
     <LeafDecor class="-right-12 -top-4 hidden w-56 rotate-12 md:block" />
     <div class="container-site relative py-8 lg:py-12">
