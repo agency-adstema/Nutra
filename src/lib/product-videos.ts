@@ -26,9 +26,7 @@ function matchesMarketAndProduct(path: string, geo: OfferGeo, slug: string, patt
   return !!match && match[1].toLowerCase() === geo.toLowerCase() && match[2] === slug;
 }
 
-export function getProductVideos(geo: OfferGeo, slug: string): ProductVideo[] {
-  const key = `${geo}/${slug}`;
-  const raw = (manifest as Record<string, unknown>)[key];
+export function filterPermittedProductVideos(raw: unknown, geo: OfferGeo, slug: string): ProductVideo[] {
   if (!Array.isArray(raw)) return [];
   const used = new Set<string>();
   const videos: ProductVideo[] = [];
@@ -51,6 +49,13 @@ export function getProductVideos(geo: OfferGeo, slug: string): ProductVideo[] {
     });
   }
   return videos;
+}
+
+/** Look up only this GEO/product; no cross-product or cross-market reuse. */
+export function getProductVideos(geo: OfferGeo, slug: string): ProductVideo[] {
+  const key = `${geo}/${slug}`;
+  const raw = (manifest as Record<string, unknown>)[key];
+  return filterPermittedProductVideos(raw, geo, slug);
 }
 
 export function productVideoPages(videos: ProductVideo[]): ProductVideo[][] {
