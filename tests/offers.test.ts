@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  offers, sourceOfferRows, getOffersByGeo, getOffer, offerUrl, geoUrl,
+  offers, allOffers, sourceOfferRows, getOffersByGeo, getOffer, offerUrl, geoUrl,
   catalogMarkets, verticalLabel,
 } from '../src/data/offers';
 
@@ -10,12 +10,14 @@ describe('Katalog ponuda RS/BA/HR', () => {
     expect(sourceOfferRows.every((row) => ['RS', 'BA', 'HR'].includes(row.geo))).toBe(true);
   });
 
-  it('izdvaja 45 jedinstvenih ponudâ: RS 19, BA 13, HR 13', () => {
-    expect(offers).toHaveLength(45);
+  it('čuva 45 izvornih ponuda, prikazuje 41 sa cenom: RS 19, BA 9, HR 13', () => {
+    expect(allOffers).toHaveLength(45);
+    expect(offers).toHaveLength(41);
     expect(getOffersByGeo('RS')).toHaveLength(19);
-    expect(getOffersByGeo('BA')).toHaveLength(13);
+    expect(getOffersByGeo('BA')).toHaveLength(9);
     expect(getOffersByGeo('HR')).toHaveLength(13);
     expect(new Set(offers.map((offer) => `${offer.geo}/${offer.slug}`)).size).toBe(offers.length);
+    for(const slug of ['hp-cardio-zen','hp-glyco-balance','hp-para-clean','hp-slim-ease']) expect(getOffer('BA',slug)).toBeUndefined();
   });
 
   it('spaja samo iste ponude na istom tržištu, bez mešanja država', () => {
