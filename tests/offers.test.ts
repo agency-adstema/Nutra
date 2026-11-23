@@ -11,10 +11,10 @@ describe('Katalog ponuda RS/BA/HR', () => {
     expect(sourceOfferRows.every((row) => ['RS', 'BA', 'HR'].includes(row.geo))).toBe(true);
   });
 
-  it('čuva 167 ponuda i prikazuje svih 167: RS 55, BA 65, HR 47', () => {
+  it('čuva 167 ponuda i prikazuje 166 (bez uklonjenog RS/para-clean): RS 54, BA 65, HR 47', () => {
     expect(allOffers).toHaveLength(167);
-    expect(offers).toHaveLength(167);
-    expect(getOffersByGeo('RS')).toHaveLength(55);
+    expect(offers).toHaveLength(166);
+    expect(getOffersByGeo('RS')).toHaveLength(54);
     expect(getOffersByGeo('BA')).toHaveLength(65);
     expect(getOffersByGeo('HR')).toHaveLength(47);
     expect(new Set(offers.map((offer) => `${offer.geo}/${offer.slug}`)).size).toBe(offers.length);

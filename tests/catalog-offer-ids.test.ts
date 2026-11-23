@@ -14,10 +14,10 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     expect(suppliedBaOfferCount).toBe(65);
   });
 
-  it('objavljuje svih 167 ponuda, sve sa offer ID-jem', () => {
+  it('objavljuje 166 ponuda (RS/para-clean uklonjen), sve sa offer ID-jem', () => {
     const connected = offers.filter(o => getSuppliedOfferId(o.geo, o.slug));
-    expect(connected).toHaveLength(167);
-    expect(connected.filter(o => o.geo === 'RS')).toHaveLength(55);
+    expect(connected).toHaveLength(166);
+    expect(connected.filter(o => o.geo === 'RS')).toHaveLength(54);
     expect(connected.filter(o => o.geo === 'HR')).toHaveLength(47);
     expect(connected.filter(o => o.geo === 'BA')).toHaveLength(65);
     expect(allOffers.filter(o => !getSuppliedOfferId(o.geo, o.slug))).toHaveLength(0);
@@ -114,6 +114,6 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
 
   it('niti jedan key ne sme da pomeša zemlju i proizvod', () => {
     const keys = offers.map(o => catalogOfferEnvKey(o.geo as OfferGeo, o.slug));
-    expect(new Set(keys).size).toBe(167);
+    expect(new Set(keys).size).toBe(166);
   });
 });

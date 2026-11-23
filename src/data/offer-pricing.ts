@@ -91,7 +91,7 @@ export function getCatalogPrice(geo: OfferGeo, slug: string): CatalogPrice | und
       geo, type,
       currency: source.pricing.currency,
       currencyLabel: currencyLabels[geo],
-      freeShippingPerSheet: lc!.freeDelivery || source.delivery?.free === true,
+      freeShippingPerSheet: true, // vlasnik: dostava je besplatna za sve proizvode
       estimatedDeliveryBusinessDays: source.delivery?.estimatedBusinessDays?.length === 2
         ? [source.delivery.estimatedBusinessDays[0], source.delivery.estimatedBusinessDays[1]]
         : null,
@@ -114,7 +114,7 @@ export function getCatalogPrice(geo: OfferGeo, slug: string): CatalogPrice | und
     geo, type,
     currency: source.pricing.currency,
     currencyLabel: currencyLabels[geo],
-    freeShippingPerSheet: source.delivery?.free === true,
+    freeShippingPerSheet: true, // vlasnik: dostava je besplatna za sve proizvode
     estimatedDeliveryBusinessDays: source.delivery?.estimatedBusinessDays?.length === 2
       ? [source.delivery.estimatedBusinessDays[0], source.delivery.estimatedBusinessDays[1]]
       : null,
@@ -148,8 +148,7 @@ export function popularPackageBadge(geo: OfferGeo, quantity: number, discountPer
 
 export function deliveryTerms(geo: OfferGeo, pricing?: CatalogPrice): string {
   // Only existing worksheet rows have partner-confirmed shipping estimates.
-  if (pricing && !pricing.freeShippingPerSheet) {
-    return 'Uslovi dostave se potvrđuju pri poručivanju · Plaćanje pouzećem';
-  }
+  // Dostava je besplatna za sve proizvode; rok 1–2 dana samo gde ga partner navodi.
+  if (pricing && !pricing.estimatedDeliveryBusinessDays) return 'Besplatna dostava · Plaćanje pouzećem';
   return 'Besplatna dostava · Dostava 1–2 radna dana · Plaćanje pouzećem';
 }

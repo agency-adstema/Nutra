@@ -5,6 +5,7 @@
  */
 import raw from './offer-details.json';
 import manifest from './catalog-image-manifest.json';
+import imageOverrides from './product-image-overrides.json';
 import type { OfferGeo } from './offers';
 
 export interface OfferDetails {
@@ -35,6 +36,9 @@ export function getOfferDetails(geo: OfferGeo, slug: string): OfferDetails | und
  * Never hotlink products from the MonadLead API domain.
  */
 export function getOfferImage(details: OfferDetails | undefined): string | null {
+  // Ručno izabrana slika pakovanja (public/images/products) ima prednost, za sve zemlje.
+  const override = details && (imageOverrides as Record<string, string>)[details.slug];
+  if (override) return override;
   if (!details?.imageUrl) return null;
   const key = `${details.country}/${details.slug}`;
   return (manifest as Record<string,string>)[key] ?? null;

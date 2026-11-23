@@ -50,7 +50,8 @@ describe('Partner product sheets integrated into Nutra', () => {
       else {
         expect(d.imageUrl).toMatch(/^https:\/\/api\.monadlead\.com\/storage\/offers\/images\//);
         // Manifest is generated during the staging build and is intentionally empty in source control.
-        if (url) expect(url).toMatch(/^\/catalog-products\//);
+        // Ručno izabrane slike (product-image-overrides.json) su u /images/products/.
+        if (url) expect(url).toMatch(/^\/(catalog-products|images\/products)\//);
       }
     }
   });
