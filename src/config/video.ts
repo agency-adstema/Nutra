@@ -1,6 +1,7 @@
 /** A single public origin for every product video and poster. Change this
  * constant when video.zdravica.xx replaces the public r2.dev URL. */
-export const VIDEO_BASE_URL = 'https://pub-a95ebe33417d48d0a699465ca5028b61.r2.dev/Limited%20Charm';
+import media from './video.json';
+export const VIDEO_BASE_URL = media.videoBaseUrl;
 
 export function videoR2Url(relativePath: string): string {
   // Important: preserve the already-encoded "Limited%20Charm" in base URL;
