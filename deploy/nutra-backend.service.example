@@ -1,0 +1,28 @@
+# Copy to /etc/systemd/system/nutra-orders.service AFTER building the Node adapter.
+# Default is TEST MODE. Never put API secrets here.
+[Unit]
+Description=Nutra COD order API (Astro Node standalone)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nutra-orders
+Group=nutra-orders
+WorkingDirectory=/opt/nutra-backend
+Environment=HOST=127.0.0.1
+Environment=PORT=4376
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/nutra/backend.env
+ExecStart=/usr/bin/node /opt/nutra-backend/dist/server/entry.mjs
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+RestrictSUIDSGID=true
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
