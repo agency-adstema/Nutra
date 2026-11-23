@@ -1,5 +1,1296 @@
 {
   "sourceName": "Limited Charm",
   "checkedAt": "2026-11-23",
-  "items": {}
+  "items": {
+    "RS/dia-drops": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/diadrops",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Pet ekstrakata u 30 ml.",
+        "label": "Aktivni sastojak",
+        "name": "Pasuljevina i kopriva",
+        "latin": "Phaseolus vulgaris · Urtica dioica · Vaccinium myrtillus",
+        "inci": "Vodeno-etanolni ekstrakt pasuljevine (Phaseolus vulgaris) 1:5 (25 ml/100 ml); ekstrakt lista koprive (Urtica dioica) 1:5 (25 ml/100 ml); ekstrakt lista borovnice (Vaccinium myrtillus) 1:5 (20 ml/100 ml); ekstrakt lista breze (Betula sp.) 1:5 (20 ml/100 ml); ekstrakt herbe belog pelina (Artemisia absinthium) 1:5 (10 ml/100 ml).",
+        "tags": [
+          "30 ml",
+          "Pet ekstrakata",
+          "Sadrži alkohol",
+          "Pipeta u pakovanju"
+        ],
+        "imageAlt": "Pasuljevina i kopriva",
+        "image": "/images/sastav/rs-dia-drops.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 17,
+        "items": [
+          {
+            "text": "Sa Diadropsom sam prezadovoljna, to mogu slobodno da kažem. Koristim ga i dalje i nemam potrebu da menjam.",
+            "initials": "Z.K.",
+            "score": 5.0
+          },
+          {
+            "text": "Prezadovoljna sam, stvarno. Prešla sam veliki put na jednom dužem putovanju i nisam osetila ni bolove ni umor. To mi mnogo znači.",
+            "initials": "S.T.",
+            "score": 5.0
+          },
+          {
+            "text": "Ako se koristi redovno, rezultati ne izostanu. Preporučujem svima da budu uporni, verujem da će biti oduševljeni.",
+            "initials": "P.D.",
+            "score": 5.0
+          },
+          {
+            "text": "Pijem to već duže vreme, a naručujemo redovno u porodici - nekad snaja, nekad ćerka, sad je opet red na mene. Očigledno nam svima odgovara kad ga stalno obnavljamo.",
+            "initials": "J.I.",
+            "score": 4.5
+          },
+          {
+            "text": "Kapi koristim dva puta dnevno, uz manju dozu čaja, i vidim da mi deluje. U početku sam morao da smanjim dozu i sada mi sve odgovara.",
+            "initials": "S.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Za ovo sam saznala preko prijatelja, a ćerka mi je dodatno preporučila. Koristim redovno i mogu da kažem da mi je bolje nego pre. Zadovoljna sam.",
+            "initials": "D.Z.",
+            "score": 4.5
+          },
+          {
+            "text": "Zadovoljan sam, hvala Bogu nemam nikakvih tegoba. Redovno pijem to što su mi preporučili i dobro mi je.",
+            "initials": "Đ.D.",
+            "score": 4.5
+          },
+          {
+            "text": "Meni je to baš pomoglo, pa ga pijem i dalje. Zadovoljan sam i nemam nameru da prestanem.",
+            "initials": "N.C.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristim to i sada i bolje mi je nego ranije. Ne pada mi na pamet da uzimam nešto drugo.",
+            "initials": "P.D.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "RS/mikoherb": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/miko-herb",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Origano, nana i čajevac.",
+        "label": "Aktivni sastojak",
+        "name": "Biljna eterična ulja",
+        "latin": "Origanum vulgare · Melaleuca alternifolia",
+        "inci": "Aqua, Origanum vulgare oil, Mentha piperita (peppermint) oil, Chamomilla recutita flower extract, Lavandula angustifolia (lavender) oil, Foeniculum vulgare (fennel) oil, Melaleuca alternifolia oil, Carbopol, Sodium hydroxide, Sorbitol, Glycerin, Propylene glycol, Tocopherol, Propyl paraben, Methyl paraben.",
+        "tags": [
+          "100 ml",
+          "Spoljna upotreba",
+          "Efekat hlađenja",
+          "Biljna ulja"
+        ],
+        "imageAlt": "Biljna eterična ulja",
+        "image": "/images/sastav/rs-mikoherb.webp"
+      },
+      "reviews": {
+        "score": 4.4,
+        "count": 16,
+        "items": [
+          {
+            "text": "Jedan čovek me pitao porukom da li to zaista vredi, pa sam mu sve opisala i rekla da je odlično. Meni je nokat bio skoro sav propao, a sada je više od pola ponovo izrastao.",
+            "initials": "B.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Ne mogu reći da nisam zadovoljan, jesam. Bio sam na moru i svi su mi govorili da imam lepe prste i pitali šta koristim, pa sam bio oduševljen.",
+            "initials": "N.D.",
+            "score": 5.0
+          },
+          {
+            "text": "Uzimala sam MikoHerb i ranije i pomogao mi je, pa sam sada krenula ponovo kada mi se opet javilo. Već se vidi boljitak, a naručujem i za rezervu.",
+            "initials": "B.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Radim to preventivno, da mi se ne bi vratilo. Uzela sam za sebe, za nogu, i stvarno mi je pomoglo, pa sam naručila i dalje.",
+            "initials": "J.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Zadovoljna sam i planiram da gel koristim još oko dva meseca. Uzimam odmah više pakovanja da mi ne bi ponestalo.",
+            "initials": "J.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Posao mi je takav da sam po ceo dan obuvena i noge mi se mnogo znoje, pa sam imala problem sa noktima. Otkako ovo koristim, mnogo mi je bolje.",
+            "initials": "V.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Videla sam manju promenu otkako koristim, ali sam ovim preparatom stvarno prezadovoljna. Nastavljam dalje da mažem.",
+            "initials": "S.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Već sam uzimala vaš gel i zadovoljna sam, pa sada samo nastavljam dalje. Narudžba nije na moje ime, ali proizvod je za mene.",
+            "initials": "A.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristim ga i zadovoljna sam njime, a tuba se u međuvremenu polako potrošila. Zato sam naručila i drugo pakovanje da imam kod kuće.",
+            "initials": "V.K.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "RS/o-caps": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/o-caps",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Vitamini, cink i selen.",
+        "label": "Aktivni sastojak",
+        "name": "Beta karoten, C, E, cink i selen",
+        "latin": "Retinol ekvivalenti · Zn · Se",
+        "inci": "Vitamin C (L-askorbinska kiselina) 80 mg (100% NRV), cink (cink-oksid) 15 mg (150% NRV), vitamin E (DL-α-tokoferilacetat) 10 mg α-TE (83% NRV), beta-karoten 3 mg, selen (L-selenometionin) 55 µg (100% NRV). Maltodekstrin, kapsula (želatin, boja: žuti oksid gvožđa), sredstva protiv zgrudnjavanja: magnezijum-stearat i silicijum-dioksid.",
+        "tags": [
+          "15 kapsula (7,5 g)",
+          "Cink 150% NRV",
+          "Proizvedeno u Srbiji",
+          "1 dnevno"
+        ],
+        "imageAlt": "Beta karoten, C, E, cink i selen",
+        "image": "/images/sastav/rs-o-caps.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 10,
+        "items": [
+          {
+            "text": "Imam volje da radim, da kuvam i pečem, kao da mi ništa nije ni bilo. Tablete i dalje pijem i zaista sam zadovoljna.",
+            "initials": "O.S.",
+            "score": 5.0
+          },
+          {
+            "text": "To mi je pomoglo, osećaj je kao da sam oprala prozor. Ranije mi se levo oko mutilo, a sada mi je sve mnogo jasnije.",
+            "initials": "J.Đ.",
+            "score": 5.0
+          },
+          {
+            "text": "Išla sam sa štapom, a sada mi više ne treba. Uzimam ih tek nekoliko dana, ali sam dosta zadovoljna kako se osećam.",
+            "initials": "D.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Mnogo mi je pomoglo otkako sam počela da koristim te kapi. Osećam razliku u odnosu na ranije i drago mi je što sam uopšte probala.",
+            "initials": "D.R.",
+            "score": 5.0
+          },
+          {
+            "text": "Previše sam zadovoljan, iskreno vam kažem. Nemam nijednu zamerku na ovo što koristim i sve je onako kako treba da bude.",
+            "initials": "M.A.",
+            "score": 5.0
+          },
+          {
+            "text": "Pijem ove kapsule već mesec i po dana i uzela sam drugu kutiju. Meni je pomoglo i primetila sam razliku, pa sam želela da i njemu pomognem.",
+            "initials": "P.T.",
+            "score": 4.5
+          },
+          {
+            "text": "Meni je najvažnije da me ne hvata vrtoglavica i da mogu lepo da vidim. S tim sam zadovoljna i računam da mi je ovo koliko-toliko pomoglo.",
+            "initials": "L.V.",
+            "score": 4.0
+          },
+          {
+            "text": "Zasad je sve u redu i zadovoljan sam onim što sam dobio. Meni je bolje, eto, to je najkraće što mogu da vam kažem. Idem dalje s tim.",
+            "initials": "J.S.",
+            "score": 4.0
+          },
+          {
+            "text": "Zadovoljan sam onim što sam do sada dobio. Još je rano, pa ćemo videti kako će dalje ići, ali za sada nemam primedbe.",
+            "initials": "V.N.",
+            "score": 4.0
+          }
+        ]
+      }
+    },
+    "RS/parazol": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/parazol",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Maslina, origano i anis.",
+        "label": "Aktivni sastojak",
+        "name": "List masline i vranilova trava",
+        "latin": "Olea europaea · Origanum vulgare",
+        "inci": "List masline (Olea europaea), herba vranilove trave (Origanum vulgare), plod anisa (Pimpinella anisum), herba timijana (Thymus vulgaris), list nane (Mentha piperita).",
+        "tags": [
+          "Rinfuz mešavina",
+          "Bez šećera",
+          "Priprema 30 min",
+          "Prirodna baza"
+        ],
+        "imageAlt": "List masline i vranilova trava",
+        "image": "/images/sastav/rs-parazol.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 28,
+        "items": [
+          {
+            "text": "Mogu reći da sam bila teži slučaj, ali je odlično prošlo. Za dva i po meseca sam izbacila stvarno mnogo toga i razlika se osetila.",
+            "initials": "B.C.",
+            "score": 5.0
+          },
+          {
+            "text": "Preporučila sam ga i koleginicama jer sam zaista zadovoljna. Redovno ga koristim i energetski se osećam mnogo bolje nego pre.",
+            "initials": "H.H.",
+            "score": 5.0
+          },
+          {
+            "text": "Već sam ga koristio ranije i bio sam prezadovoljan. Baš zato sam ga bez razmišljanja preporučio bratu i sada uzimam i za njega.",
+            "initials": "M.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Parazol sam uzimala pre više godina i tada sam bila oduševljena njime. Sada mi opet treba, pa sam se vratila istom proizvodu.",
+            "initials": "N.V.",
+            "score": 5.0
+          },
+          {
+            "text": "Pre nekih dve godine sam ga pila i tada sam bila prezadovoljna. To se pamti, pa mi je i sada prva pomisao kad mi zatreba.",
+            "initials": "Ž.A.",
+            "score": 5.0
+          },
+          {
+            "text": "Varenje mi je sredio i baš zbog toga sam jako zadovoljna. Kod mene je sve postalo mnogo redovnije i to se lepo oseti.",
+            "initials": "B.Š.",
+            "score": 5.0
+          },
+          {
+            "text": "Verujte mi da sam prezadovoljna rezultatom koji sam dobila. To je sve što imam da kažem, mislim da govori samo za sebe.",
+            "initials": "D.D.",
+            "score": 5.0
+          },
+          {
+            "text": "Mučila me nadutost i osećaj da ne mogu na toalet, a otkako ga koristim toga nema. Planiram da završim još jednu kutiju, pa pauza i onda ponovo. Iskreno, zadovoljna sam.",
+            "initials": "J.Ž.",
+            "score": 4.5
+          },
+          {
+            "text": "Nemam nikakvih problema, u stomaku osećam olakšanje. Jutros sam popila jednu dozu, a ostalo mi je i za veče. Zadovoljna sam i stvarno nemam na šta da se požalim.",
+            "initials": "L.P.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "RS/quick-fit": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/quick-fit",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "L-karnitin, cink i vitamin E.",
+        "label": "Aktivni sastojak",
+        "name": "L-karnitin-L-tartarat",
+        "latin": "L-carnitine L-tartrate",
+        "inci": "L-karnitin-L-tartarat 200-400 mg (od čega L-karnitina 137-274 mg), cink (cink-oksid) 5-10 mg (50-100% NRV), vitamin E (DL-α-tokoferilacetat) 5-10 mg α-TE, maltodekstrin, kapsula (želatin, boja: žuti oksid gvožđa), sredstva protiv zgrudnjavanja: silicijum-dioksid i magnezijum-stearat.",
+        "tags": [
+          "Za sportiste",
+          "Cink do 100% NRV",
+          "Kapsule",
+          "Do 3 meseca"
+        ],
+        "imageAlt": "L-karnitin-L-tartarat",
+        "image": "/images/sastav/rs-quick-fit.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 12,
+        "items": [
+          {
+            "text": "Telo mi je lepo odreagovalo i bila sam oduševljena kako je brzo krenulo. Koristim redovno i osećam se prilično bolje.",
+            "initials": "I.V.",
+            "score": 5.0
+          },
+          {
+            "text": "Zahvaljujući Kwiki Fitnessu konačno se nešto pomerilo kod mene, a godinama mi to nije polazilo za rukom. Stvarno sam zadovoljna i drago mi je što sam probala.",
+            "initials": "K.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Popila sam celo pakovanje kapsula i već posle prve nedelje videla promenu. Bila sam izuzetno zadovoljna time.",
+            "initials": "D.V.",
+            "score": 5.0
+          },
+          {
+            "text": "Nemam vagu kod kuće pa se ne merim, ali osećam se bolje nego ranije. Lakše mi je kroz dan i to mi je najvažnije.",
+            "initials": "R.Đ.",
+            "score": 4.5
+          },
+          {
+            "text": "Smanjila sam se u odnosu na ranije i sada mi je mnogo bolje. Zadovoljna sam kako izgledam, jer se razlika lepo primećuje.",
+            "initials": "T.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Završio sam sa korišćenjem i tu sam stao, više mi ništa ne treba. Dobro sam i zadovoljan kako je ispalo, za mene je to bilo dovoljno.",
+            "initials": "S.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Koristio sam te kapsule, mislim da se zvalo Kwiks, i pomoglo mi je. Kod mene su odradile svoje, pa vam se sada opet javljam.",
+            "initials": "D.R.",
+            "score": 4.5
+          },
+          {
+            "text": "Ovim što sam do sada postigla sam zadovoljna i verujem da će i dalje tako ići. Nastavljam sa korišćenjem.",
+            "initials": "B.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Vašim proizvodima sam zadovoljna i nemam baš nikakvu zamerku. Kod mene je sve bilo kako treba, tako da mogu samo da kažem lepu reč.",
+            "initials": "E.I.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "RS/testoy": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/testoy",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Pažljivo biran sastav.",
+        "label": "Aktivni sastojak",
+        "name": "Suvi ekstrakt korena ženšena",
+        "latin": "Panax ginseng",
+        "inci": "Suvi ekstrakt korena ženšena (Panax ginseng) 10:1 — 130 mg; cink (cink-oksid) — 15 mg (150% NRV); vitamin D (holekalciferol) — 10 µg (200% NRV). Ostali sastojci: maltodekstrin, kapsula (zgušnjivač: želatin, boja: žuti oksid gvožđa), sredstva protiv zgrudnjavanja: magnezijum-stearat i silicijum-dioksid. Neto količina: 7,5 g (15 kapsula po 0,5 g).",
+        "tags": [
+          "Kapsule",
+          "Muško zdravlje",
+          "Ženšen",
+          "1× dnevno"
+        ],
+        "imageAlt": "Suvi ekstrakt korena ženšena",
+        "image": "/images/sastav/rs-testoy.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 6,
+        "items": [
+          {
+            "text": "Prezadovoljan sam, ne samo zadovoljan. Ranije sam po nekoliko puta ustajao tokom noći, a sada prespavam celu noć. To je za mene više nego dobro.",
+            "initials": "N.C.",
+            "score": 5.0
+          },
+          {
+            "text": "Hvalio sam vas gde god sam mogao, u svakom svom društvu. Kapsule sam pio redovno, ujutru, i bio sam prezadovoljan. Bilo je čak i umerenog napretka, nema reči za to.",
+            "initials": "Ž.V.",
+            "score": 4.5
+          },
+          {
+            "text": "Pomoglo mi je dosta, to sam odmah primetio na sebi. Više ne moram stalno da ustajem noću kao što je to ranije bilo i puno mi znači.",
+            "initials": "D.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Ne mogu da se žalim, stvarno ne mogu. Moja supruga je i više nego zadovoljna, kaže da je to mnogo, pa mi je i to potvrda.",
+            "initials": "U.J.",
+            "score": 4.5
+          },
+          {
+            "text": "Bio sam zadovoljan sa ona četiri pakovanja koja sam uzeo. Osetno je bolje nego neke druge stvari koje sam probao, pa ću verovatno naručiti opet.",
+            "initials": "M.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Zadovoljan sam, a ostalo mi je još nekoliko komada. Baš sam mislio da ovih dana ponovo naručim, tako mi je dobro leglo.",
+            "initials": "R.R.",
+            "score": 4.5
+          },
+          {
+            "text": "Za svoje godine zaista sam zadovoljan, ne mogu drukčije reći. Želim svima da se u tim godinama osjećaju barem upola dobro kao ja.",
+            "initials": "P.Š.",
+            "score": 4.5
+          },
+          {
+            "text": "Potrošio sam već nekoliko kutija i mogu vam reći da su bile odlične. Osjećam se puno bolje nego prije i zadovoljan sam.",
+            "initials": "J.V.",
+            "score": 4.5
+          },
+          {
+            "text": "Sa ovim sam zadovoljan, što se toga tiče, tako da je sve u redu. Možda ste me krivo shvatili, ali stvarno nemam nikakvih primjedbi.",
+            "initials": "M.R.",
+            "score": 4.0
+          }
+        ]
+      }
+    },
+    "RS/u-caps": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/u-caps",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Ginko i vitaminski kompleks.",
+        "label": "Aktivni sastojak",
+        "name": "Suvi ekstrakt lista ginka",
+        "latin": "Ginkgo biloba",
+        "inci": "Vitamin C 80-160 mg (100-200% NRV), suvi ekstrakt lista ginka (Ginkgo biloba) standardizovan na 24% flavonoida i 6% laktona 40-80 mg, vitamin E 10-20 mg α-TE, cink 7,5-15 mg, pantotenska kiselina 4,59-9,18 mg, vitamin D3 5-10 µg, vitamin B6 1,23-2,46 mg, maltodekstrin, kapsula (želatin), sredstva protiv zgrudnjavanja.",
+        "tags": [
+          "2x dnevno",
+          "Ginko standardizovan",
+          "Vitamin C do 200% NRV",
+          "Kapsule"
+        ],
+        "imageAlt": "Suvi ekstrakt lista ginka",
+        "image": "/images/sastav/rs-u-caps.webp"
+      },
+      "reviews": {
+        "score": 4.7,
+        "count": 5,
+        "items": [
+          {
+            "text": "Prezadovoljan sam, ne samo zadovoljan nego baš prezadovoljan. Toliko mogu da vam kažem o svom iskustvu.",
+            "initials": "A.C.",
+            "score": 5.0
+          },
+          {
+            "text": "Baš sam prezadovoljna jer se pomak stvarno oseti. Primetila sam da mi je sada bolje nego ranije i to mi mnogo znači.",
+            "initials": "Z.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Sve mi je u redu i nemam nekih smetnji. Koristim ga dva puta dnevno onako kako je preporučeno i zadovoljna sam i proizvodom i vama.",
+            "initials": "M.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Pila sam samo jednom dnevno i stvarno mi je pomoglo. Toliko mogu da kažem iz sopstvenog iskustva, zadovoljna sam.",
+            "initials": "M.B.",
+            "score": 4.5
+          },
+          {
+            "text": "Već sam to i ranije koristio i moram da priznam da mi je pomoglo. Ne mogu drugačije da kažem, iskustvo mi je dobro.",
+            "initials": "M.L.",
+            "score": 4.5
+          },
+          {
+            "text": "Djeluje pozitivno na mene, buka mi se umanjila. Osjetio sam da malo bolje slušam i promjenu sam stvarno primijetio. Zadovoljan sam.",
+            "initials": "S.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Ove kapsule sam uzimala i ranije, i kad sam potrošila zadnju, bilo mi je malo bolje. Šum u glavi je slabiji, a bola nikad nisam ni imala. Zadovoljna sam tim pomakom.",
+            "initials": "I.C.",
+            "score": 4.0
+          },
+          {
+            "text": "Pomoglo mi je, i to prilično brzo. Uzimam ga dvadesetak dana i onog zujanja više nema. Zadovoljan sam kako je ispalo.",
+            "initials": "A.N.",
+            "score": 4.5
+          },
+          {
+            "text": "Kapsule sam vaše već jednom pio i bilo mi je super. To je i razlog zašto ih opet uzimam, iskustvo je bilo dobro.",
+            "initials": "I.M.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "BA/nautubone": {
+      "sourceUrl": "https://limitedcharm.com/ba/proizvod/nautubone",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Gavez i eterična ulja.",
+        "label": "Aktivni sastojak",
+        "name": "Gavez",
+        "latin": "Symphytum officinale",
+        "inci": "Ekstrakt gaveza, ulje pelargonije, ulje rimske kamilice, ulje rozetle, ulje žalfije, karbomer, propilen glikol, natrij hidroksid, glicerin, voda, tokoferol (vitamin E), propil paraben, metil paraben.",
+        "tags": [
+          "Gavez",
+          "Kamilica",
+          "Žalfija",
+          "Vitamin E"
+        ],
+        "imageAlt": "Gavez",
+        "image": "/images/sastav/ba-nautubone.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 77,
+        "items": [
+          {
+            "text": "Koljeno mi je dugo pravilo problem i teško sam se kretala. Uz ovu kremu mi je znatno lakše nego što mi je ranije bivalo. Preporučujem je svima iz svoje generacije s kojima se družim.",
+            "initials": "S.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Šest mjeseci sam je redovno nanosila, prvo jedno pakovanje pa sam naručila ponovo. Za mene je bila stvarno dobra i drago mi je što sam se odlučila za nešto na biljnoj bazi. Koljeno me od tada ne muči.",
+            "initials": "H.D.",
+            "score": 5.0
+          },
+          {
+            "text": "Suprug ju je naručio za sebe, više preventivno, pa sam i ja počela mazati kad me koljeno počelo smetati. Pomoglo mi je toliko da mi kasnije ništa više nije trebalo i prestala sam koristiti. Drago mi je što sam tada naišla na vaš proizvod.",
+            "initials": "D.K.",
+            "score": 5.0
+          },
+          {
+            "text": "Meni pomogne čim je nanesem, a i mužu sam je dala da proba iako baš nije htio. Namazao se dva puta i stvarno se pokazalo. Sada nemam tegoba, a kad nešto osjetim namažem dva-tri dana i popusti.",
+            "initials": "E.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Naručila sam je već jednom, ima tome dvije godine, a sada opet. Hvala vam što ste mi lijepo objasnili kako se koristi, jer mi to niko prije nije rekao. Mazala sam i sada mi je koljeno sasvim dobro.",
+            "initials": "M.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Stepenicu nisam mogla podići kad sam počela, a kasnije sam mogla i do njive otići. Gelčić mi je zaista pomogao, ako vjerujete. Dvoumila sam se prije nego što sam naručila, a sad mi je drago.",
+            "initials": "H.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Uvjerila sam se na vlastitoj koži, nek govori ko šta hoće. Leđa su me jako mučila i ovo mi je stvarno pomoglo, i koljena i sve ostalo. Sigurna sam da mi je baš on pomogao.",
+            "initials": "M.K.",
+            "score": 5.0
+          },
+          {
+            "text": "Zadovoljna sam i svima preporučujem ovu kremu. Ljudi mi znaju reći da to nije istina, a ja im odgovorim neka probaju sami. Meni je pomogla i to je jedino što mogu reći.",
+            "initials": "S.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Redovno je koristim, praktično svaki dan, a nekad i navečer. Trenutno je još imam i prezadovoljna sam. Svakome je preporučim jer meni odgovara.",
+            "initials": "J.T.",
+            "score": 5.0
+          }
+        ]
+      }
+    },
+    "BA/parazol": {
+      "sourceUrl": "https://limitedcharm.com/ba/proizvod/parazol",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Sastojci na prirodnoj bazi.",
+        "label": "Aktivni sastojak",
+        "name": "Origano",
+        "latin": "Origanum vulgare",
+        "inci": "Maslina, origano, timijan, menta, anis.",
+        "tags": [
+          "Maslina",
+          "Origano",
+          "Timijan",
+          "Anis"
+        ],
+        "imageAlt": "Origano",
+        "image": "/images/sastav/ba-parazol.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 10,
+        "items": [
+          {
+            "text": "Probava mi je bila usporena i baš zbog toga sam posegnula za ovim čajem. Uz njega mi je bilo lakše i osjetila sam razliku. Prezadovoljna sam, za mene je to stvarno nešto ekstra.",
+            "initials": "J.J.",
+            "score": 5.0
+          },
+          {
+            "text": "Parazol sam i ranije uzimala kod vas, pila sam ga još odavno. Čaj mi je stvarno super i zato sam mu se opet vratila.",
+            "initials": "M.L.",
+            "score": 5.0
+          },
+          {
+            "text": "Meni lično je pomogao na više načina, ne samo na jedan. Zato o njemu imam samo riječi hvale i mirno nastavljam s njim.",
+            "initials": "H.L.",
+            "score": 5.0
+          },
+          {
+            "text": "Čaj sam naručio prošle godine i pokazao se prilično dobro. Redovno sam ga koristio i osjetio sam da mi je pomogao, opšte stanje mi se popravilo. Zadovoljan sam kako je sve prošlo.",
+            "initials": "E.Đ.",
+            "score": 4.5
+          },
+          {
+            "text": "Čini mi se da mi je stvarno nešto pomoglo i bila sam zadovoljna. Preporučila sam ga i mnogima oko sebe jer sam vidjela da vrijedi.",
+            "initials": "Z.V.",
+            "score": 4.5
+          },
+          {
+            "text": "Ide mi nekad bolje, nekad slabije, ali neki dan sam izašla u kupovinu i bila sam oduševljena kako sam hodala. Takvih dana je sve više i to me raduje.",
+            "initials": "O.D.",
+            "score": 4.5
+          },
+          {
+            "text": "Prošla sam kroz cijelo čišćenje i to se lijepo osjetilo. Stomak me više ne muči kao ranije i mnogo mi je lakše nego prije.",
+            "initials": "D.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Naručivala sam ovaj čaj još prije nekoliko godina i pomogao mi je. To iskustvo sam upamtila kao dobro i o njemu imam samo lijepo da kažem.",
+            "initials": "F.I.",
+            "score": 4.5
+          },
+          {
+            "text": "Preporučio sam ga jednom bliskom čovjeku i sada bi i on da naruči. Meni je bio dovoljno dobar da ga mirne duše dam dalje.",
+            "initials": "S.M.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "BA/pro-caps": {
+      "sourceUrl": "https://limitedcharm.com/ba/proizvod/pro-caps",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Bundeva, cink i vitamin E.",
+        "label": "Aktivni sastojak",
+        "name": "Sjeme bundeve",
+        "latin": "Cucurbita moschata",
+        "inci": "Suhi ekstrakt sjemena bundeve 10:1 (60 mg), cink (cink-oksid, 15 mg), vitamin E (DL-alfa-tokoferilacetat, 10 mg TE), želatin, maltodekstrin, silicijum-dioksid, titan-dioksid, žuti oksid gvožđa.",
+        "tags": [
+          "Bundeva",
+          "Cink",
+          "Vitamin E",
+          "1× dnevno"
+        ],
+        "imageAlt": "Sjeme bundeve",
+        "image": "/images/sastav/ba-pro-caps.webp"
+      },
+      "reviews": {
+        "score": 4.4,
+        "count": 15,
+        "items": [
+          {
+            "text": "Odradio sam dva tretmana, i kapsule i čaj, a uz to sam dobio i onaj gel. Prezadovoljan sam rezultatima i ne bih mogao reći da nije bilo ništa. Kod mene je pomak zaista velik.",
+            "initials": "M.F.",
+            "score": 5.0
+          },
+          {
+            "text": "Noću sada izađem samo jednom i to je velika razlika u odnosu na prije. Meni je pravo pomoglo, nema tu šta, prezadovoljan sam.",
+            "initials": "D.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Da vam pravo kažem, prezadovoljan sam kako mi je to sjelo. Ne bih imao šta posebno dodati, meni je sasvim odgovaralo i tako je i ostalo.",
+            "initials": "I.Z.",
+            "score": 5.0
+          },
+          {
+            "text": "Meni je to sjelo dobro i mogu reći samo pozitivno. Noću rjeđe ustajem i sada je to sasvim normalno. Zaista sam zadovoljan.",
+            "initials": "E.O.",
+            "score": 4.5
+          },
+          {
+            "text": "Potrošio sam jednu bočicu i sada trošim drugu. Ništa me ne boli, tako da nastavljam dalje onako kako sam i počeo. Meni to odgovara.",
+            "initials": "N.V.",
+            "score": 4.5
+          },
+          {
+            "text": "Stvarno mi je pomoglo, to mogu reći iskreno. Otkako ga koristim nemam nikakvih tegoba i zadovoljan sam kako je ispalo.",
+            "initials": "I.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Nije to bezveze, uvjerio sam se i sam. Zadovoljan sam kako mi je sjelo i drago mi je što sam uopšte probao, jer sam se dvoumio.",
+            "initials": "M.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Bolova nemam, stvarno ih nemam, i to je za mene najvažnije. Zadovoljan sam kako mi je sada i nemam potrebu bilo šta mijenjati.",
+            "initials": "M.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Jest, pomoglo mi je, to mogu reći otvoreno. Ne peče me više i sve ide sasvim normalno. Ne bih tako govorio da nije istina, pa sam zadovoljan.",
+            "initials": "A.B.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "HR/beauty-derm": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/beauty-derm",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Ulja i vitamin E.",
+        "label": "Aktivni sastojak",
+        "name": "Ricinusovo ulje i muškatna žalfija",
+        "latin": "Ricinus communis · Salvia sclarea",
+        "inci": "Voda, propilen glikol, ulje sjemena ricinusa, ulje muškatne žalfije, ulje lista šipurka, carbopol ultrez 21 polimer, PEG-60 hidrogenizirano ricinusovo ulje, natrijev hidroksid, fenetil alkohol, etilheksilglicerin, tokoferol (vitamin E), metilparaben, propilparaben.",
+        "tags": [
+          "Njega lica",
+          "Zrela koža",
+          "Vitamin E",
+          "Prirodna ulja"
+        ],
+        "imageAlt": "Ricinusovo ulje i muškatna žalfija",
+        "image": "/images/sastav/hr-beauty-derm.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 48,
+        "items": [
+          {
+            "text": "Imam suhu i dosta problematičnu kožu, a ovu kremu koristim već dvije godine, ujutro i navečer. Bore na čelu su mi se osjetno smanjile i lice mi je puno mirnije. Stvarno sam zadovoljna njome.",
+            "initials": "K.J.",
+            "score": 5.0
+          },
+          {
+            "text": "Lice mi je zategnuto i pore se gotovo ne primjećuju, ni na nosu. Kremu sam otkrila na internetu i koristim je već dvije godine, prezadovoljna sam. Nisam očekivala da obična krema može biti toliko dobra.",
+            "initials": "S.K.",
+            "score": 5.0
+          },
+          {
+            "text": "Ovu kremu ću koristiti dokle god budem mogao i ništa drugo mi ne treba. Primijetio sam razliku na koži i zadovoljan sam onim što imam. Meni je ovo sasvim dovoljno.",
+            "initials": "N.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Kremu koristim već poprilično dugo i lice mi je stvarno u redu. Kad se usporedim s kolegicama svojih godina, razlika se vidi. Super mi je i zadovoljna sam.",
+            "initials": "B.L.",
+            "score": 5.0
+          },
+          {
+            "text": "Sebi je više gotovo i ne moram kupovati jer mi je koža dobra, ali sam njome potpuno zadovoljna. Ovaj put sam je naručila za rodicu, da i ona proba isto što i ja.",
+            "initials": "S.V.",
+            "score": 5.0
+          },
+          {
+            "text": "Nijedna krema mi se ne upije tako dobro kao ova. Naručujem je već drugi put i baš zbog toga sam ponovila narudžbu. Zadovoljna sam kako se ponaša na koži.",
+            "initials": "B.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Godinu i pol, ako ne i duže, koristim ovu kremu i redovito je naručujem. Baš sam zadovoljna njome i nemam potrebu tražiti neku drugu.",
+            "initials": "D.J.",
+            "score": 5.0
+          },
+          {
+            "text": "Brzo se upije i ne ostaje mi masan sloj na licu. To mi je najveća prednost jer ne volim kad krema stoji na koži. Odlična je i jako sam zadovoljna.",
+            "initials": "F.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Tu kremu uzimam stalno i ne želim ništa drugo probati. Jako je dobra, zadovoljna sam i nemam nikakvog razloga da je mijenjam.",
+            "initials": "I.U.",
+            "score": 5.0
+          }
+        ]
+      }
+    },
+    "HR/deep-inhale": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/deep-inhale",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Klasična biljna mješavina.",
+        "label": "Aktivni sastojak",
+        "name": "Podbjel i sladić",
+        "latin": "Tussilago farfara · Glycyrrhiza glabra",
+        "inci": "List podbjela, cvijet crnog sljeza, korijen bijelog sljeza, korijen sladića i plod komorača.",
+        "tags": [
+          "100% biljno",
+          "Čaj",
+          "Bez šećera",
+          "500 ml dnevno"
+        ],
+        "imageAlt": "Podbjel i sladić",
+        "image": "/images/sastav/hr-deep-inhale.webp"
+      },
+      "reviews": {
+        "score": 5.0,
+        "count": 1,
+        "items": [
+          {
+            "text": "Na svom primjeru sam osjetila da ima poboljšanja i da doista djeluje. Već sam o tome pričala ženama i preporučujem dalje, nije to nikakva izmišljotina.",
+            "initials": "A.E.",
+            "score": 5.0
+          }
+        ]
+      }
+    },
+    "HR/diatea": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/diatea",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Prirodno podrijetlo, provjeren sastav.",
+        "label": "Aktivni sastojak",
+        "name": "Breza, borovnica i kleka",
+        "latin": "Betula folium · Myrtilli folium · Juniperi fructus",
+        "inci": "List breze (Betula folium), plod kleka (Juniperi fructus), list borovnice (Myrtilli folium), ljuska bijelog graha (Phaseoli fructus sine semen), korijen peršina (Petroselini radix), divlja jabuka (Mali fructus), cimet (Cinnamomi cortex).",
+        "tags": [
+          "Čaj",
+          "Bez šećera",
+          "Biljna baza",
+          "Dodatak prehrani"
+        ],
+        "imageAlt": "Breza, borovnica i kleka",
+        "image": "/images/sastav/hr-diatea.webp"
+      },
+      "reviews": {
+        "score": 4.3,
+        "count": 5,
+        "items": [
+          {
+            "text": "Već nakon tri dana osjećao sam se puno bolje, pa sam bio siguran da čaj djeluje. Vjerujem u to jer je prirodno i meni je stvarno odgovaralo.",
+            "initials": "A.I.",
+            "score": 4.5
+          },
+          {
+            "text": "Pijem ga tri puta dnevno i držim se toga i dok sam na moru. Za sada sam zadovoljan i nemam nikakvih primjedbi.",
+            "initials": "P.S.",
+            "score": 4.5
+          },
+          {
+            "text": "Pila sam ga i primijetila da mi je probava krenula kako treba. Nastavljam ga piti i sada se osjećam puno bolje nego prije.",
+            "initials": "D.L.",
+            "score": 4.5
+          },
+          {
+            "text": "Odlučio sam probati i evo, zadovoljan sam onim što sam do sada dobio. Nastavljam dalje jer mi se čini da mi prija.",
+            "initials": "I.A.",
+            "score": 4.0
+          },
+          {
+            "text": "Dobila sam malo snage otkako ovo pijem i osjećam se bolje nego prije. Po ovim vrućinama mi je teže, ali općenito sam zadovoljna.",
+            "initials": "Z.M.",
+            "score": 4.0
+          },
+          {
+            "text": "Sasvim slučajno sam jednom kupila vaš čaj i popila dve kutije zaredom. Mnogo mi je pomoglo, pa ga od tada rado uzimam ponovo.",
+            "initials": "D.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Koristila sam vaš čaj i odgovarao mi je, tako da sam vaš stalni korisnik. Sa punim poverenjem naručujem ponovo jer sam zadovoljna.",
+            "initials": "T.J.",
+            "score": 4.5
+          },
+          {
+            "text": "Poslednjih mesec dana mi je sve normalno i osećam se dobro. Meni je pomoglo, to mogu slobodno da kažem, i zato nastavljam da ga pijem.",
+            "initials": "M.L.",
+            "score": 4.5
+          },
+          {
+            "text": "Stvarno sam zadovoljna, čaj mi je lepo prijao i osećam se dobro. Nemam nikakvih zamerki na njega i mirno ću ga uzimati i dalje.",
+            "initials": "K.S.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "HR/mikoherb": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/miko-herb",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Biljna baza s eteričnim uljima.",
+        "label": "Aktivni sastojak",
+        "name": "Origano, čajevac i neven",
+        "latin": "Origanum vulgare · Melaleuca alternifolia · Calendula officinalis",
+        "inci": "Ulje origana, ulje peperminta, ekstrakt cvijeta nevena, ulje lavande, ulje komorača, ulje čajevca, sorbitol, karbopol, glicerin, propilen glikol, natrijev hidroksid, tokoferol (vitamin E), voda.",
+        "tags": [
+          "Krema",
+          "Za stopala i nokte",
+          "Biljna baza",
+          "Brzo upijanje"
+        ],
+        "imageAlt": "Origano, čajevac i neven",
+        "image": "/images/sastav/hr-mikoherb.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 24,
+        "items": [
+          {
+            "text": "Naručivala sam više puta, i za sebe i za susjeda koji je imao isti problem, i bila sam jako zadovoljna kako je brzo išlo. Vas sam i drugima hvalila, jer meni ništa drugo nije pomagalo osim MikoHerba.",
+            "initials": "S.F.",
+            "score": 5.0
+          },
+          {
+            "text": "Ostalo mi je još malo u kutiji, ali ne trošim jer mi više ne treba. Prestalo je i sada mi je stvarno super.",
+            "initials": "Ž.R.",
+            "score": 5.0
+          },
+          {
+            "text": "Pristala sam više zbog čaja nego zbog kreme, ali moram priznati da mi je baš krema pomogla. Zbog toga sam prezadovoljna.",
+            "initials": "V.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Koristio sam i dosta mi je pomoglo, čak je i nestalo. Sada bih uzeo još jednu tubu da mi bude pri ruci, pa vam se zato javljam ponovno.",
+            "initials": "J.K.",
+            "score": 5.0
+          },
+          {
+            "text": "Nokti su mi lijepo došli, relativno bijeli i više nisu zadebljani, počeli su normalno rasti. Već dulje koristim i jako mi je dobro.",
+            "initials": "E.F.",
+            "score": 5.0
+          },
+          {
+            "text": "Mažem tri puta na dan, ujutro, poslijepodne i navečer, i vidim da ima efekta. Stvarno sam prezadovoljna kako napreduje.",
+            "initials": "S.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Prije se nisam smio ni dotaknuti sprijeda jer bi odmah zaboljelo. Sada nema ništa od toga i stvarno je super.",
+            "initials": "N.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Potrošila sam već tri do četiri vaše masti i sve što se tiče MikoHerba mogu samo pohvaliti. Prezadovoljna sam.",
+            "initials": "M.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Vidio sam vaš preparat na mobitelu i naručio dva komada. Nokat je promijenio boju i lijepo se vidi da raste, tako da sam jako zadovoljan.",
+            "initials": "S.V.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "HR/nautubone": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/nautubone",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Sastav gela.",
+        "label": "Aktivni sastojak",
+        "name": "Gavez i pelargonija",
+        "latin": "Symphytum officinale · Pelargonium roseum",
+        "inci": "Ekstrakt gaveza (Symphytum officinale extract), ulje pelargonije (Pelargonium roseum oil), ulje rimske kamilice (Anthemis nobilis), ulje rozetle (Pelargonium graveolens oil), ulje žalfije (Salvia sclarea oil), karbomer, propilen glikol, natrijev hidroksid, glicerin, voda, tokoferol (vitamin E), propil paraben, metil paraben.",
+        "tags": [
+          "Gel",
+          "Za bolna mjesta",
+          "Gavez",
+          "Biljna baza"
+        ],
+        "imageAlt": "Gavez i pelargonija",
+        "image": "/images/sastav/hr-nautubone.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 84,
+        "items": [
+          {
+            "text": "Naručila sam kod vas već jednom i krema mi je odlična, pa uzimam još dvije tube. Jedna mi je doma pri kraju, tako da će mi ovo taman biti za četiri tjedna redovnog mazanja.",
+            "initials": "V.J.",
+            "score": 5.0
+          },
+          {
+            "text": "Ramena su mi se u zadnje vrijeme javljala, ali otkako koristim gel mogu reći da mi je bolje. Prvi put sam ga naručila i stvarno mi je pomoglo, koljena me više ne muče kao prije.",
+            "initials": "V.K.",
+            "score": 5.0
+          },
+          {
+            "text": "Lijevo koljeno me znalo jako mučiti, a sada me više ne muči i to mi je najvažnije. Naručivala sam dva puta i stvarno sam super zadovoljna.",
+            "initials": "M.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Jako sam zadovoljna, baš sam sad opet naručila jednu tubu. Imam problema s potkoljenicom i zglobom, a kad se namažem stvarno mi je lakše, ne mogu reći drugačije.",
+            "initials": "J.C.",
+            "score": 5.0
+          },
+          {
+            "text": "Iskreno vam mogu reći da mi je ta mast jako pomogla, pogotovo preko ljeta. Naučila sam biti zadovoljna onim što imam, a ovo mi se stvarno isplatilo.",
+            "initials": "Z.J.",
+            "score": 5.0
+          },
+          {
+            "text": "Jedino mi je Nautubone stvarno pomogao pa sam ga ponudila mnogima koje poznajem. Na osnovu svog iskustva sam rekla i drugima da je zbilja dobar, i evo uzimam još jednu.",
+            "initials": "N.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Prije dva mjeseca sam naručivao i iznenadio sam se koliko je učinkovit. Od svih koje sam probao vaš je bio najbolji, koljeno mi se kroz nekoliko tjedana smirilo i sve je u redu.",
+            "initials": "D.F.",
+            "score": 5.0
+          },
+          {
+            "text": "Preporučujem je svima s kojima dođem u kontakt jer mi je stvarno koristila. Koljeno i potkoljenica su me prestali mučiti i zapravo sam oduševljena tom kremom.",
+            "initials": "Ž.J.",
+            "score": 5.0
+          },
+          {
+            "text": "Povrijedila sam zglob pa sam mazala tim gelom i stvarno mi je super, prošlo me. Imam problem i sa zglobom malog prsta, pa i njega namažem kad se javi i prođe.",
+            "initials": "J.D.",
+            "score": 5.0
+          }
+        ]
+      }
+    },
+    "HR/pro-caps": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/pro-caps",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Puni sastav kapsule.",
+        "label": "Aktivni sastojak",
+        "name": "Cucurbita moschata",
+        "latin": "Cucurbita moschata 10:1",
+        "inci": "Želatina, maltodekstrin, silicijev dioksid, titanov dioksid, žuti oksid željeza, cink (cink-oksid 15 mg), vitamin E (DL-alfa-tokoferilacetat 10 mg TE), suhi ekstrakt sjemena bundeve (Cucurbita moschata) 10:1 (60 mg).",
+        "tags": [
+          "Kapsule",
+          "Prostata",
+          "Cink",
+          "Vitamin E"
+        ],
+        "imageAlt": "Cucurbita moschata",
+        "image": "/images/sastav/hr-pro-caps.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 5,
+        "items": [
+          {
+            "text": "Žuta kutijica s bundevom na slici, to mi je baš odgovaralo. U početku sam tjedan dana pio po dvije, a poslije samo jednu. Bilo mi je stvarno super.",
+            "initials": "S.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Htio sam vam reći da sam osjetio pravo poboljšanje. I mlaz je bolji i općenito mi je lakše, pa vjerujem da to djeluje. Vidim ja to po sebi.",
+            "initials": "D.B.",
+            "score": 4.5
+          },
+          {
+            "text": "Meni je bolje, iskreno to mogu reći. Osjećam se bolje nego prije i s time sam zadovoljan, pa nemam potrebe išta mijenjati.",
+            "initials": "D.P.",
+            "score": 4.5
+          },
+          {
+            "text": "Bolova sada nemam, baš nikakvih. Kod mene je sve u redu i nemam se na što požaliti, tako da mogu samo reći da mi je dobro.",
+            "initials": "M.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Ne peče me i ne boli me ništa, kod mene je sada mirno. Ostalo mi je samo da mjehur bolje odradi svoje, ali i ovako sam zadovoljan.",
+            "initials": "I.S.",
+            "score": 4.0
+          },
+          {
+            "text": "Završio sam poslednju turu i dobro mi je. Ne boli me, ne peče me i sve ide normalno. Zadovoljan sam kako je ispalo.",
+            "initials": "P.T.",
+            "score": 4.5
+          },
+          {
+            "text": "Popio sam jednu kutiju i zadovoljan sam. Krsta me više ne bole, a taj donji deo leđa mi je ranije stalno smetao. Sada mi je mnogo lakše.",
+            "initials": "S.I.",
+            "score": 4.5
+          },
+          {
+            "text": "Uzimam po jednu dnevno, obično uveče, i to mi je sasvim dovoljno. Noću ustanem jednom, a ponekad ni tada. Dosta mi je pomoglo.",
+            "initials": "V.N.",
+            "score": 4.5
+          },
+          {
+            "text": "Priznajem da sam bio neverni Toma i baš skeptičan kad sam počinjao. Rezultat sam osetio već posle nekoliko dana i sada mogu reći da nisam zadovoljan, nego prezadovoljan. Preporučujem i drugima.",
+            "initials": "D.J.",
+            "score": 5.0
+          }
+        ]
+      }
+    },
+    "HR/varcosin": {
+      "sourceUrl": "https://limitedcharm.com/hr/proizvod/varcosin",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Sastav na biljnoj bazi.",
+        "label": "Aktivni sastojak",
+        "name": "Aesculus hippocastanum",
+        "latin": "Achillea millefolium · Cupressus sempervirens",
+        "inci": "Ekstrakt hajdučke trave, ulje rimske kamilice, ulje lavande, ekstrakt divljeg kestena, ulje čempresa, ulje ružmarina, ulje slatke naranče, karbomer, propilen glikol, natrijev hidroksid, glicerin, voda, tokoferol (vitamin E).",
+        "tags": [
+          "Gel",
+          "Divlji kesten",
+          "Noge",
+          "Masaža"
+        ],
+        "imageAlt": "Aesculus hippocastanum",
+        "image": "/images/sastav/hr-varcosin.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 15,
+        "items": [
+          {
+            "text": "Zadovoljna sam bila toliko da sam prerezala i zadnju tubu kako bih iskoristila sve do kraja. Namazala sam i osjetila olakšanje, pa znam kako mi Varkosin djeluje.",
+            "initials": "V.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Vene su mi se povukle i više se gotovo ne vide dok hodam. Odmah sam vidio razliku kad sam počeo s Varkosinom, to mi je bilo očito.",
+            "initials": "Đ.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Potrošila sam dvije tube prije nekog vremena i jako mi je dobro pomoglo. Bila sam baš zadovoljna, pa se evo sada ponovno vraćam istom gelu.",
+            "initials": "M.Z.",
+            "score": 5.0
+          },
+          {
+            "text": "Dobio sam samo jednu tubu i iskoristio je do kraja, a rezultat mi je bio odličan. Meni je pomoglo i zato se javljam ponovno.",
+            "initials": "M.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Krema je na mene super djelovala pa sam potrošila tri pakiranja. Jedno sam dala sestri, a sada naručujem još da mi uvijek bude u rezervi.",
+            "initials": "K.P.",
+            "score": 5.0
+          },
+          {
+            "text": "Jedna tuba mi je trajala cijeli mjesec i za to vrijeme mi je bilo super. Sada kad je nemam, opet se javljaju tegobe, pa sam odmah naručila novu.",
+            "initials": "L.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Isprobala sam razne gelove pa znam usporediti, a ovaj mi je jednom lijepo pomogao. Sada ga naručujem kćeri jer i ona ima problema s venama.",
+            "initials": "A.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Otkako koristim vaš proizvod, u nogama osjećam pravo olakšanje. Potkoljenice me manje muče i noge mi ne otkazuju kao prije, pa se lakše krećem.",
+            "initials": "J.B.",
+            "score": 4.5
+          },
+          {
+            "text": "Bila sam zadovoljna prošlog puta pa se zato ponovno javljam. Gel mi je odgovarao i nemam potrebe tražiti neku drugu zamjenu.",
+            "initials": "S.J.",
+            "score": 4.5
+          }
+        ]
+      }
+    },
+    "RS/nautubone": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/nautubone",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Gavez i eterična ulja.",
+        "label": "Aktivni sastojak",
+        "name": "Ekstrakt korena gaveza",
+        "latin": "Symphytum officinale",
+        "inci": "Aqua, Propylene Glycol, Glycerin, Symphytum Officinale Root Extract, Carbomer, Pelargonium Graveolens Oil, Pelargonium Roseum Oil, Salvia Sclarea Oil, Sodium Hydroxide, Anthemis Nobilis Flower Extract.",
+        "tags": [
+          "Spoljna upotreba",
+          "Za masažu",
+          "Biljna baza",
+          "Čuvati do 25°C"
+        ],
+        "imageAlt": "Ekstrakt korena gaveza",
+        "image": "/images/sastav/rs-nautubone.webp"
+      },
+      "reviews": {
+        "score": 4.6,
+        "count": 87,
+        "items": [
+          {
+            "text": "Otkako sam počela da mažem ovu kremu, ruke i prsti su mi mnogo mirniji i nema one ukočenosti. Posle tri nedelje sam osetila pravu razliku i veoma sam zadovoljna. Preporučila sam je već mnogima.",
+            "initials": "T.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Namažem samo ujutru i to mi drži ceo dan, noge i kukovi me ne muče do večeri. Odličan je, iskreno, i redovno ga koristim. Razliku sam osetila već posle prvog mazanja.",
+            "initials": "D.O.",
+            "score": 5.0
+          },
+          {
+            "text": "Oteklina na kolenu mi je splasnula posle svega nekoliko mazanja, treći put je već bilo gotovo. Jednu tubu sam dala prijatelju i kaže da je i njemu pomogla. Meni je super, koleno me više ne muči.",
+            "initials": "J.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Prija mi i odgovara mi, tako da sam zadovoljna. Nikad ne naručim samo jednu, uvek uzmem dve ili tri, koliko mogu. Preporučujem je prijateljicama koje imaju slične tegobe.",
+            "initials": "V.V.",
+            "score": 5.0
+          },
+          {
+            "text": "Jako sam bila zadovoljna, toliko da sam jednu kremu htela da poklonim prijateljici. Koristila sam je sigurno četiri-pet puta i sad bih rado ponovo. Uporna sam, mažem i ujutru i uveče.",
+            "initials": "K.E.",
+            "score": 5.0
+          },
+          {
+            "text": "Super mi je pomoglo i svima ovde pričam o tome. Otkako se mažem, tegobe su mnogo manje, ima ih još pomalo, ali neuporedivo. Sad ću da naručim za muža, pa ću posle ja.",
+            "initials": "Z.V.",
+            "score": 5.0
+          },
+          {
+            "text": "Vrat mi je bio glavni razlog, nisam mogla glavu da okrenem kako treba. Sada je okrećem najnormalnije i to mi je najvažnije. Mazala sam i koleno, pa je i tu sve prošlo divno.",
+            "initials": "N.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Komšinica mi je pre nekoliko godina donela kremu i pokazala se odlično. Namazala sam koleno jednom kad sam pala i odmah mi je bilo lakše. Preporučila sam je i svojima, čak sam podelila i na mreži.",
+            "initials": "M.M.",
+            "score": 5.0
+          },
+          {
+            "text": "Prošli put sam uzela dve i iskoristila ih do kraja, pa sam se oduševila. Uzela sam ih kad nisam mogla desno koleno da savladam i mnogo mi je pomoglo.",
+            "initials": "M.M.",
+            "score": 5.0
+          }
+        ]
+      }
+    },
+    "RS/bonecontrol": {
+      "sourceUrl": "https://limitedcharm.com/rs/proizvod/bone-control",
+      "composition": {
+        "eyebrow": "Sastav",
+        "title": "Koren gaveza u srcu formule.",
+        "label": "Aktivni sastojak",
+        "name": "Ekstrakt korena gaveza",
+        "latin": "Symphytum officinale",
+        "inci": "Aqua, Propylene glycol, Glycerin, Symphytum officinale root extract, Carbomer, Pelargonium graveolens oil, Pelargonium roseum oil, Salvia sclarea oil, Anthemis nobilis oil, Tocopherol.",
+        "tags": [
+          "Gavez",
+          "100 ml",
+          "Osećaj hlađenja",
+          "Za masažu"
+        ],
+        "imageAlt": "Ekstrakt korena gaveza",
+        "image": "/images/sastav/rs-bonecontrol.webp"
+      },
+      "reviews": {
+        "score": 4.5,
+        "count": 20,
+        "items": [
+          {
+            "text": "Uzela sam ga zbog problema sa stopalom i zaista mi je pomoglo, tegobe su nestale. Zadovoljna sam pa ga stalno kupujem i uvek imam u rezervi, a dala sam ga i drugim ljudima da probaju.",
+            "initials": "S.V.",
+            "score": 5.0
+          },
+          {
+            "text": "Koristim ga već nekoliko godina i mogu da kažem da je bolje nego što sam se nadao. Zadovoljan sam, pa vas uvek preporučim i drugima oko sebe.",
+            "initials": "T.K.",
+            "score": 5.0
+          },
+          {
+            "text": "Čim se namažem, osetim olakšanje i lakše se krećem. Toliko mi je dobro da sam htela i na internetu da napišem svoje mišljenje i da vas pohvalim.",
+            "initials": "V.V.",
+            "score": 5.0
+          },
+          {
+            "text": "Svakim danom mi je sve bolje, veselija sam i mogu da radim. Zglobovi mi više ne škripe kao ranije, tako da sam prezadovoljna.",
+            "initials": "M.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Već sam koristila vaše proizvode i zadovoljna sam, verujte mi. Zato vas definitivno preporučujem svima koje poznajem.",
+            "initials": "K.B.",
+            "score": 5.0
+          },
+          {
+            "text": "Najbolje od svega je to što više nemam tegobe. Mogu normalno da hodam, čak i da vozim bicikl, a to mi u ovom periodu mnogo znači.",
+            "initials": "E.S.",
+            "score": 5.0
+          },
+          {
+            "text": "Kad posle dužeg hoda osetim nelagodu u kuku, uveče se lepo namažem i ujutru nemam problem. Odgovara mi za zglobove i zato bih ga ponovo naručio.",
+            "initials": "I.M.",
+            "score": 4.5
+          },
+          {
+            "text": "Vaša krema mi je sve mnogo olakšala. Osetim jedino ako kleknem ili se jače opteretim, inače nemam nikakvih tegoba i sada je sve u redu.",
+            "initials": "V.E.",
+            "score": 4.5
+          },
+          {
+            "text": "Dobro mi je otkad ga koristim, pa sam dala i jetrvi da proba. I ona ga je posle uzela, tako da smo obe zadovoljne.",
+            "initials": "V.J.",
+            "score": 4.5
+          }
+        ]
+      }
+    }
+  }
 }
