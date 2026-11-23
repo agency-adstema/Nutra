@@ -101,7 +101,7 @@ export function getEditorialPrice(geo: string, slug: string): CatalogPrice | und
     tiers: cfg.regular.map(([qty, reference, current]) => ({
       id: qty === 1 ? '1-komad' : qty === 2 ? '2-komada' : '3-komada',
       quantity: qty as 1 | 2 | 3,
-      label: `${qty} pakovanja`,
+      label: qty === 1 ? '1 pakovanje' : `${qty} pakovanja`,
       newPrice: current,
       referencePrice: reference,
     })),
