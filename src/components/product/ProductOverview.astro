@@ -1,6 +1,7 @@
 ---
 import Icon from '../Icon.astro';
 import { formatDate, formatPrice, priceView } from '../../lib/format';
+import { getEditorialPrice, formatCatalogPrice, referencePriceNotice } from '../../data/offer-pricing';
 import type { Product } from '../../lib/content';
 import type { MarketConfig } from '../../config/countries';
 
@@ -11,6 +12,8 @@ interface Props {
 const { product, market } = Astro.props;
 const d = product.data;
 const pv = priceView(d.priceStatus, d.packages);
+const quotedPricing = getEditorialPrice(d.countryCode, d.slug);
+const shownTiers = quotedPricing?.tiers;
 
 const summaryCls =
   'flex w-full items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3 lg:border-0 lg:bg-transparent lg:p-0';
@@ -102,20 +105,35 @@ const h2Cls = 'text-lg font-semibold text-brand-strong lg:text-[1.75rem] lg:lead
               </tr>
             </thead>
             <tbody class="divide-y divide-line">
-              {
-                d.packages.map((p) => (
-                  <tr>
-                    <td class="px-4 py-2.5">{p.label}</td>
-                    <td class="px-4 py-2.5 text-right">
-                      {pv.show && p.price ? (
-                        <span class="text-lg font-bold text-brand">{formatPrice(p.price, '').trim()}</span>
-                      ) : (
-                        <span class="text-muted">potvrđuje operater</span>
-                      )}
-                    </td>
-                  </tr>
-                ))
-              }
+              {shownTiers ? shownTiers.map(t => (
+                <tr>
+                  <td class="px-4 py-2.5">{t.label}</td>
+                  <td class="px-4 py-2.5 text-right">
+                    <span class="block text-lg font-bold text-brand">{formatCatalogPrice(t.newPrice, 'RS')}</span>
+                    {t.referencePrice != null && (
+                      <span class="block text-sm text-muted">
+                        Referentna: <del class="line-through">{formatCatalogPrice(t.referencePrice, 'RS')}</del>
+                      </span>
+                    )}
+                    {t.quantity > 1 && (
+                      <span class="block text-xs text-muted">
+                        Po komadu: {formatCatalogPrice(Math.round(t.newPrice / t.quantity), 'RS')}
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              )) : d.packages.map((p) => (
+                <tr>
+                  <td class="px-4 py-2.5">{p.label}</td>
+                  <td class="px-4 py-2.5 text-right">
+                    {pv.show && p.price ? (
+                      <span class="text-lg font-bold text-brand">{formatPrice(p.price, '').trim()}</span>
+                    ) : (
+                      <span class="text-muted">Cena nije objavljena</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -124,13 +142,17 @@ const h2Cls = 'text-lg font-semibold text-brand-strong lg:text-[1.75rem] lg:lead
           data-price-status={d.priceStatus}
         >
           <Icon name="info" size={18} class="mt-0.5 shrink-0" />
-          {
-            pv.isVerified && d.priceCheckedAt ? (
-              <span><strong>Cena proverena:</strong> {formatDate(d.priceCheckedAt)}{d.priceSource && <> · {d.priceSource}</>}</span>
-            ) : (
-              <span>Cena još nije proverena, pa je ne prikazujemo. Operater će vam potvrditi tačnu cenu pre slanja.</span>
-            )
-          }
+          {quotedPricing ? (
+            <span>
+              Cene za 1, 2 i 3 pakovanja preuzete su iz dostavljenog RS cenovnika.
+              Precrtane vrednosti su referentne cene iz tabele, ne potvrđene prethodne prodajne cene.
+              <span class="block mt-1">{referencePriceNotice(d.slug)}</span>
+            </span>
+          ) : pv.isVerified && d.priceCheckedAt ? (
+            <span><strong>Cena proverena:</strong> {formatDate(d.priceCheckedAt)}{d.priceSource && <> · {d.priceSource}</>}</span>
+          ) : (
+            <span>Cena nije objavljena u dostupnoj dokumentaciji.</span>
+          )}
         </p>
       </div>
     </details>
