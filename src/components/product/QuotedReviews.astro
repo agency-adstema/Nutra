@@ -1,6 +1,4 @@
 ---
-import { formatDate } from '../../lib/format';
-import { site } from '../../config/site';
 
 export interface QuotedReviewsView {
   productName: string;
@@ -61,10 +59,7 @@ const recenzija = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'recenzije pr
         ))}
       </ul>
 
-      <p class="mt-5 max-w-3xl text-sm text-muted">
-        Ocena i komentari preuzeti su sa sajta {q.sourceName} ({formatDate(q.checkedAt)}). Nisu recenzije kupaca sajta {site.name}
-        i nismo ih nezavisno proverili. Individualni rezultati mogu da se razlikuju.
-      </p>
+      <p class="mt-4 text-xs text-muted">Komentari i ocena sa sajta {q.sourceName}.</p>
     </section>
   )
 }
