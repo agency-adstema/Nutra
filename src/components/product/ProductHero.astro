@@ -4,7 +4,9 @@ import Icon from '../Icon.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
 import LeafDecor from '../LeafDecor.astro';
 import { site } from '../../config/site';
-import { formatPrice, priceView } from '../../lib/format';
+import { priceView } from '../../lib/format';
+import OfferPrice from '../OfferPrice.astro';
+import { getEditorialPrice, referencePriceNotice } from '../../data/offer-pricing';
 import type { Product } from '../../lib/content';
 import type { MarketConfig } from '../../config/countries';
 
@@ -17,6 +19,7 @@ interface Props {
 const { product, categoryName, categoryHref, market } = Astro.props;
 const d = product.data;
 const pv = priceView(d.priceStatus, d.packages);
+const quotedPricing = getEditorialPrice(d.countryCode, d.slug);
 const h1 = d.h1 ?? d.name;
 ---
 
@@ -73,16 +76,13 @@ const h1 = d.h1 ?? d.name;
 
         <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-stretch">
           <div class="flex flex-1 items-center gap-2 rounded-2xl bg-brand-2 px-5 py-3.5" data-hero-price>
-            {
-              pv.show ? (
-                <p class="flex flex-wrap items-baseline gap-x-2">
-                  <span class="text-ink/80">Cena od:</span>
-                  <span class="text-2xl font-bold text-brand-strong sm:text-[1.7rem]">{formatPrice(pv.min!, market.currencyLabel)}</span>
-                </p>
-              ) : (
-                <p class="text-ink/80">Cena se potvrđuje prilikom poziva operatera.</p>
-              )
-            }
+            {quotedPricing ? (
+              <OfferPrice pricing={quotedPricing} note={referencePriceNotice(d.slug)} />
+            ) : pv.show ? (
+              <p class="text-2xl font-bold text-brand-strong">Cena od: {pv.min} {market.currencyLabel}</p>
+            ) : (
+              <p class="text-ink/80">Cena još nije navedena u partnerskom cenovniku.</p>
+            )}
           </div>
           {
             d.orderEnabled && (
