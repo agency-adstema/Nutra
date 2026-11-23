@@ -55,10 +55,10 @@ const savings = first?.savings != null ? formatCatalogPrice(first.savings, prici
     )}
     {!compact && (
       <div class="flex items-center gap-2 border-t border-brand/15 pt-2 text-xs font-semibold leading-relaxed text-[#225c32]">
-        <span>{deliveryTerms(pricing.geo)}</span>
+        <span>{deliveryTerms(pricing.geo, pricing)}</span>
       </div>
     )}
-    {!compact && (
+    {!compact && pricing.estimatedDeliveryBusinessDays && (
       <p class="text-[11px] text-muted">Rok dostave je procena iz dokumentacije partnera, a ne garantovani termin.</p>
     )}
   </div>
