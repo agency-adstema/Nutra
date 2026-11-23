@@ -10,6 +10,7 @@ import { getMarket } from '../../../config/countries';
 import { catalogMarkets, geoUrl, offerUrl, offers, verticalLabel, type Offer } from '../../../data/offers';
 import { getOfferDetails, getOfferImage } from '../../../data/offer-details';
 import { getCatalogPrice, formatCatalogPrice } from '../../../data/offer-pricing';
+import OfferPrice from '../../../components/OfferPrice.astro';
 import { PUBLIC_SITE_ENV } from 'astro:env/client';
 
 export function getStaticPaths() {
@@ -104,11 +105,8 @@ const productInfo = {
             </ul>
             <div class="mt-7 flex flex-col gap-3 sm:flex-row">
               <div class="flex flex-1 items-center rounded-2xl bg-brand-2 px-5 py-3.5" data-hero-price>
-                {displayedPrice ? (
-                  <div>
-                    <p class="text-2xl font-semibold text-brand">{displayedPrice}</p>
-                    <p class="text-xs text-muted">Prema cenovniku partnera; cena podleže potvrdi</p>
-                  </div>
+                {pricing ? (
+                  <OfferPrice pricing={pricing} />
                 ) : <p class="text-ink/80">Trenutno nema dostupne ponude za {info.name}.</p>}
               </div>
               <a href="#poruci" class="btn-primary px-7 py-4 text-lg shadow-lg shadow-brand/20" data-hero-cta>
@@ -193,7 +191,7 @@ const productInfo = {
                           <strong class="text-brand">{formatCatalogPrice(t.newPrice, offer.geo)}</strong>
                           {showSourceReference && t.referencePrice != null && (
                             <span class="block text-xs text-muted">
-                              Referentna cena iz Excel dokumenta: {formatCatalogPrice(t.referencePrice, offer.geo)}
+                              Referentna cena iz cenovnika: <del>{formatCatalogPrice(t.referencePrice, offer.geo)}</del>
                             </span>
                           )}
                           {t.quantity > 1 && (
