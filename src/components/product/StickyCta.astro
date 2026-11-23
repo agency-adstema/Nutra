@@ -27,7 +27,6 @@ const pv = priceView(d.priceStatus, d.packages);
           {pv.show ? (
             <p class="text-sm">
               <span class="font-bold text-brand">od {formatPrice(pv.min!, market.currencyLabel)}</span>
-              {pv.isDemo && <span class="text-xs text-warn"> demo</span>}
             </p>
           ) : (
             <p class="text-xs text-muted">Plaćanje pouzećem</p>
