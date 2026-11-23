@@ -1,5 +1,5 @@
 ---
-import { formatCatalogPrice, type CatalogPrice } from '../data/offer-pricing';
+import { formatCatalogPrice, deliveryTerms, type CatalogPrice } from '../data/offer-pricing';
 interface Props {
   pricing: CatalogPrice;
   compact?: boolean;
@@ -7,26 +7,47 @@ interface Props {
 }
 const { pricing, compact = false, note } = Astro.props;
 const first = pricing.tiers[0];
-const reference = first?.referencePrice;
 const priceNow = first ? formatCatalogPrice(first.newPrice, pricing.geo) : null;
-const priceRef = reference != null ? formatCatalogPrice(reference, pricing.geo) : null;
+const priceRef = first?.referencePrice != null ? formatCatalogPrice(first.referencePrice, pricing.geo) : null;
+const savings = first?.savings != null ? formatCatalogPrice(first.savings, pricing.geo) : null;
 ---
 {first && (
-  <div class={compact ? 'space-y-0.5' : 'space-y-1.5'} data-pricing-source="partner-xlsx">
-    <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-      <span class={compact ? 'text-sm font-medium text-ink/70' : 'text-[15px] font-semibold text-ink/75'}>Nova cena:</span>
-      <strong class={compact ? 'text-xl font-bold text-brand' : 'text-3xl font-bold text-brand-strong'}>{priceNow}</strong>
+  <div class={compact ? 'space-y-1.5' : 'space-y-2.5'} data-pricing-source="products-json">
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
       {priceRef && (
-        <span class="text-sm text-muted">
-          <span class="sr-only">Referentna cena iz dostavljenog cenovnika: </span>
-          <del aria-label={`Referentna cena ${priceRef}`} class="line-through decoration-muted/70">{priceRef}</del>
+        <span class="text-sm font-medium text-muted">
+          Stara referentna: <del class="line-through decoration-muted">{priceRef}</del>
+        </span>
+      )}
+      {first.discountPercent != null && (
+        <span class="inline-flex rounded-full bg-[#dcebbf] px-2.5 py-1 text-xs font-bold text-[#215732]">
+          -{first.discountPercent}%
         </span>
       )}
     </div>
+    <div>
+      <span class="block text-xs font-semibold uppercase tracking-wide text-ink/65">Nova cena</span>
+      <strong class={compact ? 'block text-2xl font-extrabold text-brand' : 'block text-4xl font-extrabold leading-tight text-brand-strong'}>
+        {priceNow}
+      </strong>
+    </div>
+    {savings && (
+      <p class="inline-flex items-center rounded-lg bg-[#e2efd3] px-3 py-1.5 text-sm font-bold text-[#235d2d]">
+        UŠTEDA {savings} <span class="ml-1 text-xs font-medium">(prema referentnoj ceni)</span>
+      </p>
+    )}
     <p class={compact ? 'text-[11px] leading-snug text-muted' : 'text-xs leading-relaxed text-ink/75'}>
       {note || (priceRef
-        ? 'Precrtana vrednost je referentna cena iz partnerskog cenovnika, ne potvrđena prethodna prodajna cena.'
-        : 'Cena iz partnerskog cenovnika; konačan iznos potvrđuje prodavac.')}
+        ? 'Precrtana cena je referentna vrednost iz cenovnika partnera, a ne nezavisno proverena prethodna prodajna cena.'
+        : 'Cena je iz partnerskog cenovnika; konačan iznos potvrđuje prodavac.')}
     </p>
+    {!compact && (
+      <div class="flex items-center gap-2 border-t border-brand/15 pt-2 text-xs font-semibold leading-relaxed text-[#225c32]">
+        <span>{deliveryTerms(pricing.geo)}</span>
+      </div>
+    )}
+    {!compact && (
+      <p class="text-[11px] text-muted">Rok dostave je procena iz dokumentacije partnera, a ne garantovani termin.</p>
+    )}
   </div>
 )}
