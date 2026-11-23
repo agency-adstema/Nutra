@@ -9,10 +9,9 @@ import VideoReviews from '../../components/product/VideoReviews.astro';
 import OrderForm from '../../components/product/OrderForm.astro';
 import StickyCta from '../../components/product/StickyCta.astro';
 import FaqList from '../../components/FaqList.astro';
-import SourcesList from '../../components/SourcesList.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { getProducts, getProductsByIds, productUrl, visibleVideos, type Product } from '../../lib/content';
-import { formatDate, priceView, themeStyle } from '../../lib/format';
+import { priceView, themeStyle } from '../../lib/format';
 import { productSchema, faqSchema } from '../../lib/seo';
 import { getMarket } from '../../config/countries';
 import { site } from '../../config/site';
@@ -224,16 +223,6 @@ const productInfo = {
             </div>
           )
         }
-      </div>
-
-      <div class="container-site grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:gap-12">
-        <SourcesList sources={d.sources} />
-        <div class="text-sm text-muted lg:pt-1">
-          <p><strong class="text-ink">Poslednja izmena:</strong> {formatDate(d.updatedAt)}</p>
-          <p class="mt-1">
-            Kako biramo izvore i proveravamo podatke: <a href="/kako-pisemo/" class="text-brand underline">Kako pišemo</a>.
-          </p>
-        </div>
       </div>
 
       {
