@@ -4,11 +4,11 @@ import Icon from '../components/Icon.astro';
 import LeafDecor from '../components/LeafDecor.astro';
 import ProductCard from '../components/ProductCard.astro';
 import GuideCard from '../components/GuideCard.astro';
-import { Picture } from 'astro:assets';
+import HeroCarousel from '../components/HeroCarousel.astro';
 import { getCategories, getProducts, getGuides, categoryUrl, productUrl } from '../lib/content';
 import { websiteSchema } from '../lib/seo';
 import { site } from '../config/site';
-import { catalogGeoOrder, catalogMarkets, getOffersByGeo, geoUrl, offers } from '../data/offers';
+import { catalogGeoOrder, catalogMarkets, getOffersByGeo, geoUrl } from '../data/offers';
 import { getCatalogOffersForCategory } from '../data/offer-categories';
 
 const [categories, products, guides] = await Promise.all([getCategories(), getProducts(), getGuides()]);
@@ -20,7 +20,6 @@ const countByCat = (id: string) => {
   const categoryOffers = getCatalogOffersForCategory(id);
   return editorial.length + categoryOffers.filter((o) => !editorial.some((p) => p.data.name.toLowerCase() === o.name.toLowerCase())).length;
 };
-const heroProducts = featured.slice(0, 3);
 const siteUrl = (Astro.site?.toString() ?? '').replace(/\/$/, '');
 
 const principles = [
@@ -58,33 +57,7 @@ const principles = [
         <p class="mt-6 flex items-center gap-2 text-sm text-muted"><Icon name="info" size={16} /> {site.medicalDisclaimer}</p>
       </div>
 
-      <div class="relative mx-auto grid w-full max-w-lg grid-cols-2 gap-4">
-        {
-          heroProducts.map((p, i) => (
-            <a
-              href={productUrl(p)}
-              class={`group relative overflow-hidden rounded-3xl shadow-[var(--shadow-soft)] ring-1 ring-black/5 ${i === 0 ? 'col-span-2 aspect-[16/9]' : 'aspect-square'}`}
-              data-select-item
-              data-list="home_hero"
-              data-item-id={p.data.slug}
-              data-item-name={p.data.name}
-              data-item-category={p.data.category.id}
-            >
-              <Picture
-                src={p.data.heroImage}
-                alt={p.data.heroImageAlt}
-                widths={i === 0 ? [520, 760, 1040] : [260, 400, 520]}
-                sizes={i === 0 ? '(min-width: 1024px) 512px, 100vw' : '(min-width: 1024px) 250px, 50vw'}
-                formats={['avif', 'webp']}
-                loading={i === 0 ? 'eager' : 'lazy'}
-                fetchpriority={i === 0 ? 'high' : undefined}
-                class="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.03]"
-              />
-              <span class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-sm font-semibold text-ink shadow">{p.data.name}</span>
-            </a>
-          ))
-        }
-      </div>
+      <HeroCarousel />
     </div>
   </section>
 
@@ -93,7 +66,6 @@ const principles = [
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
         <h2 id="ponude-title" class="text-3xl font-semibold text-[#173d22] sm:text-4xl">Naše ponude po zemljama</h2>
-        <p class="mt-2 max-w-2xl text-muted">${offers.length} ponuda za Srbiju, Bosnu i Hrvatsku. Cene prikazujemo prema partnerskom Excel cenovniku; uslove prodaje potvrđuje prodavac.</p>
       </div>
       <a href="/ponude/" class="inline-flex items-center gap-1 font-semibold text-brand hover:underline">Sve ponude <Icon name="arrow-right" size={18} /></a>
     </div>

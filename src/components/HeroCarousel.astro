@@ -1,0 +1,198 @@
+---
+/**
+ * Hero carousel na početnoj — top proizvodi, redosled u src/data/home-hero.json.
+ *
+ * SLIKA: stavite fotografiju kupca sa proizvodom u public/images/hero/<slug>.jpg
+ * (ili .jpeg / .png / .webp), npr. public/images/hero/nautubone.jpg.
+ * Dok slike nema, prikazuje se pakovanje proizvoda.
+ *
+ * Opciono po slajdu u home-hero.json: "headline" (sopstveni naslov),
+ * "name" (ime kupca, npr. "Marija V., Novi Sad") i "quote": true kada je
+ * naslov stvarna izjava tog kupca.
+ */
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { getImage } from 'astro:assets';
+import heroCfg from '../data/home-hero.json';
+import { getCategories, getProducts, productUrl } from '../lib/content';
+import { catalogMarkets, getOffer, offerUrl, verticalLabel, type OfferGeo } from '../data/offers';
+import { getOfferDetails, getOfferImage } from '../data/offer-details';
+import Icon from './Icon.astro';
+
+interface HeroEntry {
+  slug: string;
+  product: string;
+  link: { type: 'product'; slug: string } | { type: 'offer'; geo: OfferGeo; slug: string };
+  headline?: string;
+  name?: string;
+  quote?: boolean;
+}
+interface Slide {
+  slug: string;
+  product: string;
+  href: string;
+  eyebrow: string;
+  text: string;
+  headline?: string;
+  name?: string;
+  quote: boolean;
+  image: string | null;
+  isPhoto: boolean;
+}
+
+const [products, categories] = await Promise.all([getProducts(), getCategories()]);
+const firstSentence = (s: string) => (s.match(/^.*?[.!?](\s|$)/)?.[0] ?? s).trim();
+const customerPhoto = (slug: string) =>
+  ['jpg', 'jpeg', 'png', 'webp'].map((ext) => `/images/hero/${slug}.${ext}`).find((p) => existsSync(join(process.cwd(), 'public', p)));
+
+const slides: Slide[] = [];
+for (const h of heroCfg as HeroEntry[]) {
+  const base = { slug: h.slug, product: h.product, headline: h.headline, name: h.name, quote: !!h.quote && !!h.name };
+  const photo = customerPhoto(h.slug);
+  if (h.link.type === 'product') {
+    const slug = h.link.slug;
+    const p = products.find((x) => x.data.slug === slug);
+    if (!p) continue;
+    const pack = photo ? null : (await getImage({ src: p.data.heroImage, width: 720, format: 'webp' })).src;
+    slides.push({
+      ...base,
+      href: productUrl(p),
+      eyebrow: `${categories.find((c) => c.id === p.data.category.id)?.data.name ?? p.data.productType} · Srbija`,
+      text: firstSentence(p.data.shortDescription),
+      image: photo ?? pack,
+      isPhoto: !!photo,
+    });
+  } else {
+    const o = getOffer(h.link.geo, h.link.slug);
+    if (!o) continue;
+    const details = getOfferDetails(o.geo, o.slug);
+    slides.push({
+      ...base,
+      href: offerUrl(o),
+      eyebrow: `${verticalLabel(o.verticals[0] ?? 'Proizvod')} · ${catalogMarkets[o.geo].shortName}`,
+      text: firstSentence(details?.description ?? ''),
+      image: photo ?? getOfferImage(details),
+      isPhoto: !!photo,
+    });
+  }
+}
+---
+
+{
+  slides.length > 0 && (
+    <div class="relative mx-auto w-full min-w-0 max-w-xl" data-hero-carousel role="region" aria-roledescription="carousel" aria-label="Najprodavaniji proizvodi">
+      <div
+        class="flex snap-x snap-mandatory overflow-x-auto rounded-[1.75rem] shadow-[var(--shadow-soft)] ring-1 ring-black/5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        data-track
+      >
+        {slides.map((s, i) => (
+          <a
+            href={s.href}
+            class="group flex w-full shrink-0 snap-center flex-col bg-[#0d2517] text-white"
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} od ${slides.length}: ${s.product}`}
+            data-slide
+            data-select-item
+            data-list="home_hero"
+            data-item-id={s.slug}
+            data-item-name={s.product}
+          >
+            <span class={`relative block aspect-[16/11] w-full overflow-hidden ${s.isPhoto ? 'bg-black' : 'bg-[#e7efe0]'}`}>
+              {s.image ? (
+                <img
+                  src={s.image}
+                  alt={s.isPhoto ? `${s.name ?? 'Kupac'} sa proizvodom ${s.product}` : `Pakovanje proizvoda ${s.product}`}
+                  width="720"
+                  height="495"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={i === 0 ? 'high' : undefined}
+                  decoding="async"
+                  class={`h-full w-full transition duration-500 group-hover:scale-[1.03] ${s.isPhoto ? 'object-cover object-[50%_30%]' : 'object-contain p-6'}`}
+                />
+              ) : (
+                <span class="grid h-full place-items-center text-[#1f4b2b]"><Icon name="box" size={72} /></span>
+              )}
+              <span class="absolute left-3 top-3 rounded-full bg-[#1f4b2b] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">Najprodavanije</span>
+            </span>
+
+            <span class="flex flex-1 flex-col p-6 sm:p-7">
+              <span class="text-[11px] font-bold uppercase tracking-[0.22em] text-[#c7e0a8]">{s.eyebrow}</span>
+              {s.headline ? (
+                <span class="mt-2 line-clamp-3 font-serif text-xl font-semibold leading-snug sm:text-2xl">{s.quote ? `„${s.headline}”` : s.headline}</span>
+              ) : (
+                <>
+                  <span class="mt-2 font-serif text-3xl font-semibold leading-tight">{s.product}</span>
+                  <span class="mt-2 line-clamp-2 min-h-[2lh] text-[15px] leading-relaxed text-white/80">{s.text}</span>
+                </>
+              )}
+              {s.name && <span class="mt-3 text-sm font-semibold text-white/80">— {s.name}</span>}
+              <span class="mt-5 inline-flex w-fit items-center gap-1.5 rounded-xl bg-[#c7e0a8] px-4 py-2.5 text-sm font-bold text-[#0d2517] transition group-hover:bg-white">
+                Pogledajte proizvod <Icon name="arrow-right" size={16} />
+              </span>
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <button type="button" class="absolute left-2 top-[34%] grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow-lg hover:bg-white" aria-label="Prethodni proizvod" data-prev>
+        <Icon name="chevron-right" size={20} class="rotate-180" />
+      </button>
+      <button type="button" class="absolute right-2 top-[34%] grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow-lg hover:bg-white" aria-label="Sledeći proizvod" data-next>
+        <Icon name="chevron-right" size={20} />
+      </button>
+
+      <div class="mt-4 flex justify-center gap-2">
+        {slides.map((s, i) => (
+          <button
+            type="button"
+            class="h-2.5 w-2.5 rounded-full bg-[#173d22]/20 transition-all aria-[current=true]:w-6 aria-[current=true]:bg-[#173d22]"
+            aria-label={`Prikaži ${s.product}`}
+            aria-current={i === 0 ? 'true' : undefined}
+            data-dot={i}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<script>
+  function initHeroCarousel(root: HTMLElement) {
+    const track = root.querySelector<HTMLElement>('[data-track]');
+    const dots = [...root.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+    if (!track || dots.length < 2) return;
+    const count = dots.length;
+    let index = 0;
+    let paused = false;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const go = (i: number) => {
+      index = (i + count) % count;
+      track.scrollTo({ left: index * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+    };
+    let timer: number | undefined;
+    track.addEventListener('scroll', () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        index = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+        dots.forEach((d, i) => (i === index ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current')));
+      }, 80);
+    }, { passive: true });
+    root.querySelector('[data-prev]')?.addEventListener('click', () => go(index - 1));
+    root.querySelector('[data-next]')?.addEventListener('click', () => go(index + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+    root.addEventListener('mouseenter', () => (paused = true));
+    root.addEventListener('mouseleave', () => (paused = false));
+    root.addEventListener('focusin', () => (paused = true));
+    root.addEventListener('focusout', () => (paused = false));
+    root.addEventListener('touchstart', () => (paused = true), { passive: true });
+    if (!reduce) {
+      window.setInterval(() => {
+        if (!paused && document.visibilityState === 'visible') go(index + 1);
+      }, 6000);
+    }
+  }
+  document.querySelectorAll<HTMLElement>('[data-hero-carousel]').forEach(initHeroCarousel);
+</script>

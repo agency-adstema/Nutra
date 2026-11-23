@@ -70,15 +70,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Šabac",
-        "headline": "Imam 61 godinu — a svi mi daju deset manje.",
-        "text": "Dragica Isaković je medicinska sestra iz Šapca. Tri, četiri godine imala je fleke po licu i vratu i probala je, kako kaže, svašta. Beauty Derm je videla na reklami i koristi ga već oko tri godine. Kaže da su joj se fleke i bore povukle i da joj danas niko ne veruje koliko ima godina.",
-        "name": "Dragica I., Šabac",
-        "quote": "Imam 61 godinu, a svi mi daju deset godina manje — posle kreme.",
-        "youtubeId": "h9fm8NBJNXI",
-        "image": "/images/price/rs-acnosin.jpg"
       }
     },
     "RS/altea": {
@@ -109,8 +100,7 @@
             "score": 3.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/apolloss": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/apolloss",
@@ -165,8 +155,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/beauty-derm": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/beauty-derm",
@@ -236,15 +225,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Šabac",
-        "headline": "Imam 61 godinu — a svi mi daju deset manje.",
-        "text": "Dragica Isaković je medicinska sestra iz Šapca. Tri, četiri godine imala je fleke po licu i vratu i probala je, kako kaže, svašta. Beauty Derm je videla na reklami i koristi ga već oko tri godine. Kaže da su joj se fleke i bore povukle i da joj danas niko ne veruje koliko ima godina.",
-        "name": "Dragica I., Šabac",
-        "quote": "Imam 61 godinu, a svi mi daju deset godina manje — posle kreme.",
-        "youtubeId": "h9fm8NBJNXI",
-        "image": "/images/price/rs-beauty-derm.jpg"
       }
     },
     "RS/bone-control": {
@@ -315,8 +295,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/cellulflex": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/cellulflex",
@@ -386,8 +365,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/deep-inhale": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/deep-inhale",
@@ -417,8 +395,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/dermal": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/dermal",
@@ -488,8 +465,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/dia-drops": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/diadrops",
@@ -559,8 +535,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/diatea": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/diatea",
@@ -630,8 +605,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/easy-slim": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/easy-slim",
@@ -666,8 +640,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/erek-x": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/erek-x",
@@ -707,8 +680,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/gluco-caps": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/gluco-caps",
@@ -778,8 +750,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/hemomax": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/hemomax",
@@ -849,8 +820,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/hemoroclear": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/hemoroclear",
@@ -920,8 +890,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/hydromax": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/hydromax",
@@ -976,8 +945,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/hyper-caps": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/hyper-caps",
@@ -1047,8 +1015,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/hyper-drops": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/hyper-drops",
@@ -1118,15 +1085,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Kisač",
-        "headline": "Više nemam bolove u stomaku koje sam godinama imala.",
-        "text": "Hera Marija iz Kisača, domaćica, koristi Hyper Drops kapi već oko tri meseca — možda i duže. Pre toga je imala masnu jetru, blago povišen šećer, bolove u kolenu i kožne izrasline. Kaže da joj je svakodnevica bila otežana zbog ograničenog kretanja i dijete zbog šećera, a do proizvoda je došla preko reklame i komentara zadovoljnih kupaca.",
-        "name": "Hera M., Kisač",
-        "quote": "Kapi koje pomažu da se čovek oseća bolje.",
-        "youtubeId": "Kh7YGaamD3I",
-        "image": "/images/price/rs-hyper-drops.jpg"
       }
     },
     "RS/intimotea": {
@@ -1147,8 +1105,7 @@
         "imageAlt": "Biljna mešavina za žene",
         "image": "/images/sastav/rs-intimotea.webp"
       },
-      "reviews": null,
-      "story": null
+      "reviews": null
     },
     "RS/keto-tea": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/keto-tea",
@@ -1193,8 +1150,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/lossless": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/lossless",
@@ -1264,8 +1220,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/mikoherb": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/miko-herb",
@@ -1335,15 +1290,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Srbija",
-        "headline": "Namažem jedanput — kao da mi je svanulo.",
-        "text": "Borislava Lazarević je penzionerka, rodom iz Loznice, a od 2010. godine sa mužem uživa u svojoj bašti na selu. Na noktima, naročito na palčevima na nogama, pojavile su joj se gljivice. Probala je razne stvari, pa i Canesten, ali bez rezultata. Sin joj je na internetu pronašao Mikoherb i naručila je čaj i kremu — dve ture su bile dovoljne, pa joj je čak i ostalo. Kad joj se posle dve, tri godine ponovo pojavilo zadebljanje na palčevima, setila se ostatka kreme i odmah ponovo naručila.",
-        "name": "Borislava L.",
-        "quote": "Koža je kao bebina — baršunasta i mekana.",
-        "youtubeId": "aDMyAhzWrjk",
-        "image": "/images/price/rs-mikoherb.jpg"
       }
     },
     "RS/nautubone": {
@@ -1414,15 +1360,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Srbija",
-        "headline": "Za dva dana je prestalo da boli — više ne škripi kad hodam.",
-        "text": "Đorđe Prijević, bivši serviser, godinama je imao problem s kolenima. Teško se kretao — ne treba ni da prođe stotinu metara, a već počne da škripi i da boli. To mu je usporavalo svakodnevicu: šta god da počne, sve zapinje. Nautubone gel je pronašao preko reklame na internetu i koristi ga već oko četiri do pet nedelja — potrošio je četiri tube. Kaže da mu je za dva dana prestalo da boli, da se lakše kreće i da više ne škripi kad hoda.",
-        "name": "Đorđe P., Srbija",
-        "quote": "Lakše se krećem, nema bolova u noći — ne škripim više kad hodam.",
-        "youtubeId": "0_LP_rqYI-g",
-        "image": "/images/price/rs-nautubone.jpg"
       }
     },
     "RS/nefro-aktiv": {
@@ -1478,15 +1415,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Novi Sad",
-        "headline": "Ustanem jednom, oko dva-tri sata — ostalo je sve u redu.",
-        "text": "Jelka Radovanović je penzionerka iz Novog Sada. Imala je problema s mokraćnim putevima, teško je zadržavala mokraću i noću je često ustajala. Bubrezi su joj oslabljeni od visokog pritiska koji je imala godinama, a imala je i kamen u bubregu. Na internetu je detaljno pročitala iskustva ljudi koji su pili čaj i odlučila je da proba. Nefro Aktiv pije tri, četiri meseca, a noću sada ustaje mnogo ređe.",
-        "name": "Jelka R., Novi Sad",
-        "quote": "Sad ustanem jednom, oko dva-tri sata — ostalo je sve u redu.",
-        "youtubeId": "P6D6dJKD_4c",
-        "image": "/images/price/rs-nefro-aktiv.jpg"
       }
     },
     "RS/o-caps": {
@@ -1557,15 +1485,6 @@
             "score": 4.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Irig",
-        "headline": "Oči mi više ne suze i nemam tu senku pred očima.",
-        "text": "Mile Čalić živi u Irigu. Pre četrdeset godina povredio je oko udarcem i lekari su mu tada rekli da za njega nema leka. U starijim godinama pojavila mu se i početna mrena — oči su suzile, a pred okom mu se maglilo. Kada je pročitao reklamu, odlučio je da proba O Caps, jer, kako kaže, nije imao šta da izgubi. Posle prve ture od dva meseca primetio je da mu oči manje suze i da više nema senke pred očima. Sada je u četvrtom mesecu korišćenja i nastavlja dalje.",
-        "name": "Mile Č., Irig",
-        "quote": "Oči mi više tako ne suze i nemam tu senku pred očima.",
-        "youtubeId": "NviLIcT3ctA",
-        "image": "/images/price/rs-o-caps.jpg"
       }
     },
     "RS/omni-potent": {
@@ -1601,8 +1520,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/parazol": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/parazol",
@@ -1672,15 +1590,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Subotica",
-        "headline": "Godišnje jednom očistim organizam — iskustvo mi je jako pozitivno.",
-        "text": "Božica Pupovac iz Subotice, kozmetičar u penziji, bila je među prvima u gradu koji su dobili korona virus — vrlo loše stanje i dugotrajno lečenje ostavili su posledice na koži i stomaku. Parazol je pronašla preko reklame na internetu i odlučila da proba. Od tada pa do danas godišnje jednom koristi Parazol za čišćenje organizma — obično u proleće. Kaže da je iskustvo jako pozitivno, da se mnogo bolje oseća posle kure i da je prezadovoljna proizvodom.",
-        "name": "Božica P., Subotica",
-        "quote": "Promene su bile jako pozitivne — manje glavobolje, manji svrab kože, manja nadutost. Posle kure se mnogo bolje osećam.",
-        "youtubeId": "JPvEdkiYlTg",
-        "image": "/images/price/rs-parazol.jpg"
       }
     },
     "RS/prenutra": {
@@ -1721,8 +1630,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/pro-caps": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/pro-caps",
@@ -1792,8 +1700,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/pro-drops": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/pro-drops",
@@ -1863,15 +1770,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Novi Bečej",
-        "headline": "Sve je drugačije — više nema non-stop na WC.",
-        "text": "Kereš Štibor iz Novog Bečeja radi u jednoj italijanskoj firmi, a usput je i penzioner. Oko dve godine imao je problem s prostatom — najvažnije mu je bilo da se to izleči, a usput i erekcija. Nije bilo dobro: non-stop na WC, mokraća, stalne smetnje. Pre drugih proizvoda nije probao ništa slično. Pro Drops kapi pronašao je preko reklame i koristi ih već oko dve godine — od prošle godine, kaže. Zadovoljan je i preporučuje svima koji se dvoume da probaju.",
-        "name": "Kereš Š., Novi Bečej",
-        "quote": "Sve je drugačije — nema da se ide non-stop na WC. Drugačija je i erekcija — zadovoljan sam.",
-        "youtubeId": "NmexYAGwi_g",
-        "image": "/images/price/rs-pro-drops.jpg"
       }
     },
     "RS/prostamid": {
@@ -1927,8 +1825,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/quick-fit": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/quick-fit",
@@ -1998,8 +1895,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/secretdiet": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/secretdiet",
@@ -2069,8 +1965,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/slim-ease": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/slim-ease",
@@ -2120,8 +2015,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/testoy": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/testoy",
@@ -2191,8 +2085,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/testoy-gel": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/testoy-gel",
@@ -2262,8 +2155,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/u-caps": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/u-caps",
@@ -2333,8 +2225,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/varcolex": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/varcolex",
@@ -2404,15 +2295,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Sremski Karlovci",
-        "headline": "Posle deset dana sam osetila da mi je lakše u nogama — muž me je pitao da li imam problem.",
-        "text": "Svetlana Kaštova iz Sremskog Karlovca radi u pilećoj prodavnici i domaćica je. Probleme sa kapilarima i venama ima već oko 20 godina — od prvog porođaja, a sa svakom trudnoćom se stanje pogoršavalo. Koristila je čarape, Detralex tablete i razne gelove bez trajnijeg olakšanja. Varcolex je naručila posle reklame na internetu i kaže da je posle desetak dana primetila da joj je lakše u nogama, da nema otežanost i da se brže kreće — muž joj je primetio promenu pre nego što je sama znala šta da kaže.",
-        "name": "Svetlana K., Sremski Karlovci",
-        "quote": "Probala sam na stotinu vrsta gelova i krema — nisam osećala olakšanje kao ovde. Ne bih uzimala drugo ništa; nadam se da ću koristiti do kraja.",
-        "youtubeId": "l9CSZFYZPd8",
-        "image": "/images/price/rs-varcolex.jpg"
       }
     },
     "RS/varcosin": {
@@ -2483,15 +2365,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Novi Sad",
-        "headline": "Nisam čekala da problem s venama postane ozbiljniji.",
-        "text": "Branislava Takač je iz Novog Sada i već 17 godina je u penziji. Radila je u javnom preduzeću Informatika. Posle teškog lečenja, operacija i terapija, počeli su da joj pucaju kapilari oko članaka. Posebne tegobe nije imala, ali je htela da spreči da se to širi. Varcosin je pronašla preko reklame i uzela paket za tri meseca. Još ga nije potrošila do kraja, ali već primećuje da su promene manje vidljive.",
-        "name": "Branislava T., Novi Sad",
-        "quote": "Ne mogu reći da se skroz povuče, ali je manje vidljivo — nema tog plavila.",
-        "youtubeId": "riCmfI6mAS8",
-        "image": "/images/price/rs-varcosin.jpg"
       }
     },
     "RS/viva-lift": {
@@ -2512,8 +2385,7 @@
         "imageAlt": "Kolagen i hijaluronska kiselina",
         "image": "/images/sastav/rs-viva-lift.webp"
       },
-      "reviews": null,
-      "story": null
+      "reviews": null
     },
     "RS/wrinkless": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/wrinkless",
@@ -2583,8 +2455,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/acnosin": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/acnosin",
@@ -2654,15 +2525,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Sarajevo",
-        "headline": "Ne primjećujem više nove bore — moje lice je na istom.",
-        "text": "Kimeta Rizvanović živi u Sarajevu i penzionerka je. Prije nego što je krenula s Beauty Derm kremom, primjećivala je bore oko očiju i usta te skupljanje kože — problem joj traje otprilike dvije godine. Ranije je probala druge preparate, ali od kad koristi samo ovu kremu ujutro i naveče, kaže da vidi poboljšanje: suha koža joj više ne smeta, a lice joj je, po njenim riječima, u mirovanju — kao prije nego što je krenula s rutinom.",
-        "name": "Kimeta R., Sarajevo",
-        "quote": "Ne primjećujem više nove bore — možda se stvaraju, ali ja ih više nisam primijetila, niti da su se povećavale druge. Otkako koristim kremu, moje lice je na istom.",
-        "youtubeId": "6AxMUAdsYhA",
-        "image": "/images/price/ba-acnosin.jpg"
       }
     },
     "BA/altea": {
@@ -2693,8 +2555,7 @@
             "score": 3.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/apolloss": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/apolloss",
@@ -2749,8 +2610,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/beauty-derm": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/beauty-derm",
@@ -2820,15 +2680,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Sarajevo",
-        "headline": "Ne primjećujem više nove bore — moje lice je na istom.",
-        "text": "Kimeta Rizvanović živi u Sarajevu i penzionerka je. Prije nego što je krenula s Beauty Derm kremom, primjećivala je bore oko očiju i usta te skupljanje kože — problem joj traje otprilike dvije godine. Ranije je probala druge preparate, ali od kad koristi samo ovu kremu ujutro i naveče, kaže da vidi poboljšanje: suha koža joj više ne smeta, a lice joj je, po njenim riječima, u mirovanju — kao prije nego što je krenula s rutinom.",
-        "name": "Kimeta R., Sarajevo",
-        "quote": "Ne primjećujem više nove bore — možda se stvaraju, ali ja ih više nisam primijetila, niti da su se povećavale druge. Otkako koristim kremu, moje lice je na istom.",
-        "youtubeId": "6AxMUAdsYhA",
-        "image": "/images/price/ba-beauty-derm.jpg"
       }
     },
     "BA/bone-control": {
@@ -2899,8 +2750,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/celluless": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/celluless",
@@ -2970,8 +2820,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/cellulflex": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/cellulflex",
@@ -3041,8 +2890,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/deep-inhale": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/deep-inhale",
@@ -3077,15 +2925,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Hadžići",
-        "headline": "Nakon sedam dana osjetio sam razliku — želja za cigaretom je nestala.",
-        "text": "Amer Sadiković ima 41 godinu, živi u Hadžićima i radi u fabrici namještaja. Za vrijeme korone dobio je alergijsku astmu. Disanje mu je bilo toliko otežano da nije mogao ni trenirati ni raditi, pa je neko vrijeme bio na bolovanju. Uz propisanu terapiju probao je razne čajeve. Deep Inhale je pronašao preko društvenih mreža, a uz njega je počeo i da ostavlja cigarete. Kaže da je čaj pio disciplinovano, tri puta dnevno.",
-        "name": "Amer S., Hadžići",
-        "quote": "Nakon sedam dana osjetio sam benefite — želja za cigaretom je nestala.",
-        "youtubeId": "Xe4WXsmJJuk",
-        "image": "/images/price/ba-deep-inhale.jpg"
       }
     },
     "BA/dermal": {
@@ -3156,8 +2995,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/dia-drops": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/diadrops",
@@ -3227,15 +3065,6 @@
             "score": 4.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Visoko",
-        "headline": "Sa 4 doze inzulina dnevno sveo sam na 2.",
-        "text": "Redžib Begić (60) iz Visokog je dijabetičar 12 godina i na inzulinskoj terapiji. Dia Drops kapi koristi već dvije godine — kaže da je uz njih uspio regulisati šećer, vratiti energiju i snagu, te sa četiri dnevne doze inzulina sići na dvije. Svom ljekaru je rekao da koristi kapi na biljnoj bazi; ljekar je, uz dobre nalaze, savjetovao da nastavi.",
-        "name": "Redžib B., Visoko",
-        "quote": "Nije zahtjevno. Lako se koristi. Puno pomaže. Već 2 godine koristim i koristit ću dokle god budem mogao.",
-        "youtubeId": "ZVvEhWTdwTY",
-        "image": "/images/price/ba-dia-drops.jpg"
       }
     },
     "BA/diatea": {
@@ -3306,15 +3135,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Trnovci",
-        "headline": "Snizilo mi je šećer — i ne moram stalno trošiti.",
-        "text": "Selija Bećirović (75) iz Trnovaca je penzionerka. Povišen šećer prati je od perioda korone, a uz to i srce koje radi na 35% i pritisak. Zbog velikog broja tableta želudac je više nije podnosio pa je terapije morala prekidati. Dia Drops kapi i Dia Tea čaj našla je na Facebooku, naručila telefonom i potrošila tri do četiri terapije. Kaže da joj je šećer snižen i ustabiljen, pa proizvode koristi u ciklusima — a sada ih naručuje i svom bratu koji također ima dijabetes.",
-        "name": "Selija B. (75), Trnovci",
-        "quote": "Najvažnije je to da mi je pomoglo, da mi je snizilo šećer. I da ne moram stalno trošiti.",
-        "youtubeId": "SSuXPYqk8Bg",
-        "image": "/images/price/ba-diatea.jpg"
       }
     },
     "BA/easy-slim": {
@@ -3350,8 +3170,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/erek-x": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/erek-x",
@@ -3401,8 +3220,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/hemomax": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/hemomax",
@@ -3472,8 +3290,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/hemoroclear": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/hemoroclear",
@@ -3543,8 +3360,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/hydromax": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/hydromax",
@@ -3599,8 +3415,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/hyper-caps": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/hyper-caps",
@@ -3670,8 +3485,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/hyper-drops": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/hyper-drops",
@@ -3741,15 +3555,6 @@
             "score": 4.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Zenica",
-        "headline": "Navečer sam krenula lijepo spavati — nisam znala kad sam zaspala.",
-        "text": "Maida Semić iz Zenice, rođena i živi u gradu gdje je provela cijeli radni vijek kao diplomirani ekonomista u elektroprivredi. Godinama je imala mučninu iz želuca, nemoć u nogama i rukama te bolove u desnom dijelu vrata — simptome koji su je podsjećali na baku s problemom začepljenih krvnih sudova. Nakon tri i po godine „vožnje” kod doktora konačno je privatno snimila sudove i dobila pravu dijagnozu. Pobornica prirodnih lijekova, krenula je s Hyper Drops kapima nakon što je na Facebooku prepoznala opis simptoma — kaže da joj se polako vratila ravnoteža, san i mir.",
-        "name": "Maida S., Zenica",
-        "quote": "Krenulo je lijepo spavanje navečer, da nisam mogla vjerovati da se spustim i da ne znam kad sam zaspala.",
-        "youtubeId": "KspQG46JJ7E",
-        "image": "/images/price/ba-hyper-drops.jpg"
       }
     },
     "BA/intimotea": {
@@ -3785,8 +3590,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/keto-tea": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/keto-tea",
@@ -3831,8 +3635,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/lossless": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/lossless",
@@ -3902,8 +3705,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/mikoherb": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/miko-herb",
@@ -3973,8 +3775,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/nautubone": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/nautubone",
@@ -4044,15 +3845,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Tuzla",
-        "headline": "Mogu koliko hoću čučnuti i uspraviti se — osjećam se puno bolje.",
-        "text": "Ševala Hasanbašić iz Tuzle, rođena 1948. godine, trgovac je u penziji već 23 godine. Godinama je imala problem s trombozom lijeve noge, a u posljednje vrijeme počela su joj oticanja koljena. Prvo je zaboljelo rame — išla ortopedu, rendgen je pokazao upaljeni živac, a noćni bolovi bili su nepodnošljivi. Nautubone gel i Gluco Caps kapsule pronašla je preko interneta. Kaže da se sada osjeća puno bolje — u nogama, rukama i zglobovima — da može koliko hoće čučnuti i uspraviti se, i da ne planira tražiti drugi proizvod.",
-        "name": "Ševala H., Tuzla",
-        "quote": "Sad se osjećam puno bolje — mogu koliko hoćete čučnuti i uspraviti se. Stvarno mi odgovara.",
-        "youtubeId": "GuxJVFx4hro",
-        "image": "/images/price/ba-nautubone.jpg"
       }
     },
     "BA/nefro-aktiv": {
@@ -4108,15 +3900,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Hrvaćani",
-        "headline": "Sad mogu otići negdje i ne brinem da će mi se nešto desiti.",
-        "text": "Dušanka Davidović rođena je u Krupi na Vrbasu, a danas kao penzionerka živi u Hrvaćanima. Četiri do pet godina mučila ju je inkontinencija — dovoljno je bilo da se nakašlje ili podigne nešto teško. Tablete koje je uzimala nisu donijele pomak, a bez uloška se nije usuđivala otići daleko od kuće. Nefro Aktiv je pronašla preko reklame na Facebooku. Kaže da se dvoumila dok nije probala, a danas osjeća veliko olakšanje i čaj preporučuje svima.",
-        "name": "Dušanka D., Hrvaćani",
-        "quote": "Olakšanje je veliko. Sad mogu otići negdje i nemam problema.",
-        "youtubeId": "PSCbRH7XyH0",
-        "image": "/images/price/ba-nefro-aktiv.jpg"
       }
     },
     "BA/o-caps": {
@@ -4187,8 +3970,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/omni-potent": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/omni-potent",
@@ -4218,8 +4000,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/parazol": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/parazol",
@@ -4289,15 +4070,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Ilijaš",
-        "headline": "Prije sam bila bolesna žena — sad sam potpuno zdrava.",
-        "text": "Elmasa Osmanović iz Ilijaša, radnica u poslovnom stanu u Sarajevu, godinama je imala problem s nadutošću, kretanjem po stomaku i zastojem stolice — po pet dana. To joj je išlo na nerve i opterećavalo mozak u svakodnevici. Otišla je u apoteku po probiotik, ali pravi potez napravila je kad je na mobitelu pretražila Google i pronašla Parazol — za pet minuta je naručila, a prva pošiljka stigla je za sedam dana. Koristi Parazol već godinu dana: prvo čaj pet do šest mjeseci, zatim tablete, a kasnije i Hyper Drops kapi. Kaže da je prije bila bolesna žena, a sada potpuno zdrava.",
-        "name": "Elmasa O., Ilijaš",
-        "quote": "Prije upotrebe bila sam bolesna žena — sad sam potpuno zdrava. Ako su pametni i žele sebi zdravlje, bavit će se.",
-        "youtubeId": "wEozEZ4xOCA",
-        "image": "/images/price/ba-parazol.jpg"
       }
     },
     "BA/prenutra": {
@@ -4338,8 +4110,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/pro-caps": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/pro-caps",
@@ -4409,15 +4180,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Živinice",
-        "headline": "Legnem oko ponoći i ustanem ujutro poslije šest — ne budim se noću.",
-        "text": "Mujo Dajić je penzioner iz Živinica, ima 71 godinu. Dvije godine mučilo ga je učestalo mokrenje, posebno noću, a bilo ga je i sramota da o tome kaže doktorici. Zbog toga nije mogao dugo sjediti u društvu, a na petkovoj džumi znao je usred hutbe ustati i izaći. Prije je probao neke preparate na biljnoj bazi, ali nisu djelovali kako je očekivao. Kad je na Facebooku vidio reklamu, počeo je koristiti Pro Caps kapsule uz Pro Drops kapi. Danas noću više ne ustaje.",
-        "name": "Mujo D., Živinice",
-        "quote": "Najviše mi je olakšalo što me ne budi noću — spavam do jutra.",
-        "youtubeId": "xO-oUUo1Cnk",
-        "image": "/images/price/ba-pro-caps.jpg"
       }
     },
     "BA/pro-drops": {
@@ -4488,15 +4250,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Brčko",
-        "headline": "Više mi pomažu kapi i čaj nego tablete — meni odgovara.",
-        "text": "Pero Stanišić iz Brčkog, oko 12 godina imao je problem s učestalim mokrenjem i buđenjem po dva do tri puta noću — prije nego što je počeo koristiti naše preparate. Dvaput mu se dogodilo da mu je blokirala mokraća; morao je hitno u bolnicu, gdje mu je stavljen kateter — to je bilo prije desetak, jedanaeste godine. Kombinuje Pro Drops kapi i Prostamid čaj uz lijekove za prostatu. Kaže da mu više pomažu trava i kapi nego urologove tablete, da mu odgovara i da bi naravno opet donio istu odluku.",
-        "name": "Pero S., Brčko",
-        "quote": "Više mi pomažu trava i kapi nego njegove tablete — meni odgovara, naravno bih opet isto.",
-        "youtubeId": "AFMYjgcVzKA",
-        "image": "/images/price/ba-pro-drops.jpg"
       }
     },
     "BA/prostamid": {
@@ -4553,15 +4306,6 @@
             "score": 4.5
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnika · Visoko",
-        "headline": "Odem u Visoko i vratim se — a ne moram u WC.",
-        "text": "Enver Beklić rođen je u Buci kod Visokog, a kuću je napravio malo dalje, u istom kraju. Posljednje tri godine mučilo ga je učestalo i bolno mokrenje. Prije svakog odlaska u grad morao je znati gdje ima WC, a i kad se vraćao kući, jedva bi stigao do vrata. Prije je probao razne kapsule, ali se više ni ne sjeća kojih. Danas pije Prostamid čaj i kaže da je dosta stabilan.",
-        "name": "Enver B., Visoko",
-        "quote": "Sad odem u Visoko i vratim se, a ne moram otići u WC.",
-        "youtubeId": "Blp3GCFOvzU",
-        "image": "/images/price/ba-prostamid.jpg"
       }
     },
     "BA/psorizin": {
@@ -4597,8 +4341,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/quick-fit": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/quick-fit",
@@ -4667,8 +4410,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/testox": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/testox",
@@ -4717,8 +4459,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/testoy-gel": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/testoy-gel",
@@ -4787,8 +4528,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/u-caps": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/u-caps",
@@ -4858,8 +4598,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/varcolex": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/varcolex",
@@ -4929,8 +4668,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/varcosin": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/varcosin",
@@ -5000,8 +4738,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "BA/wrinkless": {
       "sourceUrl": "https://limitedcharm.com/ba/proizvod/wrinkless",
@@ -5071,8 +4808,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/altea": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/altea",
@@ -5102,8 +4838,7 @@
             "score": 3.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/apolloss": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/apolloss",
@@ -5158,8 +4893,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/beauty-derm": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/beauty-derm",
@@ -5229,8 +4963,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/bone-control": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/bone-control",
@@ -5300,15 +5033,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Zagreb",
-        "headline": "Koljena su mi pokretljivija — i noću se mogu okrenuti bez bola.",
-        "text": "Jela Plantek je umirovljenica i u Zagrebu živi već četrdesetak godina. Godinama ima problema s koljenima i kukovima — bol se javi jednom ili dvaput godišnje, najčešće zimi, kad joj koljena zebu. Prošla je razne terapije i obloge iz ljekarne. Kad su je u proljeće zaboljela oba koljena, prijatelj joj je dao tri tube Nautubone gela. Mazala je, pokazalo se dobro, pa je poslije gel sama naručila još dvaput.",
-        "name": "Jela P., Zagreb",
-        "quote": "Za mjesec dana osjetila sam veliko olakšanje — koljena su mi pokretljivija.",
-        "youtubeId": "P4ZSlQG3_Vw",
-        "image": "/images/price/hr-bone-control.jpg"
       }
     },
     "HR/celluless": {
@@ -5344,8 +5068,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/deep-inhale": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/deep-inhale",
@@ -5375,8 +5098,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/dermal": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/dermal",
@@ -5446,8 +5168,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/dia-drops": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/diadrops",
@@ -5517,8 +5238,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/diatea": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/diatea",
@@ -5588,8 +5308,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/hemoroclear": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/hemoroclear",
@@ -5659,8 +5378,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/hyper-caps": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/hyper-caps",
@@ -5730,8 +5448,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/hyper-drops": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/hyper-drops",
@@ -5801,8 +5518,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/keto-tea": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/keto-tea",
@@ -5847,8 +5563,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/lossless": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/lossless",
@@ -5918,8 +5633,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/mikoherb": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/miko-herb",
@@ -5989,8 +5703,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/nautubone": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/nautubone",
@@ -6060,15 +5773,6 @@
             "score": 5.0
           }
         ]
-      },
-      "story": {
-        "eyebrow": "Priča korisnice · Zagreb",
-        "headline": "Koljena su mi pokretljivija — i noću se mogu okrenuti bez bola.",
-        "text": "Jela Plantek je umirovljenica i u Zagrebu živi već četrdesetak godina. Godinama ima problema s koljenima i kukovima — bol se javi jednom ili dvaput godišnje, najčešće zimi, kad joj koljena zebu. Prošla je razne terapije i obloge iz ljekarne. Kad su je u proljeće zaboljela oba koljena, prijatelj joj je dao tri tube Nautubone gela. Mazala je, pokazalo se dobro, pa je poslije gel sama naručila još dvaput.",
-        "name": "Jela P., Zagreb",
-        "quote": "Za mjesec dana osjetila sam veliko olakšanje — koljena su mi pokretljivija.",
-        "youtubeId": "P4ZSlQG3_Vw",
-        "image": "/images/price/hr-nautubone.jpg"
       }
     },
     "HR/nefro-aktiv": {
@@ -6124,8 +5828,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/o-caps": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/o-caps",
@@ -6195,8 +5898,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/omni-potent": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/omni-potent",
@@ -6226,8 +5928,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/parazol": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/parazol",
@@ -6297,8 +5998,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/prenutra": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/prenutra",
@@ -6338,8 +6038,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/pro-caps": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/pro-caps",
@@ -6409,8 +6108,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/pro-drops": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/pro-drops",
@@ -6480,8 +6178,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/prostamid": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/prostamid",
@@ -6536,8 +6233,7 @@
             "score": 5.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/quick-fit": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/quick-fit",
@@ -6607,8 +6303,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/testoy": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/testoy",
@@ -6678,8 +6373,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/testoy-gel": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/testoy-gel",
@@ -6748,8 +6442,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/u-caps": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/u-caps",
@@ -6819,8 +6512,7 @@
             "score": 4.0
           }
         ]
-      },
-      "story": null
+      }
     },
     "HR/varcosin": {
       "sourceUrl": "https://limitedcharm.com/hr/proizvod/varcosin",
@@ -6890,8 +6582,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     },
     "RS/bonecontrol": {
       "sourceUrl": "https://limitedcharm.com/rs/proizvod/bone-control",
@@ -6961,8 +6652,7 @@
             "score": 4.5
           }
         ]
-      },
-      "story": null
+      }
     }
   }
 }
