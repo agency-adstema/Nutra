@@ -66,6 +66,7 @@ export default defineConfig({
       PUBLIC_GTM_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_TURNSTILE_SITE_KEY: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_STATIC_PREVIEW: envField.boolean({ context: 'client', access: 'public', default: false }),
+      PUBLIC_CATALOG_ORDER_SUBMISSIONS: envField.boolean({ context: 'client', access: 'public', default: false }),
       // Serverske tajne (čitaju se u runtime-u, nikad ne idu u browser)
       ORDER_MODE: envField.enum({ context: 'server', access: 'secret', values: ['test', 'live'], default: 'test' }),
       MONADLEAD_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
