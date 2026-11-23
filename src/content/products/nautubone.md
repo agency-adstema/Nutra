@@ -1,18 +1,17 @@
 ---
-# DEMO PROIZVOD — svi podaci su primer i moraju se proveriti pre objave.
 name: Nautubone
 slug: nautubone
 category: zglobovi-i-bolovi
 market: RS
 productType: Gel za zglobove i mišiće
 h1: Nautubone gel
-shortDescription: Biljni gel sa gavezom za masažu bolnih mesta.
-intro: Nautubone je biljni gel namenjen spoljašnjoj upotrebi, za masažu i negu područja zglobova i mišića. U formuli se navode biljni sastojci, među kojima je gavez, koji se tradicionalno koristi u preparatima za lokalnu negu i osećaj olakšanja.
+shortDescription: Gel za masažu zglobova i mišića; sastav i deklaracija se proveravaju.
+intro: Nautubone se predstavlja kao gel za masažu i negu područja zglobova i mišića. Pre kupovine proverite tačan sastav i uputstvo na originalnoj deklaraciji.
 highlights:
   - icon: leaf
     label: Spoljna upotreba
   - icon: plant
-    label: Gavez i eterična ulja
+    label: Sastav na deklaraciji
   - icon: truck
     label: Plaćanje pouzećem
 featured: true
@@ -28,19 +27,12 @@ themeSecondary: "#e6efd9"
 themeBackground: "#f8f4e9"
 themeAccent: "#6a9a3f"
 
-ingredients:
-  - name: Gavez
-    latin: Symphytum officinale
-    description: Tradicionalno se koristi u mastima za mišiće i zglobove.
-    icon: flower
-  - name: Eterična ulja
-    description: Doprinose prijatnom osećaju nakon masaže.
-    icon: drop
-ingredientsNote: "DEMO: sastav je preuzet iz dizajna. Pre objave prepisati tačnu listu sastojaka (INCI) sa deklaracije."
+ingredients: []
+ingredientsNote: "Tačan sastav objavićemo nakon provere originalne deklaracije proizvoda."
 usage:
   - Nanesite tanak sloj na bolno mesto.
   - Umasirajte dok se ne upije.
-  - Ponavljajte 2–3 puta dnevno.
+  - Učestalost nanošenja proverite na pakovanju.
 notFor:
   - Deca i adolescenti — preparati sa korenom gaveza namenjeni su odraslima.
   - Trudnice i dojilje, osim po savetu lekara.
@@ -54,7 +46,7 @@ warnings:
 
 comparison:
   intro: Gel ne treba birati samo po reklami. Ovo je okvirno poređenje vrsta proizvoda, ne preporuka.
-  columns: ["Nautubone gel (demo)", "Tradicionalni biljni lek sa gavezom", "Gel sa NSAIL (npr. diklofenak)"]
+  columns: ["Nautubone gel", "Tradicionalni biljni lek sa gavezom", "Gel sa NSAIL (npr. diklofenak)"]
   rows:
     - label: Vrsta proizvoda
       values: ["Biljni/kozmetički gel — proveriti na deklaraciji", "Registrovan tradicionalni biljni lek", "Registrovan lek"]
@@ -68,13 +60,13 @@ comparison:
 
 faq:
   - q: Koja je cena Nautubone gela u Srbiji?
-    a: "DEMO: u dizajnu je navedena cena od 3.700 RSD za jedno pakovanje. Stvarnu cenu proveravamo kod prodavca i prikazujemo je sa datumom provere."
+    a: "Cena još nije potvrđena. Važeću cenu pakovanja saopštiće operater prilikom poziva."
   - q: Gde kupiti Nautubone?
     a: Nautubone možete poručiti preko forme na ovoj stranici. Biljni kompas nije apoteka ni prodavac — porudžbinu obrađuje prodavac, a operater vas poziva radi potvrde. Plaćanje je pouzećem.
   - q: Šta sadrži Nautubone?
-    a: Prema dizajnu, među sastojcima su gavez i eterična ulja. Tačan sastav uvek proverite na deklaraciji proizvoda.
+    a: Tačan sastav još nije potvrđen. Proverite ga na originalnoj deklaraciji proizvoda.
   - q: Kako se koristi Nautubone gel?
-    a: Tanak sloj se nanosi na neoštećenu kožu i umasira dok se ne upije, najčešće 2–3 puta dnevno, prema uputstvu proizvođača.
+    a: Način i učestalost nanošenja proverite u uputstvu na originalnom pakovanju.
   - q: Kakva su iskustva sa Nautubone gelom?
     a: Objavljujemo samo autentične video snimke uz dozvolu autora. Snimak označavamo kao iskustvo kupca samo kada je potvrđeno da je autor kupio i koristio proizvod.
   - q: Da li je Nautubone lek?
@@ -92,54 +84,30 @@ sources:
     publisher: Cochrane Database of Systematic Reviews
 
 currency: RSD
-priceStatus: demo
-priceSource: "DEMO — cene iz dizajna, nisu proverene"
+priceStatus: unknown
+priceSource: "Cena još nije potvrđena kod prodavca."
 packages:
   - id: 1-komad
     label: 1 komad
     quantity: 1
-    price: 3700
     default: true
   - id: 2-komada
     label: 2 komada
     quantity: 2
-    price: 5850
   - id: 3-komada
     label: 3 komada
     quantity: 3
-    price: 6800
 
 offerId: "UNETI_OFFER_ID"
 countryCode: RS
 orderEnabled: true
 
-videos:
-  - type: hosted
-    src: /videos/demo/nautubone-test-1.mp4
-    thumbnail: ../../assets/videos/nautubone-test-1.jpg
-    title: Test video 1
-    description: Interni test snimak za proveru video-sekcije. Nije iskustvo kupca.
-    permission: { granted: true, reference: "Interni test sadržaj" }
-    demo: true
-  - type: hosted
-    src: /videos/demo/nautubone-test-2.mp4
-    thumbnail: ../../assets/videos/nautubone-test-2.jpg
-    title: Test video 2
-    description: Interni test snimak za proveru video-sekcije. Nije iskustvo kupca.
-    permission: { granted: true, reference: "Interni test sadržaj" }
-    demo: true
-  - type: hosted
-    src: /videos/demo/nautubone-test-3.mp4
-    thumbnail: ../../assets/videos/nautubone-test-3.jpg
-    title: Test video 3
-    description: Interni test snimak za proveru video-sekcije. Nije iskustvo kupca.
-    permission: { granted: true, reference: "Interni test sadržaj" }
-    demo: true
+videos: []
 
 related: [bonecontrol]
 seo:
   title: Nautubone gel – cena, sastav, upotreba i iskustva
-  description: "Nautubone gel u Srbiji: sastav, način upotrebe, upozorenja, pakovanja i cena, uz poručivanje pouzećem. Demo stranica — podaci čekaju proveru."
+  description: "Nautubone gel: informacije o nameni, upotrebi, upozorenjima i načinu poručivanja. Tačnu cenu potvrđuje operater."
 ---
 
 ### Kako je zamišljen proizvod
