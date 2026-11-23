@@ -91,33 +91,3 @@ export const markets: Record<MarketCode, MarketConfig> = {
 export function getMarket(code: string | undefined): MarketConfig {
   return markets[(code as MarketCode) ?? 'RS'] ?? markets.RS;
 }
-,
-      example: '091 234 5678',
-    },
-    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_HR', phoneFormat: 'e164' },
-  },
-  ME: {
-    code: 'ME',
-    name: 'Crna Gora',
-    active: false,
-    locale: 'sr-Latn-ME',
-    currency: 'EUR',
-    currencyLabel: '€',
-    phone: { dialCode: '382', nsnPattern: '^(?:6\\d{7}|[2-5]\\d{7})$', example: '067 123 456' },
-    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_ME', phoneFormat: 'e164' },
-  },
-  XK: {
-    code: 'XK',
-    name: 'Kosovo',
-    active: false,
-    locale: 'sq-XK',
-    currency: 'EUR',
-    currencyLabel: '€',
-    phone: { dialCode: '383', nsnPattern: '^(?:4\\d{7}|[2-3]\\d{7})$', example: '044 123 456' },
-    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_XK', phoneFormat: 'e164' },
-  },
-};
-
-export function getMarket(code: string | undefined): MarketConfig {
-  return markets[(code as MarketCode) ?? 'RS'] ?? markets.RS;
-}
