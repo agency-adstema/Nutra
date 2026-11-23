@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { PUBLIC_SITE_ENV } from 'astro:env/client';
+import { PUBLIC_SITE_ENV, PUBLIC_ORDER_ENDPOINT, PUBLIC_CATALOG_ORDER_SUBMISSIONS } from 'astro:env/client';
 import { site } from '../config/site';
 import { organizationSchema, breadcrumbSchema } from '../lib/seo';
 import Header from '../components/Header.astro';
@@ -97,7 +97,7 @@ const graph = {
   <body class={bodyClass} style={themeStyle}>
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow">Preskoči na sadržaj</a>
     {
-      !isProduction && (
+      !isProduction && !(PUBLIC_ORDER_ENDPOINT && PUBLIC_CATALOG_ORDER_SUBMISSIONS) && (
         <div class="bg-ink text-center text-xs text-white/90 py-1.5 px-3" data-env-banner>
           Sajt je u pripremi — slanje porudžbina trenutno nije aktivno.
         </div>

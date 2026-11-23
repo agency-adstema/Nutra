@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 # =============================================================================
-#  Moja Zdravica — API za porudžbine na https://zdravica.rs/api/order/
+#  Moja Zdravica — API za porudžbine (MonadLead)
 #
-#  Pokreće se NA SERVERU zdravica.rs (kao root):
-#      curl -fsSL https://raw.githubusercontent.com/agency-adstema/Nutra/main/deploy/install-zdravica-order-api.sh -o install.sh
-#      sudo bash install.sh            # prva instalacija ILI ažuriranje na najnoviji kod
+#  Pokreće se NA SERVERU (kao root). Prvi argument je domen, drugi putanja sajta:
+#      curl -fsSL https://raw.githubusercontent.com/agency-adstema/Nutra/main/deploy/install-order-api.sh -o install.sh
+#      sudo bash install.sh lamena.io /nutra     # API: https://lamena.io/nutra/api/order/
+#      sudo bash install.sh zdravica.rs          # API: https://zdravica.rs/api/order/
+#  Ponovno pokretanje = ažuriranje na najnoviji kod (ključ i režim ostaju).
 #
 #  Šta radi:
 #   1. proveri Node.js 22 (ponudi instalaciju ako ga nema)
 #   2. skine/ažurira kod (grana main) u /opt/nutra-backend i napravi Node server
 #   3. napravi /etc/nutra/backend.env — PITA te za MonadLead API ključ (ne ispisuje ga)
 #   4. pokrene servis „nutra-orders“ na 127.0.0.1:4376
-#   5. napravi nginx deo /etc/nginx/snippets/zdravica-order-api.conf
+#   5. napravi nginx deo /etc/nginx/snippets/order-api-<domen>.conf
 #   6. proveri da API odgovara
 #
 #  Podrazumevano je TEST REŽIM: porudžbine se proveravaju, ali NE šalju u MonadLead.
@@ -26,8 +28,11 @@ ENV_DIR="/etc/nutra"
 ENV_FILE="$ENV_DIR/backend.env"
 SERVICE="nutra-orders"
 PORT="4376"
-API_DOMAIN="${API_DOMAIN:-zdravica.rs}"
-SNIPPET="/etc/nginx/snippets/zdravica-order-api.conf"
+API_DOMAIN="${1:-${API_DOMAIN:-zdravica.rs}}"
+API_PATH="${2:-${API_PATH:-}}"; API_PATH="${API_PATH%/}"   # npr. /nutra
+[[ -z "$API_PATH" || "$API_PATH" =~ ^/[a-z0-9/_-]+$ ]] || { echo "Neispravna putanja: $API_PATH"; exit 1; }
+API_URL="https://$API_DOMAIN$API_PATH/api/order/"
+SNIPPET="/etc/nginx/snippets/order-api-$API_DOMAIN.conf"
 
 say()  { printf '\n\033[1;32m==> %s\033[0m\n' "$*"; }
 warn() { printf '\033[1;33m!!  %s\033[0m\n' "$*"; }
@@ -85,7 +90,7 @@ ORDER_MODE=test
 CATALOG_ORDERS_ENABLED=true
 MONADLEAD_API_KEY_CATALOG=$API_KEY
 ORDER_HASH_SALT=$(openssl rand -hex 32)
-ALLOWED_ORIGINS=https://lamena.io,https://$API_DOMAIN,https://www.$API_DOMAIN
+ALLOWED_ORIGINS=https://lamena.io,https://zdravica.rs,https://www.zdravica.rs
 EOF
   unset API_KEY
 else
@@ -138,10 +143,10 @@ if command -v nginx >/dev/null; then
   cat > "$SNIPPET" <<EOF
 # Moja Zdravica — API za porudžbine. Ubaci u HTTPS server {} blok za $API_DOMAIN:
 #     include $SNIPPET;
-location = /api/order {
-    return 308 /api/order/;
+location = $API_PATH/api/order {
+    return 308 $API_PATH/api/order/;
 }
-location = /api/order/ {
+location = $API_PATH/api/order/ {
     limit_except POST OPTIONS { deny all; }
     client_max_body_size 12k;
     proxy_http_version 1.1;
@@ -170,13 +175,18 @@ else
 fi
 
 # --- 6. Provera spolja -----------------------------------------------------------------------
-say "Provera preko https://$API_DOMAIN/api/order/"
+say "Provera preko $API_URL"
 pre=$(curl -s -o /dev/null -w '%{http_code}' -X OPTIONS -H "Origin: https://lamena.io" \
-  -H "Access-Control-Request-Method: POST" "https://$API_DOMAIN/api/order/" || true)
+  -H "Access-Control-Request-Method: POST" "$API_URL" || true)
 post=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H "Origin: https://lamena.io" \
-  -H "Content-Type: application/json" -d '{}' "https://$API_DOMAIN/api/order/" || true)
+  -H "Content-Type: application/json" -d '{}' "$API_URL" || true)
 echo "OPTIONS sa lamena.io → $pre (očekivano 204)"
 echo "POST prazan zahtev    → $post (očekivano 400, bez slanja porudžbine)"
+if [[ "$post" == "405" ]]; then
+  warn "POST vraća 405: ispred servera je verovatno Cloudflare Worker za $API_DOMAIN$API_PATH* (samo GET)."
+  echo "   U Cloudflare → Workers Routes dodaj rutu  $API_DOMAIN$API_PATH/api/*  sa Worker: None,"
+  echo "   da porudžbine idu direktno na ovaj server. Zatim ponovo pokreni ovu skriptu."
+fi
 
 mode=$(grep -E '^ORDER_MODE=' "$ENV_FILE" | cut -d= -f2)
 say "Gotovo. Režim: ${mode:-test}"

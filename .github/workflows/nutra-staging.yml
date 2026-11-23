@@ -48,6 +48,10 @@ jobs:
           PUBLIC_MARKET: RS
           SITE_URL: https://lamena.io
           ORDER_MODE: test
+          # Forma šalje porudžbine na API na serveru (deploy/install-order-api.sh lamena.io /nutra).
+          # Da li porudžbina zaista ide u MonadLead odlučuje ORDER_MODE u /etc/nutra/backend.env na serveru.
+          PUBLIC_ORDER_ENDPOINT: https://lamena.io/nutra/api/order/
+          PUBLIC_CATALOG_ORDER_SUBMISSIONS: 'true'
 
       - name: Check build output
         run: |
