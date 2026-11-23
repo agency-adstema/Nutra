@@ -87,25 +87,28 @@ const principles = [
     <div class="flex items-end justify-between gap-4">
       <h2 id="kat-title" class="text-3xl font-semibold text-[#173d22] sm:text-4xl">Kategorije</h2>
     </div>
-    <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
       {
-        categories.map((c) => (
-          <a href={categoryUrl(c)} class="card group flex items-start gap-4 p-6 transition-shadow hover:shadow-[var(--shadow-soft)]">
-            <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[#e7efdc] text-[#1f4d2b] transition-colors group-hover:bg-[#1f4d2b] group-hover:text-white">
-              <Icon name={c.data.icon} size={28} />
-            </span>
-            <span class="min-w-0">
-              <span class="flex items-center gap-2 text-xl font-semibold text-ink">
-                {c.data.name}
-                <Icon name="arrow-right" size={18} class="text-muted transition-transform group-hover:translate-x-1" />
+        categories.map((c) => {
+          const n = countByCat(c.id);
+          return (
+            <a href={categoryUrl(c)} class="card group flex flex-col gap-3 p-4 transition-shadow hover:shadow-[var(--shadow-soft)] sm:flex-row sm:items-start sm:gap-4 sm:p-6">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#e7efdc] text-[#1f4d2b] transition-colors group-hover:bg-[#1f4d2b] group-hover:text-white sm:h-14 sm:w-14 sm:rounded-2xl">
+                <Icon name={c.data.icon} size={26} />
               </span>
-              <span class="mt-1 block text-[15px] text-muted">{c.data.shortDescription}</span>
-              <span class="mt-3 block text-sm font-medium text-[#5d8c3c]">
-                {countByCat(c.id)} {countByCat(c.id) === 1 ? 'proizvod' : 'proizvoda'}
+              <span class="min-w-0">
+                <span class="flex items-center gap-2 text-[15px] leading-snug font-semibold text-ink sm:text-xl">
+                  {c.data.name}
+                  <Icon name="arrow-right" size={18} class="hidden shrink-0 text-muted transition-transform group-hover:translate-x-1 sm:block" />
+                </span>
+                <span class="mt-1 hidden text-[15px] text-muted sm:block">{c.data.shortDescription}</span>
+                <span class={`mt-1.5 block text-sm font-medium sm:mt-3 ${n ? 'text-[#5d8c3c]' : 'text-muted'}`}>
+                  {n === 0 ? 'Uskoro' : `${n} ${n === 1 ? 'proizvod' : 'proizvoda'}`}
+                </span>
               </span>
-            </span>
-          </a>
-        ))
+            </a>
+          );
+        })
       }
     </div>
   </section>

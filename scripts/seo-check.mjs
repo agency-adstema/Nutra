@@ -22,6 +22,7 @@ const html = files.filter((f) => f.endsWith('.html'));
 const titles = new Map();
 const descs = new Map();
 const canonicals = new Set();
+const intentionallyNoindex = new Set();
 const indexable = new Set();
 
 const attr = (tag, name) => tag.match(new RegExp(`${name}="([^"]*)"`))?.[1];
@@ -56,6 +57,7 @@ for (const file of html) {
 
   const robots = attr(s.match(/<meta name="robots"[^>]*>/)?.[0] ?? '', 'content') ?? '';
   const noindex = /noindex/.test(robots);
+  if (/<html[^>]*data-noindex="true"/.test(s) && canonical) intentionallyNoindex.add(canonical);
   if (!noindex && !is404 && canonical) indexable.add(canonical);
 
   const h1 = (s.match(/<h1[\s>]/g) || []).length;
@@ -99,10 +101,13 @@ else {
   const sm = readFileSync(sitemapPath, 'utf8');
   const locs = new Set([...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
   for (const c of canonicals) {
-    if (c.includes('/pretraga/') || c.endsWith('/404/')) continue;
+    if (intentionallyNoindex.has(c)) continue;
     if (!locs.has(c)) err('sitemap.xml', `nedostaje ${c}`);
   }
-  for (const l of locs) if (!canonicals.has(l)) err('sitemap.xml', `URL bez stranice: ${l}`);
+  for (const l of locs) {
+    if (!canonicals.has(l)) err('sitemap.xml', `URL bez stranice: ${l}`);
+    if (intentionallyNoindex.has(l)) err('sitemap.xml', `noindex stranica u sitemap-u: ${l}`);
+  }
 }
 const robotsPath = join(root, 'robots.txt');
 if (!existsSync(robotsPath)) err('robots.txt', 'ne postoji');

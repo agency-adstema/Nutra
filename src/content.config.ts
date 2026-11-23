@@ -24,10 +24,12 @@ const categories = defineCollection({
     slug: z.string().regex(/^[a-z0-9-]+$/),
     market: marketEnum.default('RS'),
     shortDescription: z.string(),
-    icon: z.enum(['joint', 'detox', 'leaf', 'heart', 'sleep', 'skin']).default('leaf'),
+    icon: z.enum(['joint', 'detox', 'leaf', 'heart', 'heart-pulse', 'activity', 'weight', 'male', 'eye', 'waves', 'sparkles', 'sleep', 'skin']).default('leaf'),
     order: z.number().default(100),
     seo,
     faq,
+    /** FAQPage schema samo kada sadržaj zaista ispunjava Google smernice */
+    faqSchema: z.boolean().default(false),
     demo: z.boolean().default(false),
     updatedAt: z.coerce.date(),
   }),

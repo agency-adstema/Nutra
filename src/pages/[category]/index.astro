@@ -29,6 +29,7 @@ const { Content } = await render(category);
 const products = (await getProducts()).filter((p) => p.data.category.id === category.id);
 const guides = (await getGuides()).filter((g) => g.data.category?.id === category.id);
 const path = `/${d.slug}/`;
+const others = (await getCategories()).filter((c) => c.id !== category.id);
 ---
 
 <BaseLayout
@@ -36,7 +37,8 @@ const path = `/${d.slug}/`;
   description={d.seo.description}
   path={path}
   breadcrumbs={[{ name: d.name, href: path }]}
-  jsonLd={[{ '@type': 'CollectionPage', name: d.name, description: d.seo.description }, ...(d.faq.length ? [faqSchema(d.faq)] : [])]}
+  jsonLd={[{ '@type': 'CollectionPage', name: d.name, description: d.seo.description }, ...(d.faqSchema && d.faq.length ? [faqSchema(d.faq)] : [])]}
+  noindex={products.length === 0}
 >
   {d.demo && <DemoNotice text="Demo sadržaj: tekst kategorije je primer i čeka uredničku proveru." />}
   <section class="relative overflow-hidden">
@@ -65,7 +67,17 @@ const path = `/${d.slug}/`;
           {products.map((p, i) => <ProductCard product={p} list={`category_${d.slug}`} eager={i < 3} />)}
         </div>
       ) : (
-        <p class="mt-4 text-muted">Uskoro dodajemo proizvode u ovu kategoriju.</p>
+        <div class="mt-5 rounded-2xl border border-dashed border-line bg-paper p-6">
+          <p class="font-semibold text-ink">Proizvode u ovoj kategoriji dodajemo uskoro.</p>
+          <p class="mt-1 text-muted">Objavljujemo ih tek kada proverimo sastav, cenu i upozorenja. Do tada pogledajte druge kategorije:</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {others.map((c) => (
+              <a href={`/${c.data.slug}/`} class="pill bg-[#e7efdc] text-[#1f4d2b] hover:bg-[#dbe8cc]">
+                <Icon name={c.data.icon} size={16} /> {c.data.name}
+              </a>
+            ))}
+          </div>
+        </div>
       )
     }
   </section>

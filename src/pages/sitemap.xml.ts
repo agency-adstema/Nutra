@@ -24,7 +24,9 @@ export const GET: APIRoute = async ({ site }) => {
 
   const urls: { loc: string; lastmod?: string }[] = [
     ...STATIC_PAGES.map((p) => ({ loc: p })),
-    ...categories.map((c) => ({ loc: categoryUrl(c), lastmod: isoDate(c.data.updatedAt) })),
+    ...categories
+      .filter((c) => products.some((p) => p.data.category.id === c.id))
+      .map((c) => ({ loc: categoryUrl(c), lastmod: isoDate(c.data.updatedAt) })),
     ...products.map((p) => ({ loc: productUrl(p), lastmod: isoDate(p.data.updatedAt) })),
     ...guides.map((g) => ({ loc: guideUrl(g), lastmod: isoDate(g.data.updatedAt) })),
   ];
