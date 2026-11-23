@@ -25,7 +25,7 @@ const siteUrl = (Astro.site?.toString() ?? '').replace(/\/$/, '');
 
 const principles = [
   { icon: 'book', title: 'Izvori, ne obećanja', text: 'Tvrdnje o sastojcima povezujemo sa nezavisnim izvorima (EMA, CDC, Cochrane). Ono što nije dokazano, tako i pišemo.' },
-  { icon: 'scale', title: 'Cene bez iznenađenja', text: 'Prikazujemo samo potvrđene cene. Kada cena nije proverena, operater je potvrđuje prilikom poziva.' },
+  { icon: 'scale', title: 'Cene bez iznenađenja', text: 'Prikazujemo iznose iz dostavljenog partnerskog cenovnika. Referentne cene jasno označavamo, a uslove porudžbine potvrđuje prodavac.' },
   { icon: 'shield', title: 'Upozorenja na vidnom mestu', text: 'Kome proizvod nije namenjen i kada se obratiti lekaru — na svakoj stranici proizvoda.' },
   { icon: 'instagram', title: 'Samo prava iskustva', text: 'Video snimke objavljujemo samo uz dozvolu autora i ne predstavljamo ih kao recenzije bez potvrđene kupovine.' },
 ];
@@ -93,7 +93,7 @@ const principles = [
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
         <h2 id="ponude-title" class="text-3xl font-semibold text-[#173d22] sm:text-4xl">Naše ponude po zemljama</h2>
-        <p class="mt-2 max-w-2xl text-muted">${offers.length} ponuda za Srbiju, Bosnu i Hrvatsku. Cene i dostupnost prikazujemo kada budu potvrđene.</p>
+        <p class="mt-2 max-w-2xl text-muted">${offers.length} ponuda za Srbiju, Bosnu i Hrvatsku. Cene prikazujemo prema partnerskom Excel cenovniku; uslove prodaje potvrđuje prodavac.</p>
       </div>
       <a href="/ponude/" class="inline-flex items-center gap-1 font-semibold text-brand hover:underline">Sve ponude <Icon name="arrow-right" size={18} /></a>
     </div>
