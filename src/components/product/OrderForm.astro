@@ -4,6 +4,7 @@ import { site } from '../../config/site';
 import { formatPrice, priceView } from '../../lib/format';
 import type { Product } from '../../lib/content';
 import type { Offer } from '../../data/offers';
+import { getOfferDetails } from '../../data/offer-details';
 import type { MarketConfig } from '../../config/countries';
 import { PUBLIC_STATIC_PREVIEW, PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
 
@@ -16,6 +17,7 @@ const { product, offer, market } = Astro.props;
 if (!product && !offer) throw new Error('OrderForm requires product or offer');
 const d = product?.data;
 const isCatalogPreview = !!offer;
+const catalogDetails = offer ? getOfferDetails(offer.geo, offer.slug) : undefined;
 // Catalog forms are always in SAFE preview mode, including if the site is later built for production.
 // Until a real API offer ID and approved seller details are configured, nothing may be transmitted.
 const name = offer?.name ?? d!.name;
@@ -26,7 +28,7 @@ const priceStatus = offer ? 'unknown' as const : d!.priceStatus;
 const packages = offer
   ? [{ id: '1-komad', label: '1 pakovanje', quantity: 1, default: true, price: undefined }]
   : d!.packages;
-const orderEnabled = isCatalogPreview || !!d?.orderEnabled;
+const orderEnabled = isCatalogPreview ? catalogDetails?.availableInAccount === true : !!d?.orderEnabled;
 const pv = priceView(priceStatus, packages);
 const defaultPkg = packages.find((p) => p.default) ?? packages[0];
 const requireConsent = site.consentMode === 'checkbox';
@@ -57,13 +59,14 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
 
     {
       !orderEnabled ? (
-        <p class="p-6 text-center text-muted">Poručivanje ovog proizvoda trenutno nije dostupno.</p>
+        <p class="p-6 text-center text-muted">Ova ponuda trenutno nije dostupna u partnerskom nalogu za izabranu zemlju. Poručivanje nije moguće.</p>
       ) : (
         <form class="space-y-4 p-5 sm:p-6" novalidate data-order-form data-config={JSON.stringify(formConfig)}>
           {isCatalogPreview && (
             <div class="rounded-xl border border-warn/30 bg-warn-bg px-4 py-3 text-sm text-ink">
-              <strong>Prikaz forme za poručivanje.</strong> Porudžbine za ovu ponudu još nisu aktivirane.
-              Formular služi za proveru dizajna i ne šalje unete podatke.
+              <strong>Forma za poručivanje još nije aktivirana.</strong> Ovaj prikaz služi za proveru dizajna i validacije;
+              ni jedan uneti podatak neće biti poslat u CRM.
+              {catalogDetails?.price && <p class="mt-2">Partnerska cena: <strong>{catalogDetails.price}</strong>. Konačna cena podleže potvrdi prodavca.</p>}
             </div>
           )}
           <div class="space-y-4" data-form-fields>
