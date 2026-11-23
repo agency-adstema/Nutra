@@ -61,7 +61,7 @@ faq:
   - q: Da li Parazol leči parazite?
     a: Ne postoje dokazi koje smo mogli da proverimo da ovaj preparat leči parazitske infekcije. Potvrđene infekcije leče se lekovima koje propisuje lekar.
   - q: Koja je cena Parazola?
-    a: Prema dostavljenom RS cenovniku: 1 pakovanje 3.700 RSD (referentno 5.500 RSD), 2 pakovanja 5.850 RSD (referentno 11.000 RSD) i 3 pakovanja 6.800 RSD (referentno 16.500 RSD). Referentne cene nisu potvrđene kao ranije prodajne cene; prodavac potvrđuje porudžbinu.
+    a: "Prema dostavljenom RS cenovniku: 1 pakovanje 3.700 RSD (referentno 5.500 RSD), 2 pakovanja 5.850 RSD (referentno 11.000 RSD) i 3 pakovanja 6.800 RSD (referentno 16.500 RSD). Referentne cene nisu potvrđene kao ranije prodajne cene; prodavac potvrđuje porudžbinu."
 faqSchema: false
 sources:
   - title: Absinthii herba (Wormwood) — sažetak HMPC
