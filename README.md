@@ -1,7 +1,7 @@
-# Biljni kompas — SEO affiliate sajt za prirodne preparate
+# Moja Zdravica — SEO affiliate sajt za prirodne preparate
 
 Astro 7 (SSG) + Tailwind CSS 4 + Markdown content collections + serverless API za porudžbine (MonadLead).
-Radni naziv „Biljni kompas“ menja se na jednom mestu: `src/config/site.ts`.
+Naziv „Moja Zdravica“ menja se na jednom mestu: `src/config/site.ts`.
 
 > **Status:** preview/staging. Sav sadržaj proizvoda je **DEMO** i jasno je označen. Sajt je `noindex` dok
 > `PUBLIC_SITE_ENV` nije `production`. Porudžbine su u **testnom režimu** dok `ORDER_MODE` nije `live`.

@@ -4,7 +4,7 @@ slug: najbolji-gelovi-za-zglobove
 market: RS
 description: Razlika između gelova sa lekom, tradicionalnih biljnih lekova i kozmetičkih gelova, kako čitati deklaraciju i kada je potreban lekar.
 category: zglobovi-i-bolovi
-author: { name: Redakcija Biljnog kompasa }
+author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-22
 updatedAt: 2026-11-22
 readingMinutes: 6

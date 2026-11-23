@@ -4,7 +4,7 @@ slug: gavez-upotreba-i-upozorenja
 market: RS
 description: Šta je gavez, zašto se koristi samo spolja, kome nije namenjen i šta o njemu kaže Evropska agencija za lekove.
 category: zglobovi-i-bolovi
-author: { name: Redakcija Biljnog kompasa }
+author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-20
 updatedAt: 2026-11-22
 readingMinutes: 4

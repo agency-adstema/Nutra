@@ -4,7 +4,7 @@ slug: paraziti-kod-ljudi-simptomi-i-dijagnoza
 market: RS
 description: Kako se prepoznaju i dokazuju crevni paraziti, zašto je laboratorijska analiza važnija od „testova“ na internetu i šta realno mogu biljni preparati.
 category: paraziti-i-detoks
-author: { name: Redakcija Biljnog kompasa }
+author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-21
 updatedAt: 2026-11-22
 readingMinutes: 5

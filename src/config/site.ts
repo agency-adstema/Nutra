@@ -1,13 +1,13 @@
 /**
  * Glavna konfiguracija sajta.
- * Naziv sajta se menja SAMO ovde (radni naziv: Biljni kompas).
+ * Naziv sajta se menja SAMO ovde (naziv: Moja Zdravica).
  * Polja sa [POPUNITI] moraju biti zamenjena stvarnim podacima pre produkcije —
  * `npm run check:prod` pada dok god postoje.
  */
 export const site = {
-  name: 'Biljni kompas',
+  name: 'Moja Zdravica',
   /** Tekst logotipa u headeru/footeru */
-  logoText: 'biljni kompas.',
+  logoText: 'moja zdravica.',
   tagline: 'Prirodni preparati: sastav, upotreba, cene i upozorenja',
   description:
     'Informativni vodič kroz prirodne preparate za Srbiju, Bosnu i Hercegovinu i Hrvatsku: sastav, način upotrebe, upozorenja i informacije o cenama.',

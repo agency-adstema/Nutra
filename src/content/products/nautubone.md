@@ -78,7 +78,7 @@ faq:
   - q: Koja je cena Nautubone gela u Srbiji?
     a: "Prema dostavljenom RS Regular cenovniku: 1 pakovanje 3.700 RSD (referentno 5.500 RSD), 2 pakovanja 5.850 RSD (referentno 11.000 RSD), 3 pakovanja 6.800 RSD (referentno 16.500 RSD). Za ovaj konkretan offer cene nisu pojedinačno potvrđene; operater potvrđuje uslove porudžbine."
   - q: Gde kupiti Nautubone?
-    a: Nautubone možete poručiti preko forme na ovoj stranici. Biljni kompas nije apoteka ni prodavac — porudžbinu obrađuje prodavac, a operater vas poziva radi potvrde. Plaćanje je pouzećem.
+    a: Nautubone možete poručiti preko forme na ovoj stranici. Moja Zdravica nije apoteka ni prodavac — porudžbinu obrađuje prodavac, a operater vas poziva radi potvrde. Plaćanje je pouzećem.
   - q: Šta sadrži Nautubone?
     a: "Prema podacima prodavca: Aqua, Propylene Glycol, Glycerin, Symphytum Officinale Root Extract (ekstrakt korena gaveza), Carbomer, ulja geranijuma (Pelargonium Graveolens i Roseum) i muškatne žalfije (Salvia Sclarea), Sodium Hydroxide i ekstrakt cveta rimske kamilice (Anthemis Nobilis). Uporedite sa deklaracijom na pakovanju."
   - q: Kako se koristi Nautubone gel?

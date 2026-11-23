@@ -1,6 +1,6 @@
 /**
  * Ratings DISPLAYED on exact Limited Charm product DETAIL pages, checked on 2026-11-23.
- * These are third-party claims, not Biljni kompas reviews or independent verification.
+ * These are third-party claims, not Moja Zdravica reviews or independent verification.
  *
  * IMPORTANT: Their /svi-proizvodi listing often shows a DIFFERENT number
  * (e.g. Nautubone RS listing 4.9/4120 vs product page 4.6/87).
