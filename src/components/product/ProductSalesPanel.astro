@@ -1,5 +1,6 @@
 ---
 import Icon from '../Icon.astro';
+import ProductVideoGallery from './ProductVideoGallery.astro';
 import ReviewStars from '../ReviewStars.astro';
 import { formatCatalogPrice, popularPackageBadge, type CatalogPrice } from '../../data/offer-pricing';
 import type { OfferGeo } from '../../data/offers';
@@ -119,4 +120,7 @@ const savedText = saved ? `UŠTEDA ${saved}` : '';
       <Icon name="cart" size={21} /> Poručite odmah
     </a>
   )}
+
+  <!-- Two vertical clips per page, placed directly below the order button. -->
+  <ProductVideoGallery geo={geo} slug={slug} productName={name} />
 </div>
