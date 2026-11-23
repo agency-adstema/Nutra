@@ -48,11 +48,11 @@ const savings = first?.savings != null ? formatCatalogPrice(first.savings, prici
         UŠTEDA {savings} <span class="ml-1 text-xs font-medium">(prema referentnoj ceni)</span>
       </p>
     )}
-    <p class={compact ? 'text-[11px] leading-snug text-muted' : 'text-xs leading-relaxed text-ink/75'}>
-      {note || (priceRef
-        ? 'Precrtana cena je referentna vrednost iz cenovnika partnera, a ne nezavisno proverena prethodna prodajna cena.'
-        : 'Cena je iz partnerskog cenovnika; konačan iznos potvrđuje prodavac.')}
-    </p>
+    {(note || !priceRef) && (
+      <p class={compact ? 'text-[11px] leading-snug text-muted' : 'text-xs leading-relaxed text-ink/75'}>
+        {note || 'Cena je iz partnerskog cenovnika; konačan iznos potvrđuje prodavac.'}
+      </p>
+    )}
     {!compact && (
       <div class="flex items-center gap-2 border-t border-brand/15 pt-2 text-xs font-semibold leading-relaxed text-[#225c32]">
         <span>{deliveryTerms(pricing.geo)}</span>

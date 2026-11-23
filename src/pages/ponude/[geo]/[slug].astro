@@ -207,12 +207,12 @@ const productInfo = {
                   </tbody>
                 </table>
               </div>
-              <p class="flex items-start gap-2 rounded-xl bg-warn-bg px-4 py-3 text-sm text-warn">
-                <Icon name="info" size={18} class="mt-0.5 shrink-0" />
-                {displayedPrice
-                  ? 'Stara cena je referentna vrednost iz partnerskog cenovnika, a ne nezavisno proverena ranija prodajna cena. Ušteda i procenat računaju se prema toj vrednosti.'
-                  : 'Nema aktivne ponude za ovu zemlju u partnerskom nalogu.'}
-              </p>
+              {!displayedPrice && (
+                <p class="flex items-start gap-2 rounded-xl bg-warn-bg px-4 py-3 text-sm text-warn">
+                  <Icon name="info" size={18} class="mt-0.5 shrink-0" />
+                  Nema aktivne ponude za ovu zemlju u partnerskom nalogu.
+                </p>
+              )}
               {pricing && (
                 <div class="rounded-xl bg-brand-2 px-4 py-3 text-sm font-semibold text-brand-strong">
                   {deliveryTerms(offer.geo)}
