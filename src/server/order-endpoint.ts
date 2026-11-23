@@ -25,7 +25,7 @@ const handler = createOrderHandler({
       if (offer) {
         const offerEnvKey = `CATALOG_OFFER_ID_${geo}_${offer.slug.toUpperCase().replace(/[^A-Z0-9]/g, '_')}`;
         const id = getSecret(offerEnvKey) ?? '';
-        const enabled = getSecret('CATALOG_ORDERS_ENABLED') === 'true' && /^\\d+$/.test(id);
+        const enabled = getSecret('CATALOG_ORDERS_ENABLED') === 'true' && /^\d+$/.test(id);
         return {
           slug,
           name: offer.name,
