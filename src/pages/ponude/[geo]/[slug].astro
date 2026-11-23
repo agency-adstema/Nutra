@@ -9,6 +9,8 @@ import { site } from '../../../config/site';
 import { getMarket } from '../../../config/countries';
 import { catalogMarkets, geoUrl, offerUrl, offers, verticalLabel, type Offer } from '../../../data/offers';
 import { getOfferDetails, getOfferImage } from '../../../data/offer-details';
+import { getCatalogPrice, formatCatalogPrice } from '../../../data/offer-pricing';
+import { PUBLIC_SITE_ENV } from 'astro:env/client';
 
 export function getStaticPaths() {
   return offers.map((offer) => ({
@@ -27,7 +29,10 @@ const imageSrc = getOfferImage(details);
 const isAvailable = details?.availableInAccount === true;
 const productDescription = details?.description || `Opis proizvoda ${offer.name} još nije dostavljen od partnera.`;
 const packageName = [details?.form, details?.package].filter(Boolean).join(' · ');
-const displayedPrice = isAvailable ? details?.price : null;
+const pricing = getCatalogPrice(offer.geo, offer.slug);
+const tiers = pricing?.tiers ?? [];
+const displayedPrice = tiers[0] ? formatCatalogPrice(tiers[0].newPrice, offer.geo) : null;
+const showSourceReference = PUBLIC_SITE_ENV !== 'production';
 const crumbs = [
   { name: 'Ponude', href: '/ponude/' },
   { name: info.name, href: geoUrl(offer.geo) },
@@ -40,7 +45,7 @@ const tabs = [
   { href: '#poruci', label: 'Poručite' },
 ];
 const faq = [
-  { q: `Kolika je cena proizvoda ${offer.name}?`, a: displayedPrice ? `Prema partnerskom cenovniku: ${displayedPrice}. Konačnu cenu proverite sa prodavcem.` : 'Za ovo tržište trenutno nemamo potvrđenu dostupnu ponudu.' },
+  { q: `Kolika je cena proizvoda ${offer.name}?`, a: displayedPrice ? `Prema dostavljenoj Excel tabeli: ${tiers.map(t => `${t.quantity} pakovanja – ${formatCatalogPrice(t.newPrice, offer.geo)}`).join('; ')}. Konačnu cenu i besplatnu dostavu potvrdite kod prodavca.` : 'Za ovo tržište trenutno nemamo potvrđenu dostupnu ponudu.' },
   { q: 'Kako mogu da poručim?', a: isAvailable ? 'Forma služi za proveru i trenutno ne šalje porudžbine. Prijem porudžbina počinje nakon aktivacije bezbednog backend-a.' : 'Za ovaj proizvod nema aktivne ponude u partnerskom nalogu na ovom tržištu.' },
   { q: 'Koji broj telefona treba uneti?', a: `Primer broja za tržište ${info.name}: ${market.phone.example}.` },
 ];
@@ -177,15 +182,36 @@ const productInfo = {
                   <thead class="bg-brand-2/70 text-left">
                     <tr><th class="px-4 py-2.5 font-semibold">Pakovanje</th><th class="px-4 py-2.5 text-right font-semibold">Cena ({market.currencyLabel})</th></tr>
                   </thead>
-                  <tbody><tr>
-                    <td class="px-4 py-3">{details?.package ? `1 × ${details.package}` : '1 pakovanje (količina na proveri)'}</td>
-                    <td class="px-4 py-3 text-right font-semibold text-brand">{displayedPrice || 'Nije dostupno'}</td>
-                  </tr></tbody>
+                  <tbody>
+                    {tiers.length > 0 ? tiers.map(t => (
+                      <tr class="border-t border-line/70">
+                        <td class="px-4 py-3">
+                          <strong>{t.label}</strong>
+                          {details?.package && <span class="block text-xs text-muted">{t.quantity} × {details.package}</span>}
+                        </td>
+                        <td class="px-4 py-3 text-right">
+                          <strong class="text-brand">{formatCatalogPrice(t.newPrice, offer.geo)}</strong>
+                          {showSourceReference && t.referencePrice != null && (
+                            <span class="block text-xs text-muted">
+                              Referentna cena iz Excel dokumenta: {formatCatalogPrice(t.referencePrice, offer.geo)}
+                            </span>
+                          )}
+                          {t.quantity > 1 && (
+                            <span class="block text-xs text-muted">Po pakovanju: {formatCatalogPrice(Math.round(t.newPrice/t.quantity), offer.geo)}</span>
+                          )}
+                        </td>
+                      </tr>
+                    )) : (
+                      <tr><td class="px-4 py-3">Nema potvrđenog pakovanja</td><td class="px-4 py-3 text-right">Nije dostupno</td></tr>
+                    )}
+                  </tbody>
                 </table>
               </div>
               <p class="flex items-start gap-2 rounded-xl bg-warn-bg px-4 py-3 text-sm text-warn">
                 <Icon name="info" size={18} class="mt-0.5 shrink-0" />
-                {displayedPrice ? 'Cena je preneta iz partnerskog cenovnika; potvrdu cene i dostupnosti daje prodavac.' : 'Nema aktivne ponude za ovu zemlju u partnerskom nalogu.'}
+                {displayedPrice
+                  ? 'Cene su prenete iz dostavljenog cenovnika partnera. Dostava je u dokumentu navedena kao besplatna; cenu i uslove potvrđuje prodavac. Stare referentne cene nisu nezavisno proverene.'
+                  : 'Nema aktivne ponude za ovu zemlju u partnerskom nalogu.'}
               </p>
             </div>
           </details>
