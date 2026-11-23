@@ -57,6 +57,33 @@ function initForm(form: HTMLFormElement) {
   const statusBox = form.querySelector<HTMLElement>('[data-order-status]')!;
 
   const fieldEl = (name: string) => form.elements.namedItem(name) as HTMLInputElement | RadioNodeList | null;
+  const priceTotal = form.querySelector<HTMLElement>('[data-order-total]');
+  const formatSelectedPrice = (amount: number) => {
+    const isRS = cfg.currency === 'RSD';
+    const locale = isRS ? 'sr-RS' : cfg.currency === 'BAM' ? 'bs-BA' : 'hr-HR';
+    const text = new Intl.NumberFormat(locale, {
+      minimumFractionDigits: isRS ? 0 : 2,
+      maximumFractionDigits: isRS ? 0 : 2,
+    }).format(amount);
+    return cfg.currency === 'RSD' ? `${text} RSD` : cfg.currency === 'BAM' ? `${text} KM` : `${text} €`;
+  };
+  const selectedPackagePrice = (): number | null => {
+    const selected = form.querySelector<HTMLInputElement>('input[name="packageId"]:checked') ||
+      form.querySelector<HTMLInputElement>('input[name="packageId"][type="hidden"]');
+    const v = selected ? cfg.prices[selected.value] : null;
+    return typeof v === 'number' ? v : null;
+  };
+  const resetButtonLabel = () => {
+    const price = selectedPackagePrice();
+    label.textContent = cfg.staticPreview ? 'Proveri formu'
+      : price != null ? `NARUČI POUZEĆEM — ${formatSelectedPrice(price)}`
+      : 'Pošalji porudžbinu';
+    if (priceTotal) priceTotal.textContent = price != null ? formatSelectedPrice(price) : 'Cena nije navedena';
+  };
+  form.addEventListener('change', (e) => {
+    if ((e.target as HTMLInputElement).name === 'packageId') resetButtonLabel();
+  });
+  resetButtonLabel();
 
   const read = () => {
     const pkg = fieldEl('packageId');
@@ -97,7 +124,8 @@ function initForm(form: HTMLFormElement) {
     submitting = on;
     submit.disabled = on;
     submit.setAttribute('aria-busy', String(on));
-    label.textContent = on ? 'Šaljem porudžbinu…' : 'Pošalji porudžbinu';
+    if (on) label.textContent = 'Šaljem porudžbinu…';
+    else resetButtonLabel();
     iconIdle?.classList.toggle('hidden', on);
     iconLoading?.classList.toggle('hidden', !on);
   };
