@@ -3,15 +3,47 @@ import { formatCatalogPrice, deliveryTerms, type CatalogPrice } from '../data/of
 interface Props {
   pricing: CatalogPrice;
   compact?: boolean;
+  catalogCard?: boolean;
   note?: string;
 }
-const { pricing, compact = false, note } = Astro.props;
+const { pricing, compact = false, catalogCard = false, note } = Astro.props;
 const first = pricing.tiers[0];
 const priceNow = first ? formatCatalogPrice(first.newPrice, pricing.geo) : null;
 const priceRef = first?.referencePrice != null ? formatCatalogPrice(first.referencePrice, pricing.geo) : null;
 const savings = first?.savings != null ? formatCatalogPrice(first.savings, pricing.geo) : null;
 ---
-{first && (
+{first && catalogCard ? (
+  <div class="flex min-h-[164px] flex-col gap-1.5" data-pricing-source="products-json" data-price-variant="catalog-card">
+    <div class="flex min-h-[20px] flex-wrap items-center gap-x-2 text-[11px] leading-5 text-muted">
+      {priceRef ? (
+        <span>Stara referentna: <del class="whitespace-nowrap">{priceRef}</del></span>
+      ) : (
+        <span>Cena za 1 pakovanje</span>
+      )}
+      {first.discountPercent != null && (
+        <span class="whitespace-nowrap rounded-full bg-[#dcebbf] px-2 py-0.5 font-semibold text-[#225d30]">-{first.discountPercent}%</span>
+      )}
+    </div>
+    <div>
+      <span class="block text-[11px] font-semibold uppercase tracking-wide text-ink/65">Nova cena</span>
+      <strong class="block whitespace-nowrap text-2xl font-extrabold leading-tight text-brand">{priceNow}</strong>
+    </div>
+    <div class="flex min-h-[28px] items-center">
+      {savings ? (
+        <span class="inline-flex max-w-full flex-wrap items-center gap-1 rounded-lg bg-[#e2efd3] px-2.5 py-1 text-xs font-bold leading-snug text-[#235d2d]">
+          UŠTEDA {savings}
+        </span>
+      ) : (
+        <span class="inline-flex items-center rounded-lg bg-[#e2efd3] px-2.5 py-1 text-xs font-semibold text-[#235d2d]">
+          Besplatna dostava
+        </span>
+      )}
+    </div>
+    <p class="line-clamp-2 min-h-[32px] text-[11px] leading-4 text-muted">
+      {note || 'Precrtana cena, ako postoji, referentna je vrednost partnera. Uslove potvrđuje prodavac.'}
+    </p>
+  </div>
+) : first && (
   <div class={compact ? 'space-y-1.5' : 'space-y-2.5'} data-pricing-source="products-json">
     <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
       {priceRef && (
