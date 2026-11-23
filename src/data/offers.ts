@@ -139,7 +139,12 @@ const sellableKeys = new Set(
   productsJson.filter(p => p.offer_id && p.pricing && p.pricing.packages?.length > 0)
     .map(p => p.country + '/' + p.slug),
 );
-export const offers: Offer[] = allOffers.filter(o => sellableKeys.has(o.geo + '/' + o.slug));
+// Merchant decision (23 Nov 2026): remove HP Beauty Derm in every GEO.
+// Keep the source records only for historical reconciliation, not storefront output.
+export const excludedPublicOfferSlugs = new Set(['hp-beauty-derm']);
+export const offers: Offer[] = allOffers.filter(
+  o => sellableKeys.has(o.geo + '/' + o.slug) && !excludedPublicOfferSlugs.has(o.slug),
+);
 export const getOffersByGeo = (geo: OfferGeo) => offers.filter((offer) => offer.geo === geo);
 export const offerUrl = (offer: Offer) => `/ponude/${offer.geo.toLowerCase()}/${offer.slug}/`;
 export const geoUrl = (geo: OfferGeo) => `/ponude/${geo.toLowerCase()}/`;
