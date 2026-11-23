@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+import { catalogMarkets, offerUrl, verticalLabel, type Offer } from '../data/offers';
+
+interface Props { offer: Offer; }
+const { offer } = Astro.props;
+---
+
+<article class="card flex h-full flex-col overflow-hidden border border-line/60">
+  <div class="relative grid min-h-36 place-items-center bg-[#e7efdc] p-6 text-[#1f4d2b]" aria-hidden="true">
+    <Icon name="box" size={46} />
+    <span class="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold">{offer.geo}</span>
+  </div>
+  <div class="flex grow flex-col p-5">
+    <p class="text-xs font-semibold uppercase tracking-widest text-accent">{catalogMarkets[offer.geo].name}</p>
+    <h3 class="mt-2 text-xl font-semibold text-ink">
+      <a class="hover:text-brand" href={offerUrl(offer)}>{offer.name}</a>
+    </h3>
+    <div class="mt-3 flex flex-wrap gap-2">
+      {offer.verticals.map((v) => <span class="rounded-full bg-[#f3efe4] px-2.5 py-1 text-xs text-ink/75">{verticalLabel(v)}</span>)}
+    </div>
+    <p class="mt-3 text-sm text-muted">Cena i detalji će biti objavljeni nakon potvrde.</p>
+    <a class="mt-auto inline-flex items-center gap-2 pt-5 font-semibold text-brand hover:underline" href={offerUrl(offer)}>
+      Detalji ponude <Icon name="arrow-right" size={18} />
+    </a>
+  </div>
+</article>
