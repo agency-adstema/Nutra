@@ -34,7 +34,13 @@ describe('Partner product sheets integrated into Nutra', () => {
     expect(getOfferDetails('RS','dia-drops')).toMatchObject({ price:'3700 RSD',form:'Kapi',package:'30 ml',currency:'RSD' });
     expect(getOfferDetails('HR','cy-relief')).toMatchObject({ price:'39 EUR',currency:'EUR', availableInAccount:true });
     expect(getOfferDetails('BA','nautubone')).toMatchObject({ price:'55 KM',currency:'BAM',form:'Gel',package:'100 ml' });
-    expect(getOfferDetails('RS','hp-nautubone')).toMatchObject({ price:'2000 RSD',currency:'RSD',form:'Gel',package:'100 ml' });
+    expect(getOfferDetails('RS','hp-nautubone')).toMatchObject({ price:'3700 RSD',currency:'RSD',form:'Gel',package:'100 ml' });
+  });
+
+  it('all Serbian catalog offers use the corrected 3700 RSD price', () => {
+    const rs=offerDetails.filter(d=>d.country==='RS'&&d.availableInAccount);
+    expect(rs).toHaveLength(19);
+    expect(rs.every(d=>d.priceAmount===3700 && d.price==='3700 RSD')).toBe(true);
   });
 
   it('does not manufacture missing ingredients or usage', () => {
