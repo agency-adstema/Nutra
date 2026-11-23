@@ -90,6 +90,19 @@ function envOfferKey(slug: string) {
   return `OFFER_ID_${slug.toUpperCase().replace(/[^A-Z0-9]/g, '_')}`;
 }
 
+function orderPageUrl(...candidates: Array<string | null | undefined>): string {
+  for (const c of candidates) {
+    if (!c) continue;
+    try {
+      const u = new URL(c);
+      if (u.protocol === 'https:' || u.protocol === 'http:') return u.toString().slice(0, 500);
+    } catch {
+      /* sledeći kandidat */
+    }
+  }
+  return 'https://lamena.io/nutra/';
+}
+
 export function createOrderHandler(deps: OrderHandlerDeps) {
   const log = deps.log ?? consoleLogger;
   const now = deps.now ?? Date.now;
@@ -254,7 +267,10 @@ export function createOrderHandler(deps: OrderHandlerDeps) {
       offerId,
       countryCode: market.code,
       baseUrl: new URL(siteUrl).origin,
-      referrer: attribution.referrer,
+      // MonadLead traži referrer = stranica na kojoj je porudžbina napravljena
+      // („https://domain.com?page=order“) i odbija prazan. Redosled: stranica forme
+      // (Referer zaglavlje), ulazna stranica, pa adresa sajta.
+      referrer: orderPageUrl(request.headers.get('referer'), attribution.landing_page, siteUrl),
       userIp: ip,
       subs,
       utm,

@@ -94,8 +94,12 @@ export function parseMonadleadResponse(status: number, text: string): CrmResult 
   // Never log the raw upstream body: some providers echo api_key, phone and name.
   // Only document-defined field/reason codes are safe to retain.
   const b = body && typeof body === 'object' ? body as Record<string, unknown> : {};
-  const providerField = typeof b.field === 'string' ? b.field : '';
-  const providerReason = typeof b.reason === 'string' ? b.reason.toLowerCase().trim() : '';
+  // MonadLead greške dolaze i kao lista: {"errors":[{"field":"referrer","reason":"empty"}]}
+  const firstError = Array.isArray(b.errors) && b.errors[0] && typeof b.errors[0] === 'object'
+    ? b.errors[0] as Record<string, unknown> : undefined;
+  const providerField = typeof b.field === 'string' ? b.field : typeof firstError?.field === 'string' ? firstError.field : '';
+  const providerReasonRaw = typeof b.reason === 'string' ? b.reason : typeof firstError?.reason === 'string' ? firstError.reason : '';
+  const providerReason = providerReasonRaw.toLowerCase().trim();
   const safeReason = ['incorrect', 'empty', 'wrong format', 'not found'].includes(providerReason) ? providerReason : '';
   const field = detectField(providerField || text);
   // Kratak opis greške od MonadLead-a za log: bez api_key, imena i broja (cifre se maskiraju).

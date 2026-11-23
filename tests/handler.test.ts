@@ -290,3 +290,33 @@ describe('MonadLead: oblik broja telefona', () => {
     expect(sent).toEqual(['0601234567', '601234567']);
   });
 });
+
+describe('MonadLead: referrer', () => {
+  it('uvek šalje referrer (stranica porudžbine), i kad kupac dođe direktno', async () => {
+    const { createOrderHandler } = await import('../src/lib/order/handler');
+    let payload: Record<string, string> = {};
+    const fetchImpl = (async (_u: string, init: RequestInit) => {
+      payload = JSON.parse(String(init.body));
+      return new Response(JSON.stringify({ order_id: '1' }), { status: 200 });
+    }) as unknown as typeof fetch;
+    const handler = createOrderHandler({
+      env: (k: string) => ({ ORDER_MODE: 'live', MONADLEAD_API_KEY_RS: 'K' } as Record<string, string>)[k],
+      siteUrl: 'https://example.rs', requireConsent: false, fetchImpl, minFillMs: 0,
+      getProduct: async () => ({ slug: 'nautubone', name: 'N', market: 'RS', offerId: '51', orderEnabled: true, currency: 'RSD',
+        packages: [{ id: '1-komad', label: '1', quantity: 1, price: 3700 }] }),
+    });
+    const res = await handler(new Request('https://example.rs/api/order/', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', origin: 'https://example.rs', referer: 'https://example.rs/zglobovi/nautubone/' },
+      body: JSON.stringify({ productSlug: 'nautubone', firstName: 'Ana', lastName: 'Test', phone: '064 555 9876', packageId: '1-komad', consent: true, website: '', startedAt: Date.now() - 10_000, idempotencyKey: 'referrer-test-abcdef', attribution: {} }),
+    }), '10.8.8.8');
+    expect(res.status).toBe(200);
+    expect(payload.referrer).toBe('https://example.rs/zglobovi/nautubone/');
+  });
+
+  it('čita MonadLead listu grešaka i ne prijavljuje je kao grešku broja', async () => {
+    const { parseMonadleadResponse } = await import('../src/lib/order/monadlead');
+    const r = parseMonadleadResponse(400, '{"errors":[{"field":"referrer","reason":"empty"}]}');
+    expect(r).toMatchObject({ ok: false, kind: 'validation', field: 'other' });
+  });
+});
