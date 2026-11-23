@@ -51,6 +51,38 @@ const handler = createOrderHandler({
   },
 });
 
+/** CORS: forma na drugom domenu (npr. lamena.io → zdravica.rs) sme da šalje samo sa ALLOWED_ORIGINS. */
+function allowedOrigin(request: Request): string | undefined {
+  const origin = request.headers.get('origin')?.replace(/\/$/, '');
+  if (!origin) return undefined;
+  const list = (getSecret('ALLOWED_ORIGINS') || '').split(',').map((o) => o.trim().replace(/\/$/, '')).filter(Boolean);
+  return list.includes(origin) ? origin : undefined;
+}
+
+function withCors(request: Request, response: Response): Response {
+  const origin = allowedOrigin(request);
+  if (!origin) return response;
+  const headers = new Headers(response.headers);
+  headers.set('Access-Control-Allow-Origin', origin);
+  headers.append('Vary', 'Origin');
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
+
+export const OPTIONS: APIRoute = ({ request }) => {
+  const origin = allowedOrigin(request);
+  if (!origin) return new Response(null, { status: 403 });
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': origin,
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Accept',
+      'Access-Control-Max-Age': '600',
+      Vary: 'Origin',
+    },
+  });
+};
+
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   let ip: string | undefined;
   try {
@@ -58,7 +90,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   } catch {
     ip = undefined;
   }
-  return handler(request, ip);
+  return withCors(request, await handler(request, ip));
 };
 
 export const ALL: APIRoute = () =>

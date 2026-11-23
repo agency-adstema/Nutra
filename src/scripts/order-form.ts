@@ -242,7 +242,8 @@ function initForm(form: HTMLFormElement) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(body),
         signal: ctrl.signal,
-        credentials: 'same-origin',
+        credentials: 'omit',
+        mode: 'cors',
       });
       json = (await res.json().catch(() => undefined)) as OrderApiResponse | undefined;
     } catch {

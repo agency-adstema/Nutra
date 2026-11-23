@@ -67,6 +67,9 @@ export default defineConfig({
       PUBLIC_TURNSTILE_SITE_KEY: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_STATIC_PREVIEW: envField.boolean({ context: 'client', access: 'public', default: false }),
       PUBLIC_CATALOG_ORDER_SUBMISSIONS: envField.boolean({ context: 'client', access: 'public', default: false }),
+      /** Puna adresa API-ja za porudžbine na drugom domenu, npr. https://zdravica.rs/api/order/.
+       *  Kad je postavljena (uz PUBLIC_CATALOG_ORDER_SUBMISSIONS=true), forma i na statičkom sajtu šalje porudžbine. */
+      PUBLIC_ORDER_ENDPOINT: envField.string({ context: 'client', access: 'public', optional: true }),
       // Serverske tajne (čitaju se u runtime-u, nikad ne idu u browser)
       ORDER_MODE: envField.enum({ context: 'server', access: 'secret', values: ['test', 'live'], default: 'test' }),
       MONADLEAD_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),

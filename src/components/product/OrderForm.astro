@@ -7,7 +7,7 @@ import type { Offer } from '../../data/offers';
 import { getOfferDetails } from '../../data/offer-details';
 import { getCatalogPrice, getEditorialPrice, formatCatalogPrice, popularPackageBadge, deliveryTerms } from '../../data/offer-pricing';
 import type { MarketConfig } from '../../config/countries';
-import { PUBLIC_STATIC_PREVIEW, PUBLIC_CATALOG_ORDER_SUBMISSIONS, PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
+import { PUBLIC_STATIC_PREVIEW, PUBLIC_CATALOG_ORDER_SUBMISSIONS, PUBLIC_TURNSTILE_SITE_KEY, PUBLIC_ORDER_ENDPOINT } from 'astro:env/client';
 
 interface Props {
   product?: Product;
@@ -18,7 +18,9 @@ const { product, offer, market } = Astro.props;
 if (!product && !offer) throw new Error('OrderForm requires product or offer');
 const d = product?.data;
 const isCatalogPreview = !!offer;
-const safePreview = PUBLIC_STATIC_PREVIEW || (isCatalogPreview && !PUBLIC_CATALOG_ORDER_SUBMISSIONS);
+// Statički sajt šalje porudžbine samo kad postoji spoljni API (PUBLIC_ORDER_ENDPOINT) i kad su uključene.
+const externalApi = PUBLIC_ORDER_ENDPOINT && /^https:\/\//.test(PUBLIC_ORDER_ENDPOINT) ? PUBLIC_ORDER_ENDPOINT : undefined;
+const safePreview = (PUBLIC_STATIC_PREVIEW && !(externalApi && PUBLIC_CATALOG_ORDER_SUBMISSIONS)) || (isCatalogPreview && !PUBLIC_CATALOG_ORDER_SUBMISSIONS);
 const catalogDetails = offer ? getOfferDetails(offer.geo, offer.slug) : undefined;
 const editorialPricing = product ? getEditorialPrice(d!.countryCode, d!.slug) : undefined;
 const catalogPricing = offer ? getCatalogPrice(offer.geo, offer.slug) : undefined;
@@ -49,7 +51,7 @@ const formConfig = {
   packageIds: packages.map((p) => p.id),
   phone: market.phone,
   requireConsent,
-  endpoint: '/api/order/',
+  endpoint: externalApi ?? '/api/order/',
   staticPreview: safePreview,
 };
 

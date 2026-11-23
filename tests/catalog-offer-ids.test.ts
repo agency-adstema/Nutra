@@ -1,3 +1,4 @@
+import { getCatalogPrice } from '../src/data/offer-pricing';
 import { describe, expect, it } from 'vitest';
 import { offers, allOffers, getOffer, type OfferGeo } from '../src/data/offers';
 import {
@@ -100,13 +101,15 @@ describe('Novi MonadLead nalog: validirani GEO/offer ID-jevi', () => {
     expect(getCatalogOrderConfig('HR', 'cy-relief', env)?.orderEnabled).toBe(false);
   });
 
-  it('svih 167 javnih stranica koristi isključivo products.json offer_id, nikada hp_offer_id', () => {
+  it('sve javne stranice koriste isključivo products.json offer_id, nikada hp_offer_id', () => {
     const env = () => undefined;
     for (const offer of offers) {
       const source = productSheets.find(p => p.country === offer.geo && p.slug === offer.slug)!;
       const config = getCatalogOrderConfig(offer.geo, offer.slug, env);
       expect(config?.offerId).toBe(String(source.offer_id));
-      expect(config?.packages.map(p => p.id)).toEqual(['1-komad']);
+      // API prima ista pakovanja koja sajt prikazuje; prvo je uvek 1 pakovanje po ceni iz products.json
+      expect(config?.packages[0]).toMatchObject({ id: '1-komad', quantity: 1, price: source.pricing!.packages[0].price });
+      expect(config?.packages.map(p => p.id)).toEqual(getCatalogPrice(offer.geo, offer.slug)!.tiers.map(t => t.id));
       expect(config?.apiKeyEnv).toBe('MONADLEAD_API_KEY_CATALOG');
       expect(source).not.toHaveProperty('hp_offer_id');
     }
