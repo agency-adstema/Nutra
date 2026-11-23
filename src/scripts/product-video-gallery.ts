@@ -28,7 +28,7 @@ export function initProductVideoGalleries(): void {
 
     root.querySelectorAll<HTMLButtonElement>('[data-product-video-play]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const src = btn.dataset.videoSrc;
+        const src = btn.dataset.src;
         if (!src) return;
         const player = document.createElement('video');
         player.src = src;
