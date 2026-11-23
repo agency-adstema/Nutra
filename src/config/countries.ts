@@ -1,10 +1,10 @@
 /**
  * Podešavanja po tržištu (GEO). Prva verzija: Srbija.
- * BA / ME / XK su pripremljeni — aktiviraju se zasebnim deployem sa PUBLIC_MARKET=BA itd.
+ * BA / HR / ME / XK imaju GEO podešavanja. Aktivacija poručivanja je zasebna.
  *
  * phone.nsnPattern = "national significant number" (broj BEZ vodeće nule i BEZ pozivnog broja).
  */
-export type MarketCode = 'RS' | 'BA' | 'ME' | 'XK';
+export type MarketCode = 'RS' | 'BA' | 'HR' | 'ME' | 'XK';
 
 export interface CrmConfig {
   /** 'monadlead' (implementirano) ili 'webhook' (generički JSON POST ka sopstvenom CRM-u/call centru) */
@@ -55,6 +55,45 @@ export const markets: Record<MarketCode, MarketConfig> = {
     currencyLabel: 'KM',
     phone: { dialCode: '387', nsnPattern: '^(?:6\\d{7,8}|[3-5]\\d{7})$', example: '061 123 456' },
     crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_BA', phoneFormat: 'e164' },
+  },
+  HR: {
+    code: 'HR',
+    name: 'Hrvatska',
+    active: false,
+    locale: 'hr-HR',
+    currency: 'EUR',
+    currencyLabel: '€',
+    phone: {
+      dialCode: '385',
+      // Hrvatski mobilni brojevi: npr. 091 234 5678 ili 098 123 456.
+      nsnPattern: '^(?:9\\\\d{7,8})
+    name: 'Crna Gora',
+    active: false,
+    locale: 'sr-Latn-ME',
+    currency: 'EUR',
+    currencyLabel: '€',
+    phone: { dialCode: '382', nsnPattern: '^(?:6\\d{7}|[2-5]\\d{7})$', example: '067 123 456' },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_ME', phoneFormat: 'e164' },
+  },
+  XK: {
+    code: 'XK',
+    name: 'Kosovo',
+    active: false,
+    locale: 'sq-XK',
+    currency: 'EUR',
+    currencyLabel: '€',
+    phone: { dialCode: '383', nsnPattern: '^(?:4\\d{7}|[2-3]\\d{7})$', example: '044 123 456' },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_XK', phoneFormat: 'e164' },
+  },
+};
+
+export function getMarket(code: string | undefined): MarketConfig {
+  return markets[(code as MarketCode) ?? 'RS'] ?? markets.RS;
+}
+,
+      example: '091 234 5678',
+    },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_HR', phoneFormat: 'e164' },
   },
   ME: {
     code: 'ME',
