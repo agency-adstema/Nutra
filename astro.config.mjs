@@ -61,7 +61,7 @@ export default defineConfig({
     schema: {
       // Javne (ugrađuju se u build)
       PUBLIC_SITE_ENV: envField.enum({ context: 'client', access: 'public', values: ['production', 'staging', 'development'], default: 'staging' }),
-      PUBLIC_MARKET: envField.enum({ context: 'client', access: 'public', values: ['RS', 'BA', 'ME', 'XK'], default: 'RS' }),
+      PUBLIC_MARKET: envField.enum({ context: 'client', access: 'public', values: ['RS', 'BA', 'HR', 'ME', 'XK'], default: 'RS' }),
       PUBLIC_GA4_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_GTM_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_TURNSTILE_SITE_KEY: envField.string({ context: 'client', access: 'public', optional: true }),
