@@ -6,7 +6,9 @@ import type { APIRoute } from 'astro';
 import { getEntry } from 'astro:content';
 import { getSecret } from 'astro:env/server';
 import { site } from '../config/site';
-import { catalogMarkets, getOffer, type OfferGeo } from '../data/offers';
+import type { OfferGeo } from '../data/offers';
+import { getCatalogOrderConfig, catalogOfferEnvKey } from './catalog-order-config';
+import { getSuppliedOfferId } from './catalog-offer-ids';
 import { createOrderHandler, type ProductOrderConfig } from '../lib/order/handler';
 
 export const prerender = false;
@@ -21,35 +23,30 @@ const handler = createOrderHandler({
     const match = /^(rs|ba|hr)-([a-z0-9-]+)$/.exec(slug);
     if (match) {
       const geo = match[1].toUpperCase() as OfferGeo;
-      const offer = getOffer(geo, match[2]);
-      if (offer) {
-        const offerEnvKey = `CATALOG_OFFER_ID_${geo}_${offer.slug.toUpperCase().replace(/[^A-Z0-9]/g, '_')}`;
-        const id = getSecret(offerEnvKey) ?? '';
-        const enabled = getSecret('CATALOG_ORDERS_ENABLED') === 'true' && /^\d+$/.test(id);
-        return {
-          slug,
-          name: offer.name,
-          market: geo,
-          offerId: '',
-          apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG',
-          offerEnvKey,
-          orderEnabled: enabled,
-          currency: catalogMarkets[geo].currency,
-          packages: [{ id: '1-komad', label: '1 pakovanje', quantity: 1 }],
-        };
-      }
+      const mapped = getCatalogOrderConfig(geo, match[2], (key) => getSecret(key) ?? undefined);
+      if (mapped) return mapped;
     }
     const entry = await getEntry('products', slug);
     if (!entry || entry.data.draft) return undefined;
     const d = entry.data;
+    // Existing RS editorial product pages use the same new catalog account.
+    // Do not use the legacy key or placeholder ID for Nautubone / Parazol / BoneControl.
+    const suppliedRsId = d.countryCode === 'RS' ? getSuppliedOfferId('RS', d.slug) : undefined;
+    const catalogKey = suppliedRsId ? catalogOfferEnvKey('RS', d.slug) : undefined;
+    const configuredId = catalogKey ? (getSecret(catalogKey) || suppliedRsId || '').trim() : d.offerId;
+    const isCatalog = !!catalogKey;
     return {
       slug: d.slug,
       name: d.name,
       market: d.countryCode,
-      offerId: d.offerId,
-      orderEnabled: d.orderEnabled,
+      offerId: configuredId,
+      apiKeyEnv: isCatalog ? 'MONADLEAD_API_KEY_CATALOG' : undefined,
+      offerEnvKey: catalogKey,
+      orderEnabled: isCatalog
+        ? (getSecret('CATALOG_ORDERS_ENABLED') === 'true' && /^\d+$/.test(configuredId) && d.orderEnabled)
+        : d.orderEnabled,
       currency: d.currency,
-      packages: d.packages.map((p) => ({ id: p.id, label: p.label, quantity: p.quantity, price: p.price, offerId: p.offerId })),
+      packages: d.packages.map((p) => ({ id: p.id, label: p.label, quantity: p.quantity, price: p.price, offerId: isCatalog ? undefined : p.offerId })),
     };
   },
 });
