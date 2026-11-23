@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import OfferCard from '../../components/OfferCard.astro';
+import { catalogGeoOrder, catalogMarkets, getOffersByGeo, geoUrl, offers } from '../../data/offers';
+
+const markets = catalogGeoOrder.map((geo) => ({
+  geo,
+  ...catalogMarkets[geo],
+  offers: getOffersByGeo(geo),
+}));
+---
+
+<BaseLayout
+  title="Katalog ponuda — Srbija, Bosna i Hrvatska"
+  description="Pregled proizvoda i ponuda po tržištima: Srbija, Bosna i Hercegovina i Hrvatska. Cene i detalji dostupnosti biće objavljeni nakon potvrde."
+  path="/ponude/"
+  noindex
+  breadcrumbs={[{ name: 'Ponude', href: '/ponude/' }]}
+>
+  <section class="container-site py-10 lg:py-16">
+    <p class="text-sm font-semibold uppercase tracking-widest text-[#5d8c3c]">Katalog proizvoda</p>
+    <h1 class="mt-3 text-4xl font-bold text-[#173d22] sm:text-5xl">Ponude po zemljama</h1>
+    <p class="mt-4 max-w-3xl text-lg leading-relaxed text-ink/75">
+      Pregled ponuda za Srbiju, Bosnu i Hercegovinu i Hrvatsku. Prikazani su nazivi i oblasti proizvoda;
+      cene, dostupnost i naručivanje biće dodati kada podaci budu potvrđeni.
+    </p>
+    <div class="mt-8 grid gap-4 sm:grid-cols-3">
+      {markets.map((market) => (
+        <a href={geoUrl(market.geo)} class="card flex items-center justify-between gap-3 p-5 hover:shadow-[var(--shadow-soft)]">
+          <span><span class="block text-xl font-semibold text-brand-strong">{market.name}</span>
+          <span class="mt-1 block text-sm text-muted">{market.offers.length} ponuda</span></span>
+          <Icon name="arrow-right" size={22} />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {markets.map((market) => (
+    <section id={market.geo.toLowerCase()} class="container-site scroll-mt-28 py-10" aria-label={market.name}>
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 class="text-3xl font-semibold text-[#173d22]">{market.name}</h2>
+          <p class="mt-1 text-muted">{market.offers.length} jedinstvenih ponuda</p>
+        </div>
+        <a class="inline-flex items-center gap-1 font-semibold text-brand hover:underline" href={geoUrl(market.geo)}>
+          Sve ponude <Icon name="arrow-right" size={18} />
+        </a>
+      </div>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {market.offers.map((offer) => <OfferCard offer={offer} />)}
+      </div>
+    </section>
+  ))}
+  <section class="container-site pb-8">
+    <p class="text-sm text-muted">Katalog trenutno sadrži {offers.length} jedinstvenih ponuda. Navođenje proizvoda ne predstavlja medicinsku preporuku.</p>
+  </section>
+</BaseLayout>
