@@ -1,0 +1,122 @@
+---
+import Icon from '../Icon.astro';
+import { PUBLIC_SITE_ENV } from 'astro:env/client';
+import type { OfferGeo } from '../../data/offers';
+import { getProductVideos, productVideoPages } from '../../lib/product-videos';
+
+interface Props { geo: OfferGeo; slug: string; productName: string; }
+const { geo, slug, productName } = Astro.props;
+const videos = getProductVideos(geo, slug);
+const pages = productVideoPages(videos);
+const previewEmpty = videos.length === 0 && PUBLIC_SITE_ENV !== 'production';
+const showGallery = videos.length > 0 || previewEmpty;
+const galleryId = `product-videos-${geo.toLowerCase()}-${slug}`;
+---
+{showGallery && (
+  <section
+    id={galleryId}
+    class="mt-7 min-w-0 border-t border-line pt-5"
+    data-product-video-gallery
+    data-product-video-count={videos.length}
+    aria-labelledby={`${galleryId}-heading`}
+  >
+    <div class="mb-3 flex items-center justify-between gap-2">
+      <div class="min-w-0">
+        <h2 id={`${galleryId}-heading`} class="font-serif text-xl font-bold text-brand-strong">
+          Video utisci
+        </h2>
+        <p class="mt-0.5 text-xs text-muted">
+          {videos.length ? `Snimci o proizvodu ${productName}` : 'Prostor za video snimke proizvoda'}
+        </p>
+      </div>
+      <div class="flex shrink-0 items-center gap-1.5" aria-label="Navigacija kroz video snimke">
+        <button
+          type="button"
+          data-video-prev
+          disabled
+          aria-label="Prethodna dva videa"
+          class="grid h-9 w-9 place-items-center rounded-full border border-line bg-white text-brand transition-colors hover:bg-brand-2 disabled:cursor-not-allowed disabled:opacity-35"
+        >
+          <Icon name="chevron-right" size={20} class="rotate-180" />
+        </button>
+        <span class="min-w-[40px] text-center text-xs font-semibold tabular-nums text-ink/65" data-video-current>
+          {videos.length ? `1 / ${pages.length}` : '0 / 0'}
+        </span>
+        <button
+          type="button"
+          data-video-next
+          disabled={pages.length < 2}
+          aria-label="Sledeća dva videa"
+          class="grid h-9 w-9 place-items-center rounded-full border border-line bg-white text-brand transition-colors hover:bg-brand-2 disabled:cursor-not-allowed disabled:opacity-35"
+        >
+          <Icon name="chevron-right" size={20} />
+        </button>
+      </div>
+    </div>
+
+    {videos.length ? (
+      <div class="relative" aria-live="polite">
+        {pages.map((pair, pageIndex) => (
+          <div
+            class={`grid grid-cols-2 gap-2.5 sm:gap-3 ${pageIndex > 0 ? 'hidden' : ''}`}
+            data-video-page
+            data-page-index={pageIndex}
+            hidden={pageIndex > 0}
+          >
+            {pair.map((video) => (
+              <figure class="min-w-0">
+                <div class="relative aspect-[9/16] overflow-hidden rounded-xl bg-[#dde8d5] shadow-sm ring-1 ring-black/5" data-product-video-card>
+                  <button
+                    type="button"
+                    class="group/play absolute inset-0 flex h-full w-full items-center justify-center text-[#174227]"
+                    data-product-video-play
+                    data-video-src={video.src}
+                    data-video-title={video.title}
+                    aria-label={`Pusti video: ${video.title}`}
+                  >
+                    {video.poster ? (
+                      <img src={video.poster} alt="" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+                    ) : (
+                      <span class="absolute inset-0 bg-gradient-to-br from-[#e5efe0] via-[#d2e2ca] to-[#b8d1b1]" />
+                    )}
+                    <span class="relative z-10 grid h-12 w-12 place-items-center rounded-full bg-white/95 text-[#194b2a] shadow-lg transition-transform group-hover/play:scale-110">
+                      <Icon name="play" size={24} class="translate-x-[1px]" />
+                    </span>
+                  </button>
+                </div>
+                <figcaption class="mt-2 line-clamp-2 min-h-[2.5rem] px-0.5 text-xs font-semibold leading-5 text-ink/85">
+                  {video.title}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="grid grid-cols-2 gap-2.5 sm:gap-3" data-video-page data-page-index="0">
+        {[1, 2].map((number) => (
+          <div class="min-w-0">
+            <div class="relative flex aspect-[9/16] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border border-dashed border-[#aac1a3] bg-[#e8efe4] px-2 text-center">
+              <div class="grid h-12 w-12 place-items-center rounded-full border border-[#b9ceaf] bg-white/80 text-[#6d946a]">
+                <Icon name="play" size={23} />
+              </div>
+              <span class="text-xs font-semibold text-[#577756]">Video {number}</span>
+              <span class="text-[11px] leading-4 text-[#61775d]">Čeka se snimak</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {previewEmpty && (
+      <p class="mt-3 text-xs leading-relaxed text-muted">
+        Ovde ćemo prikazivati video snimke kada dodamo materijale sa dozvolom za objavljivanje.
+      </p>
+    )}
+  </section>
+)}
+
+<script>
+  import { initProductVideoGalleries } from '../../scripts/product-video-gallery';
+  initProductVideoGalleries();
+</script>
