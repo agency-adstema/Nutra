@@ -67,7 +67,7 @@ const catalogOffers = getCatalogOffersForCategory(d.slug).filter((o) => !product
         <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p, i) => <ProductCard product={p} list={`category_${d.slug}`} eager={i < 3} />)}
         </div>
-      ) : (
+      ) : catalogOffers.length > 0 ? null : (
         <div class="mt-5 rounded-2xl border border-dashed border-line bg-paper p-6">
           <p class="font-semibold text-ink">Proizvode u ovoj kategoriji dodajemo uskoro.</p>
           <p class="mt-1 text-muted">Objavljujemo ih tek kada proverimo sastav, cenu i upozorenja. Do tada pogledajte druge kategorije:</p>
