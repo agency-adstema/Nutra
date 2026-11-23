@@ -72,7 +72,7 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
             <div class="rounded-xl border border-warn/30 bg-warn-bg px-4 py-3 text-sm text-ink">
               <strong>Forma za poručivanje još nije aktivirana.</strong> Ovaj prikaz služi za proveru dizajna i validacije;
               nijedan uneti podatak neće biti poslat u CRM.
-              {catalogPricing && <p class="mt-2">Cene za {catalogPricing.tiers.length} {catalogPricing.tiers.length === 1 ? 'opciju' : 'opcije'} pakovanja preuzete su iz partnerskog Excel cenovnika. Konačan iznos podleže potvrdi prodavca.</p>}
+              {catalogPricing && <p class="mt-2">Cene za {catalogPricing.tiers.length} {catalogPricing.tiers.length === 1 ? 'opciju' : 'opcije'} pakovanja preuzete su iz partnerskog cenovnika. Konačan iznos podleže potvrdi prodavca.</p>}
             </div>
           )}
           <div class="space-y-4" data-form-fields>
@@ -122,7 +122,7 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
                             <input type="radio" name="packageId" value={p.id} checked={p.id === defaultPkg.id} class="mt-2 h-4 w-4 shrink-0 accent-[var(--c-primary)]" />
                             <span class="min-w-0 flex-1">
                               <strong class="block text-[15px] text-ink">{p.label}</strong>
-                              <span class="mt-1 block text-xs font-medium text-[#235d2d]">Besplatna dostava</span>
+                              {visiblePricing?.freeShippingPerSheet && <span class="mt-1 block text-xs font-medium text-[#235d2d]">Besplatna dostava</span>}
                               {tier && <span class="mt-1 block text-xs text-muted">Po pakovanju: {formatCatalogPrice(tier.unitPrice, visiblePricing!.geo)}</span>}
                             </span>
                             <span class="min-w-0 text-right">
@@ -172,8 +172,8 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
               <strong class="block text-2xl font-bold text-brand" data-order-total>
                 {formatCatalogPrice(visiblePricing.tiers[0].newPrice, visiblePricing.geo)}
               </strong>
-              <p class="mt-2 text-xs font-medium text-ink/80">{deliveryTerms(visiblePricing.geo)}</p>
-              <p class="mt-1 text-[11px] text-muted">Rok isporuke je procena partnera, a ne garantovani termin.</p>
+              <p class="mt-2 text-xs font-medium text-ink/80">{deliveryTerms(visiblePricing.geo, visiblePricing)}</p>
+              {visiblePricing.estimatedDeliveryBusinessDays && <p class="mt-1 text-[11px] text-muted">Rok isporuke je procena partnera, a ne garantovani termin.</p>}
             </div>
           )}
 
