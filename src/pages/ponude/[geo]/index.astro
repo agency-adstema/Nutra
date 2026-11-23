@@ -25,7 +25,7 @@ const groups = [...new Set(offers.flatMap((offer) => offer.verticals))]
 
 <BaseLayout
   title={`Ponude za ${market.name}`}
-  description={`Katalog proizvoda za ${market.name}. Pregled ponuda po oblastima, bez nepotvrđenih cena i medicinskih tvrdnji.`}
+  description={`Katalog proizvoda za ${market.name}. Fotografije, sastav, način upotrebe i cene prema materijalima partnera.`}
   path={path}
   noindex
   breadcrumbs={[{ name: 'Ponude', href: '/ponude/' }, { name: market.name, href: path }]}
@@ -33,7 +33,7 @@ const groups = [...new Set(offers.flatMap((offer) => offer.verticals))]
   <section class="container-site py-10 lg:py-14">
     <Breadcrumbs items={[{ name: 'Ponude', href: '/ponude/' }, { name: market.name, href: path }]} />
     <h1 class="mt-6 text-4xl font-bold text-[#173d22] sm:text-5xl">Ponude — {market.name}</h1>
-    <p class="mt-3 max-w-2xl text-lg text-muted">{offers.length} ponuda. Cene, originalne fotografije i dostupnost dodajemo nakon provere.</p>
+    <p class="mt-3 max-w-2xl text-lg text-muted">{offers.length} ponuda sa fotografijama, opisima i cenama iz partnerske dokumentacije gde su dostupni. Dostupnost i cenu proverite kod prodavca.</p>
     <div class="mt-7 flex flex-wrap gap-3">
       {catalogGeoOrder.map((code) => (
         <a href={geoUrl(code)} aria-current={code === geo ? 'page' : undefined}
