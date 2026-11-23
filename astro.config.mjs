@@ -69,6 +69,8 @@ export default defineConfig({
       // Serverske tajne (čitaju se u runtime-u, nikad ne idu u browser)
       ORDER_MODE: envField.enum({ context: 'server', access: 'secret', values: ['test', 'live'], default: 'test' }),
       MONADLEAD_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
+      MONADLEAD_API_KEY_CATALOG: envField.string({ context: 'server', access: 'secret', optional: true }),
+      CATALOG_ORDERS_ENABLED: envField.string({ context: 'server', access: 'secret', optional: true }),
       MONADLEAD_API_URL: envField.string({ context: 'server', access: 'secret', optional: true }),
       ORDER_HASH_SALT: envField.string({ context: 'server', access: 'secret', optional: true }),
       ALLOWED_ORIGINS: envField.string({ context: 'server', access: 'secret', optional: true }),
