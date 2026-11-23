@@ -10,7 +10,7 @@ export const site = {
   logoText: 'biljni kompas.',
   tagline: 'Prirodni preparati: sastav, upotreba, cene i upozorenja',
   description:
-    'Informativni vodič kroz prirodne preparate i dodatke ishrani u Srbiji: sastav, način upotrebe, upozorenja, provereni podaci o cenama i jednostavno poručivanje pouzećem.',
+    'Informativni vodič kroz prirodne preparate za Srbiju, Bosnu i Hercegovinu i Hrvatsku: sastav, način upotrebe, upozorenja i informacije o cenama.',
   language: 'sr-Latn',
   defaultMarket: 'RS' as const,
 
@@ -29,7 +29,7 @@ export const site = {
   orderProcessing: {
     networkName: 'MonadLead',
     sellerDescription:
-      'prodavac / distributer proizvoda i njegov call centar, preko partnerske mreže MonadLead',
+      'prodavac ili distributer proizvoda i njegov call centar',
     deliveryNote: 'Plaćanje pouzećem, dostava prema uslovima prodavca.',
   },
 
@@ -50,7 +50,6 @@ export const site = {
     { label: 'Kontakt', href: '/kontakt/' },
     { label: 'Kako pišemo', href: '/kako-pisemo/' },
     { label: 'Obrada porudžbina', href: '/obrada-porudzbina/' },
-    { label: 'Affiliate izjava', href: '/affiliate-izjava/' },
     { label: 'Politika privatnosti', href: '/politika-privatnosti/' },
     { label: 'Kolačići', href: '/kolacici/' },
     { label: 'Uslovi korišćenja', href: '/uslovi-koriscenja/' },
