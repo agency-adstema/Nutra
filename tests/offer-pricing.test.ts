@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { offers, allOffers, getOffer, type OfferGeo } from '../src/data/offers';
+import { offers, allOffers, type OfferGeo } from '../src/data/offers';
 import { getCatalogPrice, formatCatalogPrice, popularPackageBadge, deliveryTerms } from '../src/data/offer-pricing';
 import { getOfferDetails } from '../src/data/offer-details';
 
@@ -10,16 +10,16 @@ const regular: Record<OfferGeo, number[][]> = {
 };
 
 describe('Cene u XLSX: redovi 2-46, list Cene', () => {
-  it('svih 20 javnih proizvoda ima cenu, bez HP ponuda', () => {
+  it('svih 167 javnih proizvoda ima cenu, bez HP ponuda', () => {
     const mapped = offers.filter(o=>getCatalogPrice(o.geo,o.slug));
-    expect(mapped).toHaveLength(20);
+    expect(mapped).toHaveLength(167);
     expect(allOffers.filter(o=>!getCatalogPrice(o.geo,o.slug))).toHaveLength(0);
     expect(offers.some(o=>o.slug.startsWith('hp-'))).toBe(false);
   });
 
-  it('svih 8 aktivnih RS ponuda imaju cenu jednog pakovanja 3.700 RSD, bez 2.000 RSD', () => {
+  it('svih 55 RS ponuda imaju cenu jednog pakovanja 3.700 RSD, bez 2.000 RSD', () => {
     const rs = offers.filter(o => o.geo === 'RS');
-    expect(rs).toHaveLength(8);
+    expect(rs).toHaveLength(55);
     for (const offer of rs) {
       const pricing = getCatalogPrice('RS', offer.slug);
       expect(pricing?.tiers[0].newPrice).toBe(3700);
@@ -27,17 +27,19 @@ describe('Cene u XLSX: redovi 2-46, list Cene', () => {
     }
   });
 
-  it('20 regular proizvoda imaju tri paketa iz tabele', () => {
-    const regularOffers = offers.filter(o=>getCatalogPrice(o.geo,o.slug));
-    expect(regularOffers).toHaveLength(20);
-    for (const o of regularOffers) {
-      const p=getCatalogPrice(o.geo,o.slug)!;
+  it('167 regular proizvoda ima tačnu direktnu cenu, uz dodatne pakete samo gde su dostavljeni', () => {
+    expect(offers).toHaveLength(167);
+    for (const o of offers) {
+      const p = getCatalogPrice(o.geo, o.slug)!;
       expect(p.type).toBe('regular');
+      expect(p.tiers.length).toBeGreaterThanOrEqual(1);
+      expect(p.tiers[0].newPrice).toBe(({ RS: 3700, BA: 55, HR: 39 } as const)[o.geo]);
+      expect(p.tiers.every(t => t.newPrice > 0)).toBe(true);
+    }
+    for (const [geo, slug] of [['RS','dia-drops'], ['RS','parazol']] as const) {
+      const p = getCatalogPrice(geo, slug)!;
       expect(p.tiers).toHaveLength(3);
-      expect(p.tiers.map(t=>[t.referencePrice,t.newPrice])).toEqual(regular[o.geo]);
-      expect(p.tiers.map(t=>t.id)).toEqual(['1-komad','2-komada','3-komada']);
-      expect(p.tiers.map(t=>t.quantity)).toEqual([1,2,3]);
-      expect(p.tiers.every(t=>t.newPrice>0)).toBe(true);
+      expect(p.tiers.map(t => [t.referencePrice, t.newPrice])).toEqual(regular[geo]);
     }
   });
 
@@ -71,7 +73,8 @@ describe('Cene u XLSX: redovi 2-46, list Cene', () => {
     for (const o of offers) {
       const p=getCatalogPrice(o.geo,o.slug);
       if(p) {
-        expect(p.freeShippingPerSheet).toBe(true);
+        expect(typeof p.freeShippingPerSheet).toBe('boolean');
+        if (!p.freeShippingPerSheet) expect(deliveryTerms(o.geo, p)).toContain('Uslovi dostave');
         expect(p.priceVerifiedWithMerchant).toBe(false);
         expect(JSON.stringify(p)).not.toMatch(/endsAt|stockRemaining|discountEndsAt|countdown/);
       }
