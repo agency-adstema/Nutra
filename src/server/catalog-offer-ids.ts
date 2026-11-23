@@ -1,10 +1,11 @@
 /**
- * Second MonadLead advertiser account: RS offer IDs supplied by site operator 23 Nov 2026.
+ * Second MonadLead advertiser account: RS, BA, HR offer IDs supplied by site operator 23 Nov 2026.
  * 100 received rows -> 93 unique pairs; seven verbatim repeated rows removed.
  *
  * Offer IDs are identifiers, not credentials. The API KEY remains server-only in
  * MONADLEAD_API_KEY_CATALOG. Do not set ORDER_MODE=live merely because IDs are present.
- * Entries for offers not yet in /ponude/ remain dormant.
+ * Entries for offers not yet in /ponude/ remain dormant. Four BA offers are
+ * explicitly unavailable and must NEVER accept orders until separately verified.
  */
 import { slugifyOffer } from '../data/offers';
 
@@ -104,28 +105,70 @@ const rsSource = `
 1769|HP Erek X
 `.trim();
 
-const idsBySlug = new Map<string,string>();
-const namesById = new Map<string,string>();
-for(const line of rsSource.split('\n')){
-  const [id,name]=line.split('|');
-  if(!/^\d+$/.test(id||'') || !name) throw new Error('Invalid supplied RS offer record');
-  const slug=slugifyOffer(name);
-  if(idsBySlug.has(slug) && idsBySlug.get(slug)!==id) throw new Error(`RS offer conflict for ${slug}`);
-  if(namesById.has(id) && namesById.get(id)!==slug) throw new Error(`RS offer ID ${id} assigned to multiple names`);
-  idsBySlug.set(slug,id);
-  namesById.set(id,slug);
+
+const hrSource = `
+302|Beauty Derm
+676|HP Beauty Derm
+752|CY-relief
+1167|Deep Inhale
+92|Diatea
+583|HP GoSlim
+301|Mikoherb
+90|Nautubone
+1186|HP Nautubone
+551|HP Parazol
+315|Pro Caps
+1576|HP Testoy Gel
+95|Varcosin
+`.trim();
+
+const baSource = `
+862|CY-relief
+866|HP Beauty Derm
+17|Nautubone
+1188|HP Nautubone
+724|HP Para Caps
+18|Parazol
+292|Pro Caps
+705|HP Pro Caps
+1644|HP Testoy Gel
+`.trim();
+
+/** User explicitly confirmed these four BA offers do not exist in their account. */
+const unavailableBA = new Set([
+  'hp-cardio-zen',
+  'hp-glyco-balance',
+  'hp-para-clean',
+  'hp-slim-ease',
+]);
+
+const idsByGeo = new Map<string, Map<string, string>>();
+for (const [geo, source] of [['RS', rsSource], ['HR', hrSource], ['BA', baSource]] as const) {
+  const idsBySlug = new Map<string, string>();
+  const namesById = new Map<string, string>();
+  for (const line of source.split('\n')) {
+    const [id, name] = line.split('|');
+    if (!/^\d+$/.test(id || '') || !name) throw new Error(`Invalid supplied ${geo} offer record`);
+    const slug = slugifyOffer(name);
+    if (idsBySlug.has(slug) && idsBySlug.get(slug) !== id) throw new Error(`${geo} offer conflict for ${slug}`);
+    if (namesById.has(id) && namesById.get(id) !== slug) throw new Error(`${geo} offer ID ${id} used for multiple names`);
+    idsBySlug.set(slug, id);
+    namesById.set(id, slug);
+  }
+  idsByGeo.set(geo, idsBySlug);
 }
 
-export const suppliedRsOfferCount=idsBySlug.size;
+export const suppliedRsOfferCount = idsByGeo.get('RS')!.size;
+export const suppliedHrOfferCount = idsByGeo.get('HR')!.size;
+export const suppliedBaOfferCount = idsByGeo.get('BA')!.size;
 
-/**
- * Exact match by GEO + slug, no fuzzy matching:
- * - HP TestoY Gel 1047 is DIFFERENT from TestoY Gel 464 and TestoY 59.
- * - HP Nautubone 1189 is DIFFERENT from Nautubone 51.
- * - Editorial product slug "bonecontrol" is an established alias for "Bone Control".
- */
+export function isExplicitlyUnavailableOffer(geo: string, slug: string): boolean {
+  return geo === 'BA' && unavailableBA.has(slug);
+}
+
+/** Exact GEO + slug matching, with only the established BoneControl editorial alias. */
 export function getSuppliedOfferId(geo: string, slug: string): string | undefined {
-  if(geo !== 'RS') return undefined;
-  const normalised = slug === 'bonecontrol' ? 'bone-control' : slug;
-  return idsBySlug.get(normalised);
+  if (isExplicitlyUnavailableOffer(geo, slug)) return undefined;
+  const normalised = geo === 'RS' && slug === 'bonecontrol' ? 'bone-control' : slug;
+  return idsByGeo.get(geo)?.get(normalised);
 }
