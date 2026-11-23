@@ -67,7 +67,7 @@ describe('parseMonadleadResponse', () => {
   it('400 → validacija sa poljem; telefon u detaljima se maskira', () => {
     const r = parseMonadleadResponse(400, '{"phone":["Invalid phone +381601234567"]}');
     expect(r).toMatchObject({ ok: false, kind: 'validation', field: 'phone' });
-    if (!r.ok) expect(r.detail).not.toContain('601234567');
+    if (!r.ok) expect(r.detail ?? '').not.toContain('601234567');
   });
   it('405/406 → greška konfiguracije, 500 → serverska', () => {
     expect(parseMonadleadResponse(405, '')).toMatchObject({ ok: false, kind: 'config' });
