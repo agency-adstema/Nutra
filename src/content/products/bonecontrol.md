@@ -54,7 +54,7 @@ warnings:
 
 faq:
   - q: Koja je cena BoneControl gela?
-    a: Cena još nije proverena, pa je ne prikazujemo kao tačnu. Operater vam potvrđuje cenu prilikom poziva.
+    a: Prema dostavljenom RS Regular cenovniku: 1 pakovanje 3.700 RSD (referentno 5.500 RSD), 2 pakovanja 5.850 RSD, 3 pakovanja 6.800 RSD. Za BoneControl RS cene nisu pojedinačno potvrđene; prodavac potvrđuje uslove porudžbine.
   - q: Kako se koristi BoneControl gel?
     a: Namenjen je spoljašnjoj upotrebi. Nanesite na kožu i lagano utrljajte prema uputstvu sa pakovanja.
 faqSchema: false
