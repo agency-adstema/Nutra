@@ -8,6 +8,7 @@ import { Picture } from 'astro:assets';
 import { getCategories, getProducts, getGuides, categoryUrl, productUrl } from '../lib/content';
 import { websiteSchema } from '../lib/seo';
 import { site } from '../config/site';
+import { catalogGeoOrder, catalogMarkets, getOffersByGeo, geoUrl, offers } from '../data/offers';
 
 const [categories, products, guides] = await Promise.all([getCategories(), getProducts(), getGuides()]);
 const featured = products.filter((p) => p.data.featured).slice(0, 6);
@@ -46,7 +47,7 @@ const principles = [
           uz izvore. Kada odlučite, poručujete jednostavno, uz plaćanje pouzećem.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="#kategorije" class="btn-primary px-6 py-3.5">Pogledajte kategorije <Icon name="arrow-right" size={18} /></a>
+          <a href="/ponude/" class="btn-primary px-6 py-3.5">Pogledajte ponude <Icon name="arrow-right" size={18} /></a>
           <a href="/vodici/" class="btn-ghost px-6 py-3.5">Čitajte vodiče</a>
         </div>
         <p class="mt-6 flex items-center gap-2 text-sm text-muted"><Icon name="info" size={16} /> {site.medicalDisclaimer}</p>
@@ -79,6 +80,28 @@ const principles = [
           ))
         }
       </div>
+    </div>
+  </section>
+
+  <!-- Partner katalog po tržištima -->
+  <section class="container-site py-10" aria-labelledby="ponude-title">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 id="ponude-title" class="text-3xl font-semibold text-[#173d22] sm:text-4xl">Naše ponude po zemljama</h2>
+        <p class="mt-2 max-w-2xl text-muted">${offers.length} ponuda za Srbiju, Bosnu i Hrvatsku. Cene i dostupnost prikazujemo kada budu potvrđene.</p>
+      </div>
+      <a href="/ponude/" class="inline-flex items-center gap-1 font-semibold text-brand hover:underline">Sve ponude <Icon name="arrow-right" size={18} /></a>
+    </div>
+    <div class="mt-6 grid gap-4 sm:grid-cols-3">
+      {catalogGeoOrder.map((geo) => (
+        <a href={geoUrl(geo)} class="card flex items-center justify-between gap-3 p-6 hover:shadow-[var(--shadow-soft)]">
+          <span>
+            <span class="block text-xl font-semibold text-[#173d22]">{catalogMarkets[geo].name}</span>
+            <span class="mt-1 block text-sm text-muted">{getOffersByGeo(geo).length} ponuda</span>
+          </span>
+          <Icon name="arrow-right" size={22} />
+        </a>
+      ))}
     </div>
   </section>
 
