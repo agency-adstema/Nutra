@@ -55,10 +55,10 @@ export interface PriceablePackage {
 
 export type PriceStatus = 'verified' | 'demo' | 'unknown';
 
-/** Cena se prikazuje samo ako je proverena (ili jasno označena kao demo) */
+/** Kupcu se prikazuje samo potvrđena cena; testne i nepoznate cene ostaju skrivene. */
 export function priceView(status: PriceStatus, packages: PriceablePackage[]) {
   const priced = packages.filter((p) => typeof p.price === 'number');
-  const show = status !== 'unknown' && priced.length > 0;
+  const show = status === 'verified' && priced.length > 0;
   const min = show ? Math.min(...priced.map((p) => p.price!)) : undefined;
   const max = show ? Math.max(...priced.map((p) => p.price!)) : undefined;
   return { show, isDemo: status === 'demo', isVerified: status === 'verified', min, max, priced };
