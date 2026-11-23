@@ -98,17 +98,20 @@ for (const h of heroCfg as HeroEntry[]) {
             data-item-id={s.slug}
             data-item-name={s.product}
           >
-            <span class={`relative block aspect-[16/11] w-full overflow-hidden ${s.isPhoto ? 'bg-black' : 'bg-[#e7efe0]'}`}>
+            <span class={`relative block aspect-[4/3] w-full overflow-hidden ${s.isPhoto ? 'bg-[#2f6d1f]' : 'bg-[#e7efe0]'}`}>
+              {s.image && s.isPhoto && (
+                <img src={s.image} alt="" aria-hidden="true" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full scale-110 object-cover opacity-80 blur-xl" />
+              )}
               {s.image ? (
                 <img
                   src={s.image}
                   alt={s.isPhoto ? `Osoba sa proizvodom ${s.product}` : `Pakovanje proizvoda ${s.product}`}
                   width="720"
-                  height="495"
+                  height="540"
                   loading={i === 0 ? 'eager' : 'lazy'}
                   fetchpriority={i === 0 ? 'high' : undefined}
                   decoding="async"
-                  class={`h-full w-full transition duration-500 group-hover:scale-[1.03] ${s.isPhoto ? 'object-cover object-[50%_30%]' : 'object-contain p-6'}`}
+                  class={`relative h-full w-full object-contain transition duration-500 group-hover:scale-[1.03] ${s.isPhoto ? '' : 'p-6'}`}
                 />
               ) : (
                 <span class="grid h-full place-items-center text-[#1f4b2b]"><Icon name="box" size={72} /></span>
