@@ -5,7 +5,7 @@ import { formatPrice, priceView } from '../../lib/format';
 import type { Product } from '../../lib/content';
 import type { Offer } from '../../data/offers';
 import { getOfferDetails } from '../../data/offer-details';
-import { getCatalogPrice, getEditorialPrice, formatCatalogPrice, popularPackageBadge, deliveryTerms, referencePriceNotice } from '../../data/offer-pricing';
+import { getCatalogPrice, getEditorialPrice, formatCatalogPrice, popularPackageBadge, deliveryTerms } from '../../data/offer-pricing';
 import type { MarketConfig } from '../../config/countries';
 import { PUBLIC_STATIC_PREVIEW, PUBLIC_CATALOG_ORDER_SUBMISSIONS, PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
 
@@ -177,10 +177,9 @@ const labelCls = 'text-sm font-semibold text-ink sm:pt-2.5';
             </div>
           )}
 
-          {visiblePricing && (
+          {visiblePricing && visiblePricing.tiers.length > 1 && (
             <p class="text-xs text-muted">
-              {editorialPricing ? referencePriceNotice(d!.slug) : 'Referentne cene iz Excel dokumenta nisu potvrđene kao prethodne prodajne cene.'}
-              {' '}Izbor 2 ili 3 pakovanja je prikaz; za stvarno naručivanje mora se potvrditi prijem količine u call centru.
+              Izbor 2 ili 3 pakovanja je prikaz; za stvarno naručivanje mora se potvrditi prijem količine u call centru.
             </p>
           )}
 
