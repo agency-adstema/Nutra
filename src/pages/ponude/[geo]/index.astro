@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Icon from '../../../components/Icon.astro';
+import OfferCard from '../../../components/OfferCard.astro';
+import { catalogGeoOrder, catalogMarkets, getOffersByGeo, geoUrl, type OfferGeo } from '../../../data/offers';
+
+export function getStaticPaths() {
+  return catalogGeoOrder.map((geo) => ({ params: { geo: geo.toLowerCase() }, props: { geo } }));
+}
+interface Props { geo: OfferGeo; }
+const { geo } = Astro.props;
+const market = catalogMarkets[geo];
+const offers = getOffersByGeo(geo);
+const path = geoUrl(geo);
+---
+
+<BaseLayout
+  title={`Ponude za ${market.name}`}
+  description={`Katalog proizvoda za ${market.name}. Pregled ponuda po oblastima, bez nepotvrđenih cena i medicinskih tvrdnji.`}
+  path={path}
+  noindex
+  breadcrumbs={[{ name: 'Ponude', href: '/ponude/' }, { name: market.name, href: path }]}
+>
+  <section class="container-site py-10 lg:py-14">
+    <Breadcrumbs items={[{ name: 'Ponude', href: '/ponude/' }, { name: market.name, href: path }]} />
+    <h1 class="mt-6 text-4xl font-bold text-[#173d22] sm:text-5xl">Ponude — {market.name}</h1>
+    <p class="mt-3 max-w-2xl text-lg text-muted">{offers.length} ponuda. Cene, originalne fotografije i dostupnost dodajemo nakon provere.</p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      {catalogGeoOrder.map((code) => (
+        <a href={geoUrl(code)} aria-current={code === geo ? 'page' : undefined}
+          class={`rounded-full px-4 py-2 text-sm font-semibold ${code === geo ? 'bg-brand text-white' : 'bg-brand-2 text-brand'}`}>
+          {catalogMarkets[code].shortName}
+        </a>
+      ))}
+    </div>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {offers.map((offer) => <OfferCard offer={offer} />)}
+    </div>
+    <p class="mt-8 text-sm text-muted">Izbor proizvoda nije zamena za savet lekara ili farmaceuta.</p>
+    <a href="/ponude/" class="mt-4 inline-flex items-center gap-2 font-semibold text-brand hover:underline">
+      <Icon name="arrow-right" class="rotate-180" size={18} /> Sve zemlje
+    </a>
+  </section>
+</BaseLayout>
