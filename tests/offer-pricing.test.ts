@@ -8,7 +8,7 @@ const regular: Record<OfferGeo, number[][]> = {
   BA: [[110,55],[220,85],[330,100]],
   HR: [[78,39],[156,69],[234,78]],
 };
-const hp: Record<OfferGeo,number> = {RS:2000, BA:30, HR:20};
+const hp: Record<OfferGeo,number> = {RS:3700, BA:30, HR:20};
 
 describe('Cene u XLSX: redovi 2-46, list Cene', () => {
   it('41 dostupna proizvoda i 4 nedostupna BA nemaju prikaz cene', () => {
@@ -16,6 +16,16 @@ describe('Cene u XLSX: redovi 2-46, list Cene', () => {
     expect(mapped).toHaveLength(41);
     expect(allOffers.filter(o=>!getCatalogPrice(o.geo,o.slug)).map(o=>o.geo+'/'+o.slug).sort())
       .toEqual(['BA/hp-cardio-zen','BA/hp-glyco-balance','BA/hp-para-clean','BA/hp-slim-ease'].sort());
+  });
+
+  it('svih 19 aktivnih RS ponuda imaju cenu jednog pakovanja 3.700 RSD, bez 2.000 RSD', () => {
+    const rs = offers.filter(o => o.geo === 'RS');
+    expect(rs).toHaveLength(19);
+    for (const offer of rs) {
+      const pricing = getCatalogPrice('RS', offer.slug);
+      expect(pricing?.tiers[0].newPrice).toBe(3700);
+      expect(pricing?.tiers[0].unitPrice).toBe(3700);
+    }
   });
 
   it('20 regular proizvoda imaju tri paketa iz tabele', () => {
