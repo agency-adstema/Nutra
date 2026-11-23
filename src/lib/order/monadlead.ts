@@ -98,7 +98,15 @@ export function parseMonadleadResponse(status: number, text: string): CrmResult 
   const providerReason = typeof b.reason === 'string' ? b.reason.toLowerCase().trim() : '';
   const safeReason = ['incorrect', 'empty', 'wrong format', 'not found'].includes(providerReason) ? providerReason : '';
   const field = detectField(providerField || text);
-  const detail = safeReason ? `field=${field}; reason=${safeReason}` : undefined;
+  // Kratak opis greške od MonadLead-a za log: bez api_key, imena i broja (cifre se maskiraju).
+  const providerText = ['message', 'error', 'errors', 'detail', 'msg', 'phone', 'reason']
+    .filter((k) => k in b)
+    .map((k) => `${k}:${typeof b[k] === 'string' ? b[k] : JSON.stringify(b[k])}`)
+    .join(' ')
+    .replace(/\d{4,}/g, '#')
+    .slice(0, 160);
+  const detail = [safeReason ? `field=${field}; reason=${safeReason}` : '', providerText ? `provider=${providerText}` : '']
+    .filter(Boolean).join('; ') || undefined;
 
   if (status === 200 || status === 201) {
     const orderId = pick(body, 'order_id');
