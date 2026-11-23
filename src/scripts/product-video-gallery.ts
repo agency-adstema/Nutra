@@ -20,7 +20,9 @@ export function initProductVideoGalleries(): void {
       });
       if (prev) prev.disabled = current === 0;
       if (next) next.disabled = current === pages.length - 1;
-      if (currentEl) currentEl.textContent = `${current + 1} / ${pages.length}`;
+      if (currentEl) currentEl.textContent = root.dataset.productVideoCount === '0'
+        ? '0 / 0'
+        : `${current + 1} / ${pages.length}`;
     };
     prev?.addEventListener('click', () => { if (current > 0) { current--; render(); } });
     next?.addEventListener('click', () => { if (current < pages.length - 1) { current++; render(); } });
