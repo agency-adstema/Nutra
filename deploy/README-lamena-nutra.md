@@ -65,3 +65,36 @@ rather than replacing existing configurations.
   secrets only on the server, and run a controlled test order.
 - Do not remove staging/noindex or activate MonadLead until demo content,
   legal pages, offer IDs, prices and API settings are production-ready.
+
+
+## Automatic updates after the first installation
+
+The repository now includes `.github/workflows/nutra-staging.yml`:
+
+1. Every push to `main` triggers `npm ci`, unit tests, and `npm run build:static-preview`.
+2. After a successful build, GitHub Actions publishes the static site into `gh-pages`.
+3. The optional VPS cron script `deploy/nutra-update-preview.sh` polls `gh-pages`
+   every five minutes and atomically replaces `/var/www/nutra-preview` only for
+   a new **verified staging build**, preserving the previous version.
+
+**One-time VPS activation (after the initial install above succeeds):**
+
+```bash
+sudo curl -fsSL https://raw.githubusercontent.com/agency-adstema/Nutra/main/deploy/nutra-update-preview.sh -o /usr/local/sbin/nutra-update-preview
+sudo chmod 755 /usr/local/sbin/nutra-update-preview
+sudo /usr/local/sbin/nutra-update-preview --install
+```
+
+Monitor via `tail -n 50 /var/log/nutra-preview-updates.log`.
+The cron config is in `/etc/cron.d/nutra-preview-updates`.
+To disable only auto-updates: `sudo rm /etc/cron.d/nutra-preview-updates`.
+To manually force a *check* at any time: `sudo /usr/local/sbin/nutra-update-preview`.
+
+**Important caveats:** GitHub Actions must be enabled and have write permission
+to publish to `gh-pages`. A failed test/build stops publication. GitHub's
+`GITHUB_TOKEN` push to `gh-pages` does **not** itself trigger a GitHub Pages
+site rebuild in branch mode. The VPS cron updater does not depend on GitHub Pages
+publishing; it reads the branch directly. If keeping the github.io mirror in sync
+matters, configure a dedicated GitHub Pages Actions deployment separately.
+
+Do not confuse this with production: no MonadLead server/API, only staged UI.
