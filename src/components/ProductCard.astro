@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 import { productUrl, type Product } from '../lib/content';
 import { formatPrice, priceView, themeStyle } from '../lib/format';
 import OfferPrice from './OfferPrice.astro';
-import { getEditorialPrice, referencePriceNotice } from '../data/offer-pricing';
+import { getEditorialPrice } from '../data/offer-pricing';
 import { getMarket } from '../config/countries';
 
 interface Props {
@@ -63,7 +63,7 @@ const href = productUrl(product);
       <div class="text-sm">
         {
           quotedPricing ? (
-            <OfferPrice pricing={quotedPricing} compact note={referencePriceNotice(d.slug)} />
+            <OfferPrice pricing={quotedPricing} compact />
           ) : pv.show ? (
             <>
               <span class="text-muted">Cena od</span>
