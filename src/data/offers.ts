@@ -8,6 +8,7 @@
  * Preserve source casing and all source rows. Duplicate name+GEO rows are merged;
  * distinct verticals on one offer are kept as tags.
  */
+import productsJson from './products.json';
 export type OfferGeo = 'RS' | 'BA' | 'HR';
 export const catalogMarkets: Record<OfferGeo, { name: string; shortName: string; currency: string }> = {
   RS: { name: 'Srbija', shortName: 'Srbija', currency: 'RSD' },
@@ -127,10 +128,18 @@ for (const row of sourceOfferRows) {
   if (!offer.verticals.includes(row.vertical)) offer.verticals.push(row.vertical);
 }
 
-export const offers: Offer[] = Array.from(catalogMap.values()).sort(
+// Preserve all 45 source offers for audit, but publish only the 41 with
+// pricing.packages and a matched offer_id. Four unavailable BA products disappear
+// from navigation, search, categories and newly generated offer pages.
+export const allOffers: Offer[] = Array.from(catalogMap.values()).sort(
   (a, b) => catalogGeoOrder.indexOf(a.geo) - catalogGeoOrder.indexOf(b.geo)
     || a.name.localeCompare(b.name, 'sr'),
 );
+const sellableKeys = new Set(
+  productsJson.filter(p => p.offer_id && p.pricing && p.pricing.packages?.length > 0)
+    .map(p => p.country + '/' + p.slug),
+);
+export const offers: Offer[] = allOffers.filter(o => sellableKeys.has(o.geo + '/' + o.slug));
 export const getOffersByGeo = (geo: OfferGeo) => offers.filter((offer) => offer.geo === geo);
 export const offerUrl = (offer: Offer) => `/ponude/${offer.geo.toLowerCase()}/${offer.slug}/`;
 export const geoUrl = (geo: OfferGeo) => `/ponude/${geo.toLowerCase()}/`;
