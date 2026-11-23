@@ -1,15 +1,14 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import { site } from '../config/site';
-const op = site.operator;
 ---
 
 <PageLayout
   title="O nama"
-  description={`Ko stoji iza sajta ${site.name}, kako zarađujemo i zašto nismo apoteka ni zvanični sajt proizvođača.`}
+  description={`O sajtu ${site.name}, njegovom informativnom sadržaju i načinima poručivanja.`}
   path="/o-nama/"
   updatedAt={new Date('2026-11-22')}
-  lead={`${site.name} je informativni sajt o prirodnim preparatima i dodacima ishrani koji se prodaju u Srbiji.`}
+  lead={`${site.name} je informativni sajt o prirodnim preparatima i dodacima ishrani za Srbiju, Bosnu i Hercegovinu i Hrvatsku.`}
   legal
 >
   <h2>Šta radimo</h2>
@@ -25,18 +24,4 @@ const op = site.operator;
     <li>Ne dajemo medicinske savete. {site.medicalDisclaimer}</li>
   </ul>
 
-  <h2>Kako zarađujemo</h2>
-  <p>
-    Kada pošaljete porudžbinu preko naše forme, ona se prosleđuje partnerskoj mreži ({site.orderProcessing.networkName}),
-    a prodavac nam isplaćuje proviziju za potvrđenu porudžbinu. Provizija ne utiče na cenu koju plaćate. Više u
-    <a href="/affiliate-izjava/">affiliate izjavi</a>.
-  </p>
-
-  <h2>Operater sajta</h2>
-  <p>
-    {op.companyName}<br />
-    {op.address}<br />
-    MB: {op.registrationNumber} · PIB: {op.taxId}<br />
-    E-mail: <a href={`mailto:${op.email}`}>{op.email}</a>
-  </p>
 </PageLayout>
