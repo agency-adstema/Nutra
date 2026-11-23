@@ -88,7 +88,7 @@ const catalogOffers = getCatalogOffersForCategory(d.slug).filter((o) => !product
       <section class="container-site py-8" aria-labelledby="kat-katalog">
         <h2 id="kat-katalog" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">Dodatne ponude u kategoriji</h2>
         <p class="mt-2 max-w-2xl text-muted">
-          Ponude za Srbiju. Cene i detalji biće objavljeni nakon potvrde; poručivanje još nije aktivirano.
+          Ponude za Srbiju sa fotografijama i cenama iz partnerskog cenovnika. Konačnu dostupnost i cenu potvrđuje prodavac; poručivanje još nije aktivirano.
         </p>
         <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {catalogOffers.map((offer) => <OfferCard offer={offer} />)}
