@@ -3,7 +3,6 @@ import { getEntry, render } from 'astro:content';
 import { getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import DemoNotice from '../../components/DemoNotice.astro';
 import FaqList from '../../components/FaqList.astro';
 import SourcesList from '../../components/SourcesList.astro';
 import ProductCard from '../../components/ProductCard.astro';
@@ -50,7 +49,6 @@ const crumbs = [{ name: 'Vodiči', href: '/vodici/' }, { name: d.title, href: pa
 ---
 
 <BaseLayout title={d.seo.title} description={d.seo.description} path={path} ogImage={d.heroImage} ogType="article" breadcrumbs={crumbs} jsonLd={jsonLd}>
-  {d.demo && <DemoNotice text="Primer vodiča: tekst čeka stručnu proveru pre objave." />}
   <article>
     <header class="relative overflow-hidden">
       <LeafDecor class="-right-10 top-0 hidden w-56 rotate-12 md:block" />
