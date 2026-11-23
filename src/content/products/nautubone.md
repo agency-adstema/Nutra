@@ -107,7 +107,7 @@ videos: []
 related: [bonecontrol]
 seo:
   title: Nautubone gel – cena, sastav, upotreba i iskustva
-  description: "Nautubone gel: informacije o nameni, upotrebi, upozorenjima i načinu poručivanja. Regular RS cenovnik: 3.700 RSD za jedno pakovanje; paketne cene i referentne vrednosti na stranici."
+  description: "Nautubone gel: sastav, upotreba i upozorenja. RS Regular cenovnik: 3.700 RSD za pakovanje, uz cene za 2 i 3 pakovanja."
 ---
 
 ### Kako je zamišljen proizvod
