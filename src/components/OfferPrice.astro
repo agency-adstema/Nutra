@@ -1,0 +1,30 @@
+---
+import { formatCatalogPrice, type CatalogPrice } from '../data/offer-pricing';
+interface Props {
+  pricing: CatalogPrice;
+  compact?: boolean;
+  note?: string;
+}
+const { pricing, compact = false, note } = Astro.props;
+const first = pricing.tiers[0];
+const reference = first?.referencePrice;
+const priceNow = first ? formatCatalogPrice(first.newPrice, pricing.geo) : null;
+const priceRef = reference != null ? formatCatalogPrice(reference, pricing.geo) : null;
+---
+{first && (
+  <div class={compact ? 'space-y-0.5' : 'space-y-1.5'} data-pricing-source="partner-xlsx">
+    <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+      <span class={compact ? 'text-sm font-medium text-ink/70' : 'text-[15px] font-semibold text-ink/75'}>Nova cena:</span>
+      <strong class={compact ? 'text-xl font-bold text-brand' : 'text-3xl font-bold text-brand-strong'}>{priceNow}</strong>
+      {priceRef && (
+        <span class="text-sm text-muted">
+          <span class="sr-only">Referentna cena iz dostavljenog cenovnika: </span>
+          <del aria-label={`Referentna cena ${priceRef}`} class="line-through decoration-muted/70">{priceRef}</del>
+        </span>
+      )}
+    </div>
+    <p class={compact ? 'text-[11px] leading-snug text-muted' : 'text-xs leading-relaxed text-ink/75'}>
+      {note || 'Referentna cena iz partnerskog cenovnika; nije potvrđena prethodna prodajna cena.'}
+    </p>
+  </div>
+)}
