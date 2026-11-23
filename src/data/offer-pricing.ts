@@ -86,6 +86,34 @@ export function getCatalogPrice(geo: OfferGeo, slug: string): CatalogPrice | und
   };
 }
 
+/**
+ * Three established editorial pages predate the multi-GEO /ponude/ catalog.
+ * Their RS regular package prices use the *general* Regular/RS tiers in the XLSX.
+ * Note: Nautubone RS and BoneControl RS are not individual rows in that
+ * 45-offer sheet, so those values are a template awaiting per-offer confirmation.
+ */
+export function getEditorialPrice(geo: string, slug: string): CatalogPrice | undefined {
+  if (geo !== 'RS' || !['nautubone', 'bonecontrol', 'parazol'].includes(slug)) return undefined;
+  const cfg = xlsxPriceMatrix.RS;
+  return {
+    geo: 'RS', type: 'regular', currency: cfg.currency, currencyLabel: cfg.currencyLabel,
+    freeShippingPerSheet: true, priceVerifiedWithMerchant: false,
+    tiers: cfg.regular.map(([qty, reference, current]) => ({
+      id: qty === 1 ? '1-komad' : qty === 2 ? '2-komada' : '3-komada',
+      quantity: qty as 1 | 2 | 3,
+      label: `${qty} pakovanja`,
+      newPrice: current,
+      referencePrice: reference,
+    })),
+  };
+}
+
+export function referencePriceNotice(slug: string): string {
+  return slug === 'nautubone' || slug === 'bonecontrol'
+    ? 'Prema RS Regular cenovniku iz dokumenta; cena za ovaj konkretan offer još nije pojedinačno potvrđena.'
+    : 'Prema dostavljenom cenovniku partnera; referentna cena nije nezavisno potvrđena kao prethodna prodajna cena.';
+}
+
 export function formatCatalogPrice(amount: number, geo: OfferGeo): string {
   const p = xlsxPriceMatrix[geo];
   const s = new Intl.NumberFormat(geo === 'HR' ? 'hr-HR' : 'sr-RS', {
