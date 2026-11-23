@@ -63,10 +63,11 @@ export const markets: Record<MarketCode, MarketConfig> = {
     locale: 'hr-HR',
     currency: 'EUR',
     currencyLabel: '€',
-    phone: {
-      dialCode: '385',
-      // Hrvatski mobilni brojevi: npr. 091 234 5678 ili 098 123 456.
-      nsnPattern: '^(?:9\\\\d{7,8})
+    phone: { dialCode: '385', nsnPattern: '^(?:9\\d{7,8})$', example: '091 234 5678' },
+    crm: { provider: 'monadlead', apiKeyEnv: 'MONADLEAD_API_KEY_HR', phoneFormat: 'e164' },
+  },
+  ME: {
+    code: 'ME',
     name: 'Crna Gora',
     active: false,
     locale: 'sr-Latn-ME',
