@@ -6,6 +6,7 @@ import type { APIRoute } from 'astro';
 import { getEntry } from 'astro:content';
 import { getSecret } from 'astro:env/server';
 import { site } from '../config/site';
+import { catalogMarkets, getOffer, type OfferGeo } from '../data/offers';
 import { createOrderHandler, type ProductOrderConfig } from '../lib/order/handler';
 
 export const prerender = false;
@@ -15,6 +16,29 @@ const handler = createOrderHandler({
   siteUrl: import.meta.env.SITE,
   requireConsent: site.consentMode === 'checkbox',
   getProduct: async (slug): Promise<ProductOrderConfig | undefined> => {
+    // The three-country catalog belongs to a SEPARATE advertiser account.
+    // Never route these leads through any legacy key or client-provided offer ID.
+    const match = /^(rs|ba|hr)-([a-z0-9-]+)$/.exec(slug);
+    if (match) {
+      const geo = match[1].toUpperCase() as OfferGeo;
+      const offer = getOffer(geo, match[2]);
+      if (offer) {
+        const offerEnvKey = `CATALOG_OFFER_ID_${geo}_${offer.slug.toUpperCase().replace(/[^A-Z0-9]/g, '_')}`;
+        const id = getSecret(offerEnvKey) ?? '';
+        const enabled = getSecret('CATALOG_ORDERS_ENABLED') === 'true' && /^\\d+$/.test(id);
+        return {
+          slug,
+          name: offer.name,
+          market: geo,
+          offerId: '',
+          apiKeyEnv: 'MONADLEAD_API_KEY_CATALOG',
+          offerEnvKey,
+          orderEnabled: enabled,
+          currency: catalogMarkets[geo].currency,
+          packages: [{ id: '1-komad', label: '1 pakovanje', quantity: 1 }],
+        };
+      }
+    }
     const entry = await getEntry('products', slug);
     if (!entry || entry.data.draft) return undefined;
     const d = entry.data;
