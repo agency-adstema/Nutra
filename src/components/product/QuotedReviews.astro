@@ -34,7 +34,7 @@ const recenzija = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'recenzije pr
               <span class="absolute left-0 top-0 overflow-hidden whitespace-nowrap text-[#f28b00]" style={`width: ${fill(q.score)}`} aria-hidden="true">★★★★★</span>
             </span>
             <span class="text-sm font-semibold text-ink/75">
-              Na osnovu {q.count.toLocaleString('sr-RS')} {recenzija(q.count)} na sajtu {q.sourceName}
+              Na osnovu {q.count.toLocaleString('sr-RS')} {recenzija(q.count)} na sajtu
             </span>
           </span>
         </div>
