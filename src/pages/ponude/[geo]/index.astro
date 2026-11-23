@@ -3,7 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import Icon from '../../../components/Icon.astro';
 import OfferCard from '../../../components/OfferCard.astro';
-import { catalogGeoOrder, catalogMarkets, getOffersByGeo, geoUrl, type OfferGeo } from '../../../data/offers';
+import { catalogGeoOrder, catalogMarkets, getOffersByGeo, geoUrl, verticalLabel, slugifyOffer, type OfferGeo } from '../../../data/offers';
 
 export function getStaticPaths() {
   return catalogGeoOrder.map((geo) => ({ params: { geo: geo.toLowerCase() }, props: { geo } }));
@@ -13,6 +13,14 @@ const { geo } = Astro.props;
 const market = catalogMarkets[geo];
 const offers = getOffersByGeo(geo);
 const path = geoUrl(geo);
+const groups = [...new Set(offers.flatMap((offer) => offer.verticals))]
+  .sort((a, b) => verticalLabel(a).localeCompare(verticalLabel(b), 'sr'))
+  .map((vertical) => ({
+    vertical,
+    slug: slugifyOffer(vertical),
+    title: verticalLabel(vertical),
+    items: offers.filter((offer) => offer.verticals.includes(vertical)),
+  }));
 ---
 
 <BaseLayout
@@ -34,9 +42,21 @@ const path = geoUrl(geo);
         </a>
       ))}
     </div>
-    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {offers.map((offer) => <OfferCard offer={offer} />)}
-    </div>
+    <nav aria-label="Kategorije ponuda" class="mt-8 flex flex-wrap gap-2">
+      {groups.map((group) => (
+        <a href={`#${group.slug}`} class="rounded-full bg-[#e7efdc] px-4 py-2 text-sm font-semibold text-[#1f4d2b] hover:bg-[#d6e8c5]">
+          {group.title} ({group.items.length})
+        </a>
+      ))}
+    </nav>
+    {groups.map((group) => (
+      <section id={group.slug} class="scroll-mt-28 pt-10" aria-label={group.title}>
+        <h2 class="text-2xl font-semibold text-[#173d22]">{group.title}</h2>
+        <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {group.items.map((offer) => <OfferCard offer={offer} />)}
+        </div>
+      </section>
+    ))}
     <p class="mt-8 text-sm text-muted">Izbor proizvoda nije zamena za savet lekara ili farmaceuta.</p>
     <a href="/ponude/" class="mt-4 inline-flex items-center gap-2 font-semibold text-brand hover:underline">
       <Icon name="arrow-right" class="rotate-180" size={18} /> Sve zemlje
