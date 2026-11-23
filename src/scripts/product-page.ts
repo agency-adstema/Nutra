@@ -38,6 +38,32 @@ export function initProductPage(): void {
   const bar = document.querySelector<HTMLElement>('[data-sticky-cta]');
   const heroCta = document.querySelector<HTMLElement>('[data-hero-cta]');
   const form = document.getElementById('poruci');
+
+  // The price/package selector next to the hero image mirrors the real
+  // purchase form. Never send an order here; only select the matching package.
+  const heroPackages = [...root.querySelectorAll<HTMLAnchorElement>('[data-hero-package]')];
+  const orderForm = root.querySelector<HTMLFormElement>('[data-order-form]');
+  const setHeroSelected = (packageId: string) => {
+    heroPackages.forEach((link) => {
+      link.dataset.selected = link.dataset.heroPackage === packageId ? 'true' : 'false';
+    });
+  };
+  heroPackages.forEach((link) => {
+    link.addEventListener('click', () => {
+      const packageId = link.dataset.heroPackage;
+      if (!packageId) return;
+      const realInput = [...(orderForm?.querySelectorAll<HTMLInputElement>('input[name="packageId"]') ?? [])]
+        .find((input) => input.value === packageId);
+      if (realInput) {
+        if (realInput.type === 'radio') realInput.checked = true;
+        realInput.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      setHeroSelected(packageId);
+    });
+  });
+  orderForm?.querySelectorAll<HTMLInputElement>('input[name="packageId"]').forEach((input) => {
+    input.addEventListener('change', () => setHeroSelected(input.value));
+  });
   let lockUntil = 0;
   let stickyShown = false;
 
