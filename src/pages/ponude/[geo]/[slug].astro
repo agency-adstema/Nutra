@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
-import Icon from '../../../../components/Icon.astro';
-import { catalogMarkets, geoUrl, offerUrl, offers, verticalLabel, type Offer } from '../../../../data/offers';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Icon from '../../../components/Icon.astro';
+import { catalogMarkets, geoUrl, offerUrl, offers, verticalLabel, type Offer } from '../../../data/offers';
 
 export function getStaticPaths() {
   return offers.map((offer) => ({
