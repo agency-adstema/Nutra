@@ -43,6 +43,27 @@ describe('parseMonadleadResponse', () => {
     expect(r.ok).toBe(false);
     if (!r.ok) expect(r.field).toBe('phone');
   });
+  it('novi nalog: 200 type success sa order_id i body.click_id', () => {
+    const response = JSON.stringify({ type: 'success', order_id: 9876, body: { click_id: 'click-xyz' } });
+    expect(parseMonadleadResponse(200, response)).toEqual({ ok: true, orderId: '9876', clickId: 'click-xyz' });
+  });
+  it('novi nalog: type error i 200 bez order_id ne predstavljaju uspešnu porudžbinu', () => {
+    expect(parseMonadleadResponse(200, '{"type":"error","field":"phone","reason":"wrong format"}'))
+      .toMatchObject({ ok: false, kind: 'rejected', field: 'phone' });
+    expect(parseMonadleadResponse(200, '{"type":"success"}'))
+      .toMatchObject({ ok: false, kind: 'rejected' });
+  });
+  it('novi nalog: 400 vraća bezbedno polje i reason, bez API ključa i broja', () => {
+    const response = JSON.stringify({ type: 'error', field: 'phone', reason: 'wrong format', api_key: 'SECRET-SHOULD-NOT-BE-LOGGED', phone: '+381601234567' });
+    const parsed = parseMonadleadResponse(400, response);
+    expect(parsed).toMatchObject({ ok: false, kind: 'validation', field: 'phone' });
+    if (!parsed.ok) {
+      expect(parsed.detail).toContain('wrong format');
+      expect(parsed.detail).not.toContain('SECRET-SHOULD-NOT-BE-LOGGED');
+      expect(parsed.detail).not.toContain('601234567');
+    }
+  });
+
   it('400 → validacija sa poljem; telefon u detaljima se maskira', () => {
     const r = parseMonadleadResponse(400, '{"phone":["Invalid phone +381601234567"]}');
     expect(r).toMatchObject({ ok: false, kind: 'validation', field: 'phone' });
