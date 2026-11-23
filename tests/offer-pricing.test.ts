@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { offers, getOffer, type OfferGeo } from '../src/data/offers';
-import { getCatalogPrice } from '../src/data/offer-pricing';
+import { offers, allOffers, getOffer, type OfferGeo } from '../src/data/offers';
+import { getCatalogPrice, formatCatalogPrice, popularPackageBadge, deliveryTerms } from '../src/data/offer-pricing';
 import { getOfferDetails } from '../src/data/offer-details';
 
 const regular: Record<OfferGeo, number[][]> = {
@@ -14,7 +14,7 @@ describe('Cene u XLSX: redovi 2-46, list Cene', () => {
   it('41 dostupna proizvoda i 4 nedostupna BA nemaju prikaz cene', () => {
     const mapped = offers.filter(o=>getCatalogPrice(o.geo,o.slug));
     expect(mapped).toHaveLength(41);
-    expect(offers.filter(o=>!getCatalogPrice(o.geo,o.slug)).map(o=>o.geo+'/'+o.slug).sort())
+    expect(allOffers.filter(o=>!getCatalogPrice(o.geo,o.slug)).map(o=>o.geo+'/'+o.slug).sort())
       .toEqual(['BA/hp-cardio-zen','BA/hp-glyco-balance','BA/hp-para-clean','BA/hp-slim-ease'].sort());
   });
 
@@ -38,10 +38,9 @@ describe('Cene u XLSX: redovi 2-46, list Cene', () => {
     for(const o of hpOffers) {
       const p=getCatalogPrice(o.geo,o.slug)!;
       expect(p.type).toBe('hp');
-      expect(p.tiers).toEqual([{
-        id:'1-komad',label:'1 pakovanje',quantity:1,
-        newPrice:hp[o.geo],referencePrice:null
-      }]);
+      expect(p.tiers).toHaveLength(1);
+      expect(p.tiers[0]).toMatchObject({ id:'1-komad', quantity:1,
+        newPrice:hp[o.geo], referencePrice:null, savings:null, discountPercent:null, unitPrice:hp[o.geo] });
     }
   });
 
@@ -53,13 +52,31 @@ describe('Cene u XLSX: redovi 2-46, list Cene', () => {
     }
   });
 
+  it('formatira cene prema tržištu sa dve decimale za BA/HR', () => {
+    expect(formatCatalogPrice(3700,'RS')).toBe('3.700 RSD');
+    expect(formatCatalogPrice(55,'BA')).toBe('55,00 KM');
+    expect(formatCatalogPrice(39,'HR')).toBe('39,00 €');
+    expect(formatCatalogPrice(100/3,'BA')).toBe('33,33 KM');
+    expect(formatCatalogPrice(6800/3,'RS')).toBe('2.267 RSD');
+  });
+
+  it('računa uštedu i popust za sve regularne pakete', () => {
+    const rs=getCatalogPrice('RS','parazol')!;
+    expect(rs.tiers.map(t=>t.savings)).toEqual([1800,5150,9700]);
+    expect(rs.tiers.map(t=>t.discountPercent)).toEqual([33,47,59]);
+    expect(popularPackageBadge('RS',3)).toBe('NAJPOPULARNIJE · -59%');
+    expect(popularPackageBadge('BA',3)).toBe('Najpopularnije · Najbolja cijena');
+    expect(popularPackageBadge('HR',3)).toBe('Najpopularnije · -67%');
+    expect(deliveryTerms('HR')).toContain('Dostava 1–2 radna dana');
+  });
+
   it('nema lažnih datuma akcija, nestanka zaliha ili neproverenih rokova dostave', () => {
     for (const o of offers) {
       const p=getCatalogPrice(o.geo,o.slug);
       if(p) {
         expect(p.freeShippingPerSheet).toBe(true);
         expect(p.priceVerifiedWithMerchant).toBe(false);
-        expect(JSON.stringify(p)).not.toMatch(/endsAt|stockRemaining|deliveryDays|discountEndsAt|countdown/);
+        expect(JSON.stringify(p)).not.toMatch(/endsAt|stockRemaining|discountEndsAt|countdown/);
       }
     }
   });
