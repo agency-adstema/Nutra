@@ -55,7 +55,7 @@ const tabs = [
   { href: '#poruci', label: 'Poručite' },
 ];
 const faq = [
-  { q: `Kolika je cena proizvoda ${offer.name}?`, a: displayedPrice ? `Prema direktnom cenovniku partnera: ${tiers.map(t => `${t.quantity} pakovanja – ${formatCatalogPrice(t.newPrice, offer.geo)}`).join('; ')}. Konačnu cenu i besplatnu dostavu potvrdite kod prodavca.` : 'Za ovo tržište trenutno nemamo potvrđenu dostupnu ponudu.' },
+  { q: `Kolika je cena proizvoda ${offer.name}?`, a: displayedPrice ? `Prema direktnom cenovniku partnera: ${tiers.map(t => `${t.quantity} pakovanja – ${formatCatalogPrice(t.newPrice, offer.geo)}`).join('; ')}. Konačnu cenu i uslove dostave potvrdite kod prodavca.` : 'Za ovo tržište trenutno nemamo potvrđenu dostupnu ponudu.' },
   { q: 'Kako mogu da poručim?', a: isAvailable ? 'Forma služi za proveru i trenutno ne šalje porudžbine. Prijem porudžbina počinje nakon aktivacije bezbednog backend-a.' : 'Za ovaj proizvod nema aktivne ponude u partnerskom nalogu na ovom tržištu.' },
   { q: 'Koji broj telefona treba uneti?', a: `Primer broja za tržište ${info.name}: ${market.phone.example}.` },
 ];
@@ -215,8 +215,8 @@ const productInfo = {
               )}
               {pricing && (
                 <div class="rounded-xl bg-brand-2 px-4 py-3 text-sm font-semibold text-brand-strong">
-                  {deliveryTerms(offer.geo)}
-                  <p class="mt-1 text-xs font-normal text-muted">Rok dostave 1–2 radna dana je procena preuzeta iz dokumentacije partnera.</p>
+                  {deliveryTerms(offer.geo, pricing)}
+                  {pricing.estimatedDeliveryBusinessDays && <p class="mt-1 text-xs font-normal text-muted">Rok dostave 1–2 radna dana je procena preuzeta iz dokumentacije partnera.</p>}
                 </div>
               )}
             </div>
