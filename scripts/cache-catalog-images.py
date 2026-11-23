@@ -4,7 +4,7 @@
 Images come ONLY from the exact api.monadlead.com URLs supplied by the user
 in products.json. Files are validated as images and stored in public/ so a
 successful Astro static build includes them, without hotlink dependency.
-If one remote image fails, the page uses the original HTTPS URL as fallback.
+If a remote image fails, the page shows a local placeholder rather than hotlinking.
 """
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
@@ -75,9 +75,8 @@ def main():
     MANIFEST.write_text(json.dumps(dict(sorted(manifest.items())), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Cached {len(manifest)} / {sum(bool(p.get('imageUrl')) for p in items)} supplied images")
     if skipped:
-        print("Remote fallback for: " + ", ".join(sorted(skipped)))
-    # The site remains usable on an image server outage: the source URLs
-    # still exist in offer-details.json for browser fallback.
+        print("NOT CACHED (local placeholder displayed): " + ", ".join(sorted(skipped)))
+    # The frontend never falls back to external image URLs.
 
 if __name__ == "__main__":
     main()
