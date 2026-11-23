@@ -2,11 +2,14 @@
 import Icon from './Icon.astro';
 import { catalogMarkets, offerUrl, verticalLabel, type Offer } from '../data/offers';
 import { getOfferDetails, getOfferImage } from '../data/offer-details';
+import { getCatalogPrice } from '../data/offer-pricing';
+import OfferPrice from './OfferPrice.astro';
 
 interface Props { offer: Offer; }
 const { offer } = Astro.props;
 const details = getOfferDetails(offer.geo, offer.slug);
 const photo = getOfferImage(details);
+const quotedPricing = getCatalogPrice(offer.geo, offer.slug);
 ---
 
 <article class="card flex h-full flex-col overflow-hidden border border-line/60">
@@ -30,15 +33,10 @@ const photo = getOfferImage(details);
     </div>
     {details?.description && <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">{details.description}</p>}
     {details?.form && <p class="mt-2 text-sm text-ink/80">Oblik: {details.form}{details.package ? ` · ${details.package}` : ''}</p>}
-    {details?.price && details.availableInAccount ? (
-      <div class="mt-4">
-        <p class="text-xl font-semibold text-brand">{details.price}</p>
-        <p class="text-xs text-muted">Cena iz partnerskog cenovnika, podložna potvrdi</p>
-      </div>
+    {quotedPricing ? (
+      <div class="mt-4"><OfferPrice pricing={quotedPricing} compact /></div>
     ) : (
-      <p class="mt-3 text-sm font-medium text-muted">
-        {details?.availableInAccount === false ? 'Trenutno nije dostupno za poručivanje' : 'Cena na upit'}
-      </p>
+      <p class="mt-3 text-sm font-medium text-muted">Trenutno nije dostupno za poručivanje</p>
     )}
     <a class="mt-auto inline-flex items-center gap-2 pt-5 font-semibold text-brand hover:underline" href={offerUrl(offer)}>
       Detalji proizvoda <Icon name="arrow-right" size={18} />
