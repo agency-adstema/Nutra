@@ -1,0 +1,12 @@
+[
+  { "product": "Nautubone", "link": { "type": "product", "slug": "nautubone" }, "story": "RS/nautubone", "details": "RS/nautubone" },
+  { "product": "Beauty Derm", "link": { "type": "offer", "geo": "HR", "slug": "beauty-derm" }, "story": "RS/beauty-derm", "details": "HR/beauty-derm" },
+  { "product": "Parazol", "link": { "type": "product", "slug": "parazol" }, "story": "RS/parazol", "details": "RS/parazol" },
+  { "product": "BoneControl", "link": { "type": "product", "slug": "bonecontrol" }, "video": "BoneControl/BoneControl_2.mp4", "details": "RS/bonecontrol" },
+  { "product": "Dia Drops", "link": { "type": "offer", "geo": "RS", "slug": "dia-drops" }, "video": "Dia Drops/Dia_Drops_1.mp4", "details": "RS/dia-drops" },
+  { "product": "Mikoherb", "link": { "type": "offer", "geo": "RS", "slug": "mikoherb" }, "story": "RS/mikoherb", "details": "RS/mikoherb" },
+  { "product": "Pro Caps", "link": { "type": "offer", "geo": "BA", "slug": "pro-caps" }, "story": "BA/pro-caps", "details": "BA/pro-caps" },
+  { "product": "Varcosin", "link": { "type": "offer", "geo": "HR", "slug": "varcosin" }, "story": "RS/varcosin", "details": "HR/varcosin" },
+  { "product": "O Caps", "link": { "type": "offer", "geo": "RS", "slug": "o-caps" }, "story": "RS/o-caps", "details": "RS/o-caps" },
+  { "product": "U Caps", "link": { "type": "offer", "geo": "RS", "slug": "u-caps" }, "video": "U Caps/U_Caps_1.mp4", "details": "RS/u-caps" }
+]

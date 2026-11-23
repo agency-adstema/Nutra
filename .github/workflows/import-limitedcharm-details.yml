@@ -6,6 +6,8 @@ on:
     paths:
       - .github/workflows/import-limitedcharm-details.yml
       - scripts/import-limitedcharm-details.py
+      - scripts/make-hero-frames.py
+      - src/data/home-hero.json
   workflow_dispatch:
 
 permissions:
@@ -32,12 +34,19 @@ jobs:
       - name: Fetch composition, ratings, comments and ingredient images
         run: python3 scripts/import-limitedcharm-details.py
 
+      - name: Extract candidate hero frames from customer videos
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          python3 scripts/make-hero-frames.py
+
       - name: Commit imported data
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/limitedcharm-details.json public/images/sastav
+          for path in src/data/limitedcharm-details.json public/images/sastav public/images/price hero-frames-candidates; do
+            if [ -e "$path" ]; then git add "$path"; fi
+          done
           if git diff --cached --quiet; then
             echo "No changes in imported data."
           else
