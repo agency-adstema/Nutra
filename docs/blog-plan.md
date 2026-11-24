@@ -13,9 +13,9 @@ Linkovi: `md:` = naša stranica proizvoda (`/zglobovi-i-bolovi/nautubone/`, `/zg
 | 1 | 24.11. | čaj za parazite | Čaj za parazite: koje biljke se koriste i šta kažu dokazi | paraziti-i-detoks | md:parazol, para-caps | objavljeno | caj-za-parazite |
 | 2 | 24.11. | krema za zglobove | Krema za zglobove i bol u kolenu: kako izabrati | zglobovi-i-bolovi | md:nautubone, md:bonecontrol | objavljeno | krema-za-zglobove |
 | 3 | 24.11. | čaj za pritisak | Čaj za pritisak: glog, hibiskus i druge biljke | srce-i-pritisak | hypertea, hyper-drops | objavljeno | caj-za-pritisak |
-| 4 | 25.11. | čaj za prostatu | Čaj za prostatu: vrbovica, kopriva i šta kažu dokazi | prostata-i-musko-zdravlje | prostamid, pro-caps | planirano | |
-| 5 | 25.11. | čaj za šećer | Čaj za šećer u krvi: koje biljke se koriste | secer-u-krvi | diatea, dia-drops | planirano | |
-| 6 | 25.11. | krema za vene | Krema za vene i kapilare: kako izabrati | vene-i-cirkulacija | varcolex, varcosin | planirano | |
+| 4 | 25.11. | čaj za prostatu | Čaj za prostatu: vrbovica, kopriva i šta kažu dokazi | prostata-i-musko-zdravlje | prostamid, pro-caps | objavljeno | caj-za-prostatu |
+| 5 | 25.11. | čaj za šećer | Čaj za šećer u krvi: koje biljke se koriste | secer-u-krvi | diatea, dia-drops | objavljeno | caj-za-secer |
+| 6 | 25.11. | krema za vene | Krema za vene i kapilare: kako izabrati | vene-i-cirkulacija | varcolex, varcosin | objavljeno | krema-za-vene |
 | 7 | 26.11. | čaj za mršavljenje | Čaj za mršavljenje: šta sadrži i šta realno radi | mrsavljenje-i-metabolizam | goslim, easy-slim, keto-tea | planirano | |
 | 8 | 26.11. | gljivice na noktima nogu lečenje | Gljivice na noktima nogu: lečenje i šta pomaže | koza-kosa-i-nokti | mikoherb, mikotea | planirano | |
 | 9 | 26.11. | kapsule za sluh | Kapsule za sluh: šta sadrže i da li pomažu | — | u-caps | planirano | |
