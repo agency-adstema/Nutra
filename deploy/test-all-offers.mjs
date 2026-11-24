@@ -65,7 +65,8 @@ rl.close();
 if (ok !== 'da') { console.log('Otkazano, ništa nije poslato.'); process.exit(0); }
 
 const mask = (s) => String(s).split(KEY).join('***').replace(/\d{6,}/g, '[broj]').slice(0, 200);
-const rows = [['zemlja', 'proizvod', 'offer_id', 'rezultat', 'order_id', 'razlog']];
+const rows = [['zemlja', 'proizvod', 'offer_id', 'rezultat', 'order_id', 'sekundi', 'razlog']];
+const times = [];
 let good = 0;
 for (const [i, p] of list.entries()) {
   const payload = {
@@ -80,10 +81,13 @@ for (const [i, p] of list.entries()) {
     sub_3: `${p.country.toLowerCase()}-${p.slug}`,
   };
   let status = 0, text = '';
+  const t0 = Date.now();
   try {
     const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
     status = r.status; text = await r.text();
   } catch (e) { text = `mreža: ${e.message}`; }
+  const sec = (Date.now() - t0) / 1000;
+  times.push(sec);
   let body = {}; try { body = JSON.parse(text); } catch { /* nije JSON */ }
   const orderId = body.order_id ?? body.data?.order_id ?? body.order?.id;
   const success = (status === 200 || status === 201) && orderId && body.type !== 'error';
@@ -91,11 +95,13 @@ for (const [i, p] of list.entries()) {
     ? body.errors.map((e) => `${e.field}: ${e.reason}`).join(', ')
     : mask(body.message || body.error || text || `HTTP ${status}`);
   if (success) good++;
-  console.log(`${String(i + 1).padStart(3)}/${list.length}  ${p.country} ${p.slug.padEnd(24)} offer ${String(p.offer_id).padEnd(5)} ${success ? `OK  #${orderId}` : `GREŠKA (${status}) ${reason}`}`);
-  rows.push([p.country, p.slug, p.offer_id, success ? 'OK' : `GRESKA ${status}`, success ? orderId : '', reason.replace(/[,\n]/g, ';')]);
+  console.log(`${String(i + 1).padStart(3)}/${list.length}  ${p.country} ${p.slug.padEnd(24)} offer ${String(p.offer_id).padEnd(5)} ${success ? `OK  #${orderId}` : `GREŠKA (${status}) ${reason}`}  (${sec.toFixed(2)} s)`);
+  rows.push([p.country, p.slug, p.offer_id, success ? 'OK' : `GRESKA ${status}`, success ? orderId : '', sec.toFixed(2), reason.replace(/[,\n]/g, ';')]);
   await new Promise((r) => setTimeout(r, PAUSE_MS));
 }
 
 const file = `/root/test-ponuda-${new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')}.csv`;
 writeFileSync(file, rows.map((r) => r.join(',')).join('\n') + '\n');
+const avg = times.reduce((a, b) => a + b, 0) / Math.max(1, times.length);
 console.log(`\nProšlo: ${good}/${list.length}. Ne prolazi: ${list.length - good}. Spisak: ${file}`);
+console.log(`MonadLead odgovor: prosečno ${avg.toFixed(2)} s, najsporiji ${Math.max(...times).toFixed(2)} s po porudžbini.`);
