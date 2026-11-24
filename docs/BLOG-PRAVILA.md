@@ -58,6 +58,24 @@ Tanak ili prepisan tekst šteti celom sajtu, ne samo tom postu.
 - Kod mršavljenja: bez preciznih dijeta, kalorija i obećanja kilograma; laksativi nisu sredstvo za mršavljenje.
 - Ne pominji konkurentske brendove (Josif Pančić, DM, Lilly…) u naslovima. U tekstu samo neutralno, ako je potrebno.
 
+## Slika (obavezno)
+
+Svaki vodič ima jednu sliku u `.webp` formatu sa alt tekstom. Ista slika je naslovna (deljenje na mrežama, Article schema) i stoji u tekstu odmah posle napomene.
+
+- **Izvor:** botanička ilustracija sastojka iz kataloga, `public/images/sastav/rs-<proizvod>.webp`. Uzmi proizvod iz kolone „Linkovi“ u planu čiji sastojak najbolje odgovara temi. Šta je na slici piše u `src/data/limitedcharm-details.json` → `items["RS/<proizvod>"].composition` (`name`, `latin`), ali sliku pre izbora i pogledaj.
+- Ako u koloni „Linkovi“ nema odgovarajuće slike, uzmi ilustraciju proizvoda iz iste kategorije. Ne koristi slike kupaca (`public/images/hero/`), fotografije ljudi ni slike sa interneta.
+- Ako može, uzmi ilustraciju koju još ne koristi nijedan vodič: `grep -rl "izvor: public/images/sastav/rs-<proizvod>.webp" src/content/guides`.
+- **Obrada:** širina 1200 px, webp kvalitet 80, fajl `src/content/guides/images/<slug>.webp`:
+
+  ```bash
+  node -e "require('sharp')('public/images/sastav/rs-<proizvod>.webp').resize({width:1200}).webp({quality:80}).toFile('src/content/guides/images/<slug>.webp').then(console.log)"
+  ```
+
+- **Alt tekst:** jedna rečenica, oko 60–120 znakova, opisuje ono što se stvarno vidi (biljka i njeni delovi). Bez tvrdnji o dejstvu i bez nabijanja ključne reči. Primer: „Botanička ilustracija korena i lista koprive sa isečenim komadićima korena“.
+- **Frontmatter:** `heroImage: ./images/<slug>.webp  # izvor: public/images/sastav/rs-<proizvod>.webp` i `heroImageAlt: "<alt>"`.
+- **U tekstu:** odmah posle reda sa napomenom („Tekst je informativnog karaktera…“) prazan red, pa `![<isti alt>](./images/<slug>.webp)`.
+- `npm test` (`tests/guide-images.test.ts`) proverava da slika postoji, da je `.webp`, da je manja od 400 KB i da alt ima bar 20 znakova.
+
 ## Frontmatter (šablon)
 
 ```yaml
@@ -66,6 +84,8 @@ title: "Čaj za parazite: koje biljke se koriste i šta kažu dokazi"
 slug: caj-za-parazite
 market: RS
 description: "Jedna do dve rečenice: šta čitalac dobija iz teksta."
+heroImage: ./images/caj-za-parazite.webp   # izvor: public/images/sastav/rs-parazol.webp
+heroImageAlt: "Botanička ilustracija vranilove trave (origana) sa cvetovima i usitnjenom biljkom za čaj"
 category: paraziti-i-detoks        # slug iz src/content/categories; izostavi ako nijedna ne odgovara
 author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-24
@@ -100,6 +120,7 @@ npm run test:seo
 `npm test` i `npm run build` moraju da prođu. `npm run test:seo` trenutno prijavljuje 10 starih grešaka (kategorije u sitemap-u, Product schema na `/ponude/*/index.html`). Novi post ne sme da poveća taj broj, i nijedna greška ne sme da pominje `vodici/`. Ručno proveri:
 - broj reči u telu (najmanje 900),
 - da svaki interni link postoji u `dist/client` (stranica postoji),
+- da stranica `dist/client/vodici/<slug>/index.html` sadrži `<img` sa popunjenim `alt` (slika iz teksta),
 - da nema zabranjenih reči: `izleči`, `garantovano`, `100%`, `zvanični`, `samo danas`, i da se reč „leči“ javlja samo uz lek ili lekara, nikad uz biljku ili proizvod.
 
 ## Objava

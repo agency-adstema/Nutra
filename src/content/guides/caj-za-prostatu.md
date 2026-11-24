@@ -3,6 +3,8 @@ title: "Čaj za prostatu: vrbovica, kopriva i šta kažu dokazi"
 slug: caj-za-prostatu
 market: RS
 description: "Koji čaj za prostatu ima ocenu Evropske agencije za lekove (vrbovica, koren koprive, seme bundeve), šta realno može kod tegoba sa mokrenjem, kome ne odgovara i kada je potreban urolog."
+heroImage: ./images/caj-za-prostatu.webp  # izvor: public/images/sastav/rs-prostamid.webp
+heroImageAlt: "Botanička ilustracija korena i lista koprive sa isečenim komadićima korena"
 category: prostata-i-musko-zdravlje
 author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-24
@@ -50,6 +52,8 @@ seo:
 Čaj za prostatu može da ublaži blage tegobe sa mokrenjem, ali ne smanjuje prostatu i ne zamenjuje pregled ni lekove. Najjaču ocenu imaju vrbovica, koren koprive i seme bundeve. Evropska agencija za lekove (EMA) ih navodi kao tradicionalnu podršku kod uvećane prostate, uz uslov da je lekar prethodno isključio ozbiljne uzroke.
 
 > Tekst je informativnog karaktera i ne zamenjuje savet lekara ili farmaceuta. Ne prekidajte i ne menjajte terapiju za prostatu bez lekara.
+
+![Botanička ilustracija korena i lista koprive sa isečenim komadićima korena](./images/caj-za-prostatu.webp)
 
 Uvećana prostata (benigna hiperplazija prostate, BPH) je česta pojava kod starijih muškaraca. Prema MedlinePlus-u, blago uvećanje ima veliki broj muškaraca posle 40. godine, a posle 80. godine više od 90% njih. BPH nije rak i ne povećava rizik od raka prostate. Ipak, isti simptomi mogu da prate i druge bolesti, pa je pregled prvi korak. Ispod je pregled biljaka koje se najčešće nalaze u čajevima za prostatu i šta za njih kažu dokazi.
 

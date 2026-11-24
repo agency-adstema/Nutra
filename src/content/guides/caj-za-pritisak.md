@@ -3,6 +3,8 @@ title: "Čaj za pritisak: glog, hibiskus i druge biljke – šta kažu dokazi"
 slug: caj-za-pritisak
 market: RS
 description: "Koji čaj za pritisak ima najviše dokaza (hibiskus, glog, imela, kantarion), koliko realno može da spusti pritisak, zašto ne zamenjuje lek i šta da pazite uz terapiju."
+heroImage: ./images/caj-za-pritisak.webp  # izvor: public/images/sastav/rs-hypertea.webp
+heroImageAlt: "Botanička ilustracija gloga sa belim cvetovima, crvenim plodovima i osušenim plodom za čaj"
 category: srce-i-pritisak
 author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-24
@@ -41,6 +43,8 @@ seo:
 Čaj za pritisak ne može da zameni lek. Najviše istraživanja ima hibiskus, koji u studijama spušta gornji pritisak za oko 6–7 mmHg, ali su dokazi nesigurni. Glog, imela i valerijana se tradicionalno koriste za srce i smirenje, ali EMA ih ne navodi za visok pritisak.
 
 > Tekst je informativnog karaktera i ne zamenjuje savet lekara ili farmaceuta. Ne prekidajte i ne menjajte terapiju za pritisak bez lekara.
+
+![Botanička ilustracija gloga sa belim cvetovima, crvenim plodovima i osušenim plodom za čaj](./images/caj-za-pritisak.webp)
 
 Visok pritisak je čest i često bez simptoma. Prema Svetskoj zdravstvenoj organizaciji (SZO), u svetu ga ima oko 1,4 milijarde odraslih između 30 i 79 godina, a skoro polovina njih to ne zna. Zato je logično da ljudi traže i prirodne načine da ga spuste. Ispod je pregled biljaka koje se najčešće nalaze u čajevima za pritisak i šta za njih kažu dokazi.
 

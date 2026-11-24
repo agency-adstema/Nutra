@@ -48,7 +48,7 @@ const toc = headings.filter((h) => h.depth === 2);
 const crumbs = [{ name: 'Vodiči', href: '/vodici/' }, { name: d.title, href: path }];
 ---
 
-<BaseLayout title={d.seo.title} description={d.seo.description} path={path} ogImage={d.heroImage} ogType="article" breadcrumbs={crumbs} jsonLd={jsonLd}>
+<BaseLayout title={d.seo.title} description={d.seo.description} path={path} ogImage={d.heroImage} ogImageAlt={d.heroImageAlt} ogType="article" breadcrumbs={crumbs} jsonLd={jsonLd}>
   <article>
     <header class="relative overflow-hidden">
       <LeafDecor class="-right-10 top-0 hidden w-56 rotate-12 md:block" />

@@ -3,6 +3,8 @@ title: "Krema za zglobove i bol u kolenu: kako izabrati i šta stvarno pomaže"
 slug: krema-za-zglobove
 market: RS
 description: "Razlika između gelova sa lekom, biljnih krema sa gavezom i arnikom i kozmetičkih krema za zglobove, šta kažu Cochrane i NICE i kako da izaberete kremu za koleno."
+heroImage: ./images/krema-za-zglobove.webp  # izvor: public/images/sastav/rs-nautubone.webp
+heroImageAlt: "Botanička ilustracija gaveza sa ljubičastim cvetovima, korenom i usitnjenim listom"
 category: zglobovi-i-bolovi
 author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-24
@@ -42,6 +44,8 @@ seo:
 Krema za zglobove može da ublaži bol, ali ne leči artrozu i ne obnavlja hrskavicu. Za bol u kolenu najviše dokaza imaju gelovi sa lekom (diklofenak, ketoprofen). Biljne kreme sa gavezom i arnikom tradicionalno se koriste kod uganuća, modrica i bola u mišićima.
 
 > Tekst je informativnog karaktera i ne zamenjuje savet lekara ili farmaceuta.
+
+![Botanička ilustracija gaveza sa ljubičastim cvetovima, korenom i usitnjenim listom](./images/krema-za-zglobove.webp)
 
 Na policama apoteka i u online prodaji ima mnogo krema i gelova „za zglobove“. Liče jedni na druge, ali se razlikuju po tome šta su (lek, biljni lek ili kozmetika) i koliko dokaza imaju. Ovaj vodič pomaže da izaberete pravu i da znate kada krema nije dovoljna.
 

@@ -3,6 +3,8 @@ title: "Čaj za šećer u krvi: koje biljke se koriste i šta kažu dokazi"
 slug: caj-za-secer
 market: RS
 description: "Šta realno može čaj za šećer u krvi: cimet, mahuna pasulja, borovnica i kleka pod lupom dokaza, zašto čaj ne zamenjuje terapiju i na šta da pazite ako imate dijabetes."
+heroImage: ./images/caj-za-secer.webp  # izvor: public/images/sastav/rs-diatea.webp
+heroImageAlt: "Botanička ilustracija grančica borovnice sa listovima, cvetovima i plodovima i suvim listom za čaj"
 category: secer-u-krvi
 author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-24
@@ -47,6 +49,8 @@ seo:
 Čaj za šećer u krvi ne može da zameni lekove i nijedna biljka nema dovoljno dokaza da pouzdano snižava šećer. Najviše je proučavan cimet, ali Cochrane pregled nije našao jasan efekat. Biljke iz mešavina „za šećer“, kao što su mahuna pasulja, breza i kleka, Evropska agencija za lekove (EMA) ocenjuje za mokraćne puteve, a ne za šećer.
 
 > Tekst je informativnog karaktera i ne zamenjuje savet lekara ili farmaceuta. Ne prekidajte i ne menjajte terapiju za šećer bez lekara.
+
+![Botanička ilustracija grančica borovnice sa listovima, cvetovima i plodovima i suvim listom za čaj](./images/caj-za-secer.webp)
 
 Dijabetes je sve češći. Prema Svetskoj zdravstvenoj organizaciji (SZO), broj ljudi sa dijabetesom porastao je sa 200 miliona 1990. godine na 830 miliona 2022. godine. Udeo odraslih sa dijabetesom se za to vreme udvostručio, sa 7% na 14%. Zato mnogi traže i prirodne načine da pomognu sebi. Ispod je pregled biljaka koje se najčešće nalaze u čajevima za šećer i šta za njih kažu dokazi.
 

@@ -3,6 +3,8 @@ title: "Krema za vene i kapilare: kako izabrati i šta kažu dokazi"
 slug: krema-za-vene
 market: RS
 description: "Šta realno može krema za vene na nogama: divlji kesten pod lupom dokaza, razlika između kreme i kapsula, kako uporediti gelove za teške noge i kada su otok i bol razlog za hitan pregled."
+heroImage: ./images/krema-za-vene.webp  # izvor: public/images/sastav/rs-varcolex.webp
+heroImageAlt: "Botanička ilustracija divljeg kestena sa listovima, cvetom, bodljikavim čaurama i plodovima"
 category: vene-i-cirkulacija
 author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-24
@@ -38,6 +40,8 @@ seo:
 Krema za vene može da ublaži osećaj težine i nelagodnosti u nogama, ali ne uklanja proširene vene ni kapilare. Najviše podataka ima divlji kesten. Evropska agencija za lekove (EMA) kremu i gel sa kestenom priznaje kao tradicionalnu podršku kod teških nogu, dok se jači dokazi iz studija odnose na kapsule.
 
 > Tekst je informativnog karaktera i ne zamenjuje savet lekara ili farmaceuta.
+
+![Botanička ilustracija divljeg kestena sa listovima, cvetom, bodljikavim čaurama i plodovima](./images/krema-za-vene.webp)
 
 Proširene vene nastaju kada zalisci u venama ne rade dobro, pa se krv zadržava u nogama. Prema MedlinePlus-u, rizik raste sa godinama, češće ih imaju žene (pubertet, trudnoća, menopauza, pilule i hormonska terapija), a doprinose i gojaznost, dugo stajanje ili sedenje, raniji ugrušci u nogama i porodična sklonost. Tipične tegobe su bol i težina u nogama, vidljive proširene vene, kapilari, noćni grčevi, blagi otok oko članaka i svrab. Ispod je pregled šta krema može, a šta ne, i kako da uporedite ponude.
 

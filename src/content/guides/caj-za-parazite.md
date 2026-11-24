@@ -3,6 +3,8 @@ title: "Čaj za parazite: koje biljke se koriste i šta kažu dokazi"
 slug: caj-za-parazite
 market: RS
 description: "Koje biljke se nalaze u čajevima za parazite (pelin, timijan, nana, anis), šta za njih kaže Evropska agencija za lekove i kada su potrebni analiza i lek."
+heroImage: ./images/caj-za-parazite.webp  # izvor: public/images/sastav/rs-parazol.webp
+heroImageAlt: "Botanička ilustracija vranilove trave (origana) sa cvetovima i usitnjenom biljkom za čaj"
 category: paraziti-i-detoks
 author: { name: Redakcija sajta Moja Zdravica }
 publishedAt: 2026-11-24
@@ -48,6 +50,8 @@ seo:
 Čaj za parazite je biljna mešavina, najčešće sa pelinom, timijanom, nanom ili anisom. Nijedna od tih biljaka nema dokazano dejstvo protiv crevnih parazita kod ljudi. Mogu da ublaže nadimanje i loše varenje, ali infekcija se dokazuje analizom i leči lekom.
 
 > Tekst je informativnog karaktera i ne zamenjuje savet lekara ili farmaceuta.
+
+![Botanička ilustracija vranilove trave (origana) sa cvetovima i usitnjenom biljkom za čaj](./images/caj-za-parazite.webp)
 
 Ispod je pregled biljaka koje se najčešće nalaze u ovakvim čajevima, šta za njih kaže Evropska agencija za lekove (EMA) i po čemu da uporedite gotove mešavine.
 
