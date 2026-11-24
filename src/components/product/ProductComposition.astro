@@ -1,7 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { formatDate } from '../../lib/format';
 
 export interface CompositionView {
   eyebrow?: string;
@@ -68,11 +67,6 @@ const tags = c?.tags ?? [];
                 <li class="rounded-full bg-brand-2 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-brand-strong">{t}</li>
               ))}
             </ul>
-          )}
-          {c.sourceName && (
-            <p class="mt-6 text-xs text-muted">
-              Sastav prema podacima prodavca ({c.sourceName}{c.checkedAt && <>, provereno {formatDate(c.checkedAt)}</>}). Uporedite sa deklaracijom na pakovanju.
-            </p>
           )}
         </div>
       </div>

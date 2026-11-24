@@ -44,7 +44,6 @@ ingredients:
     latin: Anthemis nobilis
     icon: flower
     description: Biljni ekstrakt koji se često koristi u proizvodima za negu kože.
-ingredientsNote: "Sastav prema podacima prodavca (Limited Charm, 23.11.2026). Uporedite ga sa deklaracijom na pakovanju."
 usage:
   - Nanesite tanak sloj na bolno mesto.
   - Umasirajte dok se ne upije.
@@ -80,7 +79,7 @@ faq:
   - q: Gde kupiti Nautubone?
     a: Nautubone možete poručiti preko forme na ovoj stranici. Moja Zdravica nije apoteka ni prodavac — porudžbinu obrađuje prodavac, a operater vas poziva radi potvrde. Plaćanje je pouzećem.
   - q: Šta sadrži Nautubone?
-    a: "Prema podacima prodavca: Aqua, Propylene Glycol, Glycerin, Symphytum Officinale Root Extract (ekstrakt korena gaveza), Carbomer, ulja geranijuma (Pelargonium Graveolens i Roseum) i muškatne žalfije (Salvia Sclarea), Sodium Hydroxide i ekstrakt cveta rimske kamilice (Anthemis Nobilis). Uporedite sa deklaracijom na pakovanju."
+    a: "Aqua, Propylene Glycol, Glycerin, Symphytum Officinale Root Extract (ekstrakt korena gaveza), Carbomer, ulja geranijuma (Pelargonium Graveolens i Roseum) i muškatne žalfije (Salvia Sclarea), Sodium Hydroxide i ekstrakt cveta rimske kamilice (Anthemis Nobilis). Uporedite sa deklaracijom na pakovanju."
   - q: Kako se koristi Nautubone gel?
     a: Način i učestalost nanošenja proverite u uputstvu na originalnom pakovanju.
   - q: Kakva su iskustva sa Nautubone gelom?
