@@ -16,12 +16,21 @@ U Excelu:
 """
 import argparse, json, os, sys, time, urllib.request, urllib.error
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 API_URL = os.environ.get('MONADLEAD_API_URL') or 'https://api.monadlead.com/api/v1/orders/create/'
 SHEET, LOG = 'Za slanje', 'Dnevnik slanja'
+# MonadLead u praksi traži base_url i referrer (u formatu https://domen)
+BASE_URL = os.environ.get('BULK_BASE_URL') or 'https://lamena.io'
+REFERRER = os.environ.get('BULK_REFERRER') or 'https://lamena.io/nutra/'
+TZ = ZoneInfo(os.environ.get('BULK_TZ', 'Europe/Belgrade'))
+
+
+def local_now():
+    return datetime.now(TZ).replace(tzinfo=None)
 REQUIRED = ['#', 'Offer', 'offer_id', 'Ime i prezime', 'Telefon', 'Status', 'MonadLead order_id', 'Datum slanja']
 LOG_HEAD = ['Datum i vreme', '#', 'Offer', 'offer_id', 'Ime i prezime', 'Telefon', 'sub_1', 'sub_2',
             'Rezultat', 'HTTP', 'MonadLead order_id', 'Greška', 'Pokrenuto']
@@ -153,13 +162,13 @@ def run_batch(path, limit, offer=None, key=None, dry_run=False, pause=2.0, sourc
         lg.freeze_panes = 'A2'
     lg = wb[LOG]
     rows = pick_rows(ws, col, limit, offer)
-    echo(f'{datetime.now():%Y-%m-%d %H:%M} – za slanje: {len(rows)}' + (' (dry-run)' if dry_run else ''))
+    echo(f'{local_now():%Y-%m-%d %H:%M} – za slanje: {len(rows)}' + (' (dry-run)' if dry_run else ''))
     ok = bad = 0
     for r in rows:
         v = lambda h: ws.cell(r, col[h]).value if h in col else None
         payload = {'api_key': key or 'DRY-RUN', 'name': str(v('Ime i prezime')).strip(),
                    'phone': str(v('Telefon')).strip(), 'offer_id': str(v('offer_id')),
-                   'country_code': v('country_code') or 'RS'}
+                   'country_code': v('country_code') or 'RS', 'base_url': BASE_URL, 'referrer': REFERRER}
         for s in ('sub_1', 'sub_2'):
             if v(s):
                 payload[s] = str(v(s))
@@ -167,7 +176,7 @@ def run_batch(path, limit, offer=None, key=None, dry_run=False, pause=2.0, sourc
             success, status, oid, err = True, None, None, None
         else:
             success, status, oid, err = send(payload)
-            now = datetime.now()
+            now = local_now()
             ws.cell(r, col['Status'], 'Poslato' if success else 'Greška')
             if oid:
                 ws.cell(r, col['MonadLead order_id'], oid)

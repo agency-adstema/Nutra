@@ -40,6 +40,7 @@ STATE = os.path.join(DATA, 'state.json')
 AUTO_WINDOW_H = 3  # automatsko slanje samo u prva 3 sata posle zadatog vremena
 
 lock = threading.Lock()
+flash = []
 job = {'running': False, 'source': None, 'started': None, 'lines': [], 'result': None}
 
 
@@ -303,8 +304,11 @@ class H(BaseHTTPRequestHandler):
         return p[len(BASE):] or '/'
 
     def _redirect(self, msg=None, kind='ok'):
-        self._msg = (msg, kind)
-        self._send(200, page(msg, kind))
+        flash[:] = [(msg, kind)] if msg else []
+        self.send_response(303)
+        self.send_header('Location', BASE + '/')
+        self.send_header('Content-Length', '0')
+        self.end_headers()
 
     def do_GET(self):
         r = self._route()
@@ -313,7 +317,8 @@ class H(BaseHTTPRequestHandler):
         if not self._auth():
             return
         if r == '/':
-            return self._send(200, page())
+            msg, kind = flash.pop() if flash else (None, 'ok')
+            return self._send(200, page(msg, kind))
         if r == '/download':
             if not os.path.exists(LIST):
                 return self._send(404, 'Nema liste', 'text/plain')
@@ -330,7 +335,8 @@ class H(BaseHTTPRequestHandler):
                 per = None
             return self._send(200, json.dumps({'running': job['running'], 'auto': st['auto'], 'per_offer': per},
                                               ensure_ascii=False), 'application/json')
-        return self._send(404, 'Not found', 'text/plain')
+        # npr. osvežen /send posle slanja – vrati na glavnu stranu
+        self.send_response(303); self.send_header('Location', BASE + '/'); self.send_header('Content-Length', '0'); self.end_headers()
 
     def do_POST(self):
         r = self._route()
