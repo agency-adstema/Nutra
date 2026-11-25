@@ -65,9 +65,15 @@ code=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:$PORT/nutra/api/)
 [ "$code" = 401 ] && echo "Servis radi (traži lozinku – OK)." || echo "Upozorenje: lokalni test vratio $code"
 
 say "Nginx"
-VHOST=$(grep -lE 'server_name[^;]*lamena\.io' /etc/nginx/sites-enabled/* /etc/nginx/conf.d/*.conf 2>/dev/null | head -1 || true)
+VHOST="${VHOST:-}"
 if [ -z "$VHOST" ]; then
-  echo "Nisam našao nginx vhost za lamena.io. Ubaci ručno: $TMP/src/deploy/bulk-orders/nginx-nutra-api.conf"; exit 1
+  # tačno "lamena.io" (ne admin.lamena.io); prednost ima fajl koji već služi /nutra/
+  CANDS=$(grep -lE 'server_name[^;]*[[:space:]]lamena\.io([[:space:];]|$)' /etc/nginx/sites-enabled/* /etc/nginx/conf.d/*.conf 2>/dev/null || true)
+  for f in $CANDS; do grep -q '/nutra' "$f" && { VHOST=$f; break; }; done
+  [ -z "$VHOST" ] && VHOST=$(echo "$CANDS" | head -1)
+fi
+if [ -z "$VHOST" ]; then
+  echo "Nisam našao nginx vhost za lamena.io. Pokreni ponovo sa: VHOST=/etc/nginx/sites-available/<fajl> bash $0"; exit 1
 fi
 VHOST=$(readlink -f "$VHOST"); echo "vhost: $VHOST"
 if grep -q 'location \^~ /nutra/api/' "$VHOST"; then
