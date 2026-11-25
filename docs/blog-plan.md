@@ -16,9 +16,9 @@ Linkovi: `md:` = naša stranica proizvoda (`/zglobovi-i-bolovi/nautubone/`, `/zg
 | 4 | 25.11. | čaj za prostatu | Čaj za prostatu: vrbovica, kopriva i šta kažu dokazi | prostata-i-musko-zdravlje | prostamid, pro-caps | objavljeno | caj-za-prostatu |
 | 5 | 25.11. | čaj za šećer | Čaj za šećer u krvi: koje biljke se koriste | secer-u-krvi | diatea, dia-drops | objavljeno | caj-za-secer |
 | 6 | 25.11. | krema za vene | Krema za vene i kapilare: kako izabrati | vene-i-cirkulacija | varcolex, varcosin | objavljeno | krema-za-vene |
-| 7 | 26.11. | čaj za mršavljenje | Čaj za mršavljenje: šta sadrži i šta realno radi | mrsavljenje-i-metabolizam | goslim, easy-slim, keto-tea | planirano | |
-| 8 | 26.11. | gljivice na noktima nogu lečenje | Gljivice na noktima nogu: lečenje i šta pomaže | koza-kosa-i-nokti | mikoherb, mikotea | planirano | |
-| 9 | 26.11. | kapsule za sluh | Kapsule za sluh: šta sadrže i da li pomažu | — | u-caps | planirano | |
+| 7 | 26.11. | čaj za mršavljenje | Čaj za mršavljenje: šta sadrži i šta realno radi | mrsavljenje-i-metabolizam | goslim, easy-slim, keto-tea | objavljeno | caj-za-mrsavljenje |
+| 8 | 26.11. | gljivice na noktima nogu lečenje | Gljivice na noktima nogu: lečenje i šta pomaže | koza-kosa-i-nokti | mikoherb, mikotea | objavljeno | gljivice-na-noktima-nogu-lecenje |
+| 9 | 26.11. | kapsule za sluh | Kapsule za sluh: šta sadrže i da li pomažu | — | u-caps | objavljeno | kapsule-za-sluh |
 | 10 | 27.11. | crevni paraziti kod ljudi simptomi | Crevni paraziti kod ljudi: simptomi i analiza | paraziti-i-detoks | md:parazol | planirano | |
 | 11 | 27.11. | bol u kolenu sa unutrašnje strane | Bol u kolenu sa unutrašnje strane: uzroci i šta raditi | zglobovi-i-bolovi | md:nautubone | planirano | |
 | 12 | 27.11. | visok pritisak simptomi | Visok pritisak: simptomi i kada hitno lekaru | srce-i-pritisak | hypertea | planirano | |
