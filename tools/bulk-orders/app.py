@@ -243,7 +243,8 @@ def page(msg=None, kind='ok'):
   </form></div>
 </div>
 <div class=card><h2>Stanje liste</h2>{'<table><tr><th>Offer</th><th class=n>Za slanje</th><th class=n>Poslato</th><th class=n>Greška</th><th class=n>Ostalo</th></tr>' + rows + '</table>' if has else '<p>Još nema liste.</p>'}
- <p style="margin-top:14px"><a class="btn sec" href="{BASE}/download">Preuzmi Excel sa beleškama</a></p></div>
+ <p style="margin-top:14px"><a class="btn sec" href="{BASE}/download">Preuzmi Excel sa beleškama</a>
+ {f'<form method=post action="{BASE}/retry" style="display:inline"><button class="btn sec">Vrati greške u &quot;Za slanje&quot; ({totals["Greška"]})</button></form>' if totals['Greška'] and not job['running'] else ''}</p></div>
 <div class=card><h2>Učitaj Excel listu</h2>
  <form method=post action="{BASE}/upload" enctype="multipart/form-data">
   <input type=file name=file accept=".xlsx" required> <button class=btn>Učitaj</button>
@@ -354,6 +355,12 @@ class H(BaseHTTPRequestHandler):
             dry = f.get('dry_run') == '1'
             err = start_job(limit, f.get('offer') or None, dry, 'probno' if dry else 'ručno')
             return self._redirect(err or f'Pokrenuto slanje: {limit}' + (' (probno)' if dry else ''), 'err' if err else 'ok')
+        if r == '/retry':
+            if job['running'] or not os.path.exists(LIST):
+                return self._redirect('Ne može sada (slanje u toku ili nema liste).', 'err')
+            with lock:
+                n = po.reset_errors(LIST)
+            return self._redirect(f'Vraćeno u "Za slanje": {n}')
         if r == '/auto':
             st = load_state()
             try:

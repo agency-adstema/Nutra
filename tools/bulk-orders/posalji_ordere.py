@@ -40,7 +40,8 @@ def load_key(env_file=None, var='MONADLEAD_API_KEY_CATALOG'):
 
 def send(payload, timeout=15):
     req = urllib.request.Request(API_URL, data=json.dumps(payload).encode(), method='POST',
-                                 headers={'Content-Type': 'application/json', 'Accept': 'application/json'})
+                                 headers={'Content-Type': 'application/json', 'Accept': 'application/json',
+                                          'User-Agent': 'MojaZdravica-bulk/1.0 (+https://lamena.io/nutra/)'})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             status, text = r.status, r.read().decode('utf-8', 'replace')
@@ -121,6 +122,20 @@ def pick_rows(ws, col, limit, offer):
     return sorted(rows)[:limit]
 
 
+def reset_errors(path):
+    """Vraća redove sa Status 'Greška' na 'Za slanje' (dnevnik ostaje). Vraća broj."""
+    wb = load_workbook(path)
+    ws = wb[SHEET]
+    col = {ws.cell(1, j).value: j for j in range(1, ws.max_column + 1)}
+    n = 0
+    for r in range(2, ws.max_row + 1):
+        if ws.cell(r, col['Status']).value == 'Greška':
+            ws.cell(r, col['Status'], 'Za slanje'); ws.cell(r, col['Datum slanja'], None); n += 1
+    if n:
+        wb.save(path)
+    return n
+
+
 def run_batch(path, limit, offer=None, key=None, dry_run=False, pause=2.0, source='ručno', echo=print):
     """Pošalje do `limit` ordera i upiše rezultate u Excel. Vraća dict sa brojem poslatih i grešaka."""
     if not dry_run and not key:
@@ -164,7 +179,7 @@ def run_batch(path, limit, offer=None, key=None, dry_run=False, pause=2.0, sourc
         tel = str(v('Telefon'))
         echo(f"  #{v('#')} {v('Offer')} {tel[:7]}*** → " + (f'OK {oid}' if success else f'GREŠKA {status} {err}'))
         if not success and status in (401, 403):
-            echo('Ključ odbijen – prekidam.')
+            echo('MonadLead je odbio zahtev (401/403) – prekidam; ostali redovi ostaju "Za slanje".')
             break
         if not dry_run:
             time.sleep(pause)
