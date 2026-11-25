@@ -1,0 +1,32 @@
+# /etc/systemd/system/nutra-bulk.service – stranica /nutra/api za slanje baze na MonadLead.
+# Tajne NISU ovde: /etc/nutra/bulk.env (BULK_ADMIN_PASSWORD, MONADLEAD_API_KEY_CATALOG ako nije u backend.env).
+[Unit]
+Description=Nutra bulk orders page (/nutra/api)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nutra-orders
+Group=nutra-orders
+WorkingDirectory=/opt/nutra-bulk
+Environment=BULK_HOST=127.0.0.1
+Environment=BULK_PORT=8790
+Environment=BULK_BASE=/nutra/api
+Environment=BULK_DATA_DIR=/var/lib/nutra-bulk
+Environment=BULK_TZ=Europe/Belgrade
+EnvironmentFile=-/etc/nutra/backend.env
+EnvironmentFile=/etc/nutra/bulk.env
+ExecStart=/usr/bin/python3 /opt/nutra-bulk/app.py
+Restart=on-failure
+RestartSec=5
+StateDirectory=nutra-bulk
+StateDirectoryMode=0700
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+RestrictSUIDSGID=true
+
+[Install]
+WantedBy=multi-user.target
