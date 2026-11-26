@@ -78,7 +78,7 @@ Kliničkih studija koje bi pokazale da gavez ili arnika pomažu kod hronične ar
 
 ## Krema za zglobove kolena: kako da izaberete
 
-Prvo odredite šta vas boli i otkad.
+Prvo odredite šta vas boli i otkad. Ako boli unutrašnja strana kolena, mogući uzroci su opisani u vodiču [bol u kolenu sa unutrašnje strane](/vodici/bol-u-kolenu-sa-unutrasnje-strane/).
 
 1. **Sveže uganuće, udarac ili modrica.** Hladna obloga prvih dana, odmor, pa gel sa lekom ili biljna krema sa gavezom ili arnikom.
 2. **Hroničan bol u kolenu, posebno posle 45. godine.** To je često artroza. Najviše dokaza imaju gel sa diklofenakom ili ketoprofenom i redovne vežbe za mišiće butine.

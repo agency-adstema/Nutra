@@ -112,4 +112,4 @@ Ostale proizvode za ovu oblast nađite u kategoriji [srce i pritisak](/srce-i-pr
 
 Pozovite hitnu pomoć (194) ako je pritisak vrlo visok, na primer 180/120 ili više, uz bol u grudima, otežano disanje, jaku glavobolju, zamućen vid, slabost ili utrnulost jedne strane tela ili otežan govor. To mogu biti znaci hipertenzivne krize ili moždanog udara, i tu nema mesta za čaj.
 
-Javite se izabranom lekaru i ako vam je pritisak više puta 140/90 ili viši, čak i bez ikakvih tegoba.
+Javite se izabranom lekaru i ako vam je pritisak više puta 140/90 ili viši, čak i bez ikakvih tegoba. Koje simptome daje visok pritisak i kako da ga pravilno merite kod kuće, objasnili smo u vodiču [visok pritisak: simptomi i kada hitno lekaru](/vodici/visok-pritisak-simptomi/).

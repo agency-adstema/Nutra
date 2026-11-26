@@ -93,7 +93,7 @@ Reklame često nabrajaju opšte znake kao što su umor, nadimanje i glad za slat
 3. **Vidljivi crvi ili delovi crva u stolici.**
 4. **Neobjašnjiv gubitak težine** uz tegobe sa stomakom.
 
-Ako imate neki od ovih znakova, sledeći korak je analiza, a ne kura čaja. Za više detalja pogledajte i druge tekstove iz kategorije [paraziti i detoks](/paraziti-i-detoks/).
+Ako imate neki od ovih znakova, sledeći korak je analiza, a ne kura čaja. Simptome po vrsti parazita i kako izgleda analiza opisali smo u vodiču [crevni paraziti kod ljudi: simptomi i analiza](/vodici/crevni-paraziti-kod-ljudi-simptomi/). Za više detalja pogledajte i druge tekstove iz kategorije [paraziti i detoks](/paraziti-i-detoks/).
 
 ## Kako se dokazuju paraziti
 

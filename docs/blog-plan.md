@@ -19,9 +19,9 @@ Linkovi: `md:` = naša stranica proizvoda (`/zglobovi-i-bolovi/nautubone/`, `/zg
 | 7 | 26.11. | čaj za mršavljenje | Čaj za mršavljenje: šta sadrži i šta realno radi | mrsavljenje-i-metabolizam | goslim, easy-slim, keto-tea | objavljeno | caj-za-mrsavljenje |
 | 8 | 26.11. | gljivice na noktima nogu lečenje | Gljivice na noktima nogu: lečenje i šta pomaže | koza-kosa-i-nokti | mikoherb, mikotea | objavljeno | gljivice-na-noktima-nogu-lecenje |
 | 9 | 26.11. | kapsule za sluh | Kapsule za sluh: šta sadrže i da li pomažu | — | u-caps | objavljeno | kapsule-za-sluh |
-| 10 | 27.11. | crevni paraziti kod ljudi simptomi | Crevni paraziti kod ljudi: simptomi i analiza | paraziti-i-detoks | md:parazol | planirano | |
-| 11 | 27.11. | bol u kolenu sa unutrašnje strane | Bol u kolenu sa unutrašnje strane: uzroci i šta raditi | zglobovi-i-bolovi | md:nautubone | planirano | |
-| 12 | 27.11. | visok pritisak simptomi | Visok pritisak: simptomi i kada hitno lekaru | srce-i-pritisak | hypertea | planirano | |
+| 10 | 27.11. | crevni paraziti kod ljudi simptomi | Crevni paraziti kod ljudi: simptomi i analiza | paraziti-i-detoks | md:parazol | objavljeno | crevni-paraziti-kod-ljudi-simptomi |
+| 11 | 27.11. | bol u kolenu sa unutrašnje strane | Bol u kolenu sa unutrašnje strane: uzroci i šta raditi | zglobovi-i-bolovi | md:nautubone | objavljeno | bol-u-kolenu-sa-unutrasnje-strane |
+| 12 | 27.11. | visok pritisak simptomi | Visok pritisak: simptomi i kada hitno lekaru | srce-i-pritisak | hypertea | objavljeno | visok-pritisak-simptomi |
 | 13 | 28.11. | uvećana prostata simptomi | Uvećana prostata: simptomi i pregledi | prostata-i-musko-zdravlje | prostamid | planirano | |
 | 14 | 28.11. | šećer u krvi normalne vrednosti | Šećer u krvi: normalne vrednosti natašte i posle jela | secer-u-krvi | dia-caps | planirano | |
 | 15 | 28.11. | proširene vene na nogama lečenje | Proširene vene na nogama: lečenje i prevencija | vene-i-cirkulacija | varcolex | planirano | |
