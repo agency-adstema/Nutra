@@ -104,7 +104,11 @@ def scheduler():
                         and not job['running']:
                     st['last_auto_date'] = today
                     save_state(st)
-                    err = start_job(int(st['daily_limit']), None, False, 'automatski')
+                    left = int(st['daily_limit']) - po.sent_today_count(LIST)
+                    if left <= 0:
+                        print(f'[auto] danas je već poslato {st["daily_limit"]}+ – preskačem', flush=True)
+                        continue
+                    err = start_job(left, None, False, 'automatski')
                     if err:
                         print(f'[auto] {err}', flush=True)
         except Exception:
@@ -190,6 +194,10 @@ def page(msg=None, kind='ok'):
         per, log = {}, []
     totals = {k: sum(d[k] for d in per.values()) for k in ('Za slanje', 'Poslato', 'Greška', 'ostalo')}
     refresh = '<meta http-equiv="refresh" content="5">' if job['running'] else ''
+    try:
+        sent_today = po.sent_today_count(LIST) if has else 0
+    except Exception:
+        sent_today = '?'
     t = now()
     hh, mm = map(int, st['send_time'].split(':'))
     nxt = t.replace(hour=hh, minute=mm, second=0, microsecond=0)
@@ -223,7 +231,7 @@ def page(msg=None, kind='ok'):
  <div class=card><h2>Automatsko slanje</h2>
   <p>{'<span class="pill on">UKLJUČENO</span>' if st['auto'] else '<span class="pill off">ISKLJUČENO</span>'}
    &nbsp;{int(st['daily_limit'])} ordera svaki dan u {esc(st['send_time'])}</p>
-  <p class=small>Sledeće: {nxt:%d.%m.%Y %H:%M} · poslednje automatsko: {esc(st.get('last_auto_date') or '—')}
+  <p class=small>Danas poslato: <b>{sent_today}</b> / {int(st['daily_limit'])} (ručno + automatski; automatsko šalje samo ostatak do limita)<br>Sledeće: {nxt:%d.%m.%Y %H:%M} · poslednje automatsko: {esc(st.get('last_auto_date') or '—')}
    · ostalo za slanje ≈ {days_left} dana</p>
   <form method=post action="{BASE}/auto">
    <label>Ordera dnevno <input name=daily_limit type=number min=1 max=1000 value="{int(st['daily_limit'])}" style="width:90px"></label>

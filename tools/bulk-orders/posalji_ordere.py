@@ -110,10 +110,17 @@ def summary(path):
 
 def pick_rows(ws, col, limit, offer):
     """Sledeći redovi sa Status 'Za slanje'. Bez offera: dnevni broj se deli na offere srazmerno onome što je ostalo."""
-    pending = {}
+    today = local_now().date()
+    sent_today = set()
     for r in range(2, ws.max_row + 1):
+        d = ws.cell(r, col['Datum slanja']).value
+        if ws.cell(r, col['Status']).value == 'Poslato' and hasattr(d, 'date') and d.date() == today:
+            sent_today.add(str(ws.cell(r, col['Telefon']).value))
+    pending, seen = {}, set(sent_today)
+    for r in range(2, ws.max_row + 1):
+        tel = str(ws.cell(r, col['Telefon']).value)
         if ws.cell(r, col['Status']).value == 'Za slanje' and ws.cell(r, col['Telefon']).value \
-                and ws.cell(r, col['Ime i prezime']).value:
+                and ws.cell(r, col['Ime i prezime']).value and tel not in sent_today:
             o = ws.cell(r, col['Offer']).value
             if offer and o != offer:
                 continue
@@ -127,8 +134,31 @@ def pick_rows(ws, col, limit, offer):
             break
         if quota[o] < len(pending[o]):
             quota[o] += 1
-    rows = [r for o, v in pending.items() for r in v[:quota[o]]]
+    rows = []
+    for o, v in pending.items():
+        k = 0
+        for r in v:
+            if k >= quota[o]:
+                break
+            tel = str(ws.cell(r, col['Telefon']).value)
+            if tel in seen:
+                continue  # isti broj najviše jednom dnevno (drugi offer ide drugog dana)
+            seen.add(tel); rows.append(r); k += 1
     return sorted(rows)[:limit]
+
+
+def sent_today_count(path):
+    """Koliko je ordera danas već poslato (ručno + automatski), po dnevniku."""
+    wb = load_workbook(path, read_only=True)
+    if LOG not in wb.sheetnames:
+        return 0
+    rows = wb[LOG].iter_rows(values_only=True)
+    h = list(next(rows, []) or [])
+    if 'Rezultat' not in h:
+        return 0
+    it, ir = h.index('Datum i vreme'), h.index('Rezultat')
+    today = local_now().strftime('%d.%m.%Y')
+    return sum(1 for r in rows if r and r[ir] == 'Poslato' and str(r[it] or '').startswith(today))
 
 
 def reset_errors(path):
