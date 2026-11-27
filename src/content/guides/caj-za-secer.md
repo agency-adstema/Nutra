@@ -132,6 +132,6 @@ Ostale proizvode za ovu oblast nađite u kategoriji [šećer u krvi](/secer-u-kr
 
 ## Kada lekaru
 
-Prema SZO, znaci dijabetesa su jaka žeđ, češće mokrenje, zamućen vid, umor i gubitak težine bez namere. Kod dijabetesa tipa 2 simptomi mogu godinama da budu blagi. Ako primetite ove znake, javite se izabranom lekaru i uradite analizu šećera u krvi.
+Prema SZO, znaci dijabetesa su jaka žeđ, češće mokrenje, zamućen vid, umor i gubitak težine bez namere. Kod dijabetesa tipa 2 simptomi mogu godinama da budu blagi. Ako primetite ove znake, javite se izabranom lekaru i uradite analizu šećera u krvi. Kako da pročitate nalaz, pogledajte u vodiču [šećer u krvi: normalne vrednosti natašte i posle jela](/vodici/secer-u-krvi-normalne-vrednosti/).
 
 Ako već imate dijabetes, javite se lekaru i ako su vam vrednosti šećera stalno van ciljnih, uprkos terapiji, ili ako primetite nove tegobe posle uvođenja nekog čaja ili dodatka.

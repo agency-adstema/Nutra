@@ -22,9 +22,9 @@ Linkovi: `md:` = naša stranica proizvoda (`/zglobovi-i-bolovi/nautubone/`, `/zg
 | 10 | 27.11. | crevni paraziti kod ljudi simptomi | Crevni paraziti kod ljudi: simptomi i analiza | paraziti-i-detoks | md:parazol | objavljeno | crevni-paraziti-kod-ljudi-simptomi |
 | 11 | 27.11. | bol u kolenu sa unutrašnje strane | Bol u kolenu sa unutrašnje strane: uzroci i šta raditi | zglobovi-i-bolovi | md:nautubone | objavljeno | bol-u-kolenu-sa-unutrasnje-strane |
 | 12 | 27.11. | visok pritisak simptomi | Visok pritisak: simptomi i kada hitno lekaru | srce-i-pritisak | hypertea | objavljeno | visok-pritisak-simptomi |
-| 13 | 28.11. | uvećana prostata simptomi | Uvećana prostata: simptomi i pregledi | prostata-i-musko-zdravlje | prostamid | planirano | |
-| 14 | 28.11. | šećer u krvi normalne vrednosti | Šećer u krvi: normalne vrednosti natašte i posle jela | secer-u-krvi | dia-caps | planirano | |
-| 15 | 28.11. | proširene vene na nogama lečenje | Proširene vene na nogama: lečenje i prevencija | vene-i-cirkulacija | varcolex | planirano | |
+| 13 | 28.11. | uvećana prostata simptomi | Uvećana prostata: simptomi i pregledi | prostata-i-musko-zdravlje | prostamid | objavljeno | uvecana-prostata-simptomi |
+| 14 | 28.11. | šećer u krvi normalne vrednosti | Šećer u krvi: normalne vrednosti natašte i posle jela | secer-u-krvi | dia-caps | objavljeno | secer-u-krvi-normalne-vrednosti |
+| 15 | 28.11. | proširene vene na nogama lečenje | Proširene vene na nogama: lečenje i prevencija | vene-i-cirkulacija | varcolex | objavljeno | prosirene-vene-na-nogama-lecenje |
 | 16 | 29.11. | nadimanje stomaka i gasovi | Nadimanje stomaka i gasovi: uzroci i šta pomaže | — | goslim, md:parazol | planirano | |
 | 17 | 29.11. | zujanje u ušima uzrok | Zujanje u ušima: uzroci i kada lekaru | — | u-caps | planirano | |
 | 18 | 29.11. | akne kod odraslih | Akne kod odraslih: uzroci i nega kože | koza-kosa-i-nokti | acnosin | planirano | |

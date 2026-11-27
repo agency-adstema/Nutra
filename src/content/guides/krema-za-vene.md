@@ -118,6 +118,6 @@ Oba proizvoda sadrže parabene i eterična ulja, a udeo ekstrakta kestena nije n
 
 ## Kada lekaru
 
-Prema MedlinePlus-u, javite se lekaru ako su proširene vene bolne, ako se pogoršavaju ili se ne popravljaju uz samopomoć, i ako imate rane na nogama koje ne zarastaju.
+Prema MedlinePlus-u, javite se lekaru ako su proširene vene bolne, ako se pogoršavaju ili se ne popravljaju uz samopomoć, i ako imate rane na nogama koje ne zarastaju. Kako se proširene vene leče zahvatima i kada imaju smisla kompresivne čarape, pročitajte u vodiču [proširene vene na nogama: lečenje i prevencija](/vodici/prosirene-vene-na-nogama-lecenje/).
 
 Hitno idite na pregled ako primetite nagli porast bola ili otoka, crvenilo noge, toplotu ili temperaturu, posebno ako je otečena samo jedna noga. To može biti znak tromboze, i tu nema mesta za kremu.

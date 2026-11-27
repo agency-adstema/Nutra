@@ -137,3 +137,5 @@ Prema MedlinePlus-u, odmah se javite lekaru ako:
 EMA u monografiji korena koprive kao razloge za javljanje lekaru navodi i bolno mokrenje, grčeve i zadržavanje mokraće, kada ne možete da se pomokrite.
 
 Na pregled idite i ako imate osećaj da bešika nije prazna posle mokrenja, ako pijete lekove koji mogu da utiču na mokrenje, ili ako mere koje ste sami preduzeli nisu pomogle posle dva meseca. Urolog će proceniti da li su tegobe od prostate ili od nečeg drugog i da li je potrebna terapija.
+
+Koje preglede urolog može da zatraži i šta znači nalaz PSA, objasnili smo u vodiču [uvećana prostata: simptomi, pregledi i kada lekaru](/vodici/uvecana-prostata-simptomi/).
