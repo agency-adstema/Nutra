@@ -10,6 +10,9 @@ import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import Analytics from '../components/Analytics.astro';
 import defaultOg from '../assets/site/og-default.png';
+// Preload naslovnog i osnovnog fonta (latinica) da se tekst ne pomera kad font stigne (CLS na mobilnom).
+import frauncesLatin from '@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2?url';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -42,12 +45,15 @@ const {
   bodyClass = '',
 } = Astro.props;
 
-const siteUrl = (Astro.site?.toString() ?? 'https://biljnikompas.rs/').replace(/\/$/, '');
+const siteUrl = (Astro.site?.toString() ?? 'https://zdravica.rs/').replace(/\/$/, '');
 const canonical = new URL(path, `${siteUrl}/`).toString();
 const isProduction = PUBLIC_SITE_ENV === 'production';
 const robots = !isProduction || noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1';
 
-const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+// Google seče naslove preko ~65 znakova; tada izostavljamo „| Moja Zdravica“ da se vidi ključni deo.
+const MAX_TITLE = 65;
+const withBrand = `${title} | ${site.name}`;
+const fullTitle = title.includes(site.name) || withBrand.length > MAX_TITLE ? title : withBrand;
 
 let ogUrl: string;
 try {
@@ -80,6 +86,8 @@ const graph = {
     <meta name="theme-color" content="#1f4d2b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap.xml" />
+    <link rel="preload" href={frauncesLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
 
     <meta property="og:locale" content="sr_RS" />
     <meta property="og:site_name" content={site.name} />

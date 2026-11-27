@@ -8,7 +8,7 @@ order: 1
 updatedAt: 2026-11-22
 seo:
   title: Preparati za zglobove i mišiće – sastav, upotreba, cene
-  description: Pregled biljnih gelova, krema i dodataka ishrani za zglobove i mišiće dostupnih u Srbiji. Sastav, način upotrebe, upozorenja i informacije o cenama kada su potvrđene.
+  description: Pregled biljnih gelova, krema i dodataka ishrani za zglobove i mišiće dostupnih u Srbiji. Sastav, upotreba, upozorenja i cene kada su potvrđene.
 faq:
   - q: Da li biljni gel za zglobove može da zameni lek?
     a: Ne. Kozmetički i biljni gelovi nisu lekovi. Ako bol traje duže od nekoliko dana, ako je zglob otečen, crven ili topao, ili ako je bol posledica povrede, obratite se lekaru.

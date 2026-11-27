@@ -55,7 +55,13 @@ export interface ProductSchemaInput {
   prices: number[];
 }
 
-export function productSchema(p: ProductSchemaInput): Json {
+/**
+ * Product šema samo kada imamo potvrđenu cenu (offers). Google za Product traži
+ * offers, review ili aggregateRating; bez toga Search Console prijavljuje grešku,
+ * a ocene i recenzije ne izmišljamo. Bez potvrđene cene vraća null.
+ */
+export function productSchema(p: ProductSchemaInput): Json | null {
+  if (!(p.priceStatus === 'verified' && p.priceCheckedAt && p.prices.length > 0)) return null;
   const node: Json = {
     '@type': 'Product',
     '@id': `${p.url}#product`,

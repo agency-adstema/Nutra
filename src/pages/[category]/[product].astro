@@ -60,8 +60,7 @@ const quoted = d.quotedReviews
     : null;
 const heroImg = await getImage({ src: d.heroImage, width: 1104, format: 'jpg' });
 
-const jsonLd: Record<string, unknown>[] = [
-  productSchema({
+const productLd = productSchema({
     url: `${siteUrl}${path}`,
     name: d.name,
     description: d.shortDescription,
@@ -71,8 +70,8 @@ const jsonLd: Record<string, unknown>[] = [
     priceCheckedAt: d.priceCheckedAt,
     currency: d.currency,
     prices: d.packages.map((p) => p.price).filter((p): p is number => typeof p === 'number'),
-  }),
-];
+});
+const jsonLd: Record<string, unknown>[] = productLd ? [productLd] : [];
 if (d.faqSchema && d.faq.length) jsonLd.push(faqSchema(d.faq));
 
 const tabs = [
