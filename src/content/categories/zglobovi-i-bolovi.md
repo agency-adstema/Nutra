@@ -5,7 +5,6 @@ market: RS
 shortDescription: Gelovi, kreme i dodaci ishrani za zglobove i mišiće — sastav, upotreba i upozorenja.
 icon: joint
 order: 1
-demo: true
 updatedAt: 2026-11-22
 seo:
   title: Preparati za zglobove i mišiće – sastav, upotreba, cene

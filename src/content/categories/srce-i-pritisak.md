@@ -5,7 +5,6 @@ market: RS
 shortDescription: "Preparati koji se prodaju za srce i krvni pritisak — šta je dokazano i kada je potreban lekar."
 icon: heart-pulse
 order: 3
-demo: true
 updatedAt: 2026-11-23
 seo:
   title: "Preparati za srce i krvni pritisak – činjenice i upozorenja"

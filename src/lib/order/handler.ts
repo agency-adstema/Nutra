@@ -100,7 +100,7 @@ function orderPageUrl(...candidates: Array<string | null | undefined>): string {
       /* sledeći kandidat */
     }
   }
-  return 'https://lamena.io/nutra/';
+  return 'https://zdravica.rs/';
 }
 
 export function createOrderHandler(deps: OrderHandlerDeps) {

@@ -16,7 +16,6 @@ highlights:
     label: Plaćanje pouzećem
 featured: true
 sortOrder: 3
-demo: true
 publishedAt: 2026-11-22
 updatedAt: 2026-11-22
 

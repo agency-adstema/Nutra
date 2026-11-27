@@ -5,7 +5,6 @@ market: RS
 shortDescription: "Dodaci ishrani za oči i vid — sastojci, šta je provereno i kada na pregled kod oftalmologa."
 icon: eye
 order: 7
-demo: true
 updatedAt: 2026-11-23
 seo:
   title: "Preparati za vid i oči – sastojci i šta je provereno"

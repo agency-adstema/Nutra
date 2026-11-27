@@ -5,7 +5,6 @@ market: RS
 shortDescription: Biljni preparati koji se reklamiraju za „čišćenje“ organizma — šta je provereno, a šta nije.
 icon: detox
 order: 2
-demo: true
 updatedAt: 2026-11-22
 seo:
   title: Preparati protiv parazita i za detoks – činjenice i upozorenja

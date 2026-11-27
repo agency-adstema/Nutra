@@ -3,7 +3,9 @@ import PageLayout from '../layouts/PageLayout.astro';
 import { site } from '../config/site';
 const op = site.operator;
 const consent = site.consentMode === 'checkbox';
-const operatorConfigured = !op.companyName.startsWith('[POPUNITI') && !op.email.startsWith('[POPUNITI');
+const filled = (v?: string) => !!v && !v.startsWith('[POPUNITI');
+const hasCompany = filled(op.companyName);
+const contactEmail = filled(op.email) ? op.email : '';
 ---
 
 <PageLayout
@@ -20,12 +22,12 @@ const operatorConfigured = !op.companyName.startsWith('[POPUNITI') && !op.email.
 
   <h2>1. Rukovalac</h2>
   <p>
-    {operatorConfigured ? (
-      <>{op.companyName}, {op.address}, MB {op.registrationNumber}, PIB {op.taxId}.
-      Kontakt: <a href={`mailto:${op.email}`}>{op.email}</a>.</>
+    {hasCompany ? (
+      <>{op.companyName}{op.address && <>, {op.address}</>}{op.registrationNumber && <>, MB {op.registrationNumber}</>}{op.taxId && <>, PIB {op.taxId}</>}.</>
     ) : (
-      <>Podaci o rukovaocu i kontakt za zaštitu podataka biće objavljeni pre početka prijema porudžbina.</>
+      <>Rukovalac je operater sajta {site.name} (zdravica.rs), koji sajt vodi kao affiliate partner.</>
     )}
+    {contactEmail && <> Kontakt za pitanja o podacima: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</>}
   </p>
 
   <h2>2. Koje podatke obrađujemo</h2>
@@ -48,22 +50,23 @@ const operatorConfigured = !op.companyName.startsWith('[POPUNITI') && !op.email.
 
   <h2>4. Kome prosleđujemo podatke</h2>
   <p>
-    Kada poručivanje bude aktivno, podaci iz porudžbine prosleđivaće se partneru za prijem porudžbina,
-    prodavcu proizvoda i njegovom call centru radi potvrde i isporuke. Podatke obrađuju i pružaoci hosting usluga.
-    Identitet primalaca, eventualni međunarodni prenosi i pravni osnov biće objavljeni pre aktiviranja poručivanja.
+    Podaci iz porudžbine prosleđuju se partnerskoj mreži {site.orderProcessing.networkName} i, preko nje, prodavcu
+    proizvoda i njegovom call centru, koji vas kontaktiraju radi potvrde i isporuke. Podatke tehnički obrađuje i
+    pružalac usluge hostinga na kom radi sajt. Podatke ne prodajemo i ne koristimo za reklamiranje.
   </p>
 
   <h2>5. Koliko dugo čuvamo podatke</h2>
   <p>
     Na našem serveru ne čuvamo bazu porudžbina — podaci se prosleđuju i ne zadržavaju, osim heširanih (nečitljivih) oznaka
     potrebnih za sprečavanje duplih porudžbina, koje se brišu automatski u roku od 30 minuta. Tehnički logovi ne sadrže
-    ime ni broj telefona. Rokovi čuvanja kod primaoca i prodavca biće objavljeni pre početka prijema porudžbina.
+    ime ni broj telefona. Koliko dugo podatke čuvaju partnerska mreža i prodavac određuju njihove politike privatnosti;
+    na vaš zahtev pomoći ćemo da ih kontaktirate.
   </p>
 
   <h2>6. Vaša prava</h2>
   <p>
     Imate pravo na pristup, ispravku, brisanje, ograničenje obrade, prenosivost podataka, prigovor i povlačenje pristanka
-    (bez uticaja na zakonitost ranije obrade). {operatorConfigured ? <>Zahtev pošaljite na <a href={`mailto:${op.email}`}>{op.email}</a>.</> : <>Kontakt za podnošenje zahteva biće objavljen pre početka prijema porudžbina.</>} Imate pravo i da podnesete pritužbu
+    (bez uticaja na zakonitost ranije obrade). {contactEmail && <>Zahtev pošaljite na <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</>} Imate pravo i da podnesete pritužbu
     Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti.
   </p>
 

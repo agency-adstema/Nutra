@@ -31,7 +31,8 @@
     "test:seo": "node scripts/seo-check.mjs dist/client",
     "check:prod": "node scripts/production-check.mjs",
     "test:e2e": "node scripts/e2e-order.mjs",
-    "mock:monadlead": "node scripts/mock-monadlead.mjs"
+    "mock:monadlead": "node scripts/mock-monadlead.mjs",
+    "build:site": "STATIC_PREVIEW=true PUBLIC_STATIC_PREVIEW=true astro build --outDir preview-dist"
   },
   "engines": {
     "node": ">=22.12.0"

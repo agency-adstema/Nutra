@@ -5,7 +5,6 @@ market: RS
 shortDescription: "Preparati za mršavljenje bez magičnih obećanja — sastav, realna očekivanja i rizici."
 icon: weight
 order: 5
-demo: true
 updatedAt: 2026-11-23
 seo:
   title: "Preparati za mršavljenje – sastav, realna očekivanja i rizici"

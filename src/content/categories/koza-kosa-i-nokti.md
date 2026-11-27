@@ -5,7 +5,6 @@ market: RS
 shortDescription: "Preparati za kožu, kosu i nokte — sastav, realna očekivanja i upozorenja."
 icon: sparkles
 order: 9
-demo: true
 updatedAt: 2026-11-23
 seo:
   title: "Preparati za kožu, kosu i nokte – sastav i upozorenja"

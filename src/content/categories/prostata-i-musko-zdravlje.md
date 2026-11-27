@@ -5,7 +5,6 @@ market: RS
 shortDescription: "Preparati za prostatu i muško zdravlje — sastav, upozorenja i kada na pregled kod urologa."
 icon: male
 order: 6
-demo: true
 updatedAt: 2026-11-23
 seo:
   title: "Preparati za prostatu i muško zdravlje – sastav i upozorenja"

@@ -5,7 +5,6 @@ market: RS
 shortDescription: "Dodaci ishrani koji se prodaju za šećer u krvi — sastav, ograničenja i bezbedna upotreba."
 icon: activity
 order: 4
-demo: true
 updatedAt: 2026-11-23
 seo:
   title: "Preparati za šećer u krvi – sastav, ograničenja i upozorenja"

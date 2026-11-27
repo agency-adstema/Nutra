@@ -1,8 +1,8 @@
 /**
  * Glavna konfiguracija sajta.
  * Naziv sajta se menja SAMO ovde (naziv: Moja Zdravica).
- * Polja sa [POPUNITI] moraju biti zamenjena stvarnim podacima pre produkcije —
- * `npm run check:prod` pada dok god postoje.
+ * Sajt vodi fizičko lice kao affiliate partner (nije firma), pa polja za firmu ostaju prazna.
+ * Ako se kasnije registruje firma/preduzetnik, upisati naziv, MB, PIB i adresu.
  */
 export const site = {
   name: 'Moja Zdravica',
@@ -16,12 +16,12 @@ export const site = {
 
   /** Operater sajta — prikazuje se u footeru, pravnim stranicama i schema.org Organization */
   operator: {
-    companyName: '[POPUNITI: pun naziv firme / preduzetnika]',
-    registrationNumber: '[POPUNITI: matični broj]',
-    taxId: '[POPUNITI: PIB]',
-    address: '[POPUNITI: ulica i broj, poštanski broj, mesto]',
+    companyName: '',
+    registrationNumber: '',
+    taxId: '',
+    address: '',
     country: 'Srbija',
-    email: '[POPUNITI: kontakt@domen.rs]',
+    email: 'kontakt@zdravica.rs',
     phone: '' as string, // opciono — ako se doda, prikazuje se kao tel: link (GA4 click_phone)
   },
 

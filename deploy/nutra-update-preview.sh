@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Automatic STATIC Nutra staging updates from the compiled gh-pages branch.
+# Automatske izmene sajta Moja Zdravica (https://zdravica.rs) iz grane gh-pages.
+# Folder /var/www/nutra-preview je root sajta zdravica.rs (deploy/setup-zdravica.sh).
 # Run once with --install to set up /etc/cron.d/nutra-preview-updates.
 # This intentionally never edits Nginx and never enables the MonadLead order API.
 set -Eeuo pipefail
@@ -66,12 +67,13 @@ test "$sha" = "$remote_sha" || {
 
 mkdir -p "$tmp/next"
 rsync -rlt --exclude='.git/' "$tmp/source/" "$tmp/next/"
-if [[ ! -s "$tmp/next/index.html" || ! -s "$tmp/next/robots.txt" ]]; then
+if [[ ! -s "$tmp/next/index.html" || ! -s "$tmp/next/robots.txt" || ! -s "$tmp/next/sitemap.xml" ]]; then
   echo "SAFE STOP: incomplete static build; keeping existing site." >&2
   exit 1
 fi
-if ! grep -qi 'noindex' "$tmp/next/index.html"; then
-  echo "SAFE STOP: build unexpectedly missing noindex; keeping existing staging site." >&2
+# Sajt je na korenu domena zdravica.rs: build mora imati canonical na zdravica.rs
+if ! grep -q 'https://zdravica.rs/' "$tmp/next/index.html"; then
+  echo "SAFE STOP: build is not made for https://zdravica.rs; keeping existing site." >&2
   exit 1
 fi
 
@@ -89,4 +91,4 @@ fi
 
 echo "$(date -u +%FT%TZ) Deployed Nutra gh-pages commit $sha to $DEST"
 echo "Previous version backed up at $backup"
-echo "No Nginx changes; no API orders were activated."
+echo "No Nginx changes."

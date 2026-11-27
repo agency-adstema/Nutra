@@ -1,4 +1,4 @@
-name: Build Nutra staging preview
+name: Build Moja Zdravica (zdravica.rs)
 
 on:
   push:
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   build-and-publish:
-    name: Test, build and publish gh-pages
+    name: Test, build and publish gh-pages (zdravica.rs)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -40,24 +40,30 @@ jobs:
         run: node scripts/catalog-images-webp.mjs
 
 
-      - name: Generate static staging site
-        run: npm run build:static-preview
+      - name: Generate static site for https://zdravica.rs
+        # Sajt je na korenu domena, pa se koriste obične apsolutne putanje (čisti URL-ovi za Google).
+        run: npm run build:site
         env:
-          PUBLIC_SITE_ENV: staging
+          PUBLIC_SITE_ENV: production
           PUBLIC_STATIC_PREVIEW: 'true'
           PUBLIC_MARKET: RS
-          SITE_URL: https://lamena.io
+          SITE_URL: https://zdravica.rs
           ORDER_MODE: test
-          # Forma šalje porudžbine na API na serveru (deploy/install-order-api.sh lamena.io /nutra).
+          # Forma šalje porudžbine na API na serveru (deploy/setup-zdravica.sh, servis nutra-orders).
           # Da li porudžbina zaista ide u MonadLead odlučuje ORDER_MODE u /etc/nutra/backend.env na serveru.
-          PUBLIC_ORDER_ENDPOINT: https://lamena.io/nutra/api/order/
+          PUBLIC_ORDER_ENDPOINT: https://zdravica.rs/api/order/
           PUBLIC_CATALOG_ORDER_SUBMISSIONS: 'true'
 
       - name: Check build output
         run: |
           test -s preview-dist/index.html
           test -s preview-dist/robots.txt
-          grep -qi "noindex" preview-dist/index.html
+          test -s preview-dist/sitemap.xml
+          # produkcija: bez noindex, canonical i sitemap na zdravica.rs
+          ! grep -qi 'name="robots" content="noindex' preview-dist/index.html
+          grep -q '<link rel="canonical" href="https://zdravica.rs/"' preview-dist/index.html
+          grep -q 'Sitemap: https://zdravica.rs/sitemap.xml' preview-dist/robots.txt
+          grep -q '<loc>https://zdravica.rs/' preview-dist/sitemap.xml
           touch preview-dist/.nojekyll
 
       - name: Publish built files to gh-pages

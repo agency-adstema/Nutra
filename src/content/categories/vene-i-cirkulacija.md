@@ -5,7 +5,6 @@ market: RS
 shortDescription: "Gelovi i dodaci ishrani za vene i cirkulaciju — sastav, upotreba i upozorenja."
 icon: waves
 order: 8
-demo: true
 updatedAt: 2026-11-23
 seo:
   title: "Preparati za vene i cirkulaciju – sastav i upozorenja"
