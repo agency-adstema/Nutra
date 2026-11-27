@@ -24,6 +24,8 @@ const categories = defineCollection({
     slug: z.string().regex(/^[a-z0-9-]+$/),
     market: marketEnum.default('RS'),
     shortDescription: z.string(),
+    /** Kratak uvod ispod H1. Ako postoji, ceo tekst kategorije ide u odeljak ispod ponuda. */
+    intro: z.string().optional(),
     icon: z.enum(['joint', 'detox', 'leaf', 'heart', 'heart-pulse', 'activity', 'weight', 'male', 'eye', 'waves', 'sparkles', 'sleep', 'skin']).default('leaf'),
     order: z.number().default(100),
     seo,

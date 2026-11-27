@@ -10,7 +10,7 @@ export const site = {
   logoText: 'Moja Zdravica',
   tagline: 'Prirodni preparati: sastav, upotreba, cene i upozorenja',
   description:
-    'Informativni vodič kroz prirodne preparate u Srbiji: sastav, način upotrebe, upozorenja i cene, uz izvore. Poručivanje uz plaćanje pouzećem.',
+    'Informativni vodič kroz prirodne preparate za Srbiju, Bosnu i Hercegovinu i Hrvatsku: sastav, način upotrebe, upozorenja i informacije o cenama.',
   language: 'sr-Latn',
   defaultMarket: 'RS' as const,
 

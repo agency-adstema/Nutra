@@ -12,6 +12,7 @@ import LeafDecor from '../../components/LeafDecor.astro';
 import { getCategories, getProducts, getGuides, type Category } from '../../lib/content';
 import { reservedSlugs } from '../../config/site';
 import { faqSchema } from '../../lib/seo';
+import { PUBLIC_ORDER_ENDPOINT, PUBLIC_CATALOG_ORDER_SUBMISSIONS } from 'astro:env/client';
 
 export async function getStaticPaths() {
   const categories = await getCategories();
@@ -32,6 +33,9 @@ const guides = (await getGuides()).filter((g) => g.data.category?.id === categor
 const path = `/${d.slug}/`;
 const others = (await getCategories()).filter((c) => c.id !== category.id);
 const catalogOffers = getCatalogOffersForCategory(d.slug).filter((o) => !products.some((p) => p.data.name.toLowerCase() === o.name.toLowerCase()));
+const orderingOn = !!(PUBLIC_ORDER_ENDPOINT && PUBLIC_CATALOG_ORDER_SUBMISSIONS);
+// Kada nemamo svoje stranice proizvoda, ponude iz kataloga su glavni spisak proizvoda.
+const onlyCatalog = products.length === 0 && catalogOffers.length > 0;
 ---
 
 <BaseLayout
@@ -53,13 +57,14 @@ const catalogOffers = getCatalogOffersForCategory(d.slug).filter((o) => !product
         <div>
           <h1 class="text-4xl font-bold text-[#173d22] sm:text-5xl">{d.name}</h1>
           <div class="prose-bk mt-3 max-w-3xl">
-            <Content />
+            {d.intro ? <p>{d.intro}</p> : <Content />}
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  {!onlyCatalog && (
   <section class="container-site py-6" aria-labelledby="proizvodi-title">
     <h2 id="proizvodi-title" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">Proizvodi u kategoriji</h2>
     {
@@ -82,13 +87,14 @@ const catalogOffers = getCatalogOffersForCategory(d.slug).filter((o) => !product
       )
     }
   </section>
+  )}
 
   {
     catalogOffers.length > 0 && (
       <section class="container-site py-8" aria-labelledby="kat-katalog">
-        <h2 id="kat-katalog" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">Dodatne ponude u kategoriji</h2>
+        <h2 id="kat-katalog" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">{onlyCatalog ? 'Proizvodi u kategoriji' : 'Dodatne ponude u kategoriji'}</h2>
         <p class="mt-2 max-w-2xl text-muted">
-          Ponude za Srbiju sa fotografijama i cenama iz partnerskog cenovnika. Konačnu dostupnost i cenu potvrđuje prodavac; poručivanje još nije aktivirano.
+          Ponude za Srbiju sa fotografijama i cenama iz partnerskog cenovnika. Konačnu dostupnost i cenu potvrđuje prodavac{orderingOn ? '; poručujete preko forme na stranici proizvoda, uz plaćanje pouzećem.' : '; poručivanje još nije aktivirano.'}
         </p>
         <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {catalogOffers.map((offer) => <OfferCard offer={offer} />)}
@@ -103,6 +109,16 @@ const catalogOffers = getCatalogOffersForCategory(d.slug).filter((o) => !product
         <h2 id="kat-vodici-title" class="text-2xl font-semibold text-[#173d22] sm:text-3xl">Vodiči za ovu temu</h2>
         <div class="mt-6 grid gap-6 md:grid-cols-3">
           {guides.map((g) => <GuideCard guide={g} categoryName={d.name} />)}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    d.intro && (
+      <section class="container-site py-4" aria-label={`Više o temi: ${d.name}`}>
+        <div class="prose-bk max-w-3xl">
+          <Content />
         </div>
       </section>
     )
