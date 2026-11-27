@@ -1,6 +1,9 @@
 import type { APIRoute } from 'astro';
 import { getProducts, getCategories, getGuides, productUrl, categoryUrl, guideUrl } from '../lib/content';
 import { isoDate } from '../lib/format';
+import { getCatalogOffersForCategory } from '../data/offer-categories';
+import { indexableOffers, INDEXED_GEO } from '../data/offer-indexing';
+import { geoUrl, offerUrl } from '../data/offers';
 
 export const prerender = true;
 
@@ -23,11 +26,15 @@ export const GET: APIRoute = async ({ site }) => {
 
   const urls: { loc: string; lastmod?: string }[] = [
     ...STATIC_PAGES.map((p) => ({ loc: p })),
+    // kategorija se indeksira kada ima naš proizvod ili ponudu iz kataloga (isto pravilo kao na stranici kategorije)
     ...categories
-      .filter((c) => products.some((p) => p.data.category.id === c.id))
+      .filter((c) => products.some((p) => p.data.category.id === c.id) || getCatalogOffersForCategory(c.data.slug).length > 0)
       .map((c) => ({ loc: categoryUrl(c), lastmod: isoDate(c.data.updatedAt) })),
     ...products.map((p) => ({ loc: productUrl(p), lastmod: isoDate(p.data.updatedAt) })),
     ...guides.map((g) => ({ loc: guideUrl(g), lastmod: isoDate(g.data.updatedAt) })),
+    { loc: '/ponude/' },
+    { loc: geoUrl(INDEXED_GEO) },
+    ...indexableOffers().map((o) => ({ loc: offerUrl(o) })),
   ];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

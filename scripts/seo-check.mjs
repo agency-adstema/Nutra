@@ -75,7 +75,7 @@ for (const file of html) {
       if (!types.includes('Organization')) err(rel, 'JSON-LD bez Organization');
       if (rel !== 'index.html' && !is404 && !rel.startsWith('pretraga') && !types.includes('BreadcrumbList')) err(rel, 'JSON-LD bez BreadcrumbList');
       if (/aggregateRating|"review"/i.test(m[1])) err(rel, 'JSON-LD sadrži ocene/recenzije (zabranjeno bez stvarnih podataka)');
-      if (rel.split('/').length === 3 && !rel.startsWith('vodici/') && !types.includes('Product')) err(rel, 'stranica proizvoda bez Product schema');
+      if (rel.split('/').length === 3 && !rel.startsWith('vodici/') && !rel.startsWith('ponude/') && !types.includes('Product')) err(rel, 'stranica proizvoda bez Product schema');
       if (rel.startsWith('vodici/') && rel !== 'vodici/index.html' && !types.includes('Article')) err(rel, 'vodič bez Article schema');
     } catch (e) {
       err(rel, `neispravan JSON-LD: ${e.message}`);

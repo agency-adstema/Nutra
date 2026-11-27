@@ -14,6 +14,8 @@ import ProductSalesPanel from '../../../components/product/ProductSalesPanel.ast
 import ProductComposition from '../../../components/product/ProductComposition.astro';
 import QuotedReviews from '../../../components/product/QuotedReviews.astro';
 import { getLcDetails, lcCheckedAt, lcSourceName } from '../../../data/limitedcharm-details';
+import { isOfferIndexable } from '../../../data/offer-indexing';
+import { PUBLIC_ORDER_ENDPOINT, PUBLIC_CATALOG_ORDER_SUBMISSIONS } from 'astro:env/client';
 
 export function getStaticPaths() {
   return offers.map((offer) => ({
@@ -30,6 +32,7 @@ const primaryVertical = verticalLabel(offer.verticals[0] ?? 'Proizvod');
 const details = getOfferDetails(offer.geo, offer.slug);
 const imageSrc = getOfferImage(details);
 const isAvailable = details?.availableInAccount === true;
+const orderingOn = !!(PUBLIC_ORDER_ENDPOINT && PUBLIC_CATALOG_ORDER_SUBMISSIONS);
 const productDescription = details?.description || `Opis proizvoda ${offer.name} još nije dostavljen od partnera.`;
 const packageName = [details?.form, details?.package].filter(Boolean).join(' · ');
 const pricing = getCatalogPrice(offer.geo, offer.slug);
@@ -56,7 +59,7 @@ const tabs = [
 ];
 const faq = [
   { q: `Kolika je cena proizvoda ${offer.name}?`, a: displayedPrice ? `Prema direktnom cenovniku partnera: ${tiers.map(t => `${t.quantity} pakovanja – ${formatCatalogPrice(t.newPrice, offer.geo)}`).join('; ')}. Konačnu cenu i uslove dostave potvrdite kod prodavca.` : 'Za ovo tržište trenutno nemamo potvrđenu dostupnu ponudu.' },
-  { q: 'Kako mogu da poručim?', a: isAvailable ? 'Forma služi za proveru i trenutno ne šalje porudžbine. Prijem porudžbina počinje nakon aktivacije bezbednog backend-a.' : 'Za ovaj proizvod nema aktivne ponude u partnerskom nalogu na ovom tržištu.' },
+  { q: 'Kako mogu da poručim?', a: !isAvailable ? 'Za ovaj proizvod nema aktivne ponude u partnerskom nalogu na ovom tržištu.' : orderingOn ? 'Popunite formu na ovoj stranici: ime, prezime i broj telefona. Operater vas poziva radi potvrde porudžbine, a plaćate pouzećem pri preuzimanju.' : 'Forma služi za proveru i trenutno ne šalje porudžbine. Prijem porudžbina počinje nakon aktivacije bezbednog backend-a.' },
   { q: 'Koji broj telefona treba uneti?', a: `Primer broja za tržište ${info.name}: ${market.phone.example}.` },
 ];
 const productInfo = {
@@ -69,7 +72,7 @@ const productInfo = {
 
 <BaseLayout title={`${offer.name} – ${info.name} | Cena i poručivanje`}
   description={`${offer.name} za ${info.name}. Kategorija ${primaryVertical}. Pregled sastava, upotrebe i informacija o poručivanju nakon provere kod prodavca.`}
-  path={path} noindex breadcrumbs={crumbs} bodyClass="pb-20 lg:pb-0">
+  path={path} noindex={!isOfferIndexable(offer)} breadcrumbs={crumbs} bodyClass="pb-20 lg:pb-0">
   <div data-product-page data-product={JSON.stringify(productInfo)}>
     <!-- Product detail hero — consistent split image + sales panel on all three GEOs -->
     <section class="relative overflow-hidden" data-hero>

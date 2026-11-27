@@ -117,7 +117,7 @@ npm run build
 npm run test:seo
 ```
 
-`npm test` i `npm run build` moraju da prođu. `npm run test:seo` trenutno prijavljuje 10 starih grešaka (kategorije u sitemap-u, Product schema na `/ponude/*/index.html`). Novi post ne sme da poveća taj broj, i nijedna greška ne sme da pominje `vodici/`. Ručno proveri:
+`npm test` i `npm run build` moraju da prođu. `npm run test:seo` mora da prođu bez grešaka (od 27.11.2026). Ako se pojavi greška, nijedna ne sme da pominje `vodici/`. Ručno proveri:
 - broj reči u telu (najmanje 900),
 - da svaki interni link postoji u `dist/client` (stranica postoji),
 - da stranica `dist/client/vodici/<slug>/index.html` sadrži `<img` sa popunjenim `alt` (slika iz teksta),
